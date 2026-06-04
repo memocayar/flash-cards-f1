@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Card preview v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper: #faf6ec;
+    --paper-2: #f5efde;
+    --ink: #1c1a17;
+    --ink-2: #54514a;
+    --ink-3: #8b877e;
+    --line: #d9d0bb;
+
+    /* Section accents — pastel saturated */
+    --def-bg: #f3ecd9;
+    --def-accent: #8b6f3f;
+    --def-stroke: #c9a86b;
+
+    --formula-bg: #e8eef2;
+    --formula-accent: #2d4f72;
+    --formula-stroke: #7fa3c9;
+
+    --demo-bg: #ede5e8;
+    --demo-accent: #8a4a5a;
+    --demo-stroke: #c89aa8;
+
+    --example-bg: #e3ece4;
+    --example-accent: #3d5e44;
+    --example-stroke: #87b194;
+
+    --diagram-bg: #f7f0dd;
+    --diagram-stroke: #c9a86b;
+
+    /* Vector colors for diagrams */
+    --vec-r: #c2622d;        /* warm orange — vector posición */
+    --vec-F: #3a7d44;        /* leaf green — fuerza */
+    --vec-M: #1c1a17;        /* near black — momento */
+    --vec-d: #2d4f72;        /* blue — brazo */
+    --vec-plane: #7fa3c9;    /* light blue — plano */
+
+    --display: 'Fraunces', serif;
+    --sans: 'Inter Tight', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--sans);
+    background:
+      radial-gradient(ellipse at 20% 10%, #efe1c4 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 90%, #dde5ed 0%, transparent 50%),
+      #f0e9d6;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: var(--ink);
+  }
+
+  /* Card with 3D flip — fixed internal size, scales as a unit */
+  .scene {
+    width: 960px;
+    height: 678px;
+    flex-shrink: 0;
+    perspective: 2200px;
+    transform-origin: center center;
+  }
+
+  .flipper {
+    width: 960px;
+    height: 678px;
+    position: relative;
+    transition: transform 0.9s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+  }
+  .flipper.flipped { transform: rotateY(180deg); }
+
+  .face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    background: var(--paper);
+    border-radius: 14px;
+    box-shadow:
+      0 1px 2px rgba(60, 50, 30, 0.05),
+      0 8px 24px rgba(60, 50, 30, 0.1),
+      0 24px 60px rgba(60, 50, 30, 0.08);
+    overflow: hidden;
+  }
+  .face.back { transform: rotateY(180deg); }
+
+  /* Subtle paper grain */
+  .face::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 25% 30%, rgba(180, 150, 90, 0.05) 0%, transparent 45%),
+      radial-gradient(circle at 75% 70%, rgba(120, 100, 70, 0.04) 0%, transparent 45%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Side-indicator pill (FRENTE / DORSO) */
+  .side-pill {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: #fff;
+    padding: 4px 14px;
+    border-radius: 4px;
+    z-index: 5;
+  }
+  .face.front .side-pill { background: var(--formula-accent); }
+  .face.back .side-pill { background: var(--example-accent); }
+
+  /* Top-right corner stamp */
+  .corner-stamp {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-family: var(--display);
+    font-size: 0.7rem;
+    font-style: italic;
+    color: var(--ink-3);
+    z-index: 5;
+  }
+  .corner-stamp .num {
+    font-family: var(--mono);
+    font-style: normal;
+    font-weight: 500;
+    color: var(--ink-2);
+    background: var(--paper-2);
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 6px;
+    font-size: 0.65rem;
+  }
+
+  /* Top-left meta */
+  .top-meta {
+    position: absolute;
+    top: 14px;
+    left: 18px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 5;
+  }
+  .meta-tag {
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    font-weight: 600;
+    color: var(--ink-3);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .meta-tag .dot {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--demo-accent);
+    margin: 0 0.35rem;
+    vertical-align: middle;
+  }
+
+  /* ── FRONT layout: title on top, 2 columns below ── */
+  .front-grid {
+    position: absolute;
+    inset: 0;
+    padding: 2.8rem 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    z-index: 1;
+  }
+
+  .title-row {
+    text-align: center;
+    padding-bottom: 0.85rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px dashed var(--line);
+  }
+
+  .cols-row {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 1.3rem;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .cols-row > .col:first-child {
+    justify-content: space-between;
+    gap: 0.7rem;
+  }
+  .cols-row > .col:first-child > * { flex-shrink: 0; }
+  .cols-row > .col:first-child > .def-block { margin-bottom: 0; }
+  .cols-row > .col:first-child > .formula-frame { margin-bottom: 0; }
+  .cols-row > .col:first-child > .cases-grid { margin-top: 0; }
+
+  .title {
+    font-family: var(--display);
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-feature-settings: "ss01" 1;
+  }
+  .title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--demo-accent);
+  }
+
+  /* Definition block — sits on warm parchment */
+  .def-block {
+    background: var(--def-bg);
+    border: 1px solid var(--def-stroke);
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+    position: relative;
+  }
+  .def-block::before {
+    content: 'DEFINICIÓN';
+    position: absolute;
+    top: -8px;
+    left: 12px;
+    background: var(--paper);
+    padding: 0 6px;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--def-accent);
+  }
+  .def-text {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .def-text b {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--def-accent);
+    background: rgba(139, 111, 63, 0.12);
+    padding: 0 4px;
+    border-radius: 3px;
+  }
+
+  /* Formula box — bordered like in reference */
+  .formula-frame {
+    background: var(--formula-bg);
+    border: 1.5px solid var(--formula-stroke);
+    border-radius: 10px;
+    padding: 1.1rem 1rem;
+    position: relative;
+    text-align: center;
+  }
+  .formula-frame::before {
+    content: 'FÓRMULA';
+    position: absolute;
+    top: -8px;
+    left: 12px;
+    background: var(--paper);
+    padding: 0 6px;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--formula-accent);
+  }
+  .formula-main {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--formula-accent);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .formula-main .vec {
+    font-weight: 600;
+    font-style: italic;
+    color: var(--vec-M);
+  }
+  .formula-main .cross {
+    font-style: normal;
+    font-family: var(--sans);
+    font-weight: 500;
+    margin: 0 0.15em;
+    color: var(--formula-accent);
+  }
+
+  .formula-note {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    color: var(--ink-2);
+    margin-top: 0.4rem;
+    line-height: 1.5;
+    font-weight: 300;
+    text-align: center;
+  }
+  .formula-note b { color: var(--vec-M); font-weight: 600; }
+
+  /* Cases grid */
+  .cases-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+  }
+  .case-pill {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--demo-stroke);
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.72rem;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+  .case-pill b {
+    color: var(--demo-accent);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .case-pill .eq {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--ink);
+  }
+
+  /* Diagram column (right side of front) */
+  .diagram-frame {
+    background: var(--diagram-bg);
+    border: 1.5px solid var(--diagram-stroke);
+    border-radius: 10px;
+    padding: 0.6rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 0.7rem;
+  }
+  .diagram-frame::before {
+    content: 'DIAGRAMA';
+    position: absolute;
+    top: -8px;
+    left: 12px;
+    background: var(--paper);
+    padding: 0 6px;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--diagram-stroke);
+  }
+  .diagram-frame svg { width: 100%; height: auto; max-height: 100%; }
+
+  .r-note {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.55rem 0.8rem;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 0.78rem;
+    color: var(--ink-2);
+    text-align: center;
+    line-height: 1.4;
+  }
+  .r-note .vec-r {
+    color: var(--vec-r);
+    font-weight: 600;
+    font-size: 0.95rem;
+    font-style: italic;
+  }
+
+  /* ── BACK layout ── */
+  .back-grid {
+    position: absolute;
+    inset: 0;
+    padding: 3rem 2rem 1.75rem;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 1.3rem;
+    z-index: 1;
+  }
+
+  .back-title {
+    font-family: var(--display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--example-accent);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.7rem;
+    text-transform: uppercase;
+  }
+  .back-intro {
+    font-size: 0.78rem;
+    color: var(--ink-2);
+    line-height: 1.55;
+    margin-bottom: 0.7rem;
+    font-weight: 300;
+  }
+
+  .deriv-block {
+    background: var(--demo-bg);
+    border: 1px solid var(--demo-stroke);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.7rem;
+    position: relative;
+  }
+  .deriv-block::before {
+    content: 'CÁLCULO DEL MÓDULO';
+    position: absolute;
+    top: -8px;
+    left: 12px;
+    background: var(--paper);
+    padding: 0 6px;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--demo-accent);
+  }
+  .deriv-text {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    color: var(--ink);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+  .deriv-text .eq-inline {
+    font-family: var(--display);
+    font-style: italic;
+    color: var(--demo-accent);
+    font-weight: 500;
+    font-size: 0.85rem;
+  }
+  .deriv-text b { font-weight: 600; color: var(--demo-accent); }
+
+  .formula-final {
+    display: inline-block;
+    background: var(--paper);
+    border: 1.5px solid var(--example-accent);
+    border-radius: 8px;
+    padding: 0.4rem 0.9rem;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--example-accent);
+    font-weight: 600;
+    margin: 0.4rem auto;
+  }
+  .formula-final-wrap { text-align: center; margin: 0.5rem 0; }
+
+  .unit-block {
+    background: var(--example-bg);
+    border: 1px solid var(--example-stroke);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    margin-top: auto;
+    position: relative;
+  }
+  .unit-block::before {
+    content: 'UNIDAD SI';
+    position: absolute;
+    top: -8px;
+    left: 12px;
+    background: var(--paper);
+    padding: 0 6px;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--example-accent);
+  }
+  .unit-text {
+    font-size: 0.78rem;
+    color: var(--ink);
+    line-height: 1.55;
+    font-weight: 300;
+  }
+  .unit-text b {
+    font-weight: 600;
+    color: var(--example-accent);
+    background: rgba(61, 94, 68, 0.1);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  .ex-block {
+    background: var(--example-bg);
+    border: 1px solid var(--example-stroke);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    position: relative;
+    margin-top: 0.6rem;
+  }
+  .ex-block::before {
+    content: 'EJEMPLO';
+    position: absolute;
+    top: -8px;
+    left: 12px;
+    background: var(--paper);
+    padding: 0 6px;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--example-accent);
+  }
+  .ex-text {
+    font-size: 0.78rem;
+    color: var(--ink);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .ex-text .eq {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    color: var(--ink);
+  }
+  .ex-text .answer {
+    background: rgba(61, 94, 68, 0.15);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-weight: 600;
+    color: var(--example-accent);
+    font-family: var(--mono);
+    font-size: 0.76rem;
+  }
+
+  .lever-diagram {
+    background: var(--diagram-bg);
+    border: 1.5px solid var(--diagram-stroke);
+    border-radius: 10px;
+    padding: 0.7rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .lever-diagram::before {
+    content: 'PALANCA — CÁLCULO';
+    position: absolute;
+    top: -8px;
+    left: 12px;
+    background: var(--paper);
+    padding: 0 6px;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--diagram-stroke);
+  }
+  .lever-diagram svg { width: 100%; height: auto; max-height: 100%; }
+
+  /* Flip hint */
+  .flip-hint {
+    position: absolute;
+    bottom: 12px;
+    right: 18px;
+    font-size: 0.65rem;
+    color: var(--ink-3);
+    font-style: italic;
+    font-family: var(--display);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    z-index: 5;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
+  .flipper:hover .flip-hint { opacity: 1; }
+  .flip-hint .arrow {
+    font-style: normal;
+    font-family: var(--sans);
+  }
+
+</style>
+</head>
+<body>
+
+<div class="scene" id="scene">
+  <div class="flipper" id="flipper" onclick="this.classList.toggle('flipped')">
+
+    <!-- ═══════════ FRENTE ═══════════ -->
+    <div class="face front">
+      <div class="top-meta">
+        <span class="meta-tag">Física I <span class="dot"></span> Cap 2 <span class="dot"></span> Estática</span>
+      </div>
+      <span class="side-pill">FRENTE</span>
+      <span class="corner-stamp">tema<span class="num">01</span></span>
+
+      <div class="front-grid">
+
+        <!-- TITLE ROW — centered, full width -->
+        <div class="title-row">
+          <h1 class="title">Momento de una <em>fuerza</em> respecto a un punto</h1>
+        </div>
+
+        <!-- TWO COLUMNS BELOW -->
+        <div class="cols-row">
+
+        <!-- LEFT COLUMN -->
+        <div class="col">
+
+          <div class="def-block">
+            <div class="def-text">
+              Magnitud <b>vectorial</b> que mide cuantitativamente la tendencia de una fuerza a producir o alterar la <b>rotación</b> de un cuerpo alrededor de un punto O — el <b>centro de momento</b>.
+            </div>
+          </div>
+
+          <div class="formula-frame">
+            <div class="formula-main"><span class="vec">M</span> <span class="cross">=</span> <span class="vec">r</span> <span class="cross">×</span> <span class="vec">F</span></div>
+            <div class="formula-note">|M| = |F| · d &nbsp;&nbsp;|&nbsp;&nbsp; d = |r| · sen(α)</div>
+          </div>
+
+          <div class="cases-grid">
+            <div class="case-pill">
+              <b>F pasa por O</b>
+              <span class="eq">d = 0 → M = 0</span>
+            </div>
+            <div class="case-pill">
+              <b>F ⊥ r</b>
+              <span class="eq">d = |r| → M máx.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN — Diagram + r note -->
+        <div class="col">
+          <div class="diagram-frame" style="flex:1; min-height:0;">
+            <!-- 3D plane diagram with vectors -->
+            <svg viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arr-F" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M2 1L9 5L2 9" fill="#3a7d44" stroke="none"/>
+                </marker>
+                <marker id="arr-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M2 1L9 5L2 9" fill="#c2622d" stroke="none"/>
+                </marker>
+                <marker id="arr-M" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M2 1L9 5L2 9" fill="#1c1a17" stroke="none"/>
+                </marker>
+              </defs>
+
+              <!-- Plane in perspective (parallelogram) -->
+              <path d="M 30 110 L 280 80 L 360 165 L 110 195 Z"
+                    fill="#eaf1f8" stroke="#7fa3c9" stroke-width="1.5" stroke-linejoin="round"/>
+
+              <!-- Body C on plane (ellipse) -->
+              <ellipse cx="195" cy="140" rx="95" ry="42"
+                       fill="rgba(255,255,255,0.5)" stroke="#54514a" stroke-width="1.3"/>
+              <text x="280" y="172" font-family="Fraunces" font-style="italic" font-size="14" fill="#54514a">C</text>
+
+              <!-- Point O -->
+              <circle cx="105" cy="155" r="3.5" fill="#1c1a17"/>
+              <text x="88" y="158" font-family="Fraunces" font-style="italic" font-size="14" fill="#1c1a17" font-weight="500">O</text>
+
+              <!-- Vertical guide (dashed up from O for M direction) -->
+              <line x1="105" y1="155" x2="105" y2="60" stroke="#8b877e" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.6"/>
+
+              <!-- Right angle marker at O -->
+              <path d="M 105 145 L 115 145 L 115 155" fill="none" stroke="#1c1a17" stroke-width="1"/>
+
+              <!-- Vector r (from O to A) -->
+              <line x1="105" y1="155" x2="223" y2="118" stroke="#c2622d" stroke-width="2.2" marker-end="url(#arr-r)"/>
+              <text x="155" y="148" font-family="Fraunces" font-style="italic" font-size="15" fill="#c2622d" font-weight="600">r</text>
+
+              <!-- Point A -->
+              <circle cx="228" cy="116" r="3.5" fill="#1c1a17"/>
+              <text x="216" y="111" font-family="Fraunces" font-style="italic" font-size="14" fill="#1c1a17" font-weight="500">A</text>
+
+              <!-- Vector F (from A) -->
+              <line x1="228" y1="116" x2="320" y2="98" stroke="#3a7d44" stroke-width="2.2" marker-end="url(#arr-F)"/>
+              <text x="328" y="96" font-family="Fraunces" font-style="italic" font-size="15" fill="#3a7d44" font-weight="600">F</text>
+
+              <!-- Dashed line extending r direction -->
+              <line x1="228" y1="116" x2="290" y2="103" stroke="#8b877e" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.7"/>
+
+              <!-- Angle α between r and F -->
+              <path d="M 252 111 A 25 25 0 0 0 244 99" fill="none" stroke="#1c1a17" stroke-width="1"/>
+              <text x="252" y="103" font-family="Fraunces" font-style="italic" font-size="13" fill="#1c1a17">α</text>
+
+              <!-- Vector M (downward from O, out of plane) -->
+              <line x1="105" y1="160" x2="105" y2="225" stroke="#1c1a17" stroke-width="2.2" marker-end="url(#arr-M)"/>
+              <text x="92" y="218" font-family="Fraunces" font-style="italic" font-size="15" fill="#1c1a17" font-weight="600">M</text>
+
+            </svg>
+          </div>
+
+          <div class="r-note">
+            <span class="vec-r">r</span> es el vector posición del punto de aplicación de la fuerza con respecto al centro de momento <b>O</b>.
+          </div>
+        </div><!-- end right col -->
+
+        </div><!-- end cols-row -->
+      </div><!-- end front-grid -->
+
+      <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+    </div>
+
+
+    <!-- ═══════════ DORSO ═══════════ -->
+    <div class="face back">
+      <div class="top-meta">
+        <span class="meta-tag">Física I <span class="dot"></span> Cap 2 <span class="dot"></span> Estática</span>
+      </div>
+      <span class="side-pill">DORSO</span>
+      <span class="corner-stamp">tema<span class="num">01</span></span>
+
+      <div class="back-grid">
+
+        <!-- LEFT — derivation -->
+        <div class="col">
+          <div class="back-title">Cálculo del módulo</div>
+          <div class="back-intro">
+            Partiendo de la definición vectorial <span style="font-family: Fraunces; font-style: italic; color: var(--demo-accent); font-weight: 500;">M = r × F</span> y del módulo del producto vectorial.
+          </div>
+
+          <div class="deriv-block">
+            <div class="deriv-text">
+              Por definición del producto vectorial:<br>
+              <span class="eq-inline">|M| = |r| · |F| · sen(α)</span><br><br>
+              Pero <b>d = |r| · sen(α)</b> es la distancia perpendicular entre la recta de acción de F y el punto O — el <b>brazo de palanca</b>.<br><br>
+              Reemplazando:
+              <div class="formula-final-wrap">
+                <span class="formula-final">|M| = |F| · d</span>
+              </div>
+              El brazo se mide sobre una perpendicular a la recta de acción que pase por el centro de momento.
+            </div>
+          </div>
+
+          <div class="unit-block">
+            <div class="unit-text">
+              La unidad resulta de <b>fuerza × longitud</b>. En el Sistema Internacional:<br>
+              <span style="font-family: var(--mono); font-size: 0.85rem; color: var(--example-accent); font-weight: 600;">[M] = N · m</span> <span style="color: var(--ink-3);">(newton metro)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT — lever diagram + example -->
+        <div class="col">
+          <div class="lever-diagram">
+            <!-- Lever / palanca with pivot -->
+            <svg viewBox="0 0 380 220" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arr-F2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M2 1L9 5L2 9" fill="#3a7d44" stroke="none"/>
+                </marker>
+                <marker id="arr-r2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M2 1L9 5L2 9" fill="#c2622d" stroke="none"/>
+                </marker>
+                <marker id="arr-d2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M2 1L9 5L2 9" fill="#2d4f72" stroke="none"/>
+                </marker>
+              </defs>
+
+              <!-- Ground -->
+              <line x1="20" y1="195" x2="360" y2="195" stroke="#8b877e" stroke-width="1.2"/>
+              <g stroke="#8b877e" stroke-width="0.7">
+                <line x1="30" y1="195" x2="22" y2="205"/>
+                <line x1="50" y1="195" x2="42" y2="205"/>
+                <line x1="70" y1="195" x2="62" y2="205"/>
+                <line x1="90" y1="195" x2="82" y2="205"/>
+                <line x1="110" y1="195" x2="102" y2="205"/>
+              </g>
+
+              <!-- Pivot triangle base -->
+              <path d="M 50 195 L 80 175 L 110 195 Z" fill="#c9a86b" stroke="#8b6f3f" stroke-width="1.3"/>
+
+              <!-- Pivot circle (O) -->
+              <circle cx="80" cy="170" r="6" fill="#54514a" stroke="#1c1a17" stroke-width="1"/>
+              <circle cx="80" cy="170" r="2" fill="#faf6ec"/>
+              <text x="58" y="175" font-family="Fraunces" font-style="italic" font-size="14" fill="#1c1a17" font-weight="500">O</text>
+
+              <!-- Lever bar (rotated) -->
+              <g transform="rotate(-32 80 170)">
+                <rect x="80" y="163" width="180" height="14" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.3" rx="2"/>
+                <line x1="80" y1="170" x2="260" y2="170" stroke="#c2622d" stroke-width="1.5" opacity="0.5"/>
+              </g>
+
+              <!-- End of lever point -->
+              <circle cx="232.5" cy="74.5" r="3.5" fill="#1c1a17"/>
+
+              <!-- Vector r from O to end -->
+              <line x1="86" y1="167" x2="227" y2="76" stroke="#c2622d" stroke-width="2.2" stroke-dasharray="0" marker-end="url(#arr-r2)" opacity="0"/>
+              <text x="145" y="115" font-family="Fraunces" font-style="italic" font-size="16" fill="#c2622d" font-weight="600">r</text>
+
+              <!-- Vector F (vertical up from end of lever) -->
+              <line x1="232.5" y1="74.5" x2="232.5" y2="22" stroke="#3a7d44" stroke-width="2.3" marker-end="url(#arr-F2)"/>
+              <text x="240" y="28" font-family="Fraunces" font-style="italic" font-size="16" fill="#3a7d44" font-weight="600">F</text>
+
+              <!-- Dashed extension of lever direction (for alpha angle) -->
+              <line x1="232.5" y1="74.5" x2="285" y2="42" stroke="#8b877e" stroke-width="0.8" stroke-dasharray="3 3"/>
+
+              <!-- Angle alpha at end of lever -->
+              <path d="M 232.5 60 A 15 15 0 0 0 245 55" fill="none" stroke="#1c1a17" stroke-width="1"/>
+              <text x="240" y="58" font-family="Fraunces" font-style="italic" font-size="12" fill="#1c1a17">α</text>
+
+              <!-- Dashed vertical from end of lever down -->
+              <line x1="232.5" y1="74.5" x2="232.5" y2="170" stroke="#8b877e" stroke-width="0.8" stroke-dasharray="3 3"/>
+
+              <!-- Right angle marker at base -->
+              <path d="M 222 170 L 222 160 L 232 160" fill="none" stroke="#1c1a17" stroke-width="1"/>
+
+              <!-- d brazo de palanca (horizontal from O to projection) -->
+              <line x1="86" y1="178" x2="227" y2="178" stroke="#2d4f72" stroke-width="2" marker-end="url(#arr-d2)"/>
+              <text x="148" y="192" font-family="Fraunces" font-style="italic" font-size="15" fill="#2d4f72" font-weight="600">d</text>
+              <text x="155" y="205" font-family="Inter Tight" font-size="9" fill="#2d4f72" font-style="italic">brazo de palanca</text>
+
+              <!-- Small alpha at pivot -->
+              <path d="M 105 170 A 18 18 0 0 0 102 158" fill="none" stroke="#1c1a17" stroke-width="1"/>
+              <text x="108" y="163" font-family="Fraunces" font-style="italic" font-size="11" fill="#1c1a17">α</text>
+
+            </svg>
+          </div>
+
+          <div class="ex-block">
+            <div class="ex-text">
+              Llave inglesa de <b>0,5 m</b>, fuerza de <b>10 N</b> aplicada perpendicular (α = 90°):<br>
+              <span class="eq">|M| = 10 × 0,5 =</span> <span class="answer">5 N·m</span><br>
+              Si F pasara por O → d = 0 → <span class="eq">M = 0</span> (no rota).
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function scaleCard() {
+    var scene = document.getElementById('scene');
+    var W = 960;
+    var H = 678;
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+    var scale = Math.min(vw / W, vh / H) * 0.96;
+    scene.style.transform = 'scale(' + scale + ')';
+    // Center it
+    scene.style.marginLeft = ((vw - W) / 2) + 'px';
+    scene.style.marginTop = ((vh - H) / 2) + 'px';
+    scene.style.position = 'fixed';
+    scene.style.top = '0';
+    scene.style.left = '0';
+  }
+  scaleCard();
+  window.addEventListener('resize', scaleCard);
+</script>
+
+</body>
+</html>
