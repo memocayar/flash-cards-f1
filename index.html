@@ -2731,16 +2731,402 @@
 </div>
 </div><!-- card-16 -->
 
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 17 — Rozamiento por Deslizamiento
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-17">
+<div class="flipper" onclick="flipCard(this)">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 4 <span class="dot"></span> Dinámica</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">17</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Rozamiento por <em>Deslizamiento</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              Cuando dos cuerpos en contacto tienen <b>movimiento relativo</b>, aparece una fuerza de rozamiento que se opone al desplazamiento. Hay dos tipos: <b>estático</b> (cuerpo en reposo) y <b>cinético</b> (cuerpo en movimiento).
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div class="formula-main" style="font-size:1.2rem;">
+              f<sub>e</sub> &le; &mu;<sub>e</sub> &middot; N &nbsp;&nbsp; | &nbsp;&nbsp; f<sub>c</sub> = &mu;<sub>c</sub> &middot; N
+            </div>
+            <div class="formula-sub">estático (reposo) &nbsp;|&nbsp; cinético (movimiento)</div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill">
+              <b>Dirección</b>
+              paralela al plano de contacto, opuesta al movimiento (o movimiento tendido)
+            </div>
+            <div class="case-pill">
+              <b>&mu;<sub>e</sub> &gt; &mu;<sub>c</sub></b>
+              más fácil mantener en movimiento que ponerlo en movimiento
+            </div>
+            <div class="case-pill">
+              <b>F<sub>R</sub> = &mu;<sub>e</sub> &middot; N</b>
+              fuerza mínima para vencer el reposo (rozamiento máximo estático)
+            </div>
+            <div class="case-pill">
+              <b>&mu; adimensional</b>
+              depende de las superficies; independiente de la rapidez
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 360 252" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c17f-aF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+                <marker id="c17f-aN" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
+                <marker id="c17f-af" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+                <marker id="c17f-ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#54514a"/></marker>
+              </defs>
+
+              <!-- CASO ESTÁTICO (arriba) -->
+              <text x="180" y="14" font-family="Inter Tight" font-size="8.5" fill="#8b877e" text-anchor="middle" font-weight="700" letter-spacing=".1em">ESTÁTICO — cuerpo en reposo</text>
+              <!-- ground -->
+              <line x1="20" y1="90" x2="340" y2="90" stroke="#54514a" stroke-width="1.3"/>
+              <g stroke="#54514a" stroke-width=".7"><line x1="30" y1="90" x2="24" y2="98"/><line x1="55" y1="90" x2="49" y2="98"/><line x1="80" y1="90" x2="74" y2="98"/><line x1="105" y1="90" x2="99" y2="98"/><line x1="130" y1="90" x2="124" y2="98"/><line x1="155" y1="90" x2="149" y2="98"/><line x1="180" y1="90" x2="174" y2="98"/><line x1="205" y1="90" x2="199" y2="98"/><line x1="230" y1="90" x2="224" y2="98"/><line x1="255" y1="90" x2="249" y2="98"/><line x1="280" y1="90" x2="274" y2="98"/><line x1="305" y1="90" x2="299" y2="98"/><line x1="330" y1="90" x2="324" y2="98"/></g>
+              <!-- block -->
+              <rect x="130" y="50" width="90" height="40" rx="5" fill="#b8d4a3" stroke="#3a7d44" stroke-width="1.3"/>
+              <text x="175" y="75" font-family="Inter Tight" font-size="10" fill="#54514a" text-anchor="middle" font-weight="500">m</text>
+              <!-- N up -->
+              <line x1="175" y1="50" x2="175" y2="18" stroke="#2d4f72" stroke-width="2" marker-end="url(#c17f-aN)"/>
+              <text x="180" y="16" font-family="Fraunces" font-style="italic" font-size="12" fill="#2d4f72" font-weight="600">N</text>
+              <!-- mg down -->
+              <line x1="175" y1="90" x2="175" y2="118" stroke="#54514a" stroke-width="2" marker-end="url(#c17f-ag)"/>
+              <text x="180" y="117" font-family="Fraunces" font-style="italic" font-size="11" fill="#54514a">mg</text>
+              <!-- F right -->
+              <line x1="220" y1="70" x2="270" y2="70" stroke="#3a7d44" stroke-width="2" marker-end="url(#c17f-aF)"/>
+              <text x="276" y="74" font-family="Fraunces" font-style="italic" font-size="13" fill="#3a7d44" font-weight="600">F</text>
+              <!-- fe left -->
+              <line x1="130" y1="70" x2="80" y2="70" stroke="#8a4a5a" stroke-width="2" marker-end="url(#c17f-af)"/>
+              <text x="56" y="74" font-family="Fraunces" font-style="italic" font-size="13" fill="#8a4a5a" font-weight="600">f<tspan font-size="9" dy="3">e</tspan></text>
+              <!-- eq label -->
+              <rect x="90" y="124" width="180" height="16" rx="3" fill="rgba(45,79,114,.1)" stroke="#7fa3c9" stroke-width="1"/>
+              <text x="180" y="136" font-family="JetBrains Mono" font-size="9" fill="#2d4f72" text-anchor="middle">SF=0 &rarr; f_e = F (reposo)</text>
+
+              <!-- divider -->
+              <line x1="20" y1="148" x2="340" y2="148" stroke="#d9d0bb" stroke-width=".8"/>
+
+              <!-- CASO CINÉTICO (abajo) -->
+              <text x="180" y="162" font-family="Inter Tight" font-size="8.5" fill="#8b877e" text-anchor="middle" font-weight="700" letter-spacing=".1em">CINÉTICO — cuerpo en movimiento</text>
+              <!-- ground -->
+              <line x1="20" y1="230" x2="340" y2="230" stroke="#54514a" stroke-width="1.3"/>
+              <g stroke="#54514a" stroke-width=".7"><line x1="30" y1="230" x2="24" y2="238"/><line x1="55" y1="230" x2="49" y2="238"/><line x1="80" y1="230" x2="74" y2="238"/><line x1="105" y1="230" x2="99" y2="238"/><line x1="130" y1="230" x2="124" y2="238"/><line x1="155" y1="230" x2="149" y2="238"/><line x1="180" y1="230" x2="174" y2="238"/><line x1="205" y1="230" x2="199" y2="238"/><line x1="230" y1="230" x2="224" y2="238"/><line x1="255" y1="230" x2="249" y2="238"/><line x1="280" y1="230" x2="274" y2="238"/><line x1="305" y1="230" x2="299" y2="238"/><line x1="330" y1="230" x2="324" y2="238"/></g>
+              <!-- block cinético -->
+              <rect x="130" y="190" width="90" height="40" rx="5" fill="#ede5e8" stroke="#8a4a5a" stroke-width="1.3"/>
+              <text x="175" y="215" font-family="Inter Tight" font-size="10" fill="#54514a" text-anchor="middle" font-weight="500">m</text>
+              <!-- v arrow -->
+              <line x1="220" y1="210" x2="272" y2="210" stroke="#3a7d44" stroke-width="2" marker-end="url(#c17f-aF)"/>
+              <text x="278" y="206" font-family="Fraunces" font-style="italic" font-size="11" fill="#3a7d44">v</text>
+              <text x="244" y="224" font-family="Inter Tight" font-size="8" fill="#3a7d44">(decrece)</text>
+              <!-- fc left -->
+              <line x1="130" y1="210" x2="74" y2="210" stroke="#8a4a5a" stroke-width="2" marker-end="url(#c17f-af)"/>
+              <text x="50" y="214" font-family="Fraunces" font-style="italic" font-size="13" fill="#8a4a5a" font-weight="600">f<tspan font-size="9" dy="3">c</tspan></text>
+            </svg>
+          </div>
+          <div class="r-note" style="font-size:.73rem;">f<sub>e</sub> se ajusta automáticamente hasta su máximo F<sub>R</sub> = &mu;<sub>e</sub>&middot;N; recién ahí el cuerpo comienza a moverse con f<sub>c</sub> = &mu;<sub>c</sub>&middot;N.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 4 <span class="dot"></span> Dinámica</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">17</span></span>
+    <div class="back-grid">
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            Cuerpo en reposo con F aplicada. Equilibrio vertical:<br><br>
+            <span class="eq">&Sigma;Fy = 0 &rarr; N &minus; mg = 0 &rarr; N = mg</span><br><br>
+            Equilibrio horizontal (mientras no se mueve):<br><br>
+            <span class="eq">&Sigma;Fx = 0 &rarr; F &minus; f<sub>e</sub> = 0 &rarr; f<sub>e</sub> = F</span><br><br>
+            Al aumentar F, f<sub>e</sub> crece hasta su máximo:<br><br>
+            <span class="eq">F<sub>R</sub> = &mu;<sub>e</sub> &middot; N</span><br><br>
+            Superado ese límite, el cuerpo se mueve y rige:<br><br>
+            <div class="formula-final-wrap"><span class="formula-final">f<sub>c</sub> = &mu;<sub>c</sub> &middot; N</span></div>
+            Como &mu;<sub>e</sub> &gt; &mu;<sub>c</sub>, al empezar a moverse la fricción <b>baja</b>.
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.55rem;">
+          <div class="unit-text">
+            &mu;<sub>e</sub>, &mu;<sub>c</sub> <b>adimensionales</b>, positivos.<br>
+            Plano horizontal: <span style="font-family:'JetBrains Mono',monospace;font-size:.72rem;">N = mg</span><br>
+            Plano inclinado &theta;: <span style="font-family:'JetBrains Mono',monospace;font-size:.72rem;">N = mg&middot;cos&theta;</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.55rem;">
+        <div class="back-diag" style="height:188px;flex:0 0 auto;">
+          <svg viewBox="0 0 350 175" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="c17b-aF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+              <marker id="c17b-af" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+            </defs>
+            <!-- axes -->
+            <line x1="20" y1="140" x2="330" y2="140" stroke="#54514a" stroke-width="1.2"/>
+            <line x1="20" y1="140" x2="20" y2="20" stroke="#54514a" stroke-width="1.2"/>
+            <text x="334" y="144" font-family="Fraunces" font-style="italic" font-size="12" fill="#54514a">F</text>
+            <text x="14" y="16" font-family="Fraunces" font-style="italic" font-size="12" fill="#54514a">f</text>
+            <!-- f_e line (45° slope, up to FR) -->
+            <line x1="20" y1="140" x2="130" y2="60" stroke="#8a4a5a" stroke-width="2"/>
+            <!-- FR horizontal dashed -->
+            <line x1="20" y1="60" x2="320" y2="60" stroke="#8a4a5a" stroke-width="1" stroke-dasharray="4 3" opacity=".5"/>
+            <!-- FR label -->
+            <text x="6" y="63" font-family="JetBrains Mono" font-size="8" fill="#8a4a5a">F_R</text>
+            <!-- fc horizontal line -->
+            <line x1="130" y1="80" x2="310" y2="80" stroke="#c2622d" stroke-width="2"/>
+            <!-- drop at FR -->
+            <line x1="130" y1="60" x2="130" y2="80" stroke="#54514a" stroke-width="1.2" stroke-dasharray="2 2"/>
+            <!-- labels on curve -->
+            <text x="60" y="108" font-family="Fraunces" font-style="italic" font-size="10" fill="#8a4a5a">f<tspan font-size="8" dy="2">e</tspan></text>
+            <text x="60" y="122" font-family="Inter Tight" font-size="8.5" fill="#8a4a5a">(crece con F)</text>
+            <text x="200" y="72" font-family="Fraunces" font-style="italic" font-size="10" fill="#c2622d">f<tspan font-size="8" dy="2">c</tspan></text>
+            <text x="180" y="85" font-family="Inter Tight" font-size="8.5" fill="#c2622d">(constante)</text>
+            <!-- mu_e > mu_c annotation -->
+            <rect x="20" y="148" width="310" height="20" rx="4" fill="rgba(237,229,232,.6)" stroke="#c89aa8" stroke-width="1"/>
+            <text x="175" y="162" font-family="Inter Tight" font-size="9" fill="#8a4a5a" text-anchor="middle">&mu;<sub>e</sub> &gt; &mu;<sub>c</sub> &nbsp;&rarr;&nbsp; al iniciar el movimiento, la fricción <b>baja</b></text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            Bloque <b>5 kg</b> sobre mesa horizontal, &mu;<sub>e</sub>=0.4, &mu;<sub>c</sub>=0.3.<br>
+            <span class="eq">N = mg = 5&times;9.8 =</span> <span class="answer">49 N</span><br>
+            <span class="eq">F<sub>R</sub> = 0.4&times;49 =</span> <span class="answer">19.6 N</span> (para arrancar)<br>
+            <span class="eq">f<sub>c</sub> = 0.3&times;49 =</span> <span class="answer">14.7 N</span> (en movimiento)
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-17 -->
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 18 — Rozamiento por Rodadura
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-18">
+<div class="flipper" onclick="flipCard(this)">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 4 <span class="dot"></span> Dinámica</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">18</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Rozamiento por <em>Rodadura</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              Resistencia que aparece cuando un cuerpo <b>rueda</b> sobre una superficie. Se debe a la <b>deformación</b> del cuerpo en el punto de contacto, que desplaza la normal N hacia adelante, creando dos cuplas antagónicas. El coeficiente k se mide en <b>unidades de longitud</b>.
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div class="formula-main" style="font-size:1.3rem;">
+              Q<sub>rod</sub> = k &middot; N / R
+            </div>
+            <div class="formula-sub">k = coef. de rodadura [m] &nbsp;|&nbsp; R = radio del cuerpo</div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill">
+              <b>Condición de rodadura</b>
+              Q &lt; F<sub>R</sub>: el cuerpo rueda sin deslizar
+            </div>
+            <div class="case-pill">
+              <b>k en longitud</b>
+              a diferencia de &mu;, k tiene unidades [m] o [mm]
+            </div>
+            <div class="case-pill">
+              <b>Cupla motriz</b>
+              <span class="eq">QR = Nk</span> (condición de rodadura uniforme)
+            </div>
+            <div class="case-pill">
+              <b>Mucho menor</b>
+              Q<sub>rod</sub> &ll; f<sub>c</sub>: rodar cuesta mucho menos que deslizar
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 360 252" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c18f-aN" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
+                <marker id="c18f-aQ" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+                <marker id="c18f-af" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+                <marker id="c18f-ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#54514a"/></marker>
+              </defs>
+
+              <!-- FIG 1: cilindro sin rodar aún -->
+              <text x="88" y="12" font-family="Inter Tight" font-size="8" fill="#8b877e" text-anchor="middle" font-weight="700">Fig. 1 — reposo</text>
+              <!-- ground -->
+              <line x1="14" y1="160" x2="162" y2="160" stroke="#54514a" stroke-width="1.3"/>
+              <!-- cylinder -->
+              <circle cx="88" cy="110" r="50" fill="rgba(232,238,242,.5)" stroke="#2d4f72" stroke-width="1.3"/>
+              <!-- Cm dot -->
+              <circle cx="88" cy="110" r="3" fill="#2d4f72"/>
+              <text x="94" y="109" font-family="Inter Tight" font-size="8" fill="#2d4f72">C<tspan font-size="6" dy="2">m</tspan></text>
+              <!-- R label -->
+              <line x1="88" y1="110" x2="50" y2="140" stroke="#8b877e" stroke-width="1" stroke-dasharray="2 2"/>
+              <text x="58" y="130" font-family="Fraunces" font-style="italic" font-size="10" fill="#8b877e">R</text>
+              <!-- N up (from A, center) -->
+              <line x1="88" y1="160" x2="88" y2="118" stroke="#2d4f72" stroke-width="2" marker-end="url(#c18f-aN)"/>
+              <text x="93" y="118" font-family="Fraunces" font-style="italic" font-size="11" fill="#2d4f72" font-weight="600">N</text>
+              <!-- mg down -->
+              <line x1="88" y1="110" x2="88" y2="152" stroke="#54514a" stroke-width="2" marker-end="url(#c18f-ag)"/>
+              <text x="93" y="150" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">mg</text>
+              <!-- A and B labels -->
+              <text x="84" y="174" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">A</text>
+              <text x="116" y="174" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">B</text>
+
+              <!-- vertical divider -->
+              <line x1="176" y1="8" x2="176" y2="248" stroke="#d9d0bb" stroke-width=".8"/>
+
+              <!-- FIG 2: cilindro rodando -->
+              <text x="268" y="12" font-family="Inter Tight" font-size="8" fill="#8b877e" text-anchor="middle" font-weight="700">Fig. 2 — rodando</text>
+              <!-- ground -->
+              <line x1="190" y1="160" x2="346" y2="160" stroke="#54514a" stroke-width="1.3"/>
+              <!-- cylinder -->
+              <circle cx="268" cy="110" r="50" fill="rgba(232,238,242,.5)" stroke="#2d4f72" stroke-width="1.3"/>
+              <!-- Cm dot -->
+              <circle cx="268" cy="110" r="3" fill="#2d4f72"/>
+              <text x="274" y="109" font-family="Inter Tight" font-size="8" fill="#2d4f72">C<tspan font-size="6" dy="2">m</tspan></text>
+              <!-- R label -->
+              <line x1="268" y1="110" x2="230" y2="140" stroke="#8b877e" stroke-width="1" stroke-dasharray="2 2"/>
+              <text x="236" y="130" font-family="Fraunces" font-style="italic" font-size="10" fill="#8b877e">R</text>
+              <!-- N desplazada hacia adelante (desde A+k) -->
+              <line x1="278" y1="160" x2="278" y2="118" stroke="#2d4f72" stroke-width="2" marker-end="url(#c18f-aN)"/>
+              <text x="283" y="118" font-family="Fraunces" font-style="italic" font-size="11" fill="#2d4f72" font-weight="600">N</text>
+              <!-- k offset label -->
+              <line x1="268" y1="168" x2="278" y2="168" stroke="#c2622d" stroke-width="1.5"/>
+              <line x1="268" y1="164" x2="268" y2="172" stroke="#c2622d" stroke-width="1"/>
+              <line x1="278" y1="164" x2="278" y2="172" stroke="#c2622d" stroke-width="1"/>
+              <text x="270" y="180" font-family="Fraunces" font-style="italic" font-size="9" fill="#c2622d">k</text>
+              <!-- mg down -->
+              <line x1="268" y1="110" x2="268" y2="152" stroke="#54514a" stroke-width="2" marker-end="url(#c18f-ag)"/>
+              <text x="256" y="150" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">mg</text>
+              <!-- Q applied force -->
+              <line x1="318" y1="110" x2="346" y2="110" stroke="#3a7d44" stroke-width="2" marker-end="url(#c18f-aQ)"/>
+              <text x="324" y="103" font-family="Fraunces" font-style="italic" font-size="11" fill="#3a7d44" font-weight="600">Q</text>
+              <!-- f friction -->
+              <line x1="248" y1="160" x2="210" y2="160" stroke="#8a4a5a" stroke-width="2" marker-end="url(#c18f-af)"/>
+              <text x="196" y="156" font-family="Fraunces" font-style="italic" font-size="11" fill="#8a4a5a" font-weight="600">f</text>
+
+              <!-- formula strip bottom -->
+              <rect x="14" y="190" width="332" height="22" rx="5" fill="rgba(232,238,242,.7)" stroke="#7fa3c9" stroke-width="1"/>
+              <text x="180" y="205" font-family="Fraunces" font-style="italic" font-size="11" fill="#2d4f72" text-anchor="middle">QR = Nk &nbsp;&rarr;&nbsp; Q<tspan font-size="9" dy="2">rod</tspan><tspan dy="-2"> = k&middot;N/R</tspan></text>
+
+              <rect x="14" y="218" width="332" height="28" rx="5" fill="rgba(227,236,228,.6)" stroke="#87b194" stroke-width="1"/>
+              <text x="180" y="230" font-family="Inter Tight" font-size="8.5" fill="#3d5e44" text-anchor="middle">La normal se desplaza k hacia adelante &rarr; cupla resistente = Nk</text>
+              <text x="180" y="242" font-family="Inter Tight" font-size="8.5" fill="#3d5e44" text-anchor="middle">La cupla motriz QR la equilibra cuando rueda uniformemente</text>
+            </svg>
+          </div>
+          <div class="r-note" style="font-size:.73rem;">k tiene <span style="color:var(--formula-accent);font-weight:600;">unidades de longitud</span> (m o mm), no es adimensional como &mu;. Ejemplo: k &asymp; 0.5 mm para acero sobre acero.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 4 <span class="dot"></span> Dinámica</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">18</span></span>
+    <div class="back-grid">
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            Cilindro radio R rueda sobre plano. Sobre C<sub>m</sub> actúan mg y la normal N. Se aplica fuerza Q con Q &lt; F<sub>R</sub>.<br><br>
+            El cilindro se apoya en A y se levanta en B: la normal se desplaza una distancia <b>k</b> hacia adelante.<br><br>
+            Se forman <b>dos cuplas</b> antagónicas:<br>
+            <span class="eq">cupla motriz = Q&middot;R</span><br>
+            <span class="eq">cupla resistente = N&middot;k</span><br><br>
+            Condición de rodadura uniforme (cuplas iguales):<br><br>
+            <span class="eq">Q&middot;R = N&middot;k</span><br><br>
+            <div class="formula-final-wrap"><span class="formula-final">Q<sub>rod</sub> = k&middot;N / R</span></div>
+            Q es el módulo de la <b>fuerza de rozamiento por rodadura</b>.
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.55rem;">
+          <div class="unit-text">
+            k [m]: coef. de rodadura.<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.72rem;">Q<sub>rod</sub> [N] = k[m]&middot;N[N] / R[m]</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.55rem;">
+        <div class="back-diag" style="height:185px;flex:0 0 auto;">
+          <svg viewBox="0 0 350 172" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="c18b-aN" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
+              <marker id="c18b-aQ" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+              <marker id="c18b-ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#54514a"/></marker>
+            </defs>
+            <!-- cylinder -->
+            <circle cx="140" cy="82" r="60" fill="rgba(232,238,242,.4)" stroke="#2d4f72" stroke-width="1.2"/>
+            <!-- ground -->
+            <line x1="20" y1="142" x2="320" y2="142" stroke="#54514a" stroke-width="1.3"/>
+            <g stroke="#54514a" stroke-width=".7"><line x1="30" y1="142" x2="24" y2="150"/><line x1="55" y1="142" x2="49" y2="150"/><line x1="80" y1="142" x2="74" y2="150"/><line x1="105" y1="142" x2="99" y2="150"/><line x1="130" y1="142" x2="124" y2="150"/><line x1="155" y1="142" x2="149" y2="150"/><line x1="180" y1="142" x2="174" y2="150"/><line x1="205" y1="142" x2="199" y2="150"/><line x1="230" y1="142" x2="224" y2="150"/><line x1="255" y1="142" x2="249" y2="150"/><line x1="280" y1="142" x2="274" y2="150"/><line x1="305" y1="142" x2="299" y2="150"/></g>
+            <!-- Cm -->
+            <circle cx="140" cy="82" r="3" fill="#2d4f72"/>
+            <text x="146" y="81" font-family="Inter Tight" font-size="8" fill="#2d4f72">C<tspan font-size="6" dy="2">m</tspan></text>
+            <!-- R line -->
+            <line x1="140" y1="82" x2="140" y2="142" stroke="#8b877e" stroke-width="1" stroke-dasharray="3 2"/>
+            <text x="144" y="118" font-family="Fraunces" font-style="italic" font-size="10" fill="#8b877e">R</text>
+            <!-- mg down -->
+            <line x1="140" y1="82" x2="140" y2="134" stroke="#54514a" stroke-width="2" marker-end="url(#c18b-ag)"/>
+            <text x="145" y="132" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">mg</text>
+            <!-- N up (offset k) -->
+            <line x1="152" y1="142" x2="152" y2="100" stroke="#2d4f72" stroke-width="2" marker-end="url(#c18b-aN)"/>
+            <text x="157" y="100" font-family="Fraunces" font-style="italic" font-size="11" fill="#2d4f72" font-weight="600">N</text>
+            <!-- k offset -->
+            <line x1="140" y1="152" x2="152" y2="152" stroke="#c2622d" stroke-width="1.5"/>
+            <line x1="140" y1="148" x2="140" y2="156" stroke="#c2622d" stroke-width="1"/>
+            <line x1="152" y1="148" x2="152" y2="156" stroke="#c2622d" stroke-width="1"/>
+            <text x="143" y="164" font-family="Fraunces" font-style="italic" font-size="10" fill="#c2622d">k</text>
+            <!-- Q force -->
+            <line x1="200" y1="82" x2="240" y2="82" stroke="#3a7d44" stroke-width="2" marker-end="url(#c18b-aQ)"/>
+            <text x="246" y="86" font-family="Fraunces" font-style="italic" font-size="12" fill="#3a7d44" font-weight="600">Q</text>
+            <!-- cupla annotations -->
+            <rect x="260" y="28" width="82" height="56" rx="5" fill="rgba(250,246,236,.9)" stroke="#d9d0bb" stroke-width="1"/>
+            <text x="301" y="42" font-family="Inter Tight" font-size="8" fill="#8b6f3f" text-anchor="middle" font-weight="600">CUPLA MOTRIZ</text>
+            <text x="301" y="54" font-family="JetBrains Mono" font-size="8.5" fill="#8b6f3f" text-anchor="middle">Q &middot; R</text>
+            <line x1="268" y1="60" x2="340" y2="60" stroke="#d9d0bb" stroke-width=".7"/>
+            <text x="301" y="68" font-family="Inter Tight" font-size="8" fill="#8a4a5a" text-anchor="middle" font-weight="600">CUPLA RESIST.</text>
+            <text x="301" y="80" font-family="JetBrains Mono" font-size="8.5" fill="#8a4a5a" text-anchor="middle">N &middot; k</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            Cilindro <b>R=0.3 m</b>, m=50 kg, k=0.001 m.<br>
+            <span class="eq">N = mg = 50&times;9.8 =</span> <span class="answer">490 N</span><br>
+            <span class="eq">Q<sub>rod</sub> = 0.001&times;490 / 0.3 =</span> <span class="answer">1.63 N</span><br>
+            <span style="color:var(--ink-3);font-size:.7rem;">Vs. f<sub>c</sub> = &mu;<sub>c</sub>&middot;N &asymp; 0.3&times;490 = 147 N — rodar es ~90x más fácil.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-18 -->
+
 </div><!-- scene -->
 </div><!-- scene-wrap -->
 
 <!-- ── GALLERY NAV ── -->
 <nav class="gallery-nav">
   <div class="chapter-tabs" id="chapter-tabs">
-    <button class="chapter-tab active" data-chapter="all" onclick="filterChapter(this,'all')">Todas (16)</button>
+    <button class="chapter-tab active" data-chapter="all" onclick="filterChapter(this,'all')">Todas (18)</button>
     <button class="chapter-tab" data-chapter="cap2" onclick="filterChapter(this,'cap2')">Cap 2 · Estática (4)</button>
     <button class="chapter-tab" data-chapter="cap3" onclick="filterChapter(this,'cap3')">Cap 3 · Cinemática (8)</button>
-    <button class="chapter-tab" data-chapter="cap4" onclick="filterChapter(this,'cap4')">Cap 4 · Dinámica (4)</button>
+    <button class="chapter-tab" data-chapter="cap4" onclick="filterChapter(this,'cap4')">Cap 4 · Dinámica (6)</button>
   </div>
   <div class="thumb-strip-wrap">
     <div class="thumb-strip" id="thumb-strip"></div>
@@ -2785,6 +3171,8 @@
     { id:14, title:'Cantidad de Movimiento',          chapter:'cap4' },
     { id:15, title:'Impulso',                             chapter:'cap4' },
     { id:16, title:'Conservación de la Cdad. de Movimiento', chapter:'cap4' },
+    { id:17, title:'Rozamiento por Deslizamiento',         chapter:'cap4' },
+    { id:18, title:'Rozamiento por Rodadura',              chapter:'cap4' },
   ];
 
   var filteredCards = allCards.slice();
