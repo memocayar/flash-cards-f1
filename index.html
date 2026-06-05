@@ -53,10 +53,43 @@
   .scene { width:960px; height:678px; flex-shrink:0; perspective:2200px; transform-origin:top left; position:absolute; }
   .card-slot { width:960px; height:678px; position:absolute; top:0; left:0; }
   .card-slot.hidden { display:none; }
-  .flipper { width:960px; height:678px; position:relative; transition:transform .75s cubic-bezier(.4,0,.2,1); transform-style:preserve-3d; -webkit-transform-style:preserve-3d; cursor:pointer; }
-  .flipper.flipped { transform:rotateY(180deg); -webkit-transform:rotateY(180deg); }
-  .face { position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; background:var(--paper); border-radius:14px; box-shadow:0 1px 2px rgba(60,50,30,.05),0 8px 24px rgba(60,50,30,.1),0 24px 60px rgba(60,50,30,.08); overflow:hidden; }
-  .face.back { transform:rotateY(180deg); -webkit-transform:rotateY(180deg); }
+  .flipper { width:960px; height:678px; position:relative; cursor:pointer; }
+
+  /* iOS-safe flip: animate each face independently */
+  @keyframes flip-front-out {
+    0%   { transform: rotateY(0deg);    opacity:1; }
+    49%  { transform: rotateY(-90deg);  opacity:0; }
+    100% { transform: rotateY(-90deg);  opacity:0; }
+  }
+  @keyframes flip-front-in {
+    0%   { transform: rotateY(90deg);   opacity:0; }
+    51%  { transform: rotateY(90deg);   opacity:0; }
+    100% { transform: rotateY(0deg);    opacity:1; }
+  }
+  @keyframes flip-back-out {
+    0%   { transform: rotateY(0deg);    opacity:1; }
+    49%  { transform: rotateY(90deg);   opacity:0; }
+    100% { transform: rotateY(90deg);   opacity:0; }
+  }
+  @keyframes flip-back-in {
+    0%   { transform: rotateY(-90deg);  opacity:0; }
+    51%  { transform: rotateY(-90deg);  opacity:0; }
+    100% { transform: rotateY(0deg);    opacity:1; }
+  }
+
+  .face { position:absolute; inset:0; background:var(--paper); border-radius:14px; box-shadow:0 1px 2px rgba(60,50,30,.05),0 8px 24px rgba(60,50,30,.1),0 24px 60px rgba(60,50,30,.08); overflow:hidden; will-change:transform; }
+  .face.front { z-index:2; }
+  .face.back  { z-index:1; opacity:0; transform:rotateY(90deg); }
+
+  /* idle state after flip */
+  .flipper.flipped .face.front { z-index:1; opacity:0; transform:rotateY(-90deg); }
+  .flipper.flipped .face.back  { z-index:2; opacity:1; transform:rotateY(0deg); }
+
+  /* animating class added by JS */
+  .flipper.animating-to-back .face.front  { animation: flip-front-out .55s ease-in-out forwards; }
+  .flipper.animating-to-back .face.back   { animation: flip-back-in   .55s ease-in-out forwards; }
+  .flipper.animating-to-front .face.front { animation: flip-front-in  .55s ease-in-out forwards; }
+  .flipper.animating-to-front .face.back  { animation: flip-back-out  .55s ease-in-out forwards; }
   .face::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle at 25% 30%,rgba(180,150,90,.05) 0%,transparent 45%),radial-gradient(circle at 75% 70%,rgba(120,100,70,.04) 0%,transparent 45%); pointer-events:none; z-index:0; }
 
   /* CHROME */
@@ -132,6 +165,18 @@
 
   .back-diag { background:var(--diagram-bg); border:1.5px solid var(--diagram-stroke); border-radius:10px; padding:.65rem; flex:1; display:flex; align-items:center; justify-content:center; position:relative; margin-bottom:.55rem; }
   .back-diag svg { width:100%; height:auto; }
+
+  /* ── Vector / math helpers ── */
+  .vec { font-family:'Fraunces',serif; font-style:italic; font-weight:600; }
+  .vec::after { content:'\20D7'; }
+  .vvec { font-family:'Fraunces',serif; font-style:italic; font-weight:600; position:relative; display:inline-block; }
+  .vvec::after { content:''; position:absolute; top:-3px; right:-1px; width:60%; height:0; border-top:1.5px solid currentColor; }
+  .vvec::before { content:''; position:absolute; top:-6px; right:-1px; width:0; height:0; border-left:3px solid transparent; border-right:0px; border-bottom:4px solid currentColor; transform:rotate(30deg); }
+  /* Simpler: just bold italic with arrow via unicode but fallback */
+  .fv { font-family:'Fraunces',serif; font-style:italic; font-weight:600; }
+  .sigma { font-family:'Fraunces',serif; font-style:italic; }
+  .eq-big { font-family:'Fraunces',serif; font-style:italic; font-size:1.4rem; color:var(--formula-accent); font-weight:500; }
+  .eq-med { font-family:'Fraunces',serif; font-style:italic; font-size:1.1rem; color:var(--formula-accent); }
 </style>
 </head>
 <body>
@@ -143,7 +188,7 @@
      CARD 01 — Concepto de Fuerza
 ════════════════════════════════════════════════════════ -->
 <div class="card-slot" id="card-1">
-<div class="flipper" onclick="this.classList.toggle('flipped')">
+<div class="flipper" onclick="flipCard(this)">
   <div class="face front">
     <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 2 <span class="dot"></span> Estática</span></div>
     <span class="side-pill">FRENTE</span>
@@ -309,7 +354,7 @@
      CARD 02 — Momento de una fuerza + cálculo del módulo
 ════════════════════════════════════════════════════════ -->
 <div class="card-slot hidden" id="card-2">
-<div class="flipper" onclick="this.classList.toggle('flipped')">
+<div class="flipper" onclick="flipCard(this)">
   <div class="face front">
     <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 2 <span class="dot"></span> Estática</span></div>
     <span class="side-pill">FRENTE</span>
@@ -458,7 +503,7 @@
      CARD 03 — Teorema de Varignon
 ════════════════════════════════════════════════════════ -->
 <div class="card-slot hidden" id="card-3">
-<div class="flipper" onclick="this.classList.toggle('flipped')">
+<div class="flipper" onclick="flipCard(this)">
   <div class="face front">
     <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 2 <span class="dot"></span> Estática</span></div>
     <span class="side-pill">FRENTE</span>
@@ -623,7 +668,7 @@
 </div>
 </div><!-- card-3 -->
 <div class="card-slot hidden" id="card-4">
-<div class="flipper" onclick="this.classList.toggle('flipped')">
+<div class="flipper" onclick="flipCard(this)">
   <div class="face front">
     <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 2 <span class="dot"></span> Estática</span></div>
     <span class="side-pill">FRENTE</span>
@@ -790,7 +835,7 @@
      CARD 05 — Velocidad y aceleración. MRU (Cap 3, ítem 2)
 ════════════════════════════════════════════════════════ -->
 <div class="card-slot hidden" id="card-5">
-<div class="flipper" onclick="this.classList.toggle('flipped')">
+<div class="flipper" onclick="flipCard(this)">
 
   <!-- FRENTE -->
   <div class="face front">
@@ -1015,7 +1060,7 @@
 
 <!-- ═══ CARD 06 — MRUV ═══ -->
 <div class="card-slot hidden" id="card-6">
-<div class="flipper" onclick="this.classList.toggle('flipped')">
+<div class="flipper" onclick="flipCard(this)">
   <div class="face front">
     <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
     <span class="side-pill">FRENTE</span><span class="corner-stamp">tema<span class="num">06</span></span>
@@ -1159,7 +1204,7 @@
 
 <!-- ═══ CARD 07 — Caída libre ═══ -->
 <div class="card-slot hidden" id="card-7">
-<div class="flipper" onclick="this.classList.toggle('flipped')">
+<div class="flipper" onclick="flipCard(this)">
   <div class="face front">
     <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
     <span class="side-pill">FRENTE</span><span class="corner-stamp">tema<span class="num">07</span></span>
@@ -1290,7 +1335,7 @@
 
 <!-- ═══ CARD 08 — Tiro vertical ═══ -->
 <div class="card-slot hidden" id="card-8">
-<div class="flipper" onclick="this.classList.toggle('flipped')">
+<div class="flipper" onclick="flipCard(this)">
   <div class="face front">
     <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
     <span class="side-pill">FRENTE</span><span class="corner-stamp">tema<span class="num">08</span></span>
@@ -1423,7 +1468,7 @@
 
 <!-- ═══ CARD 09 — Tiro oblicuo ═══ -->
 <div class="card-slot hidden" id="card-9">
-<div class="flipper" onclick="this.classList.toggle('flipped')">
+<div class="flipper" onclick="flipCard(this)">
   <div class="face front">
     <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
     <span class="side-pill">FRENTE</span><span class="corner-stamp">tema<span class="num">09</span></span>
@@ -1564,7 +1609,7 @@
 
 <!-- ═══ CARD 10 — MCU: vel. angular y aceleración centrípeta ═══ -->
 <div class="card-slot hidden" id="card-10">
-<div class="flipper" onclick="this.classList.toggle('flipped')">
+<div class="flipper" onclick="flipCard(this)">
   <div class="face front">
     <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
     <span class="side-pill">FRENTE</span><span class="corner-stamp">tema<span class="num">10</span></span>
@@ -1736,7 +1781,7 @@
 
 <!-- ═══ CARD 11 — MCUV ═══ -->
 <div class="card-slot hidden" id="card-11">
-<div class="flipper" onclick="this.classList.toggle('flipped')">
+<div class="flipper" onclick="flipCard(this)">
   <div class="face front">
     <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
     <span class="side-pill">FRENTE</span><span class="corner-stamp">tema<span class="num">11</span></span>
@@ -1905,7 +1950,7 @@
 
 <!-- ═══ CARD 12 — Movimiento relativo en traslación sin rotación ═══ -->
 <div class="card-slot hidden" id="card-12">
-<div class="flipper" onclick="this.classList.toggle('flipped')">
+<div class="flipper" onclick="flipCard(this)">
   <div class="face front">
     <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
     <span class="side-pill">FRENTE</span><span class="corner-stamp">tema<span class="num">12</span></span>
@@ -2067,10 +2112,10 @@
 
 
 <!-- ════════════════════════════════════════════════════════
-     CARD 13 — Leyes de la Dinámica (Newton)
+     CARD 13 — Leyes de la Dinámica
 ════════════════════════════════════════════════════════ -->
 <div class="card-slot hidden" id="card-13">
-<div class="flipper" onclick="this.classList.toggle('flipped')">
+<div class="flipper" onclick="flipCard(this)">
   <div class="face front">
     <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 4 <span class="dot"></span> Dinámica</span></div>
     <span class="side-pill">FRENTE</span>
@@ -2079,22 +2124,19 @@
       <div class="title-row"><h1 class="title">Leyes de la <em>Dinámica</em></h1></div>
       <div class="cols-row">
         <div class="col col-left">
-          <!-- 1ª Ley -->
           <div class="def-block" style="padding:.7rem 1rem;">
             <div style="font-size:.58rem;font-weight:700;letter-spacing:.18em;color:#8b6f3f;margin-bottom:.35rem;">1ª LEY — INERCIA</div>
             <div class="def-text" style="font-size:.82rem;">Todo cuerpo conserva su estado de reposo o MRU a menos que actúe una <b>fuerza neta no nula</b> sobre él.</div>
-            <div style="margin-top:.4rem;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--formula-accent);text-align:center;">ΣF⃗ = 0⃗ &nbsp;→&nbsp; v⃗ = cte &nbsp;→&nbsp; a⃗ = 0⃗</div>
+            <div style="margin-top:.4rem;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--formula-accent);text-align:center;">&#x3A3;<b>F</b> = 0 &nbsp;&rarr;&nbsp; <b>v</b> = cte &nbsp;&rarr;&nbsp; <b>a</b> = 0</div>
           </div>
-          <!-- 2ª Ley -->
           <div class="formula-frame" style="padding:.7rem 1rem;">
             <div style="font-size:.58rem;font-weight:700;letter-spacing:.18em;color:var(--formula-accent);margin-bottom:.35rem;">2ª LEY — FUERZA / MASA</div>
-            <div class="formula-main" style="font-size:1.45rem;">ΣF⃗ = m · a⃗</div>
-            <div class="formula-sub">componente a componente: &nbsp;<span style="font-family:'JetBrains Mono',monospace;font-size:.75rem;">ΣFx = m·ax &nbsp;|&nbsp; ΣFy = m·ay</span></div>
+            <div class="formula-main" style="font-size:1.45rem;">&#x3A3;<b>F</b> = m &middot; <b>a</b></div>
+            <div class="formula-sub">componente a componente: &nbsp;<span style="font-family:'JetBrains Mono',monospace;font-size:.75rem;">&#x3A3;Fx = m&middot;ax &nbsp;|&nbsp; &#x3A3;Fy = m&middot;ay</span></div>
           </div>
-          <!-- 3ª Ley -->
           <div class="def-block" style="padding:.7rem 1rem; background:var(--demo-bg); border-color:var(--demo-stroke);">
             <div style="font-size:.58rem;font-weight:700;letter-spacing:.18em;color:var(--demo-accent);margin-bottom:.35rem;">3ª LEY — ACCIÓN Y REACCIÓN</div>
-            <div class="def-text" style="font-size:.82rem;">Si A ejerce <b style="color:var(--demo-accent);">F⃗<sub>AB</sub></b> sobre B, entonces B ejerce sobre A una fuerza <b style="color:var(--demo-accent);">F⃗<sub>BA</sub> = −F⃗<sub>AB</sub></b>. Actúan sobre <b>cuerpos distintos</b> — no se anulan.</div>
+            <div class="def-text" style="font-size:.82rem;">Si A ejerce <b style="color:var(--demo-accent);">F<sub>AB</sub></b> sobre B, entonces B ejerce <b style="color:var(--demo-accent);">F<sub>BA</sub> = &minus;F<sub>AB</sub></b> sobre A. Actúan sobre <b>cuerpos distintos</b> — no se anulan.</div>
           </div>
         </div>
         <div class="col">
@@ -2104,72 +2146,43 @@
                 <marker id="c13f-aF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
                 <marker id="c13f-aA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#c2622d"/></marker>
                 <marker id="c13f-aB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
-                <marker id="c13f-aN" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
               </defs>
-
-              <!-- ── 1ª LEY: bloque libre, v constante ── -->
               <text x="14" y="14" font-family="Inter Tight" font-size="8.5" fill="#8b6f3f" font-weight="700" letter-spacing=".1em">1ª LEY</text>
               <rect x="14" y="20" width="68" height="40" rx="5" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.2"/>
               <text x="48" y="45" font-family="Inter Tight" font-size="10" fill="#54514a" text-anchor="middle">m</text>
               <line x1="82" y1="40" x2="130" y2="40" stroke="#3a7d44" stroke-width="2" marker-end="url(#c13f-aF)"/>
-              <text x="100" y="33" font-family="Fraunces" font-style="italic" font-size="11" fill="#3a7d44">v⃗ = cte</text>
-              <text x="14" y="72" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#8b877e">ΣF⃗ = 0 → sin aceleración</text>
-
-              <!-- divider -->
+              <text x="100" y="33" font-family="Fraunces" font-style="italic" font-size="11" fill="#3a7d44">v = cte</text>
+              <text x="14" y="72" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#8b877e">SF = 0 → sin aceleración</text>
               <line x1="155" y1="8" x2="155" y2="80" stroke="#d9d0bb" stroke-width=".8"/>
-
-              <!-- ── 2ª LEY: bloque con F y a ── -->
               <text x="164" y="14" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" font-weight="700" letter-spacing=".1em">2ª LEY</text>
               <rect x="164" y="20" width="60" height="40" rx="5" fill="#dae3ec" stroke="#2d4f72" stroke-width="1.2"/>
               <text x="194" y="45" font-family="Inter Tight" font-size="10" fill="#2d4f72" text-anchor="middle">m</text>
-              <!-- incoming force -->
               <line x1="128" y1="40" x2="162" y2="40" stroke="#3a7d44" stroke-width="2" marker-end="url(#c13f-aF)"/>
-              <text x="134" y="33" font-family="Fraunces" font-style="italic" font-size="11" fill="#3a7d44">F⃗</text>
-              <!-- resulting acceleration -->
+              <text x="134" y="33" font-family="Fraunces" font-style="italic" font-size="11" fill="#3a7d44">F</text>
               <line x1="226" y1="40" x2="268" y2="40" stroke="#c2622d" stroke-width="2" marker-end="url(#c13f-aA)"/>
-              <text x="234" y="33" font-family="Fraunces" font-style="italic" font-size="11" fill="#c2622d">a⃗</text>
-              <text x="164" y="72" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#8b877e">a⃗ = ΣF⃗ / m</text>
-
-              <!-- separator -->
+              <text x="234" y="33" font-family="Fraunces" font-style="italic" font-size="11" fill="#c2622d">a</text>
+              <text x="164" y="72" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#8b877e">a = SF / m</text>
               <line x1="14" y1="84" x2="346" y2="84" stroke="#d9d0bb" stroke-width=".8"/>
-
-              <!-- ── 3ª LEY: par acción-reacción ── -->
               <text x="14" y="98" font-family="Inter Tight" font-size="8.5" fill="#8a4a5a" font-weight="700" letter-spacing=".1em">3ª LEY</text>
-
-              <!-- Bloque A -->
               <rect x="14" y="106" width="70" height="44" rx="5" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.2"/>
               <text x="49" y="133" font-family="Inter Tight" font-size="11" fill="#54514a" text-anchor="middle" font-weight="600">A</text>
-
-              <!-- Bloque B -->
               <rect x="200" y="106" width="70" height="44" rx="5" fill="#ede5e8" stroke="#8a4a5a" stroke-width="1.2"/>
               <text x="235" y="133" font-family="Inter Tight" font-size="11" fill="#8a4a5a" text-anchor="middle" font-weight="600">B</text>
-
-              <!-- F_AB (A empuja B → derecha) -->
               <line x1="84" y1="128" x2="198" y2="128" stroke="#3a7d44" stroke-width="2" marker-end="url(#c13f-aF)"/>
-              <text x="118" y="122" font-family="Fraunces" font-style="italic" font-size="10" fill="#3a7d44">F⃗_AB</text>
-
-              <!-- F_BA (B empuja A ← izquierda) -->
+              <text x="118" y="122" font-family="Fraunces" font-style="italic" font-size="10" fill="#3a7d44">F_AB</text>
               <line x1="200" y1="140" x2="86" y2="140" stroke="#8a4a5a" stroke-width="2" marker-end="url(#c13f-aB)"/>
-              <text x="118" y="155" font-family="Fraunces" font-style="italic" font-size="10" fill="#8a4a5a">F⃗_BA = −F⃗_AB</text>
-
-              <!-- annotation: bodies distints -->
+              <text x="118" y="155" font-family="Fraunces" font-style="italic" font-size="10" fill="#8a4a5a">F_BA = -F_AB</text>
               <rect x="14" y="164" width="256" height="22" rx="4" fill="rgba(232,238,242,.7)" stroke="#7fa3c9" stroke-width="1"/>
-              <text x="142" y="179" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle">|F⃗_AB| = |F⃗_BA| &nbsp;pero actúan sobre cuerpos distintos → no se anulan</text>
-
-              <!-- legend -->
+              <text x="142" y="179" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle">|F_AB| = |F_BA| pero actuan sobre cuerpos distintos</text>
               <rect x="282" y="100" width="72" height="62" rx="5" fill="rgba(250,246,236,.9)" stroke="#d9d0bb" stroke-width="1"/>
               <line x1="290" y1="115" x2="306" y2="115" stroke="#3a7d44" stroke-width="2"/>
-              <text x="310" y="119" font-family="Inter Tight" font-size="9" fill="#54514a">F⃗_AB</text>
+              <text x="310" y="119" font-family="Inter Tight" font-size="9" fill="#54514a">F_AB</text>
               <line x1="290" y1="133" x2="306" y2="133" stroke="#8a4a5a" stroke-width="2"/>
-              <text x="310" y="137" font-family="Inter Tight" font-size="9" fill="#54514a">F⃗_BA</text>
+              <text x="310" y="137" font-family="Inter Tight" font-size="9" fill="#54514a">F_BA</text>
               <line x1="290" y1="151" x2="306" y2="151" stroke="#c2622d" stroke-width="2"/>
-              <text x="310" y="155" font-family="Inter Tight" font-size="9" fill="#54514a">a⃗</text>
-
-              <!-- ── SI units strip ── -->
+              <text x="310" y="155" font-family="Inter Tight" font-size="9" fill="#54514a">a</text>
               <rect x="14" y="198" width="332" height="24" rx="5" fill="rgba(232,238,242,.7)" stroke="#7fa3c9" stroke-width="1"/>
-              <text x="180" y="214" font-family="JetBrains Mono" font-size="9.5" fill="#2d4f72" text-anchor="middle">SI: [F] = N = kg·m/s² &nbsp;|&nbsp; [m] = kg &nbsp;|&nbsp; [a] = m/s²</text>
-
-              <!-- ── context strip ── -->
+              <text x="180" y="214" font-family="JetBrains Mono" font-size="9.5" fill="#2d4f72" text-anchor="middle">SI: [F] = N = kg·m/s²  |  [m] = kg  |  [a] = m/s²</text>
               <text x="14" y="244" font-family="Fraunces" font-style="italic" font-size="9" fill="#8b877e">La 1ª ley define los sistemas inerciales; la 2ª y 3ª son válidas dentro de ellos.</text>
             </svg>
           </div>
@@ -2177,40 +2190,36 @@
         </div>
       </div>
     </div>
-    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para ver el dorso</div>
   </div>
 
-  <!-- DORSO -->
   <div class="face back">
     <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 4 <span class="dot"></span> Dinámica</span></div>
     <span class="side-pill">DORSO</span>
     <span class="corner-stamp">tema<span class="num">13</span></span>
     <div class="back-grid">
-      <!-- COL IZQUIERDA -->
       <div>
         <div class="deriv-block">
           <div class="deriv-text">
             De la <b>2ª ley</b>: la aceleración es proporcional a la fuerza neta e inversamente proporcional a la masa.<br><br>
-            <span class="eq">ΣF⃗ = m·a⃗</span> &nbsp;→&nbsp; <span class="eq">a⃗ = ΣF⃗ / m</span><br><br>
-            Si actúan varias fuerzas, <span class="eq">ΣF⃗</span> es la <b>suma vectorial</b>. La ecuación se aplica componente a componente:<br><br>
-            <span class="eq">ΣFx = m·ax</span><br>
-            <span class="eq">ΣFy = m·ay</span><br><br>
-            De la <b>3ª ley</b>: aunque <span class="eq">|F⃗_AB| = |F⃗_BA|</span>, como actúan sobre masas distintas, generan aceleraciones distintas:<br><br>
-            <span class="eq">a_A = F_BA / m_A</span><br>
-            <span class="eq">a_B = F_AB / m_B</span>
+            <span class="eq">&#x3A3;F = m &middot; a</span> &nbsp;&rarr;&nbsp; <span class="eq">a = &#x3A3;F / m</span><br><br>
+            Si actúan varias fuerzas, <span class="eq">&#x3A3;F</span> es la <b>suma vectorial</b>. La ecuación se aplica componente a componente:<br><br>
+            <span class="eq">&#x3A3;Fx = m &middot; ax</span><br>
+            <span class="eq">&#x3A3;Fy = m &middot; ay</span><br><br>
+            De la <b>3ª ley</b>: aunque <span class="eq">|F<sub>AB</sub>| = |F<sub>BA</sub>|</span>, como actúan sobre masas distintas:<br><br>
+            <span class="eq">a<sub>A</sub> = F<sub>BA</sub> / m<sub>A</sub></span><br>
+            <span class="eq">a<sub>B</sub> = F<sub>AB</sub> / m<sub>B</sub></span>
           </div>
         </div>
         <div class="unit-block" style="margin-top:.55rem;">
           <div class="unit-text">
-            <b>1 N</b> = fuerza que produce una aceleración de 1 m/s² sobre una masa de 1 kg.<br>
-            <span style="font-family:'JetBrains Mono',monospace;font-size:.72rem;">1 N = 1 kg·m/s²</span>
+            <b>1 N</b> = fuerza que produce 1 m/s² sobre 1 kg.<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.72rem;">1 N = 1 kg&middot;m/s²</span>
           </div>
         </div>
       </div>
-
-      <!-- COL DERECHA -->
       <div style="display:flex;flex-direction:column;gap:.55rem;">
-        <div class="back-diag" style="flex:0 0 auto; min-height:0; height:195px;">
+        <div class="back-diag" style="flex:0 0 auto; height:195px;">
           <svg viewBox="0 0 350 185" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <marker id="c13b-aF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
@@ -2218,56 +2227,494 @@
               <marker id="c13b-aN" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
               <marker id="c13b-aG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#54514a"/></marker>
             </defs>
-
-            <!-- Ground -->
             <line x1="10" y1="140" x2="340" y2="140" stroke="#54514a" stroke-width="1.5"/>
             <g stroke="#54514a" stroke-width=".7"><line x1="20" y1="140" x2="14" y2="148"/><line x1="40" y1="140" x2="34" y2="148"/><line x1="60" y1="140" x2="54" y2="148"/><line x1="80" y1="140" x2="74" y2="148"/><line x1="100" y1="140" x2="94" y2="148"/><line x1="120" y1="140" x2="114" y2="148"/><line x1="140" y1="140" x2="134" y2="148"/><line x1="160" y1="140" x2="154" y2="148"/><line x1="180" y1="140" x2="174" y2="148"/><line x1="200" y1="140" x2="194" y2="148"/><line x1="220" y1="140" x2="214" y2="148"/><line x1="240" y1="140" x2="234" y2="148"/><line x1="260" y1="140" x2="254" y2="148"/><line x1="280" y1="140" x2="274" y2="148"/><line x1="300" y1="140" x2="294" y2="148"/><line x1="320" y1="140" x2="314" y2="148"/><line x1="340" y1="140" x2="334" y2="148"/></g>
-
-            <!-- Block 10 kg -->
             <rect x="110" y="96" width="80" height="44" rx="6" fill="#dae3ec" stroke="#2d4f72" stroke-width="1.3"/>
             <text x="150" y="123" font-family="Inter Tight" font-size="11" fill="#2d4f72" text-anchor="middle" font-weight="600">10 kg</text>
-
-            <!-- F1 = 30N → -->
             <line x1="40" y1="118" x2="108" y2="118" stroke="#3a7d44" stroke-width="2.2" marker-end="url(#c13b-aF)"/>
-            <text x="52" y="112" font-family="Fraunces" font-style="italic" font-size="11" fill="#3a7d44">F₁=30 N</text>
-
-            <!-- F2 = 10N ← -->
+            <text x="52" y="112" font-family="Fraunces" font-style="italic" font-size="11" fill="#3a7d44">F1=30 N</text>
             <line x1="240" y1="118" x2="192" y2="118" stroke="#8a4a5a" stroke-width="2.2" marker-end="url(#c13b-aN)"/>
-            <text x="244" y="112" font-family="Fraunces" font-style="italic" font-size="11" fill="#8a4a5a">F₂=10 N</text>
-
-            <!-- Normal N ↑ -->
+            <text x="244" y="112" font-family="Fraunces" font-style="italic" font-size="11" fill="#8a4a5a">F2=10 N</text>
             <line x1="150" y1="96" x2="150" y2="52" stroke="#2d4f72" stroke-width="2" marker-end="url(#c13b-aN)"/>
             <text x="154" y="52" font-family="Fraunces" font-style="italic" font-size="11" fill="#2d4f72">N</text>
-
-            <!-- Weight P ↓ -->
             <line x1="150" y1="140" x2="150" y2="178" stroke="#54514a" stroke-width="2" marker-end="url(#c13b-aG)"/>
             <text x="154" y="177" font-family="Fraunces" font-style="italic" font-size="11" fill="#54514a">P</text>
-
-            <!-- Resulting acceleration a → -->
             <line x1="280" y1="118" x2="332" y2="118" stroke="#c2622d" stroke-width="2.5" marker-end="url(#c13b-aA)"/>
             <text x="282" y="112" font-family="Fraunces" font-style="italic" font-size="11" fill="#c2622d">a=?</text>
-
-            <!-- axis labels -->
-            <text x="10" y="168" font-family="JetBrains Mono" font-size="8.5" fill="#8b877e">ΣFx = 30−10 = 20 N</text>
-            <text x="10" y="180" font-family="JetBrains Mono" font-size="8.5" fill="#8b877e">ΣFy = N−P = 0 N</text>
+            <text x="10" y="168" font-family="JetBrains Mono" font-size="8.5" fill="#8b877e">SFx = 30-10 = 20 N</text>
+            <text x="10" y="180" font-family="JetBrains Mono" font-size="8.5" fill="#8b877e">SFy = N-P = 0 N</text>
           </svg>
         </div>
-
         <div class="ex-block">
           <div class="ex-text">
-            Bloque <b>10 kg</b>: F₁ = 30 N (→), F₂ = 10 N (←), N = P (equilibrio vertical).<br>
-            <span class="eq">ΣFx = 30 − 10 = 20 N</span><br>
-            <span class="eq">ax = ΣFx / m = 20 / 10 =</span> <span class="answer">2 m/s² →</span><br>
-            <span class="eq">ay = 0 m/s²</span> (N y P se cancelan)<br>
-            <span style="color:var(--ink-3);font-size:.7rem;">La 2ª ley se aplica por eje, no a módulos sueltos.</span>
+            Bloque <b>10 kg</b>: F<sub>1</sub> = 30 N (&rarr;), F<sub>2</sub> = 10 N (&larr;).<br>
+            <span class="eq">&#x3A3;Fx = 30 &minus; 10 = 20 N</span><br>
+            <span class="eq">ax = &#x3A3;Fx / m = 20 / 10 =</span> <span class="answer">2 m/s² &rarr;</span><br>
+            <span class="eq">ay = 0</span> (N y P se cancelan)
           </div>
         </div>
       </div>
     </div>
-    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para volver al frente</div>
   </div>
 </div>
 </div><!-- card-13 -->
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 14 — Cantidad de Movimiento
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-14">
+<div class="flipper" onclick="flipCard(this)">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 4 <span class="dot"></span> Dinámica</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">14</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Cantidad de <em>Movimiento</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              Magnitud <b>vectorial</b> que representa la combinación m&middot;<b>v</b> de una partícula. También llamada <b>cantidad de movimiento lineal</b>. Se indica con la letra <b>p</b>. Tiene la misma dirección y sentido que la velocidad.
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div class="formula-main"><b>p</b> = m &middot; <b>v</b></div>
+            <div class="formula-sub">forma equivalente de la 2ª ley: &nbsp;<span style="font-family:'JetBrains Mono',monospace;font-size:.78rem;">&#x3A3;F = dp/dt</span></div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill">
+              <b>Unidad SI</b>
+              <span class="eq">kg&middot;m/s = N&middot;s</span>
+            </div>
+            <div class="case-pill">
+              <b>&#x3A3;F = 0</b>
+              dp/dt = 0 &rarr; <b>p</b> = cte (conservación)
+            </div>
+            <div class="case-pill">
+              <b>m constante</b>
+              <span class="eq">&#x3A3;F = m&middot;a</span> (2ª ley clásica)
+            </div>
+            <div class="case-pill">
+              <b>Vectorial</b>
+              misma dirección y sentido que <b>v</b>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 360 248" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c14f-av" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+                <marker id="c14f-ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
+              </defs>
+              <circle cx="140" cy="100" r="28" fill="#dae3ec" stroke="#2d4f72" stroke-width="1.5"/>
+              <text x="140" y="96" font-family="Inter Tight" font-size="10" fill="#2d4f72" text-anchor="middle" font-weight="600">m</text>
+              <text x="140" y="110" font-family="JetBrains Mono" font-size="9" fill="#2d4f72" text-anchor="middle">= cte</text>
+              <line x1="168" y1="95" x2="238" y2="95" stroke="#3a7d44" stroke-width="2.2" marker-end="url(#c14f-av)"/>
+              <text x="244" y="99" font-family="Fraunces" font-style="italic" font-size="14" fill="#3a7d44" font-weight="600">v</text>
+              <line x1="168" y1="115" x2="268" y2="115" stroke="#2d4f72" stroke-width="2.8" marker-end="url(#c14f-ap)"/>
+              <text x="274" y="119" font-family="Fraunces" font-style="italic" font-size="14" fill="#2d4f72" font-weight="600">p</text>
+              <rect x="56" y="130" width="218" height="20" rx="4" fill="rgba(232,238,242,.7)" stroke="#7fa3c9" stroke-width="1"/>
+              <text x="165" y="144" font-family="Fraunces" font-style="italic" font-size="10.5" fill="#2d4f72" text-anchor="middle">p = m · v  (misma dirección)</text>
+              <line x1="20" y1="162" x2="340" y2="162" stroke="#d9d0bb" stroke-width=".8"/>
+              <text x="20" y="178" font-family="Inter Tight" font-size="8.5" fill="#8b877e" font-weight="600" letter-spacing=".08em">REFORMULACIÓN DE LA 2ª LEY</text>
+              <rect x="20" y="183" width="320" height="50" rx="6" fill="rgba(237,229,232,.6)" stroke="#c89aa8" stroke-width="1"/>
+              <text x="180" y="198" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#8a4a5a" text-anchor="middle">partícula masa constante: a = dv/dt</text>
+              <text x="180" y="215" font-family="Fraunces" font-style="italic" font-size="11.5" fill="#8a4a5a" text-anchor="middle">SF = m·(dv/dt) = d(m·v)/dt = dp/dt</text>
+              <rect x="20" y="58" width="72" height="52" rx="5" fill="rgba(250,246,236,.9)" stroke="#d9d0bb" stroke-width="1"/>
+              <line x1="28" y1="72" x2="44" y2="72" stroke="#3a7d44" stroke-width="2"/>
+              <text x="48" y="76" font-family="Inter Tight" font-size="9" fill="#54514a">v velocidad</text>
+              <line x1="28" y1="90" x2="44" y2="90" stroke="#2d4f72" stroke-width="2.5"/>
+              <text x="48" y="94" font-family="Inter Tight" font-size="9" fill="#54514a">p cantidad</text>
+            </svg>
+          </div>
+          <div class="r-note" style="font-size:.73rem;">La forma <span style="color:var(--formula-accent);font-weight:600;">&#x3A3;F = dp/dt</span> es más general — válida incluso cuando la masa varía (cohetes, sistemas de masa variable).</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 4 <span class="dot"></span> Dinámica</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">14</span></span>
+    <div class="back-grid">
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            Partiendo de la 2ª ley con <b>m = cte</b>:<br><br>
+            <span class="eq">&#x3A3;F = m &middot; a</span><br><br>
+            Como <span class="eq">a = dv/dt</span> (def. de aceleración):<br><br>
+            <span class="eq">&#x3A3;F = m &middot; dv/dt</span><br><br>
+            m constante entra a la derivada:<br><br>
+            <span class="eq">&#x3A3;F = d(m&middot;v)/dt</span><br><br>
+            Definiendo <span class="eq" style="color:var(--demo-accent);">p &equiv; m&middot;v</span>:<br><br>
+            <div class="formula-final-wrap"><span class="formula-final">&#x3A3;F = dp/dt</span></div>
+            La fuerza neta es la <b>razón de cambio</b> de la cantidad de movimiento.
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.55rem;">
+          <div class="unit-text">
+            <b>kg&middot;m/s</b> = unidad SI.<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.72rem;">1 kg&middot;m/s = 1 N&middot;s</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.55rem;">
+        <div class="back-diag" style="height:188px;flex:0 0 auto;">
+          <svg viewBox="0 0 350 175" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="c14b-av1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+              <marker id="c14b-av2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#c2622d"/></marker>
+            </defs>
+            <text x="68" y="14" font-family="Inter Tight" font-size="9" fill="#8b877e" text-anchor="middle" font-weight="600">ANTES</text>
+            <circle cx="68" cy="44" r="22" fill="#dae3ec" stroke="#2d4f72" stroke-width="1.3"/>
+            <text x="68" y="48" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="600">2 kg</text>
+            <line x1="90" y1="44" x2="130" y2="44" stroke="#3a7d44" stroke-width="2" marker-end="url(#c14b-av1)"/>
+            <text x="106" y="37" font-family="Fraunces" font-style="italic" font-size="10" fill="#3a7d44">3 m/s</text>
+            <rect x="14" y="70" width="108" height="18" rx="3" fill="rgba(45,79,114,.12)" stroke="#7fa3c9" stroke-width="1"/>
+            <text x="68" y="83" font-family="JetBrains Mono" font-size="9" fill="#2d4f72" text-anchor="middle">p = 6 kg·m/s</text>
+            <text x="266" y="14" font-family="Inter Tight" font-size="9" fill="#8b877e" text-anchor="middle" font-weight="600">DESPUÉS</text>
+            <circle cx="266" cy="44" r="22" fill="#ede5e8" stroke="#8a4a5a" stroke-width="1.3"/>
+            <text x="266" y="48" font-family="Inter Tight" font-size="9" fill="#8a4a5a" text-anchor="middle" font-weight="600">2 kg</text>
+            <line x1="288" y1="44" x2="336" y2="44" stroke="#c2622d" stroke-width="2" marker-end="url(#c14b-av2)"/>
+            <text x="306" y="37" font-family="Fraunces" font-style="italic" font-size="10" fill="#c2622d">8 m/s</text>
+            <rect x="212" y="70" width="108" height="18" rx="3" fill="rgba(138,74,90,.12)" stroke="#c89aa8" stroke-width="1"/>
+            <text x="266" y="83" font-family="JetBrains Mono" font-size="9" fill="#8a4a5a" text-anchor="middle">p = 16 kg·m/s</text>
+            <line x1="135" y1="44" x2="205" y2="44" stroke="#54514a" stroke-width="1.2" stroke-dasharray="4 3"/>
+            <text x="170" y="38" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a" text-anchor="middle">SF != 0</text>
+            <rect x="105" y="97" width="140" height="18" rx="3" fill="rgba(45,79,114,.15)" stroke="#2d4f72" stroke-width="1"/>
+            <text x="175" y="110" font-family="JetBrains Mono" font-size="9" fill="#2d4f72" text-anchor="middle">Dp = 10 kg·m/s</text>
+            <line x1="10" y1="126" x2="340" y2="126" stroke="#d9d0bb" stroke-width=".7"/>
+            <text x="175" y="140" font-family="Inter Tight" font-size="8.5" fill="#8b877e" text-anchor="middle">Si SF = 0 &rarr; conservación de p</text>
+            <rect x="60" y="146" width="230" height="22" rx="4" fill="rgba(227,236,228,.7)" stroke="#87b194" stroke-width="1"/>
+            <text x="175" y="161" font-family="Fraunces" font-style="italic" font-size="12" fill="#3d5e44" text-anchor="middle">p_inicial = p_final</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            Pelota <b>2 kg</b>: acelera de 3 m/s a 8 m/s.<br>
+            <span class="eq">p<sub>i</sub> = 2 &times; 3 =</span> <span class="answer">6 kg&middot;m/s</span><br>
+            <span class="eq">p<sub>f</sub> = 2 &times; 8 =</span> <span class="answer">16 kg&middot;m/s</span><br>
+            <span class="eq">&Delta;p = 16 &minus; 6 =</span> <span class="answer">10 kg&middot;m/s</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-14 -->
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 15 — Impulso
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-15">
+<div class="flipper" onclick="flipCard(this)">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 4 <span class="dot"></span> Dinámica</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">15</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title"><em>Impulso</em> de una Fuerza</h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              Magnitud <b>vectorial</b> definida al aplicar una fuerza sobre un objeto durante un intervalo de tiempo &Delta;t. El impulso <b>I</b> es igual al área bajo la curva F(t) en el intervalo [t<sub>1</sub>, t<sub>2</sub>].
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div class="formula-main" style="font-size:1.2rem;"><b>I</b> = &int;<sub>t<sub>1</sub></sub><sup>t<sub>2</sub></sup> &Sigma;<b>F</b>(t) dt</div>
+            <div class="formula-sub">fuerza constante: &nbsp;<span style="font-family:'JetBrains Mono',monospace;font-size:.76rem;">I = &Sigma;F &middot; &Delta;t</span></div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill">
+              <b>Unidad SI</b>
+              <span class="eq">N&middot;s = kg&middot;m/s</span>
+            </div>
+            <div class="case-pill">
+              <b>Teorema I&ndash;p</b>
+              <span class="eq">I = &Delta;p = p<sub>2</sub> &minus; p<sub>1</sub></span>
+            </div>
+            <div class="case-pill">
+              <b>F variable</b>
+              I = área bajo F(t) entre t<sub>1</sub> y t<sub>2</sub>
+            </div>
+            <div class="case-pill">
+              <b>F constante</b>
+              <span class="eq">I = F &middot; &Delta;t</span>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 360 252" xmlns="http://www.w3.org/2000/svg">
+              <line x1="40" y1="200" x2="320" y2="200" stroke="#54514a" stroke-width="1.5"/>
+              <line x1="40" y1="30" x2="40" y2="205" stroke="#54514a" stroke-width="1.5"/>
+              <text x="326" y="204" font-family="Fraunces" font-style="italic" font-size="13" fill="#54514a">t</text>
+              <text x="34" y="26" font-family="Fraunces" font-style="italic" font-size="13" fill="#54514a">F</text>
+              <line x1="80" y1="197" x2="80" y2="203" stroke="#54514a" stroke-width="1.2"/>
+              <text x="75" y="214" font-family="Fraunces" font-style="italic" font-size="11" fill="#54514a">t<tspan font-size="8" dy="3">1</tspan></text>
+              <line x1="270" y1="197" x2="270" y2="203" stroke="#54514a" stroke-width="1.2"/>
+              <text x="265" y="214" font-family="Fraunces" font-style="italic" font-size="11" fill="#54514a">t<tspan font-size="8" dy="3">2</tspan></text>
+              <line x1="80" y1="222" x2="270" y2="222" stroke="#54514a" stroke-width="1"/>
+              <line x1="80" y1="218" x2="80" y2="226" stroke="#54514a" stroke-width="1"/>
+              <line x1="270" y1="218" x2="270" y2="226" stroke="#54514a" stroke-width="1"/>
+              <text x="164" y="235" font-family="Fraunces" font-style="italic" font-size="11" fill="#54514a" text-anchor="middle">&Delta;t</text>
+              <path d="M80,200 C90,200 100,180 120,110 C140,50 160,42 175,45 C190,48 210,70 230,120 C250,170 260,195 270,200 Z" fill="rgba(45,79,114,.18)" stroke="none"/>
+              <path d="M80,200 C90,200 100,180 120,110 C140,50 160,42 175,45 C190,48 210,70 230,120 C250,170 260,195 270,200" fill="none" stroke="#2d4f72" stroke-width="2.2"/>
+              <text x="178" y="40" font-family="Fraunces" font-style="italic" font-size="12" fill="#2d4f72">F(t)</text>
+              <text x="172" y="130" font-family="Fraunces" font-style="italic" font-size="18" fill="#2d4f72" text-anchor="middle" font-weight="600">J</text>
+              <rect x="80" y="148" width="190" height="52" fill="rgba(45,79,114,.08)" stroke="#7fa3c9" stroke-width="1" stroke-dasharray="4 3"/>
+              <text x="290" y="175" font-family="Inter Tight" font-size="9" fill="#2d4f72">F_pro</text>
+              <rect x="44" y="238" width="272" height="14" rx="3" fill="rgba(232,238,242,.8)" stroke="#7fa3c9" stroke-width="1"/>
+              <text x="180" y="249" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" text-anchor="middle">área bajo F(t) = F_pro · &Delta;t = impulso I</text>
+            </svg>
+          </div>
+          <div class="r-note" style="font-size:.73rem;">Para F variable se integra; para F constante es simplemente <span style="color:var(--formula-accent);font-weight:600;">F&middot;&Delta;t</span>.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 4 <span class="dot"></span> Dinámica</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">15</span></span>
+    <div class="back-grid">
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            De <span class="eq">&Sigma;F = dp/dt</span> despejamos dp:<br><br>
+            <span class="eq">dp = &Sigma;F &middot; dt</span><br><br>
+            Integrando en [t<sub>1</sub>, t<sub>2</sub>]:<br><br>
+            <span class="eq">&int;<sub>t1</sub><sup>t2</sup> &Sigma;F dt = &int;<sub>p1</sub><sup>p2</sup> dp</span><br><br>
+            <span class="eq">I = p<sub>2</sub> &minus; p<sub>1</sub> = &Delta;p</span><br><br>
+            <div class="formula-final-wrap"><span class="formula-final">I = &Delta;p</span></div>
+            <b>Teorema impulso&ndash;cantidad de movimiento</b>: el impulso es igual al cambio en la cantidad de movimiento.
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.55rem;">
+          <div class="unit-text">
+            <b>N&middot;s</b> = unidad SI del impulso.<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.72rem;">1 N&middot;s = 1 kg&middot;m/s</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.55rem;">
+        <div class="back-diag" style="height:185px;flex:0 0 auto;">
+          <svg viewBox="0 0 350 172" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="c15b-av" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+              <marker id="c15b-av2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#c2622d"/></marker>
+            </defs>
+            <text x="60" y="14" font-family="Inter Tight" font-size="9" fill="#8b877e" text-anchor="middle" font-weight="600">ANTES</text>
+            <circle cx="60" cy="44" r="20" fill="#dae3ec" stroke="#2d4f72" stroke-width="1.2"/>
+            <text x="60" y="48" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="600">0.5 kg</text>
+            <line x1="80" y1="44" x2="116" y2="44" stroke="#3a7d44" stroke-width="2" marker-end="url(#c15b-av)"/>
+            <text x="92" y="37" font-family="Fraunces" font-style="italic" font-size="10" fill="#3a7d44">4 m/s</text>
+            <rect x="132" y="30" width="72" height="28" rx="4" fill="rgba(45,79,114,.15)" stroke="#7fa3c9" stroke-width="1"/>
+            <text x="168" y="42" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" text-anchor="middle" font-weight="600">IMPULSO</text>
+            <text x="168" y="54" font-family="JetBrains Mono" font-size="8.5" fill="#2d4f72" text-anchor="middle">6 N · 0.5 s</text>
+            <text x="280" y="14" font-family="Inter Tight" font-size="9" fill="#8b877e" text-anchor="middle" font-weight="600">DESPUÉS</text>
+            <circle cx="280" cy="44" r="20" fill="#ede5e8" stroke="#8a4a5a" stroke-width="1.2"/>
+            <text x="280" y="48" font-family="Inter Tight" font-size="9" fill="#8a4a5a" text-anchor="middle" font-weight="600">0.5 kg</text>
+            <line x1="300" y1="44" x2="340" y2="44" stroke="#c2622d" stroke-width="2" marker-end="url(#c15b-av2)"/>
+            <text x="314" y="37" font-family="Fraunces" font-style="italic" font-size="10" fill="#c2622d">16 m/s</text>
+            <line x1="10" y1="78" x2="340" y2="78" stroke="#d9d0bb" stroke-width=".7"/>
+            <text x="10" y="95" font-family="Inter Tight" font-size="8.5" fill="#8b877e" font-weight="600" letter-spacing=".08em">VERIFICACIÓN</text>
+            <rect x="10" y="100" width="330" height="62" rx="5" fill="rgba(227,236,228,.6)" stroke="#87b194" stroke-width="1"/>
+            <text x="175" y="116" font-family="JetBrains Mono" font-size="9" fill="#3d5e44" text-anchor="middle">p1 = 0.5 x 4 = 2 kg·m/s</text>
+            <text x="175" y="130" font-family="JetBrains Mono" font-size="9" fill="#3d5e44" text-anchor="middle">p2 = 0.5 x 16 = 8 kg·m/s</text>
+            <text x="175" y="144" font-family="JetBrains Mono" font-size="9" fill="#3d5e44" text-anchor="middle">Dp = 6 kg·m/s = 6N · 0.5s ✓</text>
+            <text x="175" y="158" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#3d5e44" text-anchor="middle">I = Dp ✓</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            Pelota <b>0.5 kg</b> a 4 m/s recibe F = 6 N durante 0.5 s.<br>
+            <span class="eq">I = 6 &times; 0.5 =</span> <span class="answer">3 N&middot;s</span><br>
+            <span class="eq">&Delta;p = 3 kg&middot;m/s</span> &rarr; <span class="eq">v<sub>2</sub> = p<sub>2</sub>/m =</span> <span class="answer">16 m/s</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-15 -->
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 16 — Conservación de la Cantidad de Movimiento
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-16">
+<div class="flipper" onclick="flipCard(this)">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 4 <span class="dot"></span> Dinámica</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">16</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Conservación de la <em>Cantidad de Movimiento</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              Si la suma vectorial de las <b>fuerzas externas</b> sobre un sistema es nula, la cantidad de movimiento total <b>p</b> del sistema se mantiene constante. Es consecuencia directa de la <b>3ª ley de Newton</b>. Las fuerzas internas no alteran <b>p</b> total.
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div class="formula-main" style="font-size:1.3rem;"><b>p</b> = <b>p</b><sub>1</sub> + <b>p</b><sub>2</sub> + &hellip; = cte</div>
+            <div class="formula-sub">condición: &nbsp;<span style="font-family:'JetBrains Mono',monospace;font-size:.76rem;">&Sigma;F<sub>ext</sub> = 0</span></div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill">
+              <b>Sistema aislado</b>
+              sin fuerzas externas &rarr; <b>p</b> = cte siempre
+            </div>
+            <div class="case-pill">
+              <b>Colisiones</b>
+              <b>p</b><sub>i</sub> = <b>p</b><sub>f</sub> para el sistema total
+            </div>
+            <div class="case-pill">
+              <b>F. internas</b>
+              se cancelan entre sí por la 3ª ley &rarr; no afectan <b>p</b> total
+            </div>
+            <div class="case-pill">
+              <b>Por componentes</b>
+              se aplica eje a eje si &Sigma;F<sub>ext,x</sub>=0 o &Sigma;F<sub>ext,y</sub>=0
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 360 252" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c16f-aA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+                <marker id="c16f-aB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+                <marker id="c16f-aFba" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#c2622d"/></marker>
+              </defs>
+              <rect x="14" y="8" width="332" height="110" rx="8" fill="rgba(250,246,236,.5)" stroke="#d9d0bb" stroke-width="1.2" stroke-dasharray="5 3"/>
+              <text x="180" y="22" font-family="Inter Tight" font-size="8.5" fill="#8b877e" text-anchor="middle" font-weight="600" letter-spacing=".1em">SISTEMA AISLADO — SF_ext = 0</text>
+              <circle cx="80" cy="65" r="22" fill="#dae3ec" stroke="#2d4f72" stroke-width="1.3"/>
+              <text x="80" y="69" font-family="Inter Tight" font-size="10" fill="#2d4f72" text-anchor="middle" font-weight="600">A</text>
+              <line x1="102" y1="65" x2="148" y2="65" stroke="#3a7d44" stroke-width="2.2" marker-end="url(#c16f-aA)"/>
+              <text x="120" y="58" font-family="Fraunces" font-style="italic" font-size="11" fill="#3a7d44">p<tspan font-size="8" dy="3">A</tspan></text>
+              <line x1="160" y1="55" x2="220" y2="55" stroke="#c2622d" stroke-width="1.5" stroke-dasharray="3 2" marker-end="url(#c16f-aFba)"/>
+              <text x="183" y="49" font-family="Inter Tight" font-size="8" fill="#c2622d">F_AB</text>
+              <line x1="218" y1="75" x2="158" y2="75" stroke="#c2622d" stroke-width="1.5" stroke-dasharray="3 2" marker-end="url(#c16f-aFba)"/>
+              <text x="183" y="87" font-family="Inter Tight" font-size="8" fill="#c2622d">F_BA</text>
+              <circle cx="270" cy="65" r="22" fill="#ede5e8" stroke="#8a4a5a" stroke-width="1.3"/>
+              <text x="270" y="69" font-family="Inter Tight" font-size="10" fill="#8a4a5a" text-anchor="middle" font-weight="600">B</text>
+              <line x1="248" y1="65" x2="208" y2="65" stroke="#8a4a5a" stroke-width="2.2" marker-end="url(#c16f-aB)"/>
+              <text x="224" y="58" font-family="Fraunces" font-style="italic" font-size="11" fill="#8a4a5a">p<tspan font-size="8" dy="3">B</tspan></text>
+              <rect x="60" y="96" width="240" height="18" rx="4" fill="rgba(45,79,114,.1)" stroke="#7fa3c9" stroke-width="1"/>
+              <text x="180" y="109" font-family="Fraunces" font-style="italic" font-size="10" fill="#2d4f72" text-anchor="middle">p = pA + pB = cte  (aunque pA y pB cambien)</text>
+              <line x1="14" y1="128" x2="346" y2="128" stroke="#d9d0bb" stroke-width=".8"/>
+              <text x="180" y="142" font-family="Inter Tight" font-size="8.5" fill="#8b877e" text-anchor="middle" font-weight="600" letter-spacing=".08em">ANTES Y DESPUÉS DE UNA COLISIÓN</text>
+              <text x="80" y="158" font-family="Inter Tight" font-size="8" fill="#8b877e" text-anchor="middle">antes</text>
+              <circle cx="60" cy="175" r="14" fill="#dae3ec" stroke="#2d4f72" stroke-width="1.2"/>
+              <text x="60" y="179" font-family="Inter Tight" font-size="8" fill="#2d4f72" text-anchor="middle">m1</text>
+              <line x1="74" y1="175" x2="96" y2="175" stroke="#3a7d44" stroke-width="2" marker-end="url(#c16f-aA)"/>
+              <circle cx="115" cy="175" r="10" fill="#ede5e8" stroke="#8a4a5a" stroke-width="1"/>
+              <text x="115" y="179" font-family="Inter Tight" font-size="7" fill="#8a4a5a" text-anchor="middle">m2</text>
+              <text x="126" y="171" font-family="Inter Tight" font-size="8" fill="#8b877e">v=0</text>
+              <text x="180" y="179" font-family="Inter Tight" font-size="14" fill="#54514a" text-anchor="middle">&rarr;</text>
+              <text x="272" y="158" font-family="Inter Tight" font-size="8" fill="#8b877e" text-anchor="middle">después</text>
+              <circle cx="248" cy="175" r="17" fill="rgba(45,79,114,.15)" stroke="#2d4f72" stroke-width="1.2"/>
+              <text x="248" y="179" font-family="Inter Tight" font-size="7.5" fill="#2d4f72" text-anchor="middle">m1+m2</text>
+              <line x1="265" y1="175" x2="295" y2="175" stroke="#c2622d" stroke-width="2" marker-end="url(#c16f-aFba)"/>
+              <text x="282" y="168" font-family="Fraunces" font-style="italic" font-size="10" fill="#c2622d">v'</text>
+              <rect x="14" y="196" width="332" height="20" rx="4" fill="rgba(227,236,228,.7)" stroke="#87b194" stroke-width="1"/>
+              <text x="180" y="210" font-family="Fraunces" font-style="italic" font-size="10.5" fill="#3d5e44" text-anchor="middle">m1·v1 + m2·0 = (m1+m2)·v'  →  pi = pf</text>
+              <rect x="14" y="220" width="332" height="16" rx="4" fill="rgba(45,79,114,.08)" stroke="#7fa3c9" stroke-width="1"/>
+              <text x="180" y="232" font-family="JetBrains Mono" font-size="8.5" fill="#2d4f72" text-anchor="middle">v' = m1·v1 / (m1+m2)</text>
+            </svg>
+          </div>
+          <div class="r-note" style="font-size:.73rem;">Las fuerzas <span style="color:var(--demo-accent);font-weight:600;">internas</span> (3ª ley) siempre se cancelan en pares &mdash; solo las <span style="color:var(--formula-accent);font-weight:600;">externas</span> pueden cambiar <b>p</b> total.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 4 <span class="dot"></span> Dinámica</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">16</span></span>
+    <div class="back-grid">
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            Sistema de dos partículas A y B. Fuerzas internas: F<sub>BA</sub> y F<sub>AB</sub>.<br><br>
+            Por la <b>3ª ley</b>: <span class="eq">F<sub>BA</sub> = &minus;F<sub>AB</sub></span><br><br>
+            Aplicando 2ª ley a cada cuerpo:<br><br>
+            <span class="eq">F<sub>BA</sub> = dp<sub>A</sub>/dt</span><br>
+            <span class="eq">F<sub>AB</sub> = dp<sub>B</sub>/dt</span><br><br>
+            Sumando:<br>
+            <span class="eq">F<sub>BA</sub> + F<sub>AB</sub> = d(p<sub>A</sub>+p<sub>B</sub>)/dt = dp/dt</span><br><br>
+            Como <span class="eq">F<sub>BA</sub> + F<sub>AB</sub> = 0</span>:<br><br>
+            <div class="formula-final-wrap"><span class="formula-final">dp/dt = 0 &rarr; p = cte</span></div>
+            Se generaliza a cualquier número de partículas.
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.55rem;">
+          <div class="unit-text">
+            <b>p</b> = p<sub>A</sub> + p<sub>B</sub> + p<sub>C</sub> + &hellip;<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">&Sigma;F<sub>ext</sub>=0 &rarr; p<sub>inicial</sub> = p<sub>final</sub></span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.55rem;">
+        <div class="back-diag" style="height:185px;flex:0 0 auto;">
+          <svg viewBox="0 0 350 172" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="c16b-av" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+              <marker id="c16b-av2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#c2622d"/></marker>
+            </defs>
+            <text x="8" y="14" font-family="Inter Tight" font-size="8.5" fill="#8b877e" font-weight="600">ANTES</text>
+            <circle cx="40" cy="42" r="18" fill="#dae3ec" stroke="#2d4f72" stroke-width="1.2"/>
+            <text x="40" y="46" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" text-anchor="middle" font-weight="600">3 kg</text>
+            <line x1="58" y1="42" x2="96" y2="42" stroke="#3a7d44" stroke-width="2" marker-end="url(#c16b-av)"/>
+            <text x="72" y="35" font-family="Fraunces" font-style="italic" font-size="10" fill="#3a7d44">4 m/s</text>
+            <circle cx="126" cy="42" r="14" fill="#ede5e8" stroke="#8a4a5a" stroke-width="1"/>
+            <text x="126" y="46" font-family="Inter Tight" font-size="8" fill="#8a4a5a" text-anchor="middle">2 kg</text>
+            <text x="148" y="38" font-family="Inter Tight" font-size="8.5" fill="#8b877e">v = 0</text>
+            <rect x="200" y="28" width="140" height="28" rx="4" fill="rgba(45,79,114,.1)" stroke="#7fa3c9" stroke-width="1"/>
+            <text x="270" y="42" font-family="JetBrains Mono" font-size="9" fill="#2d4f72" text-anchor="middle">pi = 3x4 = 12</text>
+            <text x="270" y="53" font-family="JetBrains Mono" font-size="8.5" fill="#2d4f72" text-anchor="middle">kg·m/s</text>
+            <line x1="8" y1="68" x2="342" y2="68" stroke="#d9d0bb" stroke-width=".7"/>
+            <text x="8" y="82" font-family="Inter Tight" font-size="8.5" fill="#8b877e" font-weight="600">DESPUÉS (colisión perfectamente inelástica)</text>
+            <circle cx="55" cy="110" r="22" fill="rgba(45,79,114,.15)" stroke="#2d4f72" stroke-width="1.2"/>
+            <text x="55" y="114" font-family="Inter Tight" font-size="8" fill="#2d4f72" text-anchor="middle">5 kg</text>
+            <line x1="77" y1="110" x2="115" y2="110" stroke="#c2622d" stroke-width="2" marker-end="url(#c16b-av2)"/>
+            <text x="90" y="103" font-family="Fraunces" font-style="italic" font-size="10" fill="#c2622d">v' = ?</text>
+            <rect x="148" y="90" width="194" height="42" rx="4" fill="rgba(227,236,228,.7)" stroke="#87b194" stroke-width="1"/>
+            <text x="245" y="106" font-family="JetBrains Mono" font-size="9" fill="#3d5e44" text-anchor="middle">pi = pf</text>
+            <text x="245" y="120" font-family="JetBrains Mono" font-size="9" fill="#3d5e44" text-anchor="middle">12 = 5 x v'</text>
+            <text x="245" y="134" font-family="JetBrains Mono" font-size="9" fill="#3d5e44" text-anchor="middle">v' = 2.4 m/s</text>
+            <line x1="8" y1="142" x2="342" y2="142" stroke="#d9d0bb" stroke-width=".7"/>
+            <text x="175" y="156" font-family="Inter Tight" font-size="8.5" fill="#8b877e" text-anchor="middle">La energía cinética cambia; la cantidad de movimiento se conserva.</text>
+            <rect x="60" y="160" width="230" height="12" rx="3" fill="rgba(45,79,114,.1)" stroke="#7fa3c9" stroke-width=".8"/>
+            <text x="175" y="170" font-family="JetBrains Mono" font-size="8" fill="#2d4f72" text-anchor="middle">p total: antes 12 = después 5x2.4 = 12 ✓</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            Bloque <b>3 kg</b> a 4 m/s choca con bloque <b>2 kg</b> en reposo.<br>
+            <span class="eq">p<sub>i</sub> = 3&times;4 + 2&times;0 = 12 kg&middot;m/s</span><br>
+            <span class="eq">p<sub>f</sub> = (3+2)&middot;v' = 12</span> &rarr; <span class="answer">v' = 2.4 m/s</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-16 -->
 
 </div><!-- scene -->
 </div><!-- scene-wrap -->
@@ -2275,10 +2722,10 @@
 <!-- ── GALLERY NAV ── -->
 <nav class="gallery-nav">
   <div class="chapter-tabs" id="chapter-tabs">
-    <button class="chapter-tab active" data-chapter="all" onclick="filterChapter(this,'all')">Todas (13)</button>
+    <button class="chapter-tab active" data-chapter="all" onclick="filterChapter(this,'all')">Todas (16)</button>
     <button class="chapter-tab" data-chapter="cap2" onclick="filterChapter(this,'cap2')">Cap 2 · Estática (4)</button>
     <button class="chapter-tab" data-chapter="cap3" onclick="filterChapter(this,'cap3')">Cap 3 · Cinemática (8)</button>
-    <button class="chapter-tab" data-chapter="cap4" onclick="filterChapter(this,'cap4')">Cap 4 · Dinámica (1)</button>
+    <button class="chapter-tab" data-chapter="cap4" onclick="filterChapter(this,'cap4')">Cap 4 · Dinámica (4)</button>
   </div>
   <div class="thumb-strip-wrap">
     <div class="thumb-strip" id="thumb-strip"></div>
@@ -2293,6 +2740,18 @@
 </nav>
 
 <script>
+  // ── Flip function (iOS-safe) ──
+  function flipCard(flipper) {
+    if (flipper.classList.contains('animating-to-back') || flipper.classList.contains('animating-to-front')) return;
+    var goingToBack = !flipper.classList.contains('flipped');
+    var animClass = goingToBack ? 'animating-to-back' : 'animating-to-front';
+    flipper.classList.add(animClass);
+    setTimeout(function() {
+      flipper.classList.remove(animClass);
+      flipper.classList.toggle('flipped', goingToBack);
+    }, 560);
+  }
+
   // ── Card data ──
   var allCards = [
     { id:1,  title:'Concepto de Fuerza',              chapter:'cap2' },
@@ -2308,6 +2767,9 @@
     { id:11, title:'MCUV',                            chapter:'cap3' },
     { id:12, title:'Movimiento relativo',             chapter:'cap3' },
     { id:13, title:'Leyes de la Dinámica',            chapter:'cap4' },
+    { id:14, title:'Cantidad de Movimiento',          chapter:'cap4' },
+    { id:15, title:'Impulso',                             chapter:'cap4' },
+    { id:16, title:'Conservación de la Cdad. de Movimiento', chapter:'cap4' },
   ];
 
   var filteredCards = allCards.slice();
@@ -2342,7 +2804,10 @@
     if (idx < 0 || idx >= filteredCards.length) return;
     // Hide current
     var prev = currentCard();
-    document.querySelector('#card-' + prev.id + ' .flipper').classList.remove('flipped');
+    var prevFlipper = document.querySelector('#card-' + prev.id + ' .flipper');
+    prevFlipper.classList.remove('flipped','animating-to-back','animating-to-front');
+    prevFlipper.querySelector('.face.front').style.animation = '';
+    prevFlipper.querySelector('.face.back').style.animation = '';
     document.getElementById('card-' + prev.id).classList.add('hidden');
     currentIdx = idx;
     // Show new
@@ -2415,7 +2880,7 @@
   document.addEventListener('keydown', function(e) {
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
     if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   navigate(-1);
-    if (e.key === ' ') { e.preventDefault(); document.querySelector('#card-' + currentCard().id + ' .flipper').classList.toggle('flipped'); }
+    if (e.key === ' ') { e.preventDefault(); flipCard(document.querySelector('#card-' + currentCard().id + ' .flipper')); }
   });
 
   // ── Init ──
