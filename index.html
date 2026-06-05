@@ -53,6 +53,28 @@
   .scene { width:960px; height:678px; flex-shrink:0; perspective:2200px; transform-origin:top left; position:absolute; }
   .card-slot { width:960px; height:678px; position:absolute; top:0; left:0; }
   .card-slot.hidden { display:none; }
+
+  /* ── Slide transition between cards ── */
+  @keyframes slide-in-right {
+    from { transform: translateX(100%); opacity: 0; }
+    to   { transform: translateX(0);    opacity: 1; }
+  }
+  @keyframes slide-in-left {
+    from { transform: translateX(-100%); opacity: 0; }
+    to   { transform: translateX(0);     opacity: 1; }
+  }
+  @keyframes slide-out-left {
+    from { transform: translateX(0);    opacity: 1; }
+    to   { transform: translateX(-100%); opacity: 0; }
+  }
+  @keyframes slide-out-right {
+    from { transform: translateX(0);   opacity: 1; }
+    to   { transform: translateX(100%); opacity: 0; }
+  }
+  .card-slot.slide-out-left  { animation: slide-out-left  .32s cubic-bezier(.4,0,.2,1) forwards; }
+  .card-slot.slide-out-right { animation: slide-out-right .32s cubic-bezier(.4,0,.2,1) forwards; }
+  .card-slot.slide-in-right  { animation: slide-in-right  .32s cubic-bezier(.4,0,.2,1) forwards; }
+  .card-slot.slide-in-left   { animation: slide-in-left   .32s cubic-bezier(.4,0,.2,1) forwards; }
   .flipper { width:960px; height:678px; position:relative; cursor:pointer; }
 
   /* iOS-safe flip: animate each face independently */
@@ -277,69 +299,62 @@
     <span class="side-pill">DORSO</span>
     <span class="corner-stamp">tema<span class="num">01</span></span>
     <div class="back-grid">
-      <div class="col">
-        <div class="back-title">Propiedades y clasificación</div>
-        <div class="back-intro">Toda fuerza proviene de una interacción — no existe fuerza sin dos cuerpos involucrados.</div>
+      <div>
         <div class="deriv-block">
           <div class="deriv-text">
-            <b>Fuerza de contacto:</b> requiere contacto físico entre los cuerpos (ej. normal, rozamiento, tensión de cuerda).<br><br>
-            <b>Fuerza a distancia:</b> actúa sin contacto a través de campos (ej. gravitacional, eléctrica, magnética).<br><br>
-            <b>Fuerzas internas:</b> entre partes de un mismo sistema — no alteran el movimiento del sistema.<br><br>
-            <b>Fuerzas externas:</b> ejercidas por agentes ajenos al sistema — son las que determinan su movimiento y las únicas que cuentan en las condiciones de equilibrio.
+            Cuerpo de masa <b>m = cte</b> con cantidad de movimiento <span class="eq">p(t) = m&middot;v(t)</span>.<br><br>
+            Derivamos respecto del tiempo:<br><br>
+            <span class="eq">dp/dt = d(m&middot;v)/dt</span><br><br>
+            Como m es constante:<br><br>
+            <span class="eq">dp/dt = m&middot;dv/dt = m&middot;a</span><br><br>
+            Por la 2ª ley, <span class="eq">m&middot;a = &Sigma;F</span>, entonces:<br><br>
+            <div class="formula-final-wrap"><span class="formula-final">&Sigma;F = dp/dt</span></div>
+            La fuerza neta es la <b>razón de cambio</b> de la cantidad de movimiento. Esta forma es <b>más general</b> que F=ma — vale incluso cuando m varía.
           </div>
         </div>
-        <div class="unit-block">
+        <div class="unit-block" style="margin-top:.55rem;">
           <div class="unit-text">
-            Sistema Internacional: <span style="font-family:'JetBrains Mono',monospace; font-size:.85rem; color:var(--example-accent); font-weight:600;">[F] = N</span> (Newton)<br>
-            Equivalencia: <b>1 N = 1 kg · m/s²</b>
+            <b>Tipos de fuerza:</b> contacto (normal, rozamiento, tensión) y a distancia (gravitacional, eléctrica).<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.72rem;">1 N = 1 kg&middot;m/s²</span>
           </div>
         </div>
       </div>
-      <div class="col">
-        <div class="back-diag" style="position:relative;">
-          <div style="position:absolute;top:-8px;left:12px;background:var(--paper);padding:0 6px;font-size:.55rem;font-weight:700;letter-spacing:.18em;color:var(--diagram-stroke);">TIPOS DE FUERZAS</div>
-          <svg viewBox="0 0 350 200" xmlns="http://www.w3.org/2000/svg">
+      <div style="display:flex;flex-direction:column;gap:.55rem;">
+        <div class="back-diag" style="height:195px;flex:0 0 auto;">
+          <svg viewBox="0 0 350 182" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <marker id="c1b-aG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
-              <marker id="c1b-aF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
-              <marker id="c1b-aN" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+              <marker id="c1b-aF2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+              <marker id="c1b-ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
             </defs>
-            <!-- Block on ramp -->
-            <line x1="20" y1="170" x2="220" y2="80" stroke="#54514a" stroke-width="1.5"/>
-            <g stroke="#54514a" stroke-width=".7"><line x1="30" y1="170" x2="26" y2="178"/><line x1="50" y1="160" x2="46" y2="168"/><line x1="70" y1="150" x2="66" y2="158"/><line x1="90" y1="140" x2="86" y2="148"/><line x1="110" y1="130" x2="106" y2="138"/><line x1="130" y1="120" x2="126" y2="128"/><line x1="150" y1="110" x2="146" y2="118"/><line x1="170" y1="100" x2="166" y2="108"/><line x1="190" y1="90" x2="186" y2="98"/><line x1="210" y1="80" x2="206" y2="88"/></g>
-            <!-- Block -->
-            <g transform="rotate(-25 115 125)">
-              <rect x="90" y="105" width="50" height="40" rx="4" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.3"/>
-              <text x="115" y="130" font-family="Inter Tight" font-size="11" fill="#54514a" text-anchor="middle">m</text>
-            </g>
-            <!-- Weight W downward -->
-            <line x1="115" y1="135" x2="115" y2="185" stroke="#2d4f72" stroke-width="2" marker-end="url(#c1b-aG)"/>
-            <text x="120" y="183" font-family="Fraunces" font-style="italic" font-size="13" fill="#2d4f72" font-weight="600">P</text>
-            <text x="125" y="183" font-family="Inter Tight" font-size="9" fill="#2d4f72">(a distancia)</text>
-            <!-- Normal N perpendicular to ramp -->
-            <line x1="115" y1="115" x2="88" y2="75" stroke="#8a4a5a" stroke-width="2" marker-end="url(#c1b-aN)"/>
-            <text x="72" y="72" font-family="Fraunces" font-style="italic" font-size="13" fill="#8a4a5a" font-weight="600">N</text>
-            <text x="60" y="83" font-family="Inter Tight" font-size="9" fill="#8a4a5a">(contacto)</text>
-            <!-- Applied F along ramp -->
-            <line x1="165" y1="108" x2="215" y2="88" stroke="#3a7d44" stroke-width="2" marker-end="url(#c1b-aF)"/>
-            <text x="218" y="86" font-family="Fraunces" font-style="italic" font-size="13" fill="#3a7d44" font-weight="600">F</text>
-            <!-- Labels -->
-            <rect x="230" y="12" width="110" height="80" rx="6" fill="rgba(250,246,236,.85)" stroke="#d9d0bb" stroke-width="1"/>
-            <line x1="238" y1="28" x2="252" y2="28" stroke="#2d4f72" stroke-width="2"/>
-            <text x="256" y="32" font-family="Inter Tight" font-size="10" fill="#54514a">peso (grav.)</text>
-            <line x1="238" y1="46" x2="252" y2="46" stroke="#8a4a5a" stroke-width="2"/>
-            <text x="256" y="50" font-family="Inter Tight" font-size="10" fill="#54514a">normal</text>
-            <line x1="238" y1="64" x2="252" y2="64" stroke="#3a7d44" stroke-width="2"/>
-            <text x="256" y="68" font-family="Inter Tight" font-size="10" fill="#54514a">aplicada</text>
-            <text x="235" y="82" font-family="Inter Tight" font-size="9" fill="#8b877e" font-style="italic">todas externas</text>
+            <!-- ground -->
+            <line x1="20" y1="108" x2="330" y2="108" stroke="#54514a" stroke-width="1.3"/>
+            <g stroke="#54514a" stroke-width=".7"><line x1="30" y1="108" x2="24" y2="116"/><line x1="50" y1="108" x2="44" y2="116"/><line x1="70" y1="108" x2="64" y2="116"/><line x1="90" y1="108" x2="84" y2="116"/><line x1="110" y1="108" x2="104" y2="116"/><line x1="130" y1="108" x2="124" y2="116"/><line x1="150" y1="108" x2="144" y2="116"/><line x1="170" y1="108" x2="164" y2="116"/><line x1="190" y1="108" x2="184" y2="116"/><line x1="210" y1="108" x2="204" y2="116"/><line x1="230" y1="108" x2="224" y2="116"/><line x1="250" y1="108" x2="244" y2="116"/><line x1="270" y1="108" x2="264" y2="116"/><line x1="290" y1="108" x2="284" y2="116"/><line x1="310" y1="108" x2="304" y2="116"/><line x1="328" y1="108" x2="322" y2="116"/></g>
+            <!-- block -->
+            <rect x="118" y="66" width="80" height="42" rx="5" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.3"/>
+            <text x="158" y="84" font-family="Inter Tight" font-size="10" fill="#54514a" text-anchor="middle" font-weight="600">m</text>
+            <text x="158" y="98" font-family="JetBrains Mono" font-size="8.5" fill="#8b6f3f" text-anchor="middle">= cte</text>
+            <!-- F arrow -->
+            <line x1="40" y1="87" x2="116" y2="87" stroke="#3a7d44" stroke-width="2.5" marker-end="url(#c1b-aF2)"/>
+            <text x="22" y="83" font-family="Fraunces" font-style="italic" font-size="15" fill="#3a7d44" font-weight="600">F</text>
+            <!-- p arrow (longer, below) -->
+            <line x1="198" y1="87" x2="310" y2="87" stroke="#2d4f72" stroke-width="2.5" marker-end="url(#c1b-ap)"/>
+            <text x="316" y="83" font-family="Fraunces" font-style="italic" font-size="13" fill="#2d4f72" font-weight="600">p(t)</text>
+            <!-- p label below -->
+            <text x="254" y="102" font-family="Inter Tight" font-size="8" fill="#2d4f72">= m&middot;v(t)</text>
+            <!-- derivation strip -->
+            <rect x="20" y="122" width="310" height="52" rx="6" fill="rgba(237,229,232,.55)" stroke="#c89aa8" stroke-width="1"/>
+            <text x="175" y="137" font-family="Fraunces" font-style="italic" font-size="10" fill="#8a4a5a" text-anchor="middle">dp/dt = d(m&middot;v)/dt = m&middot;dv/dt = m&middot;a</text>
+            <line x1="30" y1="143" x2="320" y2="143" stroke="#c89aa8" stroke-width=".7"/>
+            <text x="175" y="157" font-family="Fraunces" font-style="italic" font-size="12.5" fill="#8a4a5a" text-anchor="middle" font-weight="500">&there4; &Sigma;F = dp/dt</text>
+            <text x="175" y="169" font-family="Inter Tight" font-size="8.5" fill="#8a4a5a" text-anchor="middle">la fuerza es la razón de cambio de la cantidad de movimiento</text>
           </svg>
         </div>
         <div class="ex-block">
           <div class="ex-text">
-            Un libro de <b>2 kg</b> descansa sobre una mesa. ¿Cuántas fuerzas actúan?<br>
-            <span class="eq">P = m·g = 2 × 9,8 =</span> <span class="answer">19,6 N ↓</span><br>
-            <span class="eq">N = P =</span> <span class="answer">19,6 N ↑</span> (la mesa reacciona)<br>
-            <span style="color:var(--ink-3); font-size:.7rem;">Son dos fuerzas externas, iguales y opuestas → el libro no acelera.</span>
+            Libro <b>2 kg</b> en reposo sobre mesa:<br>
+            <span class="eq">P = m&middot;g = 2 &times; 9.8 =</span> <span class="answer">19.6 N &darr;</span><br>
+            <span class="eq">N =</span> <span class="answer">19.6 N &uarr;</span> (reacción de la mesa)<br>
+            <span class="eq">&Sigma;F = 0 &rarr; dp/dt = 0 &rarr; v = cte = 0</span>
           </div>
         </div>
       </div>
@@ -2800,19 +2815,42 @@
   }
 
   // ── Navigation ──
+  var _sliding = false;
+
   function goToIdx(idx) {
     if (idx < 0 || idx >= filteredCards.length) return;
-    // Hide current
+    if (_sliding) return;
+    var dir = idx > currentIdx ? 1 : -1; // 1 = forward (→), -1 = backward (←)
+
     var prev = currentCard();
-    var prevFlipper = document.querySelector('#card-' + prev.id + ' .flipper');
+    var prevEl = document.getElementById('card-' + prev.id);
+    // reset flip state on outgoing card
+    var prevFlipper = prevEl.querySelector('.flipper');
     prevFlipper.classList.remove('flipped','animating-to-back','animating-to-front');
     prevFlipper.querySelector('.face.front').style.animation = '';
     prevFlipper.querySelector('.face.back').style.animation = '';
-    document.getElementById('card-' + prev.id).classList.add('hidden');
+
     currentIdx = idx;
-    // Show new
     var next = currentCard();
-    document.getElementById('card-' + next.id).classList.remove('hidden');
+    var nextEl = document.getElementById('card-' + next.id);
+
+    _sliding = true;
+
+    // Show next card offscreen immediately, animate it in
+    nextEl.classList.remove('hidden');
+    nextEl.classList.add(dir > 0 ? 'slide-in-right' : 'slide-in-left');
+    prevEl.classList.add(dir > 0 ? 'slide-out-left' : 'slide-out-right');
+
+    setTimeout(function() {
+      prevEl.classList.remove('slide-out-left','slide-out-right');
+      prevEl.classList.add('hidden');
+      nextEl.classList.remove('slide-in-right','slide-in-left');
+      _sliding = false;
+      updateNav();
+      syncThumbs();
+    }, 330);
+
+    // Update nav immediately for responsiveness
     updateNav();
     syncThumbs();
   }
