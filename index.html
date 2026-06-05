@@ -16,27 +16,47 @@
     --diagram-bg:#f7f0dd; --diagram-stroke:#c9a86b;
     --vec-r:#c2622d; --vec-F:#3a7d44; --vec-M:#1c1a17; --vec-d:#2d4f72; --vec-plane:#7fa3c9;
   }
-  body { font-family:'Inter Tight',sans-serif; background: radial-gradient(ellipse at 20% 10%,#efe1c4 0%,transparent 55%), radial-gradient(ellipse at 80% 90%,#dde5ed 0%,transparent 50%),#f0e9d6; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; color:var(--ink); }
+  html, body { height:100%; }
+  body { font-family:'Inter Tight',sans-serif; background: radial-gradient(ellipse at 20% 10%,#efe1c4 0%,transparent 55%), radial-gradient(ellipse at 80% 90%,#dde5ed 0%,transparent 50%),#f0e9d6; min-height:100vh; display:flex; flex-direction:column; align-items:stretch; overflow:hidden; color:var(--ink); }
 
-  /* NAV */
-  .nav-bar { position:fixed; bottom:28px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:.9rem; z-index:100; background:rgba(250,246,236,0.88); backdrop-filter:blur(10px); border:1px solid var(--line); border-radius:40px; padding:.45rem 1.1rem; box-shadow:0 4px 24px rgba(60,50,30,.13); }
-  .nav-btn { background:none; border:1px solid var(--line); border-radius:50%; width:32px; height:32px; cursor:pointer; font-size:1rem; color:var(--ink-2); display:flex; align-items:center; justify-content:center; transition:background .2s,border-color .2s; }
-  .nav-btn:hover { background:var(--paper-2); border-color:var(--def-stroke); }
-  .nav-btn:disabled { opacity:.28; cursor:default; }
-  .nav-counter { font-family:'JetBrains Mono',monospace; font-size:.7rem; color:var(--ink-2); min-width:44px; text-align:center; letter-spacing:.05em; }
-  .nav-progress { width:72px; height:4px; background:var(--line); border-radius:2px; overflow:hidden; }
+  /* ── GALLERY NAV ── */
+  .gallery-nav { flex-shrink:0; display:flex; flex-direction:column-reverse; background:rgba(250,246,236,0.97); backdrop-filter:blur(12px); border-top:1px solid var(--line); border-bottom:none; z-index:200; }
+  .chapter-tabs { display:flex; align-items:center; gap:.3rem; padding:.5rem .9rem .4rem; border-top:1px solid var(--line); overflow-x:auto; scrollbar-width:none; white-space:nowrap; }
+  .chapter-tabs::-webkit-scrollbar { display:none; }
+  .chapter-tab { font-family:'Inter Tight',sans-serif; font-size:.72rem; font-weight:600; letter-spacing:.05em; padding:.3rem .8rem; border-radius:20px; border:1.5px solid transparent; cursor:pointer; background:transparent; color:var(--ink-3); transition:all .18s; white-space:nowrap; flex-shrink:0; }
+  .chapter-tab.active { background:var(--formula-accent); color:#fff; border-color:var(--formula-accent); }
+  .chapter-tab:not(.active):hover { background:var(--paper-2); border-color:var(--line); color:var(--ink-2); }
+  .thumb-strip-wrap { position:relative; }
+  .thumb-strip { display:flex; gap:.5rem; padding:.5rem .9rem; overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+  .thumb-strip::-webkit-scrollbar { display:none; }
+  .thumb-btn { flex-shrink:0; width:78px; height:50px; border-radius:7px; border:2px solid transparent; background:var(--paper-2); cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; transition:all .18s; padding:4px 5px; }
+  .thumb-btn:hover { border-color:var(--def-stroke); background:var(--paper); }
+  .thumb-btn.active { border-color:var(--formula-accent); background:rgba(45,79,114,.09); }
+  .thumb-num { font-family:'JetBrains Mono',monospace; font-size:.52rem; color:var(--ink-3); }
+  .thumb-label { font-family:'Inter Tight',sans-serif; font-size:.54rem; font-weight:500; color:var(--ink-2); text-align:center; line-height:1.25; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; max-width:70px; }
+  .thumb-btn.active .thumb-label { color:var(--formula-accent); font-weight:600; }
+  .thumb-btn.active .thumb-num { color:var(--formula-accent); }
+  .thumb-strip-wrap::before,.thumb-strip-wrap::after { content:''; position:absolute; top:0; bottom:0; width:20px; pointer-events:none; z-index:2; }
+  .thumb-strip-wrap::before { left:0; background:linear-gradient(to right,rgba(250,246,236,1),transparent); }
+  .thumb-strip-wrap::after { right:0; background:linear-gradient(to left,rgba(250,246,236,1),transparent); }
+  .nav-counter-bar { display:flex; align-items:center; justify-content:center; gap:.6rem; padding:.28rem .9rem .42rem; }
+  .nav-prev-btn,.nav-next-btn { background:none; border:1px solid var(--line); border-radius:50%; width:26px; height:26px; cursor:pointer; font-size:.85rem; color:var(--ink-2); display:flex; align-items:center; justify-content:center; transition:background .18s; flex-shrink:0; }
+  .nav-prev-btn:hover,.nav-next-btn:hover { background:var(--paper-2); }
+  .nav-prev-btn:disabled,.nav-next-btn:disabled { opacity:.25; cursor:default; }
+  .nav-counter-text { font-family:'JetBrains Mono',monospace; font-size:.65rem; color:var(--ink-2); min-width:38px; text-align:center; }
+  .nav-card-title { font-family:'Fraunces',serif; font-style:italic; font-size:.7rem; color:var(--ink-3); max-width:160px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .nav-progress-bar { flex:1; max-width:90px; height:3px; background:var(--line); border-radius:2px; overflow:hidden; }
   .nav-progress-fill { height:100%; background:var(--example-accent); border-radius:2px; transition:width .4s ease; }
-  .nav-title { font-family:'Fraunces',serif; font-style:italic; font-size:.7rem; color:var(--ink-3); max-width:140px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
-  /* SCENE */
-  .scene { width:960px; height:678px; flex-shrink:0; perspective:2200px; transform-origin:center center; position:relative; }
+  /* ── SCENE ── */
+  .scene-wrap { flex:1; position:relative; overflow:hidden; }
+  .scene { width:960px; height:678px; flex-shrink:0; perspective:2200px; transform-origin:top left; position:absolute; }
   .card-slot { width:960px; height:678px; position:absolute; top:0; left:0; }
   .card-slot.hidden { display:none; }
-  .flipper { width:960px; height:678px; position:relative; transition:transform .9s cubic-bezier(.4,0,.2,1); transform-style:preserve-3d; cursor:pointer; }
-  .flipper.flipped { transform:rotateY(180deg); }
-
+  .flipper { width:960px; height:678px; position:relative; transition:transform .75s cubic-bezier(.4,0,.2,1); transform-style:preserve-3d; -webkit-transform-style:preserve-3d; cursor:pointer; }
+  .flipper.flipped { transform:rotateY(180deg); -webkit-transform:rotateY(180deg); }
   .face { position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; background:var(--paper); border-radius:14px; box-shadow:0 1px 2px rgba(60,50,30,.05),0 8px 24px rgba(60,50,30,.1),0 24px 60px rgba(60,50,30,.08); overflow:hidden; }
-  .face.back { transform:rotateY(180deg); }
+  .face.back { transform:rotateY(180deg); -webkit-transform:rotateY(180deg); }
   .face::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle at 25% 30%,rgba(180,150,90,.05) 0%,transparent 45%),radial-gradient(circle at 75% 70%,rgba(120,100,70,.04) 0%,transparent 45%); pointer-events:none; z-index:0; }
 
   /* CHROME */
@@ -116,6 +136,7 @@
 </head>
 <body>
 
+<div class="scene-wrap" id="scene-wrap">
 <div class="scene" id="scene">
 
 <!-- ════════════════════════════════════════════════════════
@@ -764,56 +785,1644 @@
 </div>
 </div><!-- card-4 -->
 
-</div><!-- scene -->
 
-<!-- Navigation -->
-<div class="nav-bar">
-  <button class="nav-btn" id="btn-prev" onclick="navigate(-1)" disabled>←</button>
-  <div class="nav-progress"><div class="nav-progress-fill" id="progress-fill" style="width:25%"></div></div>
-  <span class="nav-counter" id="nav-counter">1 / 4</span>
-  <div class="nav-title" id="nav-title">Concepto de Fuerza</div>
-  <button class="nav-btn" id="btn-next" onclick="navigate(1)">→</button>
+<!-- ════════════════════════════════════════════════════════
+     CARD 05 — Velocidad y aceleración. MRU (Cap 3, ítem 2)
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-5">
+<div class="flipper" onclick="this.classList.toggle('flipped')">
+
+  <!-- FRENTE -->
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">05</span></span>
+
+    <div class="front-grid">
+      <div class="title-row">
+        <h1 class="title">Velocidad y aceleración. <em>MRU</em></h1>
+      </div>
+      <div class="cols-row">
+
+        <!-- LEFT -->
+        <div class="col col-left">
+
+          <div class="def-block">
+            <div class="def-text">
+              <b>Velocidad media:</b> cociente entre el desplazamiento y el intervalo de tiempo. Es la <b>pendiente de la secante</b> en la curva x-t.<br>
+              <b>Velocidad instantánea:</b> límite cuando Δt→0 — <b>pendiente de la tangente</b> a x-t.<br>
+              <b>Aceleración:</b> variación de velocidad en el tiempo. Ambas son magnitudes <b>vectoriales</b>.
+            </div>
+          </div>
+
+          <div class="formula-frame">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:.5rem; text-align:left;">
+              <div>
+                <div style="font-size:.58rem; font-weight:700; letter-spacing:.14em; color:var(--formula-accent); margin-bottom:.25rem;">VELOCIDAD</div>
+                <div style="font-family:'Fraunces',serif; font-style:italic; font-size:.95rem; color:var(--formula-accent); font-weight:500;">v<sub style="font-size:.6rem;">m</sub> = Δx / Δt</div>
+                <div style="font-family:'Fraunces',serif; font-style:italic; font-size:.95rem; color:var(--formula-accent); font-weight:500; margin-top:.25rem;">v = dx / dt</div>
+              </div>
+              <div style="border-left:1px solid var(--formula-stroke); padding-left:.6rem;">
+                <div style="font-size:.58rem; font-weight:700; letter-spacing:.14em; color:var(--formula-accent); margin-bottom:.25rem;">ACELERACIÓN</div>
+                <div style="font-family:'Fraunces',serif; font-style:italic; font-size:.95rem; color:var(--formula-accent); font-weight:500;">a<sub style="font-size:.6rem;">m</sub> = Δv / Δt</div>
+                <div style="font-family:'Fraunces',serif; font-style:italic; font-size:.95rem; color:var(--formula-accent); font-weight:500; margin-top:.25rem;">a = dv / dt</div>
+              </div>
+            </div>
+            <div style="border-top:1px dashed var(--formula-stroke); margin-top:.5rem; padding-top:.45rem; text-align:center;">
+              <div style="font-size:.6rem; font-weight:700; letter-spacing:.14em; color:var(--formula-accent); margin-bottom:.2rem;">MRU — a = 0, v = cte</div>
+              <div style="font-family:'Fraunces',serif; font-style:italic; font-size:1.25rem; color:var(--formula-accent); font-weight:600;">x = x₀ + v · t</div>
+            </div>
+          </div>
+
+          <div class="cases-grid">
+            <div class="case-pill"><b>v &gt; 0</b> Progresivo: avanza en sentido positivo de la trayectoria.</div>
+            <div class="case-pill"><b>v &lt; 0</b> Regresivo: avanza en sentido negativo.</div>
+            <div class="case-pill"><b>v = 0</b><span class="eq">Reposo o inversión de sentido.</span></div>
+            <div class="case-pill"><b>Unidad SI</b><span class="eq">[v] = m/s &nbsp; [a] = m/s²</span></div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 360 235" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c5f-ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#54514a"/></marker>
+                <marker id="c5f-aL" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
+                <marker id="c5f-aT" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+                <marker id="c5f-aG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+              </defs>
+              <!-- LEFT: x-t -->
+              <line x1="28" y1="12" x2="28" y2="118" stroke="#54514a" stroke-width="1.2" marker-end="url(#c5f-ax)"/>
+              <line x1="18" y1="108" x2="165" y2="108" stroke="#54514a" stroke-width="1.2" marker-end="url(#c5f-ax)"/>
+              <text x="22" y="10" font-family="Fraunces" font-style="italic" font-size="12" fill="#54514a">x</text>
+              <text x="168" y="112" font-family="Fraunces" font-style="italic" font-size="12" fill="#54514a">t</text>
+              <line x1="28" y1="100" x2="155" y2="30" stroke="#2d4f72" stroke-width="2.2" marker-end="url(#c5f-aL)"/>
+              <text x="130" y="26" font-family="Inter Tight" font-size="9" fill="#2d4f72" font-weight="600">v &gt; 0</text>
+              <line x1="28" y1="72" x2="155" y2="72" stroke="#3a7d44" stroke-width="2.2" marker-end="url(#c5f-aG)"/>
+              <text x="130" y="69" font-family="Inter Tight" font-size="9" fill="#3a7d44" font-weight="600">v = 0</text>
+              <line x1="28" y1="48" x2="155" y2="100" stroke="#8a4a5a" stroke-width="2.2" marker-end="url(#c5f-aT)"/>
+              <text x="128" y="102" font-family="Inter Tight" font-size="9" fill="#8a4a5a" font-weight="600">v &lt; 0</text>
+              <!-- Δx/Δt annotation -->
+              <line x1="50" y1="87" x2="80" y2="87" stroke="#2d4f72" stroke-width=".8" stroke-dasharray="2 2"/>
+              <line x1="80" y1="87" x2="80" y2="70" stroke="#2d4f72" stroke-width=".8" stroke-dasharray="2 2"/>
+              <text x="82" y="80" font-family="Inter Tight" font-size="8" fill="#2d4f72">Δx</text>
+              <text x="55" y="96" font-family="Inter Tight" font-size="8" fill="#54514a">Δt</text>
+              <rect x="28" y="115" width="140" height="13" rx="3" fill="rgba(232,238,242,.85)"/>
+              <text x="98" y="124" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" text-anchor="middle" font-weight="600">x-t (pendiente = v)</text>
+              <!-- Divider -->
+              <line x1="182" y1="10" x2="182" y2="130" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="3 3"/>
+              <!-- RIGHT: v-t -->
+              <line x1="200" y1="12" x2="200" y2="118" stroke="#54514a" stroke-width="1.2" marker-end="url(#c5f-ax)"/>
+              <line x1="190" y1="80" x2="355" y2="80" stroke="#54514a" stroke-width="1.2" marker-end="url(#c5f-ax)"/>
+              <text x="194" y="10" font-family="Fraunces" font-style="italic" font-size="12" fill="#54514a">v</text>
+              <text x="357" y="84" font-family="Fraunces" font-style="italic" font-size="12" fill="#54514a">t</text>
+              <line x1="200" y1="45" x2="345" y2="45" stroke="#2d4f72" stroke-width="2.2" marker-end="url(#c5f-aL)"/>
+              <text x="314" y="41" font-family="Inter Tight" font-size="9" fill="#2d4f72" font-weight="600">v &gt; 0</text>
+              <line x1="200" y1="80" x2="345" y2="80" stroke="#3a7d44" stroke-width="2.2" marker-end="url(#c5f-aG)"/>
+              <text x="314" y="76" font-family="Inter Tight" font-size="9" fill="#3a7d44" font-weight="600">v = 0</text>
+              <line x1="200" y1="108" x2="345" y2="108" stroke="#8a4a5a" stroke-width="2.2" marker-end="url(#c5f-aT)"/>
+              <text x="314" y="120" font-family="Inter Tight" font-size="9" fill="#8a4a5a" font-weight="600">v &lt; 0</text>
+              <rect x="200" y="45" width="80" height="35" fill="rgba(45,79,114,.1)"/>
+              <text x="240" y="68" font-family="Inter Tight" font-size="8" fill="#2d4f72" text-anchor="middle">área = Δx</text>
+              <rect x="200" y="115" width="148" height="13" rx="3" fill="rgba(232,238,242,.85)"/>
+              <text x="274" y="124" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" text-anchor="middle" font-weight="600">v-t (horizontal = cte)</text>
+              <!-- Bottom box -->
+              <rect x="18" y="155" width="324" height="72" rx="7" fill="rgba(232,238,242,.7)" stroke="#7fa3c9" stroke-width="1.2"/>
+              <text x="180" y="172" font-family="Inter Tight" font-size="9.5" fill="#2d4f72" text-anchor="middle" font-weight="600">INTERPRETACIÓN GRÁFICA</text>
+              <line x1="18" y1="177" x2="342" y2="177" stroke="#d9d0bb" stroke-width=".8"/>
+              <text x="100" y="192" font-family="Inter Tight" font-size="9" fill="#54514a" text-anchor="middle">v = pendiente de x-t</text>
+              <text x="100" y="206" font-family="Inter Tight" font-size="9" fill="#54514a" text-anchor="middle">v_inst = tangente a x-t</text>
+              <text x="260" y="192" font-family="Inter Tight" font-size="9" fill="#54514a" text-anchor="middle">a = pendiente de v-t</text>
+              <text x="260" y="206" font-family="Inter Tight" font-size="9" fill="#54514a" text-anchor="middle">Δx = área bajo v-t</text>
+              <line x1="180" y1="180" x2="180" y2="218" stroke="#d9d0bb" stroke-width=".8"/>
+            </svg>
+          </div>
+          <div class="r-note">En MRU: <span style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--formula-accent);">a = 0</span>, v constante. La posición varía <b>linealmente</b> con t — el gráfico x-t es una recta.</div>
+        </div>
+
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+  </div>
+
+  <!-- DORSO -->
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">05</span></span>
+
+    <div class="back-grid">
+      <div class="col">
+        <div class="back-title">Demostración MRU</div>
+        <div class="back-intro">Partiendo de la definición de velocidad instantánea con aceleración nula.</div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            En MRU, <b>a = 0</b>, por lo que <b>v = cte</b>.<br>
+            Recordando que <span class="eq">v = dx/dt</span>, entonces <span class="eq">dx = v · dt</span><br><br>
+            Integrando entre t = 0 y t:<br>
+            <span class="eq">∫dx = v · ∫dt</span><br>
+            <span class="eq">x − x₀ = v · t</span>
+            <div class="formula-final-wrap"><span class="formula-final">x = x₀ + v · t</span></div>
+            La posición varía <b>linealmente</b> con t. La velocidad media es la <b>pendiente de la secante</b>; la instantánea, la <b>pendiente de la tangente</b> a la curva x-t.<br><br>
+            Del gráfico v-t, el <b>área bajo la curva</b> entre t₁ y t₂ es el desplazamiento Δx.
+          </div>
+        </div>
+        <div class="unit-block">
+          <div class="unit-text">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--example-accent);font-weight:600;">[v] = m/s &nbsp;&nbsp; [a] = m/s²</span><br>
+            Conversión: <b>1 m/s = 3,6 km/h</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="back-diag" style="position:relative;">
+          <div style="position:absolute;top:-8px;left:12px;background:var(--paper);padding:0 6px;font-size:.55rem;font-weight:700;letter-spacing:.18em;color:var(--diagram-stroke);">GRÁFICOS MRU + v_med vs v_inst</div>
+          <svg viewBox="0 0 350 185" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="c5b-ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#54514a"/></marker>
+            </defs>
+            <!-- x-t -->
+            <text x="55" y="12" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="700">x-t</text>
+            <line x1="14" y1="15" x2="14" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c5b-ax)"/>
+            <line x1="8" y1="72" x2="105" y2="72" stroke="#54514a" stroke-width="1" marker-end="url(#c5b-ax)"/>
+            <text x="9" y="13" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">x</text>
+            <text x="107" y="76" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">t</text>
+            <circle cx="14" cy="60" r="2.5" fill="#2d4f72"/>
+            <text x="16" y="58" font-family="Fraunces" font-style="italic" font-size="9" fill="#2d4f72">x₀</text>
+            <line x1="14" y1="60" x2="98" y2="22" stroke="#2d4f72" stroke-width="1.8"/>
+            <text x="88" y="20" font-family="Inter Tight" font-size="8" fill="#2d4f72">v&gt;0</text>
+            <line x1="14" y1="60" x2="98" y2="60" stroke="#3a7d44" stroke-width="1.8"/>
+            <text x="88" y="57" font-family="Inter Tight" font-size="8" fill="#3a7d44">v=0</text>
+            <line x1="14" y1="60" x2="98" y2="72" stroke="#8a4a5a" stroke-width="1.8"/>
+            <text x="88" y="72" font-family="Inter Tight" font-size="8" fill="#8a4a5a">v&lt;0</text>
+            <!-- v-t -->
+            <text x="175" y="12" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="700">v-t</text>
+            <line x1="130" y1="15" x2="130" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c5b-ax)"/>
+            <line x1="124" y1="55" x2="225" y2="55" stroke="#54514a" stroke-width="1" marker-end="url(#c5b-ax)"/>
+            <text x="125" y="13" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">v</text>
+            <text x="227" y="59" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">t</text>
+            <line x1="130" y1="32" x2="218" y2="32" stroke="#2d4f72" stroke-width="1.8"/>
+            <text x="200" y="29" font-family="Inter Tight" font-size="8" fill="#2d4f72">v&gt;0</text>
+            <line x1="130" y1="55" x2="218" y2="55" stroke="#3a7d44" stroke-width="1.8"/>
+            <text x="200" y="52" font-family="Inter Tight" font-size="8" fill="#3a7d44">v=0</text>
+            <line x1="130" y1="72" x2="218" y2="72" stroke="#8a4a5a" stroke-width="1.8"/>
+            <text x="200" y="69" font-family="Inter Tight" font-size="8" fill="#8a4a5a">v&lt;0</text>
+            <!-- a-t -->
+            <text x="293" y="12" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="700">a-t</text>
+            <line x1="248" y1="15" x2="248" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c5b-ax)"/>
+            <line x1="242" y1="55" x2="342" y2="55" stroke="#54514a" stroke-width="1" marker-end="url(#c5b-ax)"/>
+            <text x="243" y="13" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">a</text>
+            <text x="344" y="59" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">t</text>
+            <line x1="248" y1="55" x2="336" y2="55" stroke="#c2622d" stroke-width="2.2"/>
+            <text x="268" y="48" font-family="Inter Tight" font-size="8" fill="#c2622d" font-weight="600">a = 0 siempre</text>
+            <!-- Divider -->
+            <line x1="8" y1="90" x2="342" y2="90" stroke="#d9d0bb" stroke-width=".8"/>
+            <!-- v_med vs v_inst -->
+            <text x="175" y="103" font-family="Inter Tight" font-size="9" fill="#54514a" text-anchor="middle" font-weight="700">v_media (secante) vs v_instantánea (tangente)</text>
+            <line x1="14" y1="180" x2="14" y2="110" stroke="#54514a" stroke-width="1" marker-end="url(#c5b-ax)"/>
+            <line x1="8" y1="172" x2="342" y2="172" stroke="#54514a" stroke-width="1" marker-end="url(#c5b-ax)"/>
+            <path d="M 14 168 Q 120 130 220 108 Q 280 100 330 95" fill="none" stroke="#c2622d" stroke-width="2"/>
+            <circle cx="70" cy="150" r="3" fill="#2d4f72"/>
+            <circle cx="200" cy="113" r="3" fill="#2d4f72"/>
+            <line x1="50" y1="157" x2="230" y2="105" stroke="#2d4f72" stroke-width="1.5" stroke-dasharray="5 2"/>
+            <text x="232" y="103" font-family="Inter Tight" font-size="8" fill="#2d4f72">v_med</text>
+            <line x1="160" y1="125" x2="270" y2="98" stroke="#3a7d44" stroke-width="1.5"/>
+            <text x="272" y="96" font-family="Inter Tight" font-size="8" fill="#3a7d44">v_inst</text>
+            <text x="62" y="148" font-family="Fraunces" font-style="italic" font-size="9" fill="#2d4f72">P₁</text>
+            <text x="192" y="111" font-family="Fraunces" font-style="italic" font-size="9" fill="#2d4f72">P₂</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            Auto en MRU: <b>x₀ = 10 m</b>, <b>v = 20 m/s</b>. ¿Posición a t = 5 s?<br>
+            <span class="eq">x = 10 + 20 · 5 =</span> <span class="answer">110 m</span><br>
+            ¿Tiempo para llegar a x = 250 m?<br>
+            <span class="eq">t = (250 − 10) / 20 =</span> <span class="answer">12 s</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+  </div>
+
 </div>
+</div><!-- card-5 -->
+
+
+
+<!-- ═══ CARD 06 — MRUV ═══ -->
+<div class="card-slot hidden" id="card-6">
+<div class="flipper" onclick="this.classList.toggle('flipped')">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
+    <span class="side-pill">FRENTE</span><span class="corner-stamp">tema<span class="num">06</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Velocidad y aceleración. <em>MRUV</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block"><div class="def-text">Trayectoria <b>rectilínea</b> con <b>aceleración constante</b> a ≠ 0. La velocidad varía linealmente. Si <b>a</b> y <b>v</b> mismo sentido → acelera; sentidos opuestos → frena.</div></div>
+          <div class="formula-frame">
+            <div style="display:flex;flex-direction:column;gap:.3rem;">
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.1rem;color:var(--formula-accent);font-weight:600;">v = v₀ + a·t</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.1rem;color:var(--formula-accent);font-weight:600;">x = x₀ + v₀t + ½at²</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.1rem;color:var(--formula-accent);font-weight:600;">v² = v₀² + 2a(x − x₀)</div>
+            </div>
+            <div class="formula-sub">3 ecuaciones — 5 variables. Con 3 datos se resuelve cualquier caso.</div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>a y v mismo signo</b>Rapidez aumenta.</div>
+            <div class="case-pill"><b>a y v signos opuestos</b>Movimiento retardado.</div>
+            <div class="case-pill"><b>Sin dato de t</b><span class="eq">Usar v² = v₀² + 2aΔx</span></div>
+            <div class="case-pill"><b>Unidad</b><span class="eq">[a] = m/s²</span></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 360 235" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c6f-ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#54514a"/></marker>
+              </defs>
+              <line x1="28" y1="12" x2="28" y2="118" stroke="#54514a" stroke-width="1.2" marker-end="url(#c6f-ax)"/>
+              <line x1="18" y1="108" x2="165" y2="108" stroke="#54514a" stroke-width="1.2" marker-end="url(#c6f-ax)"/>
+              <text x="22" y="10" font-family="Fraunces" font-style="italic" font-size="12" fill="#54514a">x</text>
+              <text x="168" y="112" font-family="Fraunces" font-style="italic" font-size="12" fill="#54514a">t</text>
+              <path d="M 28 100 Q 90 95 155 30" fill="none" stroke="#2d4f72" stroke-width="2.2"/>
+              <text x="138" y="26" font-family="Inter Tight" font-size="9" fill="#2d4f72" font-weight="600">a &gt; 0</text>
+              <path d="M 28 70 Q 90 55 155 90" fill="none" stroke="#8a4a5a" stroke-width="2.2"/>
+              <text x="138" y="94" font-family="Inter Tight" font-size="9" fill="#8a4a5a" font-weight="600">a &lt; 0</text>
+              <circle cx="28" cy="100" r="3" fill="#2d4f72"/>
+              <text x="30" y="98" font-family="Fraunces" font-style="italic" font-size="9" fill="#2d4f72">x₀</text>
+              <rect x="28" y="115" width="140" height="13" rx="3" fill="rgba(232,238,242,.85)"/>
+              <text x="98" y="124" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" text-anchor="middle" font-weight="600">x-t (parábola)</text>
+              <line x1="182" y1="10" x2="182" y2="130" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="3 3"/>
+              <line x1="200" y1="12" x2="200" y2="118" stroke="#54514a" stroke-width="1.2" marker-end="url(#c6f-ax)"/>
+              <line x1="190" y1="90" x2="355" y2="90" stroke="#54514a" stroke-width="1.2" marker-end="url(#c6f-ax)"/>
+              <text x="194" y="10" font-family="Fraunces" font-style="italic" font-size="12" fill="#54514a">v</text>
+              <text x="357" y="94" font-family="Fraunces" font-style="italic" font-size="12" fill="#54514a">t</text>
+              <line x1="200" y1="80" x2="345" y2="30" stroke="#2d4f72" stroke-width="2.2"/>
+              <text x="320" y="26" font-family="Inter Tight" font-size="9" fill="#2d4f72" font-weight="600">a &gt; 0</text>
+              <line x1="200" y1="40" x2="345" y2="82" stroke="#8a4a5a" stroke-width="2.2"/>
+              <text x="318" y="88" font-family="Inter Tight" font-size="9" fill="#8a4a5a" font-weight="600">a &lt; 0</text>
+              <line x1="215" y1="75" x2="270" y2="75" stroke="#2d4f72" stroke-width=".8" stroke-dasharray="2 2"/>
+              <line x1="270" y1="75" x2="270" y2="56" stroke="#2d4f72" stroke-width=".8" stroke-dasharray="2 2"/>
+              <text x="272" y="67" font-family="Inter Tight" font-size="8" fill="#2d4f72">Δv</text>
+              <text x="232" y="83" font-family="Inter Tight" font-size="8" fill="#54514a">Δt</text>
+              <rect x="200" y="115" width="148" height="13" rx="3" fill="rgba(232,238,242,.85)"/>
+              <text x="274" y="124" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" text-anchor="middle" font-weight="600">v-t (recta, pendiente = a)</text>
+              <rect x="18" y="152" width="324" height="76" rx="7" fill="rgba(232,238,242,.7)" stroke="#7fa3c9" stroke-width="1.2"/>
+              <text x="180" y="169" font-family="Inter Tight" font-size="9.5" fill="#2d4f72" text-anchor="middle" font-weight="600">Deducción v² = v₀² + 2aΔx (sin t)</text>
+              <line x1="18" y1="174" x2="342" y2="174" stroke="#d9d0bb" stroke-width=".8"/>
+              <text x="180" y="188" font-family="Inter Tight" font-size="9" fill="#54514a" text-anchor="middle">De v = v₀+at → t = (v−v₀)/a</text>
+              <text x="180" y="202" font-family="Inter Tight" font-size="9" fill="#54514a" text-anchor="middle">Sustituir en x = x₀+v₀t+½at²</text>
+              <text x="180" y="216" font-family="Fraunces" font-style="italic" font-size="10" fill="#2d4f72" text-anchor="middle" font-weight="600">→ v² = v₀² + 2a·(x − x₀)</text>
+            </svg>
+          </div>
+          <div class="r-note">En MRUV: gráfico <b>x-t es parábola</b>, gráfico <b>v-t es recta</b> de pendiente a. El área bajo v-t sigue siendo Δx.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+  </div>
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
+    <span class="side-pill">DORSO</span><span class="corner-stamp">tema<span class="num">06</span></span>
+    <div class="back-grid">
+      <div class="col">
+        <div class="back-title">Demostración de las tres ecuaciones</div>
+        <div class="back-intro">Partiendo de a = cte e integrando sucesivamente.</div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            <b>Ec. 1:</b> a = dv/dt = cte → dv = a·dt → integrar:<div class="formula-final-wrap"><span class="formula-final">v = v₀ + a·t</span></div>
+            <b>Ec. 2:</b> v = dx/dt → dx = (v₀+at)dt → integrar:<div class="formula-final-wrap"><span class="formula-final">x = x₀ + v₀t + ½at²</span></div>
+            <b>Ec. 3:</b> de Ec.1 t = (v−v₀)/a → sustituir en Ec.2:<div class="formula-final-wrap"><span class="formula-final">v² = v₀² + 2a·Δx</span></div>
+          </div>
+        </div>
+        <div class="unit-block">
+          <div class="unit-text"><span style="font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--example-accent);font-weight:600;">[a] = m/s²</span><br>Cada ecuación prescinde de una variable — elegir la que no se necesita.</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="back-diag" style="position:relative;">
+          <div style="position:absolute;top:-8px;left:12px;background:var(--paper);padding:0 6px;font-size:.55rem;font-weight:700;letter-spacing:.18em;color:var(--diagram-stroke);">GRÁFICOS MRUV + ANALOGÍA MRU</div>
+          <svg viewBox="0 0 350 185" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="c6b-ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#54514a"/></marker></defs>
+            <text x="55" y="12" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="700">x-t</text>
+            <line x1="14" y1="15" x2="14" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c6b-ax)"/>
+            <line x1="8" y1="72" x2="105" y2="72" stroke="#54514a" stroke-width="1" marker-end="url(#c6b-ax)"/>
+            <path d="M 14 65 Q 55 62 98 28" fill="none" stroke="#2d4f72" stroke-width="1.8"/>
+            <text x="8" y="63" font-family="Fraunces" font-style="italic" font-size="9" fill="#2d4f72">x₀</text>
+            <text x="60" y="16" font-family="Inter Tight" font-size="8" fill="#2d4f72">parábola</text>
+            <text x="175" y="12" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="700">v-t</text>
+            <line x1="130" y1="15" x2="130" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c6b-ax)"/>
+            <line x1="124" y1="65" x2="225" y2="65" stroke="#54514a" stroke-width="1" marker-end="url(#c6b-ax)"/>
+            <line x1="130" y1="62" x2="218" y2="28" stroke="#2d4f72" stroke-width="1.8"/>
+            <text x="125" y="60" font-family="Fraunces" font-style="italic" font-size="9" fill="#2d4f72">v₀</text>
+            <text x="175" y="16" font-family="Inter Tight" font-size="8" fill="#2d4f72">recta (pend=a)</text>
+            <text x="293" y="12" font-family="Inter Tight" font-size="9" fill="#c2622d" text-anchor="middle" font-weight="700">a-t</text>
+            <line x1="248" y1="15" x2="248" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c6b-ax)"/>
+            <line x1="242" y1="55" x2="342" y2="55" stroke="#54514a" stroke-width="1" marker-end="url(#c6b-ax)"/>
+            <line x1="248" y1="35" x2="336" y2="35" stroke="#c2622d" stroke-width="2.2"/>
+            <text x="260" y="30" font-family="Inter Tight" font-size="8" fill="#c2622d" font-weight="600">a = cte ≠ 0</text>
+            <rect x="248" y="35" width="88" height="20" fill="rgba(194,98,45,.1)"/>
+            <text x="292" y="50" font-family="Inter Tight" font-size="8" fill="#c2622d" text-anchor="middle">área = Δv</text>
+            <line x1="8" y1="90" x2="342" y2="90" stroke="#d9d0bb" stroke-width=".8"/>
+            <rect x="8" y="96" width="334" height="82" rx="5" fill="rgba(232,238,242,.7)" stroke="#7fa3c9" stroke-width="1"/>
+            <text x="175" y="110" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="700">Analogía MRU ↔ MRUV</text>
+            <line x1="8" y1="114" x2="342" y2="114" stroke="#d9d0bb" stroke-width=".5"/>
+            <text x="88" y="127" font-family="Inter Tight" font-size="8.5" fill="#3a7d44" text-anchor="middle" font-weight="600">MRU (a=0)</text>
+            <text x="260" y="127" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" text-anchor="middle" font-weight="600">MRUV</text>
+            <text x="88" y="141" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">x-t: recta</text>
+            <text x="260" y="141" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">x-t: parábola</text>
+            <text x="88" y="155" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">v-t: horizontal</text>
+            <text x="260" y="155" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">v-t: recta oblicua</text>
+            <text x="88" y="169" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">a-t: cero</text>
+            <text x="260" y="169" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">a-t: constante ≠ 0</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            Parte del reposo, <b>a = 3 m/s²</b>. A t = 4 s:<br>
+            <span class="eq">v = 3·4 =</span> <span class="answer">12 m/s</span> &nbsp; <span class="eq">x = ½·3·16 =</span> <span class="answer">24 m</span><br>
+            ¿v a los 50 m? <span class="eq">v² = 2·3·50 → v =</span> <span class="answer">17,3 m/s</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-6 -->
+
+
+<!-- ═══ CARD 07 — Caída libre ═══ -->
+<div class="card-slot hidden" id="card-7">
+<div class="flipper" onclick="this.classList.toggle('flipped')">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
+    <span class="side-pill">FRENTE</span><span class="corner-stamp">tema<span class="num">07</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title"><em>Caída libre</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block"><div class="def-text">MRUV vertical con <b>V₀ = 0</b> y <b>a = g = 9,8 m/s²</b> hacia abajo. En el vacío, todos los cuerpos caen con la misma aceleración, <b>independiente de la masa</b>.</div></div>
+          <div class="formula-frame">
+            <div style="display:flex;flex-direction:column;gap:.3rem;">
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--formula-accent);font-weight:600;">a = g = 9,8 m/s²</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--formula-accent);font-weight:600;">V = g·t &nbsp; (V₀ = 0)</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--formula-accent);font-weight:600;">h = ½·g·t²</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--formula-accent);font-weight:600;">V<sub style="font-size:.7rem;">f</sub> = √(2·g·h)</div>
+            </div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>V₀ = 0</b>El cuerpo se deja caer desde el reposo.</div>
+            <div class="case-pill"><b>Independiente de masa</b>En el vacío: misma g para todos.</div>
+            <div class="case-pill"><b>Referencia positiva ↓</b>Simplifica los signos.</div>
+            <div class="case-pill"><b>g</b><span class="eq">9,8 m/s² ≈ 9,81 m/s²</span></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 360 235" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c7f-aD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
+                <marker id="c7f-aG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#c2622d"/></marker>
+              </defs>
+              <line x1="80" y1="210" x2="280" y2="210" stroke="#54514a" stroke-width="1.5"/>
+              <g stroke="#54514a" stroke-width=".7"><line x1="90" y1="210" x2="84" y2="218"/><line x1="110" y1="210" x2="104" y2="218"/><line x1="130" y1="210" x2="124" y2="218"/><line x1="150" y1="210" x2="144" y2="218"/><line x1="170" y1="210" x2="164" y2="218"/><line x1="190" y1="210" x2="184" y2="218"/><line x1="210" y1="210" x2="204" y2="218"/><line x1="230" y1="210" x2="224" y2="218"/><line x1="250" y1="210" x2="244" y2="218"/></g>
+              <line x1="70" y1="30" x2="70" y2="208" stroke="#2d4f72" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="48" y="125" font-family="Fraunces" font-style="italic" font-size="14" fill="#2d4f72" font-weight="600">h</text>
+              <circle cx="180" cy="30" r="12" fill="rgba(45,79,114,.25)" stroke="#2d4f72" stroke-width="1.5"/>
+              <text x="172" y="35" font-family="Inter Tight" font-size="9" fill="#2d4f72" font-weight="600">V₀=0</text>
+              <circle cx="180" cy="110" r="10" fill="rgba(45,79,114,.2)" stroke="#2d4f72" stroke-width="1.5"/>
+              <line x1="200" y1="30" x2="200" y2="68" stroke="#c2622d" stroke-width="2.2" marker-end="url(#c7f-aG)"/>
+              <text x="204" y="52" font-family="Fraunces" font-style="italic" font-size="13" fill="#c2622d" font-weight="600">g</text>
+              <line x1="195" y1="110" x2="195" y2="150" stroke="#2d4f72" stroke-width="2.2" marker-end="url(#c7f-aD)"/>
+              <text x="199" y="135" font-family="Fraunces" font-style="italic" font-size="13" fill="#2d4f72" font-weight="600">V</text>
+              <circle cx="180" cy="196" r="8" fill="rgba(45,79,114,.25)" stroke="#2d4f72" stroke-width="1.5"/>
+              <line x1="195" y1="185" x2="195" y2="208" stroke="#2d4f72" stroke-width="2.2" marker-end="url(#c7f-aD)"/>
+              <text x="200" y="202" font-family="Fraunces" font-style="italic" font-size="12" fill="#2d4f72" font-weight="600">V<tspan font-size="8">f</tspan></text>
+              <rect x="230" y="60" width="120" height="95" rx="6" fill="rgba(232,238,242,.9)" stroke="#7fa3c9" stroke-width="1"/>
+              <text x="290" y="76" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="600">Fórmulas</text>
+              <line x1="230" y1="80" x2="350" y2="80" stroke="#d9d0bb" stroke-width=".8"/>
+              <text x="290" y="94" font-family="Fraunces" font-style="italic" font-size="10" fill="#2d4f72" text-anchor="middle">V = g·t</text>
+              <text x="290" y="110" font-family="Fraunces" font-style="italic" font-size="10" fill="#2d4f72" text-anchor="middle">h = ½·g·t²</text>
+              <text x="290" y="126" font-family="Fraunces" font-style="italic" font-size="10" fill="#2d4f72" text-anchor="middle">V<tspan font-size="7">f</tspan> = √(2gh)</text>
+              <text x="290" y="142" font-family="Fraunces" font-style="italic" font-size="10" fill="#2d4f72" text-anchor="middle">t = √(2h/g)</text>
+            </svg>
+          </div>
+          <div class="r-note">Caída libre es MRUV con <b>V₀ = 0</b> y <b>a = g</b>. La velocidad final <span style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--formula-accent);">V_f = √(2gh)</span> no depende de la masa.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+  </div>
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
+    <span class="side-pill">DORSO</span><span class="corner-stamp">tema<span class="num">07</span></span>
+    <div class="back-grid">
+      <div class="col">
+        <div class="back-title">Demostración de V_f = √(2gh)</div>
+        <div class="back-intro">Particularizando las ecuaciones del MRUV con V₀ = 0 y a = g.</div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            Caída libre es MRUV con <b>V₀ = 0</b> y <b>a = g</b>:<br>
+            <span class="eq">V = g·t</span> — (1) &nbsp;&nbsp; <span class="eq">h = ½·g·t²</span> — (2)<br><br>
+            De (1): t = V/g. Sustituir en (2):<br>
+            <span class="eq">h = ½·g·(V/g)² = V²/(2g)</span><br>
+            Despejando V:
+            <div class="formula-final-wrap"><span class="formula-final">V<sub>f</sub> = √(2·g·h)</span></div>
+            Solo depende de <b>h</b> y <b>g</b> — no de la masa.
+          </div>
+        </div>
+        <div class="unit-block"><div class="unit-text"><span style="font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--example-accent);font-weight:600;">g = 9,8 m/s²</span> en superficie terrestre.</div></div>
+      </div>
+      <div class="col">
+        <div class="back-diag" style="position:relative;">
+          <div style="position:absolute;top:-8px;left:12px;background:var(--paper);padding:0 6px;font-size:.55rem;font-weight:700;letter-spacing:.18em;color:var(--diagram-stroke);">GRÁFICOS + TABLA DE FÓRMULAS</div>
+          <svg viewBox="0 0 350 185" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="c7b-ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#54514a"/></marker></defs>
+            <text x="55" y="12" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="700">h-t</text>
+            <line x1="14" y1="15" x2="14" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c7b-ax)"/>
+            <line x1="8" y1="72" x2="105" y2="72" stroke="#54514a" stroke-width="1" marker-end="url(#c7b-ax)"/>
+            <path d="M 14 72 Q 55 70 98 28" fill="none" stroke="#2d4f72" stroke-width="1.8"/>
+            <text x="50" y="16" font-family="Inter Tight" font-size="8" fill="#2d4f72">h = ½gt²</text>
+            <text x="175" y="12" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="700">V-t</text>
+            <line x1="130" y1="15" x2="130" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c7b-ax)"/>
+            <line x1="124" y1="72" x2="225" y2="72" stroke="#54514a" stroke-width="1" marker-end="url(#c7b-ax)"/>
+            <line x1="130" y1="72" x2="218" y2="28" stroke="#2d4f72" stroke-width="1.8"/>
+            <text x="180" y="22" font-family="Inter Tight" font-size="8" fill="#2d4f72">V = gt</text>
+            <text x="293" y="12" font-family="Inter Tight" font-size="9" fill="#c2622d" text-anchor="middle" font-weight="700">a-t</text>
+            <line x1="248" y1="15" x2="248" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c7b-ax)"/>
+            <line x1="242" y1="60" x2="342" y2="60" stroke="#54514a" stroke-width="1" marker-end="url(#c7b-ax)"/>
+            <line x1="248" y1="35" x2="336" y2="35" stroke="#c2622d" stroke-width="2.2"/>
+            <text x="260" y="30" font-family="Inter Tight" font-size="8" fill="#c2622d" font-weight="600">a = g = 9,8</text>
+            <line x1="8" y1="90" x2="342" y2="90" stroke="#d9d0bb" stroke-width=".8"/>
+            <rect x="8" y="96" width="334" height="82" rx="5" fill="rgba(232,238,242,.7)" stroke="#7fa3c9" stroke-width="1"/>
+            <text x="175" y="110" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="700">Tabla — dado un dato, despejás el otro</text>
+            <line x1="8" y1="114" x2="342" y2="114" stroke="#d9d0bb" stroke-width=".5"/>
+            <text x="100" y="128" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" text-anchor="middle" font-weight="600">Fórmula</text>
+            <text x="265" y="128" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" text-anchor="middle" font-weight="600">Despeja</text>
+            <text x="100" y="142" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">h = ½·g·t²</text>
+            <text x="265" y="142" font-family="Inter Tight" font-size="9" fill="#54514a" text-anchor="middle">t = √(2h/g)</text>
+            <text x="100" y="156" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">V = g·t</text>
+            <text x="265" y="156" font-family="Inter Tight" font-size="9" fill="#54514a" text-anchor="middle">t = V/g</text>
+            <text x="100" y="170" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">V<tspan font-size="7">f</tspan> = √(2gh)</text>
+            <text x="265" y="170" font-family="Inter Tight" font-size="9" fill="#54514a" text-anchor="middle">h = V²/(2g)</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            Objeto desde <b>h = 20 m</b>:<br>
+            <span class="eq">t = √(2·20/9,8) ≈</span> <span class="answer">2,02 s</span><br>
+            <span class="eq">V<sub>f</sub> = √(2·9,8·20) ≈</span> <span class="answer">19,8 m/s</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-7 -->
+
+
+<!-- ═══ CARD 08 — Tiro vertical ═══ -->
+<div class="card-slot hidden" id="card-8">
+<div class="flipper" onclick="this.classList.toggle('flipped')">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
+    <span class="side-pill">FRENTE</span><span class="corner-stamp">tema<span class="num">08</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title"><em>Tiro vertical</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block"><div class="def-text">Objeto lanzado <b>verticalmente hacia arriba</b> con V₀ &gt; 0. Sube con MRUV retardado (a = −g), llega a <b>Y_max con v = 0</b>, luego cae libremente. En todo momento <b>a = g hacia abajo</b>.</div></div>
+          <div class="formula-frame">
+            <div style="display:flex;flex-direction:column;gap:.3rem;">
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--formula-accent);font-weight:600;">V = V₀ − g·t</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--formula-accent);font-weight:600;">Y = V₀·t − ½·g·t²</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--formula-accent);font-weight:600;">Y<sub style="font-size:.7rem;">max</sub> = V₀² / 2g</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--formula-accent);font-weight:600;">t<sub style="font-size:.7rem;">sub</sub> = V₀/g &nbsp; · &nbsp; t<sub style="font-size:.7rem;">total</sub> = 2V₀/g</div>
+            </div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>Simetría</b>A igual altura, |V| igual al subir y al bajar.</div>
+            <div class="case-pill"><b>V_f = V₀</b>Al volver al origen, misma rapidez.</div>
+            <div class="case-pill"><b>En la cima</b><span class="eq">v = 0 pero a = g ≠ 0</span></div>
+            <div class="case-pill"><b>Referencia</b>Positivo ↑ — g entra negativa.</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 360 235" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c8f-aU" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+                <marker id="c8f-aD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
+                <marker id="c8f-aG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#c2622d"/></marker>
+              </defs>
+              <line x1="80" y1="215" x2="280" y2="215" stroke="#54514a" stroke-width="1.5"/>
+              <g stroke="#54514a" stroke-width=".7"><line x1="90" y1="215" x2="84" y2="223"/><line x1="110" y1="215" x2="104" y2="223"/><line x1="130" y1="215" x2="124" y2="223"/><line x1="150" y1="215" x2="144" y2="223"/><line x1="170" y1="215" x2="164" y2="223"/><line x1="190" y1="215" x2="184" y2="223"/><line x1="210" y1="215" x2="204" y2="223"/><line x1="230" y1="215" x2="224" y2="223"/></g>
+              <line x1="165" y1="215" x2="165" y2="30" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="3 3"/>
+              <line x1="75" y1="30" x2="175" y2="30" stroke="#d9d0bb" stroke-width=".8" stroke-dasharray="2 2"/>
+              <text x="60" y="34" font-family="Fraunces" font-style="italic" font-size="11" fill="#8b877e">Y<tspan font-size="8">max</tspan></text>
+              <circle cx="165" cy="205" r="10" fill="rgba(58,125,68,.25)" stroke="#3a7d44" stroke-width="1.5"/>
+              <line x1="180" y1="205" x2="180" y2="165" stroke="#3a7d44" stroke-width="2.5" marker-end="url(#c8f-aU)"/>
+              <text x="185" y="188" font-family="Fraunces" font-style="italic" font-size="13" fill="#3a7d44" font-weight="600">V₀</text>
+              <line x1="148" y1="205" x2="148" y2="225" stroke="#c2622d" stroke-width="2" marker-end="url(#c8f-aG)"/>
+              <text x="120" y="220" font-family="Fraunces" font-style="italic" font-size="12" fill="#c2622d" font-weight="600">g</text>
+              <circle cx="165" cy="130" r="9" fill="rgba(58,125,68,.2)" stroke="#3a7d44" stroke-width="1.5"/>
+              <line x1="178" y1="130" x2="178" y2="100" stroke="#3a7d44" stroke-width="2" marker-end="url(#c8f-aU)"/>
+              <text x="182" y="118" font-family="Fraunces" font-style="italic" font-size="12" fill="#3a7d44">V↑</text>
+              <circle cx="165" cy="30" r="10" fill="rgba(45,79,114,.25)" stroke="#2d4f72" stroke-width="1.5"/>
+              <text x="150" y="20" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" font-weight="600">v = 0</text>
+              <circle cx="240" cy="130" r="9" fill="rgba(45,79,114,.2)" stroke="#2d4f72" stroke-width="1.5"/>
+              <line x1="253" y1="130" x2="253" y2="160" stroke="#2d4f72" stroke-width="2" marker-end="url(#c8f-aD)"/>
+              <text x="257" y="148" font-family="Fraunces" font-style="italic" font-size="12" fill="#2d4f72">V↓</text>
+              <text x="268" y="120" font-family="Inter Tight" font-size="8" fill="#2d4f72">|V| igual</text>
+              <text x="268" y="130" font-family="Inter Tight" font-size="8" fill="#2d4f72">↑ y ↓</text>
+              <line x1="165" y1="130" x2="240" y2="130" stroke="#d9d0bb" stroke-width=".8" stroke-dasharray="2 2"/>
+            </svg>
+          </div>
+          <div class="r-note">A la <b>misma altura</b> |V| es igual en ascenso y descenso. Al regresar al origen: <span style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--formula-accent);">V_f = V₀</span>.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+  </div>
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
+    <span class="side-pill">DORSO</span><span class="corner-stamp">tema<span class="num">08</span></span>
+    <div class="back-grid">
+      <div class="col">
+        <div class="back-title">Demostración de Y_max y simetría</div>
+        <div class="back-intro">MRUV con a = −g. En la cima v = 0 → se despeja t_sub e Y_max.</div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            Ecuaciones con <b>a = −g</b>:<br>
+            <span class="eq">V = V₀ − g·t</span> — (1) &nbsp;&nbsp; <span class="eq">Y = V₀t − ½gt²</span> — (2)<br><br>
+            <b>En la cima V = 0:</b> de (1) → <span class="eq">t<sub>sub</sub> = V₀/g</span><div class="formula-final-wrap"><span class="formula-final">t<sub>sub</sub> = V₀/g</span></div>
+            Sustituir en (2):<br>
+            <span class="eq">Y<sub>max</sub> = V₀·(V₀/g) − ½g·(V₀/g)² = V₀²/g − V₀²/(2g)</span><div class="formula-final-wrap"><span class="formula-final">Y<sub>max</sub> = V₀² / 2g</span></div>
+            <b>Simetría:</b> desde Y_max cae libre → V_f = √(2g·Y_max) = V₀. t_total = 2·t_sub.
+          </div>
+        </div>
+        <div class="unit-block"><div class="unit-text">t_total = 2V₀/g &nbsp;·&nbsp; t_sub = t_baj &nbsp;·&nbsp; V_f = V₀</div></div>
+      </div>
+      <div class="col">
+        <div class="back-diag" style="position:relative;">
+          <div style="position:absolute;top:-8px;left:12px;background:var(--paper);padding:0 6px;font-size:.55rem;font-weight:700;letter-spacing:.18em;color:var(--diagram-stroke);">GRÁFICOS TIRO VERTICAL</div>
+          <svg viewBox="0 0 350 185" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="c8b-ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#54514a"/></marker></defs>
+            <text x="55" y="12" font-family="Inter Tight" font-size="9" fill="#3a7d44" text-anchor="middle" font-weight="700">Y-t</text>
+            <line x1="14" y1="15" x2="14" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c8b-ax)"/>
+            <line x1="8" y1="72" x2="105" y2="72" stroke="#54514a" stroke-width="1" marker-end="url(#c8b-ax)"/>
+            <path d="M 14 72 Q 55 18 98 72" fill="none" stroke="#3a7d44" stroke-width="1.8"/>
+            <text x="48" y="14" font-family="Fraunces" font-style="italic" font-size="9" fill="#3a7d44">Y<tspan font-size="7">max</tspan></text>
+            <line x1="55" y1="20" x2="55" y2="72" stroke="#d9d0bb" stroke-width=".8" stroke-dasharray="2 2"/>
+            <text x="46" y="80" font-family="Inter Tight" font-size="7.5" fill="#54514a">t<tspan font-size="6">sub</tspan></text>
+            <text x="75" y="80" font-family="Inter Tight" font-size="7.5" fill="#54514a">2t<tspan font-size="6">sub</tspan></text>
+            <text x="175" y="12" font-family="Inter Tight" font-size="9" fill="#3a7d44" text-anchor="middle" font-weight="700">V-t</text>
+            <line x1="130" y1="15" x2="130" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c8b-ax)"/>
+            <line x1="124" y1="50" x2="225" y2="50" stroke="#54514a" stroke-width="1" marker-end="url(#c8b-ax)"/>
+            <line x1="130" y1="22" x2="218" y2="72" stroke="#3a7d44" stroke-width="1.8"/>
+            <text x="126" y="20" font-family="Fraunces" font-style="italic" font-size="9" fill="#3a7d44">V₀</text>
+            <circle cx="174" cy="50" r="3" fill="#8a4a5a"/>
+            <text x="162" y="44" font-family="Inter Tight" font-size="7.5" fill="#8a4a5a">v=0</text>
+            <text x="200" y="76" font-family="Fraunces" font-style="italic" font-size="8.5" fill="#3a7d44">−V₀</text>
+            <text x="293" y="12" font-family="Inter Tight" font-size="9" fill="#c2622d" text-anchor="middle" font-weight="700">a-t</text>
+            <line x1="248" y1="15" x2="248" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c8b-ax)"/>
+            <line x1="242" y1="45" x2="342" y2="45" stroke="#54514a" stroke-width="1" marker-end="url(#c8b-ax)"/>
+            <line x1="248" y1="68" x2="336" y2="68" stroke="#c2622d" stroke-width="2.2"/>
+            <text x="258" y="76" font-family="Inter Tight" font-size="8" fill="#c2622d" font-weight="600">a = −g (cte)</text>
+            <line x1="8" y1="90" x2="342" y2="90" stroke="#d9d0bb" stroke-width=".8"/>
+            <rect x="8" y="96" width="334" height="82" rx="5" fill="rgba(227,236,228,.6)" stroke="#87b194" stroke-width="1"/>
+            <text x="175" y="110" font-family="Inter Tight" font-size="9" fill="#3d5e44" text-anchor="middle" font-weight="700">Resumen (positivo ↑)</text>
+            <line x1="8" y1="114" x2="342" y2="114" stroke="#87b194" stroke-width=".5"/>
+            <text x="175" y="130" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#3d5e44" text-anchor="middle">t<tspan font-size="7">sub</tspan> = V₀/g</text>
+            <text x="175" y="146" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#3d5e44" text-anchor="middle">Y<tspan font-size="7">max</tspan> = V₀²/2g</text>
+            <text x="175" y="162" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#3d5e44" text-anchor="middle">t<tspan font-size="7">total</tspan> = 2V₀/g &nbsp; · &nbsp; V<tspan font-size="7">f</tspan> = V₀</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            <b>V₀ = 15 m/s</b>:<br>
+            <span class="eq">t<sub>sub</sub> = 15/9,8 ≈</span> <span class="answer">1,53 s</span><br>
+            <span class="eq">Y<sub>max</sub> = 15²/19,6 ≈</span> <span class="answer">11,5 m</span><br>
+            <span class="eq">t<sub>total</sub> = 2·1,53 ≈</span> <span class="answer">3,06 s</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-8 -->
+
+
+<!-- ═══ CARD 09 — Tiro oblicuo ═══ -->
+<div class="card-slot hidden" id="card-9">
+<div class="flipper" onclick="this.classList.toggle('flipped')">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
+    <span class="side-pill">FRENTE</span><span class="corner-stamp">tema<span class="num">09</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title"><em>Tiro oblicuo</em> — Movimiento de proyectiles</h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block"><div class="def-text">Proyectil lanzado con v₀ a ángulo α₀. Movimiento <b>plano</b>: eje x → <b>MRU</b> (aₓ = 0), eje y → <b>MRUV</b> (aᵧ = −g). Trayectoria <b>parabólica</b>. Los ejes son independientes.</div></div>
+          <div class="formula-frame">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.25rem .5rem;">
+              <div style="font-size:.58rem;font-weight:700;letter-spacing:.12em;color:var(--formula-accent);grid-column:1/3;">COMPONENTES</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.9rem;color:var(--formula-accent);font-weight:600;">v<sub style="font-size:.55rem;">0x</sub> = v₀cosα₀</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.9rem;color:var(--formula-accent);font-weight:600;">v<sub style="font-size:.55rem;">0y</sub> = v₀senα₀</div>
+              <div style="font-size:.58rem;font-weight:700;letter-spacing:.12em;color:var(--formula-accent);grid-column:1/3;margin-top:.25rem;">ECUACIONES</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.88rem;color:var(--formula-accent);">x = v<sub style="font-size:.5rem;">0x</sub>·t</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.88rem;color:var(--formula-accent);">vₓ = v₀cosα₀</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.88rem;color:var(--formula-accent);">y = v<sub style="font-size:.5rem;">0y</sub>t − ½gt²</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.88rem;color:var(--formula-accent);">v<sub style="font-size:.5rem;">y</sub> = v<sub style="font-size:.5rem;">0y</sub> − gt</div>
+              <div style="font-size:.58rem;font-weight:700;letter-spacing:.12em;color:var(--formula-accent);grid-column:1/3;margin-top:.25rem;">RESULTADOS</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.88rem;color:var(--formula-accent);">D = v₀²sen2α₀/g</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.88rem;color:var(--formula-accent);">Y<sub style="font-size:.5rem;">max</sub> = v<sub style="font-size:.5rem;">0y</sub>²/2g</div>
+            </div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>D máximo</b><span class="eq">α₀ = 45° → D = v₀²/g</span></div>
+            <div class="case-pill"><b>En la cima</b><span class="eq">vᵧ = 0, vₓ = v₀cosα₀</span></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 360 235" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c9f-aV" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+                <marker id="c9f-aX" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
+                <marker id="c9f-aY" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+                <marker id="c9f-aG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#c2622d"/></marker>
+              </defs>
+              <line x1="18" y1="200" x2="345" y2="200" stroke="#54514a" stroke-width="1.5"/>
+              <path d="M 30 200 Q 185 30 340 200" fill="none" stroke="#d9d0bb" stroke-width="1.5" stroke-dasharray="6 3"/>
+              <circle cx="30" cy="200" r="4" fill="#1c1a17"/>
+              <line x1="30" y1="200" x2="80" y2="155" stroke="#3a7d44" stroke-width="2.5" marker-end="url(#c9f-aV)"/>
+              <text x="82" y="153" font-family="Fraunces" font-style="italic" font-size="13" fill="#3a7d44" font-weight="600">v₀</text>
+              <path d="M 55 200 A 25 25 0 0 0 47 182" fill="none" stroke="#1c1a17" stroke-width="1"/>
+              <text x="58" y="192" font-family="Fraunces" font-style="italic" font-size="12" fill="#1c1a17">α₀</text>
+              <line x1="30" y1="200" x2="72" y2="200" stroke="#2d4f72" stroke-width="1.8" stroke-dasharray="5 2" marker-end="url(#c9f-aX)"/>
+              <text x="44" y="212" font-family="Inter Tight" font-size="8.5" fill="#2d4f72">v₀cosα₀</text>
+              <line x1="30" y1="200" x2="30" y2="162" stroke="#8a4a5a" stroke-width="1.8" stroke-dasharray="5 2" marker-end="url(#c9f-aY)"/>
+              <text x="8" y="183" font-family="Inter Tight" font-size="8" fill="#8a4a5a">v₀senα₀</text>
+              <circle cx="185" cy="47" r="4" fill="#1c1a17"/>
+              <line x1="185" y1="47" x2="230" y2="47" stroke="#2d4f72" stroke-width="2" marker-end="url(#c9f-aX)"/>
+              <text x="233" y="51" font-family="Inter Tight" font-size="9" fill="#2d4f72">vₓ=cte</text>
+              <text x="155" y="40" font-family="Inter Tight" font-size="8.5" fill="#8a4a5a">vᵧ = 0</text>
+              <line x1="185" y1="47" x2="185" y2="78" stroke="#c2622d" stroke-width="1.8" marker-end="url(#c9f-aG)"/>
+              <text x="190" y="66" font-family="Fraunces" font-style="italic" font-size="11" fill="#c2622d">g</text>
+              <line x1="14" y1="47" x2="30" y2="47" stroke="#d9d0bb" stroke-width=".8" stroke-dasharray="2 2"/>
+              <line x1="14" y1="47" x2="14" y2="198" stroke="#8b877e" stroke-width="1" stroke-dasharray="3 2"/>
+              <text x="4" y="130" font-family="Fraunces" font-style="italic" font-size="11" fill="#8b877e">Y<tspan font-size="7">max</tspan></text>
+              <line x1="30" y1="210" x2="340" y2="210" stroke="#2d4f72" stroke-width="1.5"/>
+              <text x="178" y="222" font-family="Fraunces" font-style="italic" font-size="11" fill="#2d4f72" text-anchor="middle">D (alcance)</text>
+            </svg>
+          </div>
+          <div class="r-note">Trayectoria: <b>y = (tanα₀)x − g·x²/(2v₀²cos²α₀)</b> — parábola. Al aterrizar: |v_f| = v₀.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+  </div>
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
+    <span class="side-pill">DORSO</span><span class="corner-stamp">tema<span class="num">09</span></span>
+    <div class="back-grid">
+      <div class="col">
+        <div class="back-title">Demostración de D y Y_max</div>
+        <div class="back-intro">Al aterrizar y = 0 → t_total. Para Y_max, condición vᵧ = 0.</div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            <b>Alcance D:</b> y = 0 → 0 = v₀yт − ½gт² → t = 2v₀senα₀/g<br>
+            Sustituir en x = v₀cosα₀·t:
+            <div class="formula-final-wrap"><span class="formula-final">D = v₀²·sen2α₀ / g</span></div>
+            Máximo para <b>sen2α₀ = 1 → α₀ = 45°</b><br><br>
+            <b>Altura máxima:</b> vᵧ = 0 → t = v₀senα₀/g<br>
+            Sustituir en y:
+            <div class="formula-final-wrap"><span class="formula-final">Y<sub>max</sub> = (v₀·senα₀)² / 2g</span></div>
+            Al volver: <b>|v_final| = v₀</b>, ángulo = −α₀.
+          </div>
+        </div>
+        <div class="unit-block"><div class="unit-text">t_total = 2v₀senα₀/g &nbsp;·&nbsp; v_final = v₀ en módulo</div></div>
+      </div>
+      <div class="col">
+        <div class="back-diag" style="position:relative;">
+          <div style="position:absolute;top:-8px;left:12px;background:var(--paper);padding:0 6px;font-size:.55rem;font-weight:700;letter-spacing:.18em;color:var(--diagram-stroke);">COMPONENTES Y RESULTADOS</div>
+          <svg viewBox="0 0 350 185" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="c9b-ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#54514a"/></marker></defs>
+            <text x="55" y="12" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="700">vₓ-t (cte)</text>
+            <line x1="14" y1="15" x2="14" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c9b-ax)"/>
+            <line x1="8" y1="65" x2="105" y2="65" stroke="#54514a" stroke-width="1" marker-end="url(#c9b-ax)"/>
+            <line x1="14" y1="38" x2="98" y2="38" stroke="#2d4f72" stroke-width="2"/>
+            <text x="20" y="33" font-family="Inter Tight" font-size="8" fill="#2d4f72">v₀cosα₀</text>
+            <text x="175" y="12" font-family="Inter Tight" font-size="9" fill="#8a4a5a" text-anchor="middle" font-weight="700">vᵧ-t</text>
+            <line x1="130" y1="15" x2="130" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c9b-ax)"/>
+            <line x1="124" y1="50" x2="225" y2="50" stroke="#54514a" stroke-width="1" marker-end="url(#c9b-ax)"/>
+            <line x1="130" y1="22" x2="218" y2="72" stroke="#8a4a5a" stroke-width="2"/>
+            <text x="126" y="20" font-family="Inter Tight" font-size="8" fill="#8a4a5a">v₀senα₀</text>
+            <circle cx="174" cy="50" r="3" fill="#8a4a5a"/>
+            <text x="160" y="44" font-family="Inter Tight" font-size="7.5" fill="#8a4a5a">vᵧ=0</text>
+            <text x="293" y="12" font-family="Inter Tight" font-size="9" fill="#3a7d44" text-anchor="middle" font-weight="700">x-t, y-t</text>
+            <line x1="248" y1="15" x2="248" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c9b-ax)"/>
+            <line x1="242" y1="72" x2="342" y2="72" stroke="#54514a" stroke-width="1" marker-end="url(#c9b-ax)"/>
+            <line x1="248" y1="72" x2="336" y2="35" stroke="#2d4f72" stroke-width="1.8"/>
+            <text x="296" y="30" font-family="Inter Tight" font-size="7.5" fill="#2d4f72">x (recta)</text>
+            <path d="M 248 72 Q 290 28 335 72" fill="none" stroke="#8a4a5a" stroke-width="1.8"/>
+            <text x="264" y="26" font-family="Inter Tight" font-size="7.5" fill="#8a4a5a">y (parábola)</text>
+            <line x1="8" y1="90" x2="342" y2="90" stroke="#d9d0bb" stroke-width=".8"/>
+            <rect x="8" y="96" width="334" height="82" rx="5" fill="rgba(232,238,242,.7)" stroke="#7fa3c9" stroke-width="1"/>
+            <text x="175" y="110" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="700">Resultados (lanzamiento desde el suelo)</text>
+            <line x1="8" y1="114" x2="342" y2="114" stroke="#d9d0bb" stroke-width=".5"/>
+            <text x="175" y="128" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#54514a" text-anchor="middle">t<tspan font-size="7">total</tspan> = 2v₀senα₀/g</text>
+            <text x="175" y="143" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#54514a" text-anchor="middle">D = v₀²·sen2α₀/g &nbsp; (máx a 45°)</text>
+            <text x="175" y="158" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#54514a" text-anchor="middle">Y<tspan font-size="7">max</tspan> = (v₀senα₀)²/2g</text>
+            <text x="175" y="173" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#54514a" text-anchor="middle">|v<tspan font-size="7">final</tspan>| = v₀</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            <b>v₀ = 30 m/s, α₀ = 45°</b>:<br>
+            <span class="eq">D = 30²·1/9,8 ≈</span> <span class="answer">91,8 m</span><br>
+            <span class="eq">Y<sub>max</sub> = (30·0,707)²/19,6 ≈</span> <span class="answer">22,9 m</span><br>
+            <span class="eq">t<sub>total</sub> = 2·30·0,707/9,8 ≈</span> <span class="answer">4,33 s</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-9 -->
+
+
+<!-- ═══ CARD 10 — MCU: vel. angular y aceleración centrípeta ═══ -->
+<div class="card-slot hidden" id="card-10">
+<div class="flipper" onclick="this.classList.toggle('flipped')">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
+    <span class="side-pill">FRENTE</span><span class="corner-stamp">tema<span class="num">10</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">MCU — Vel. angular y <em>aceleración centrípeta</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              Trayectoria circular con <b>rapidez constante</b>. La velocidad angular ω mide la variación del ángulo en el tiempo. La velocidad tangencial <b>v ⊥ r</b>. Existe aceleración <b>centrípeta</b> hacia el centro porque la dirección de v cambia continuamente, aunque su módulo no.
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.28rem .6rem;">
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;color:var(--formula-accent);font-weight:600;">ω = dφ/dt</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;color:var(--formula-accent);font-weight:600;">v = R·ω</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;color:var(--formula-accent);font-weight:600;">a<sub style="font-size:.6rem;">c</sub> = ω²R = v²/R</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;color:var(--formula-accent);font-weight:600;">φ = φ₀ + ω·t</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;color:var(--formula-accent);font-weight:600;">T = 2π/ω</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;color:var(--formula-accent);font-weight:600;">f = 1/T = ω/2π</div>
+            </div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>|v| constante</b>Dirección varía → hay aceleración.</div>
+            <div class="case-pill"><b>aₒ siempre ⊥ v</b>Apunta al centro. No cambia el módulo de v.</div>
+            <div class="case-pill"><b>Período T</b>Tiempo de una vuelta completa [s].</div>
+            <div class="case-pill"><b>Unidades</b><span class="eq">[ω] = rad/s &nbsp; [aₒ] = m/s²</span></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 360 235" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c10f-aV" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+                <marker id="c10f-aC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#c2622d"/></marker>
+                <marker id="c10f-aR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
+                <marker id="c10f-aW" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#1c1a17"/></marker>
+              </defs>
+              <!-- circle -->
+              <circle cx="155" cy="118" r="90" fill="none" stroke="#d9d0bb" stroke-width="1.5"/>
+              <!-- center O -->
+              <circle cx="155" cy="118" r="3.5" fill="#1c1a17"/>
+              <text x="158" y="116" font-family="Fraunces" font-style="italic" font-size="12" fill="#1c1a17">O</text>
+              <!-- radius R to P -->
+              <line x1="155" y1="118" x2="220" y2="48" stroke="#2d4f72" stroke-width="2" marker-end="url(#c10f-aR)"/>
+              <text x="178" y="76" font-family="Fraunces" font-style="italic" font-size="13" fill="#2d4f72" font-weight="600">R</text>
+              <!-- P -->
+              <circle cx="220" cy="48" r="5" fill="#1c1a17"/>
+              <text x="225" y="46" font-family="Fraunces" font-style="italic" font-size="12" fill="#1c1a17">P</text>
+              <!-- v tangential -->
+              <line x1="220" y1="48" x2="278" y2="82" stroke="#3a7d44" stroke-width="2.5" marker-end="url(#c10f-aV)"/>
+              <text x="282" y="80" font-family="Fraunces" font-style="italic" font-size="14" fill="#3a7d44" font-weight="600">v</text>
+              <!-- right angle R⊥v -->
+              <path d="M 228 53 L 234 63 L 224 68" fill="none" stroke="#54514a" stroke-width="1"/>
+              <!-- ac centrípeta toward center -->
+              <line x1="220" y1="48" x2="175" y2="75" stroke="#c2622d" stroke-width="2.5" marker-end="url(#c10f-aC)"/>
+              <text x="178" y="52" font-family="Fraunces" font-style="italic" font-size="13" fill="#c2622d" font-weight="600">aₒ</text>
+              <!-- omega (out of plane, shown as vertical at center) -->
+              <line x1="155" y1="118" x2="155" y2="68" stroke="#1c1a17" stroke-width="2" marker-end="url(#c10f-aW)"/>
+              <text x="158" y="72" font-family="Fraunces" font-style="italic" font-size="13" fill="#1c1a17" font-weight="600">ω</text>
+              <!-- phi angle arc -->
+              <path d="M 155 100 A 18 18 0 0 1 170 86" fill="none" stroke="#1c1a17" stroke-width="1"/>
+              <text x="162" y="96" font-family="Fraunces" font-style="italic" font-size="11" fill="#1c1a17">φ</text>
+              <!-- legend -->
+              <rect x="276" y="105" width="78" height="82" rx="5" fill="rgba(250,246,236,.9)" stroke="#d9d0bb" stroke-width="1"/>
+              <line x1="281" y1="120" x2="296" y2="120" stroke="#3a7d44" stroke-width="2"/>
+              <text x="299" y="124" font-family="Inter Tight" font-size="9" fill="#54514a">v tang.</text>
+              <line x1="281" y1="136" x2="296" y2="136" stroke="#c2622d" stroke-width="2"/>
+              <text x="299" y="140" font-family="Inter Tight" font-size="9" fill="#54514a">aₒ centr.</text>
+              <line x1="281" y1="152" x2="296" y2="152" stroke="#2d4f72" stroke-width="2"/>
+              <text x="299" y="156" font-family="Inter Tight" font-size="9" fill="#54514a">radio R</text>
+              <line x1="281" y1="168" x2="296" y2="168" stroke="#1c1a17" stroke-width="2"/>
+              <text x="299" y="172" font-family="Inter Tight" font-size="9" fill="#54514a">ω (eje)</text>
+              <!-- bottom formula strip -->
+              <rect x="18" y="218" width="248" height="14" rx="4" fill="rgba(232,238,242,.85)" stroke="#7fa3c9" stroke-width=".8"/>
+              <text x="142" y="228" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#2d4f72" text-anchor="middle">v = Rω &nbsp;·&nbsp; aₒ = ω²R = v²/R</text>
+            </svg>
+          </div>
+          <div class="r-note"><b>v</b> tangente ⊥ <b>R</b>. La aceleración centrípeta <b>aₒ</b> apunta al centro — cambia la dirección de v, nunca su módulo.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
+    <span class="side-pill">DORSO</span><span class="corner-stamp">tema<span class="num">10</span></span>
+    <div class="back-grid">
+      <div class="col">
+        <div class="back-title">Demostración de aₒ = ω²R = v²/R</div>
+        <div class="back-intro">Derivando el vector velocidad tangencial v = ω × r en MCU.</div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            La velocidad tangencial como producto vectorial:<br>
+            <span class="eq">v = ω × r</span><br><br>
+            Derivando (ω = cte):<br>
+            <span class="eq">aₒ = dv/dt = ω × v</span><br><br>
+            Módulo (ω ⊥ v, sen90° = 1):<br>
+            <span class="eq">|aₒ| = |ω|·|v| = ω·(ωR)</span>
+            <div class="formula-final-wrap"><span class="formula-final">aₒ = ω²·R = v²/R</span></div>
+            La dirección de <b>ω × v</b> es perpendicular a v y apunta hacia el centro → <b>centrípeta</b>.<br><br>
+            <b>Período y frecuencia:</b> en una vuelta φ = 2π:<br>
+            <span class="eq">2π = ω·T → T = 2π/ω</span><br>
+            <span class="eq">f = 1/T = ω/2π</span>
+          </div>
+        </div>
+        <div class="unit-block">
+          <div class="unit-text">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--example-accent);font-weight:600;">[ω] = rad/s &nbsp; [aₒ] = m/s²</span><br>
+            T en segundos, f en Hz.
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="back-diag" style="position:relative;">
+          <div style="position:absolute;top:-8px;left:12px;background:var(--paper);padding:0 6px;font-size:.55rem;font-weight:700;letter-spacing:.18em;color:var(--diagram-stroke);">GRÁFICOS MCU + TABLA DE RELACIONES</div>
+          <svg viewBox="0 0 350 185" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="c10b-ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#54514a"/></marker></defs>
+            <!-- phi-t -->
+            <text x="55" y="12" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="700">φ-t</text>
+            <line x1="14" y1="15" x2="14" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c10b-ax)"/>
+            <line x1="8" y1="72" x2="105" y2="72" stroke="#54514a" stroke-width="1" marker-end="url(#c10b-ax)"/>
+            <line x1="14" y1="72" x2="98" y2="24" stroke="#2d4f72" stroke-width="2"/>
+            <text x="52" y="16" font-family="Inter Tight" font-size="8" fill="#2d4f72">φ = φ₀+ωt</text>
+            <!-- v-t constant -->
+            <text x="175" y="12" font-family="Inter Tight" font-size="9" fill="#3a7d44" text-anchor="middle" font-weight="700">|v|-t (cte)</text>
+            <line x1="130" y1="15" x2="130" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c10b-ax)"/>
+            <line x1="124" y1="65" x2="225" y2="65" stroke="#54514a" stroke-width="1" marker-end="url(#c10b-ax)"/>
+            <line x1="130" y1="38" x2="218" y2="38" stroke="#3a7d44" stroke-width="2"/>
+            <text x="138" y="33" font-family="Inter Tight" font-size="8" fill="#3a7d44">v = Rω = cte</text>
+            <!-- ac-t constant -->
+            <text x="293" y="12" font-family="Inter Tight" font-size="9" fill="#c2622d" text-anchor="middle" font-weight="700">aₒ-t (cte)</text>
+            <line x1="248" y1="15" x2="248" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c10b-ax)"/>
+            <line x1="242" y1="65" x2="342" y2="65" stroke="#54514a" stroke-width="1" marker-end="url(#c10b-ax)"/>
+            <line x1="248" y1="38" x2="336" y2="38" stroke="#c2622d" stroke-width="2"/>
+            <text x="258" y="32" font-family="Inter Tight" font-size="8" fill="#c2622d">aₒ = ω²R = v²/R</text>
+            <!-- divider -->
+            <line x1="8" y1="90" x2="342" y2="90" stroke="#d9d0bb" stroke-width=".8"/>
+            <!-- relations table -->
+            <rect x="8" y="96" width="334" height="82" rx="5" fill="rgba(232,238,242,.7)" stroke="#7fa3c9" stroke-width="1"/>
+            <text x="175" y="110" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="700">Magnitudes del MCU</text>
+            <line x1="8" y1="114" x2="342" y2="114" stroke="#d9d0bb" stroke-width=".5"/>
+            <text x="88" y="128" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" text-anchor="middle" font-weight="600">Magnitud</text>
+            <text x="260" y="128" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" text-anchor="middle" font-weight="600">Expresión</text>
+            <text x="88" y="142" font-family="Inter Tight" font-size="8.5" fill="#54514a" text-anchor="middle">Vel. tangencial</text>
+            <text x="260" y="142" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">v = R·ω</text>
+            <text x="88" y="156" font-family="Inter Tight" font-size="8.5" fill="#54514a" text-anchor="middle">Ac. centrípeta</text>
+            <text x="260" y="156" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">aₒ = ω²R = v²/R</text>
+            <text x="88" y="170" font-family="Inter Tight" font-size="8.5" fill="#54514a" text-anchor="middle">Período / Frec.</text>
+            <text x="260" y="170" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">T = 2π/ω &nbsp;·&nbsp; f = ω/2π</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            Rueda: <b>R = 0,5 m</b>, <b>ω = 10 rad/s</b>:<br>
+            <span class="eq">v = 0,5·10 =</span> <span class="answer">5 m/s</span><br>
+            <span class="eq">aₒ = 10²·0,5 =</span> <span class="answer">50 m/s²</span><br>
+            <span class="eq">T = 2π/10 ≈</span> <span class="answer">0,63 s</span> &nbsp; <span class="eq">f ≈</span> <span class="answer">1,59 Hz</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-10 -->
+
+
+<!-- ═══ CARD 11 — MCUV ═══ -->
+<div class="card-slot hidden" id="card-11">
+<div class="flipper" onclick="this.classList.toggle('flipped')">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
+    <span class="side-pill">FRENTE</span><span class="corner-stamp">tema<span class="num">11</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Movimiento Circular Uniformemente Variado — <em>MCUV</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">Trayectoria circular con <b>aceleración angular constante γ = dω/dt = cte</b> [rad/s²]. Análogo angular exacto del MRUV. La aceleración total tiene dos componentes: <b>aₜ = γR</b> (cambia |v|) y <b>aₒ = ω²R</b> (cambia dirección de v).</div>
+          </div>
+          <div class="formula-frame">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.25rem .5rem;">
+              <div style="font-size:.58rem;font-weight:700;letter-spacing:.12em;color:var(--formula-accent);grid-column:1/3;margin-bottom:.1rem;">ECUACIONES ANGULARES</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.92rem;color:var(--formula-accent);font-weight:600;">ω = ω₀ + γ·t</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.92rem;color:var(--formula-accent);font-weight:600;">φ = φ₀ + ω₀t + ½γt²</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.92rem;color:var(--formula-accent);font-weight:600;">ω² = ω₀² + 2γ·Δφ</div>
+              <div style="font-size:.58rem;font-weight:700;letter-spacing:.12em;color:var(--formula-accent);grid-column:1/3;margin-top:.3rem;margin-bottom:.1rem;">ACELERACIONES LINEALES</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.92rem;color:var(--formula-accent);font-weight:600;">aₜ = γ·R</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.92rem;color:var(--formula-accent);font-weight:600;">a = √(aₜ² + aₒ²)</div>
+            </div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>γ mismo sentido que ω</b>Velocidad angular aumenta.</div>
+            <div class="case-pill"><b>γ opuesto a ω</b>Movimiento circular frenando.</div>
+            <div class="case-pill"><b>Analogía exacta</b>v↔ω &nbsp; x↔φ &nbsp; a↔γ</div>
+            <div class="case-pill"><b>Unidad</b><span class="eq">[γ] = rad/s²</span></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 360 235" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c11f-aT" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+                <marker id="c11f-aC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#c2622d"/></marker>
+                <marker id="c11f-aA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+                <marker id="c11f-aR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
+                <marker id="c11f-aW" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#1c1a17"/></marker>
+              </defs>
+              <circle cx="150" cy="118" r="85" fill="none" stroke="#d9d0bb" stroke-width="1.5"/>
+              <circle cx="150" cy="118" r="3" fill="#1c1a17"/>
+              <text x="153" y="116" font-family="Fraunces" font-style="italic" font-size="11" fill="#1c1a17">O</text>
+              <line x1="150" y1="118" x2="215" y2="50" stroke="#2d4f72" stroke-width="1.8" marker-end="url(#c11f-aR)"/>
+              <text x="175" y="76" font-family="Fraunces" font-style="italic" font-size="12" fill="#2d4f72" font-weight="600">R</text>
+              <circle cx="215" cy="50" r="5" fill="#1c1a17"/>
+              <!-- v tangential -->
+              <line x1="215" y1="50" x2="268" y2="84" stroke="#3a7d44" stroke-width="2.5" marker-end="url(#c11f-aT)"/>
+              <text x="272" y="82" font-family="Fraunces" font-style="italic" font-size="13" fill="#3a7d44" font-weight="600">v</text>
+              <!-- at tangential (dashed, same direction as v) -->
+              <line x1="215" y1="50" x2="254" y2="22" stroke="#3a7d44" stroke-width="2" stroke-dasharray="5 2" marker-end="url(#c11f-aT)"/>
+              <text x="256" y="20" font-family="Fraunces" font-style="italic" font-size="12" fill="#3a7d44">aₜ=γR</text>
+              <!-- ac centrípeta -->
+              <line x1="215" y1="50" x2="170" y2="78" stroke="#c2622d" stroke-width="2.5" marker-end="url(#c11f-aC)"/>
+              <text x="155" y="52" font-family="Fraunces" font-style="italic" font-size="12" fill="#c2622d">aₒ=ω²R</text>
+              <!-- a total (diagonal resultant) -->
+              <line x1="215" y1="50" x2="240" y2="12" stroke="#8a4a5a" stroke-width="2" stroke-dasharray="3 2" marker-end="url(#c11f-aA)"/>
+              <text x="242" y="10" font-family="Fraunces" font-style="italic" font-size="11" fill="#8a4a5a">a<tspan font-size="8">total</tspan></text>
+              <!-- right angle v⊥R -->
+              <path d="M 223 55 L 228 65 L 218 70" fill="none" stroke="#54514a" stroke-width="1"/>
+              <!-- omega -->
+              <line x1="150" y1="118" x2="150" y2="68" stroke="#1c1a17" stroke-width="2" marker-end="url(#c11f-aW)"/>
+              <text x="154" y="72" font-family="Fraunces" font-style="italic" font-size="12" fill="#1c1a17" font-weight="600">ω</text>
+              <!-- legend -->
+              <rect x="276" y="108" width="80" height="98" rx="5" fill="rgba(250,246,236,.9)" stroke="#d9d0bb" stroke-width="1"/>
+              <line x1="281" y1="123" x2="296" y2="123" stroke="#3a7d44" stroke-width="2"/>
+              <text x="299" y="127" font-family="Inter Tight" font-size="9" fill="#54514a">v tang.</text>
+              <line x1="281" y1="139" x2="296" y2="139" stroke="#3a7d44" stroke-width="2" stroke-dasharray="4 2"/>
+              <text x="299" y="143" font-family="Inter Tight" font-size="9" fill="#54514a">aₜ = γR</text>
+              <line x1="281" y1="155" x2="296" y2="155" stroke="#c2622d" stroke-width="2"/>
+              <text x="299" y="159" font-family="Inter Tight" font-size="9" fill="#54514a">aₒ = ω²R</text>
+              <line x1="281" y1="171" x2="296" y2="171" stroke="#8a4a5a" stroke-width="2" stroke-dasharray="3 2"/>
+              <text x="299" y="175" font-family="Inter Tight" font-size="9" fill="#54514a">a total</text>
+              <line x1="281" y1="187" x2="296" y2="187" stroke="#2d4f72" stroke-width="1.8"/>
+              <text x="299" y="191" font-family="Inter Tight" font-size="9" fill="#54514a">radio R</text>
+              <!-- bottom formula -->
+              <rect x="18" y="218" width="248" height="14" rx="4" fill="rgba(232,238,242,.85)" stroke="#7fa3c9" stroke-width=".8"/>
+              <text x="142" y="228" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#2d4f72" text-anchor="middle">a = √(aₜ² + aₒ²) &nbsp;·&nbsp; aₜ ⊥ aₒ</text>
+            </svg>
+          </div>
+          <div class="r-note">En MCUV la aceleración total <b>no apunta al centro</b> — tiene componente tangencial aₜ. En MCU (γ = 0) sólo existe aₒ apuntando exactamente al centro.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
+    <span class="side-pill">DORSO</span><span class="corner-stamp">tema<span class="num">11</span></span>
+    <div class="back-grid">
+      <div class="col">
+        <div class="back-title">Demostración de las ecuaciones angulares</div>
+        <div class="back-intro">Integrar γ = cte, análogo exacto al MRUV con v↔ω, x↔φ, a↔γ.</div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            γ = dω/dt = cte → dω = γ·dt → integrar:
+            <div class="formula-final-wrap"><span class="formula-final">ω = ω₀ + γ·t</span></div>
+            ω = dφ/dt → dφ = (ω₀+γt)dt → integrar:
+            <div class="formula-final-wrap"><span class="formula-final">φ = φ₀ + ω₀t + ½γt²</span></div>
+            Eliminar t de la 1ª ec. → sustituir en la 2ª:
+            <div class="formula-final-wrap"><span class="formula-final">ω² = ω₀² + 2γ·Δφ</span></div>
+            <b>Aceleraciones lineales:</b><br>
+            <span class="eq">aₜ = dv/dt = R·dω/dt = γ·R</span> (tangencial)<br>
+            <span class="eq">aₒ = ω²·R = v²/R</span> (centrípeta)<br>
+            Como aₜ ⊥ aₒ: <span class="eq">a = √(aₜ² + aₒ²)</span>
+          </div>
+        </div>
+        <div class="unit-block">
+          <div class="unit-text"><span style="font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--example-accent);font-weight:600;">[γ] = rad/s²</span><br>Analogía completa: v↔ω · x↔φ · a↔γ — las tres ecuaciones son formalmente idénticas al MRUV.</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="back-diag" style="position:relative;">
+          <div style="position:absolute;top:-8px;left:12px;background:var(--paper);padding:0 6px;font-size:.55rem;font-weight:700;letter-spacing:.18em;color:var(--diagram-stroke);">ANALOGÍA MRUV ↔ MCUV</div>
+          <svg viewBox="0 0 350 185" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="c11b-ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#54514a"/></marker></defs>
+            <!-- ω-t -->
+            <text x="55" y="12" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="700">ω-t</text>
+            <line x1="14" y1="15" x2="14" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c11b-ax)"/>
+            <line x1="8" y1="72" x2="105" y2="72" stroke="#54514a" stroke-width="1" marker-end="url(#c11b-ax)"/>
+            <line x1="14" y1="62" x2="98" y2="22" stroke="#2d4f72" stroke-width="2"/>
+            <text x="8" y="60" font-family="Fraunces" font-style="italic" font-size="9" fill="#2d4f72">ω₀</text>
+            <text x="44" y="10" font-family="Inter Tight" font-size="8" fill="#2d4f72">ω = ω₀+γt</text>
+            <!-- φ-t parabola -->
+            <text x="175" y="12" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="700">φ-t</text>
+            <line x1="130" y1="15" x2="130" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c11b-ax)"/>
+            <line x1="124" y1="72" x2="225" y2="72" stroke="#54514a" stroke-width="1" marker-end="url(#c11b-ax)"/>
+            <path d="M 130 68 Q 175 65 218 30" fill="none" stroke="#2d4f72" stroke-width="2"/>
+            <text x="145" y="22" font-family="Inter Tight" font-size="8" fill="#2d4f72">parábola</text>
+            <!-- γ-t constant -->
+            <text x="293" y="12" font-family="Inter Tight" font-size="9" fill="#c2622d" text-anchor="middle" font-weight="700">γ-t</text>
+            <line x1="248" y1="15" x2="248" y2="80" stroke="#54514a" stroke-width="1" marker-end="url(#c11b-ax)"/>
+            <line x1="242" y1="60" x2="342" y2="60" stroke="#54514a" stroke-width="1" marker-end="url(#c11b-ax)"/>
+            <line x1="248" y1="35" x2="336" y2="35" stroke="#c2622d" stroke-width="2.2"/>
+            <text x="262" y="30" font-family="Inter Tight" font-size="8" fill="#c2622d" font-weight="600">γ = cte</text>
+            <!-- divider -->
+            <line x1="8" y1="90" x2="342" y2="90" stroke="#d9d0bb" stroke-width=".8"/>
+            <!-- analogía table -->
+            <rect x="8" y="96" width="334" height="82" rx="5" fill="rgba(232,238,242,.7)" stroke="#7fa3c9" stroke-width="1"/>
+            <text x="175" y="110" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="700">Analogía MRUV ↔ MCUV</text>
+            <line x1="8" y1="114" x2="342" y2="114" stroke="#d9d0bb" stroke-width=".5"/>
+            <text x="88" y="127" font-family="Inter Tight" font-size="8.5" fill="#3a7d44" text-anchor="middle" font-weight="600">MRUV</text>
+            <text x="260" y="127" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" text-anchor="middle" font-weight="600">MCUV</text>
+            <text x="88" y="141" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">v = v₀ + at</text>
+            <text x="260" y="141" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">ω = ω₀ + γt</text>
+            <text x="88" y="155" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">x = x₀+v₀t+½at²</text>
+            <text x="260" y="155" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">φ = φ₀+ω₀t+½γt²</text>
+            <text x="88" y="169" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">v² = v₀² + 2aΔx</text>
+            <text x="260" y="169" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">ω² = ω₀² + 2γΔφ</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            Disco: <b>ω₀ = 2 rad/s</b>, <b>γ = 3 rad/s²</b>, <b>R = 0,4 m</b>. A t = 4 s:<br>
+            <span class="eq">ω = 2+3·4 =</span> <span class="answer">14 rad/s</span><br>
+            <span class="eq">φ = 2·4+½·3·16 =</span> <span class="answer">32 rad</span><br>
+            <span class="eq">aₜ = 3·0,4 =</span> <span class="answer">1,2 m/s²</span> &nbsp; <span class="eq">aₒ = 14²·0,4 =</span> <span class="answer">78,4 m/s²</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-11 -->
+
+
+<!-- ═══ CARD 12 — Movimiento relativo en traslación sin rotación ═══ -->
+<div class="card-slot hidden" id="card-12">
+<div class="flipper" onclick="this.classList.toggle('flipped')">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
+    <span class="side-pill">FRENTE</span><span class="corner-stamp">tema<span class="num">12</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Movimiento relativo en <em>traslación sin rotación</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">El movimiento es <b>relativo al sistema de referencia</b>. Sistema fijo O y sistema móvil O' con velocidad de arrastre <b>V = cte</b>. Posición de P: <b>x = Vt + x'</b>. Derivando se obtiene la <b>ley de composición de velocidades</b>.</div>
+          </div>
+          <div class="formula-frame">
+            <div style="display:flex;flex-direction:column;gap:.3rem;">
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--formula-accent);font-weight:600;">v<sub style="font-size:.65rem;">abs</sub> = V + v<sub style="font-size:.65rem;">rel</sub></div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--formula-accent);font-weight:600;">v<sub style="font-size:.65rem;">AB</sub> = v<sub style="font-size:.65rem;">A</sub> − v<sub style="font-size:.65rem;">B</sub></div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--formula-accent);font-weight:600;">v<sub style="font-size:.65rem;">BA</sub> = −v<sub style="font-size:.65rem;">AB</sub></div>
+            </div>
+            <div class="formula-sub">V = vel. de arrastre (O' respecto a O) &nbsp;·&nbsp; v_rel = vel. de P respecto a O'</div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>Mismo sentido</b><span class="eq">v_rel = |v_A − v_B|</span></div>
+            <div class="case-pill"><b>Sentidos opuestos</b><span class="eq">v_rel = |v_A| + |v_B|</span></div>
+            <div class="case-pill"><b>V = cte</b>a_abs = a_rel (sin ac. de arrastre).</div>
+            <div class="case-pill"><b>Antisimetría</b><span class="eq">v_AB = −v_BA</span></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 360 235" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c12f-aA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+                <marker id="c12f-aB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+                <marker id="c12f-aV" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
+              </defs>
+              <!-- Ground -->
+              <line x1="15" y1="155" x2="345" y2="155" stroke="#54514a" stroke-width="1.2"/>
+              <!-- O fixed -->
+              <line x1="35" y1="155" x2="35" y2="130" stroke="#1c1a17" stroke-width="1.2"/>
+              <line x1="20" y1="130" x2="50" y2="130" stroke="#1c1a17" stroke-width="1.2"/>
+              <text x="22" y="125" font-family="Fraunces" font-style="italic" font-size="12" fill="#1c1a17">O</text>
+              <!-- O' mobile -->
+              <line x1="145" y1="155" x2="145" y2="130" stroke="#2d4f72" stroke-width="1.2" stroke-dasharray="4 2"/>
+              <line x1="130" y1="130" x2="160" y2="130" stroke="#2d4f72" stroke-width="1.2" stroke-dasharray="4 2"/>
+              <text x="132" y="125" font-family="Fraunces" font-style="italic" font-size="12" fill="#2d4f72">O'</text>
+              <!-- V arrastre -->
+              <line x1="35" y1="112" x2="138" y2="112" stroke="#2d4f72" stroke-width="2" marker-end="url(#c12f-aV)"/>
+              <text x="80" y="106" font-family="Fraunces" font-style="italic" font-size="12" fill="#2d4f72" text-anchor="middle" font-weight="600">V (arrastre)</text>
+              <text x="80" y="120" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" text-anchor="middle">x = Vt + x'</text>
+              <!-- Mobile A (fast) -->
+              <circle cx="260" cy="135" r="12" fill="rgba(58,125,68,.2)" stroke="#3a7d44" stroke-width="1.5"/>
+              <text x="256" y="139" font-family="Inter Tight" font-size="10" fill="#3a7d44" font-weight="600">A</text>
+              <line x1="272" y1="135" x2="320" y2="135" stroke="#3a7d44" stroke-width="2.5" marker-end="url(#c12f-aA)"/>
+              <text x="324" y="133" font-family="Fraunces" font-style="italic" font-size="13" fill="#3a7d44" font-weight="600">v<tspan font-size="9">A</tspan></text>
+              <!-- Mobile B (slower) -->
+              <circle cx="195" cy="185" r="12" fill="rgba(138,74,90,.2)" stroke="#8a4a5a" stroke-width="1.5"/>
+              <text x="191" y="189" font-family="Inter Tight" font-size="10" fill="#8a4a5a" font-weight="600">B</text>
+              <line x1="207" y1="185" x2="245" y2="185" stroke="#8a4a5a" stroke-width="2.5" marker-end="url(#c12f-aB)"/>
+              <text x="249" y="183" font-family="Fraunces" font-style="italic" font-size="13" fill="#8a4a5a" font-weight="600">v<tspan font-size="9">B</tspan></text>
+              <!-- formula box -->
+              <rect x="15" y="10" width="180" height="65" rx="6" fill="rgba(232,238,242,.9)" stroke="#7fa3c9" stroke-width="1"/>
+              <text x="105" y="27" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="600">Ley de composición</text>
+              <line x1="15" y1="31" x2="195" y2="31" stroke="#d9d0bb" stroke-width=".8"/>
+              <text x="105" y="45" font-family="Fraunces" font-style="italic" font-size="10" fill="#2d4f72" text-anchor="middle">v_abs = V + v_rel</text>
+              <text x="105" y="59" font-family="Fraunces" font-style="italic" font-size="10" fill="#2d4f72" text-anchor="middle">v_AB = v_A − v_B</text>
+              <text x="105" y="68" font-family="Fraunces" font-style="italic" font-size="9" fill="#8a4a5a" text-anchor="middle">v_BA = −v_AB</text>
+            </svg>
+          </div>
+          <div class="r-note">La velocidad relativa de A respecto a B: <span style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--formula-accent);">v_AB = v_A − v_B</span>. Si V = cte, la aceleración relativa iguala la absoluta.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 3 <span class="dot"></span> Cinemática</span></div>
+    <span class="side-pill">DORSO</span><span class="corner-stamp">tema<span class="num">12</span></span>
+    <div class="back-grid">
+      <div class="col">
+        <div class="back-title">Demostración de v_abs = V + v_rel</div>
+        <div class="back-intro">Sistema fijo O y sistema móvil O' con V = cte respecto a O.</div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            En t = 0, O y O' coinciden. Para t &gt; 0, O' se alejó Vt.<br>
+            Posición de P respecto a O: <span class="eq">x = Vt + x'</span><br>
+            (x' = posición de P respecto a O')<br><br>
+            Derivando respecto al tiempo:
+            <div class="formula-final-wrap"><span class="formula-final">v_abs = V + v_rel</span></div>
+            V = velocidad de arrastre (O' respecto a O)<br>
+            v_rel = dx'/dt (P respecto a O')<br><br>
+            Derivando de nuevo con <b>V = cte</b>:
+            <div class="formula-final-wrap"><span class="formula-final">a_abs = a_rel</span></div>
+            Si el sistema de arrastre no acelera, las aceleraciones son iguales.
+          </div>
+        </div>
+        <div class="unit-block">
+          <div class="unit-text">En 1D: <b>v_AB = v_A − v_B</b> (algebraicamente con signos). La antisimetría <b>v_BA = −v_AB</b> siempre se cumple.</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="back-diag" style="position:relative;">
+          <div style="position:absolute;top:-8px;left:12px;background:var(--paper);padding:0 6px;font-size:.55rem;font-weight:700;letter-spacing:.18em;color:var(--diagram-stroke);">CASOS 1D CON SIGNOS</div>
+          <svg viewBox="0 0 350 185" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="c12b-aA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+              <marker id="c12b-aB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+              <marker id="c12b-aBL" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+            </defs>
+            <!-- Case 1: same direction -->
+            <text x="175" y="14" font-family="Inter Tight" font-size="9.5" fill="#54514a" text-anchor="middle" font-weight="700">Caso 1: mismo sentido</text>
+            <line x1="15" y1="28" x2="335" y2="28" stroke="#d9d0bb" stroke-width="1"/>
+            <circle cx="80" cy="28" r="8" fill="rgba(58,125,68,.2)" stroke="#3a7d44" stroke-width="1.3"/>
+            <text x="77" y="32" font-family="Inter Tight" font-size="8" fill="#3a7d44">A</text>
+            <line x1="88" y1="28" x2="148" y2="28" stroke="#3a7d44" stroke-width="2" marker-end="url(#c12b-aA)"/>
+            <text x="115" y="21" font-family="Inter Tight" font-size="8" fill="#3a7d44">v_A = 30 m/s</text>
+            <circle cx="200" cy="28" r="8" fill="rgba(138,74,90,.2)" stroke="#8a4a5a" stroke-width="1.3"/>
+            <text x="197" y="32" font-family="Inter Tight" font-size="8" fill="#8a4a5a">B</text>
+            <line x1="208" y1="28" x2="248" y2="28" stroke="#8a4a5a" stroke-width="2" marker-end="url(#c12b-aB)"/>
+            <text x="224" y="21" font-family="Inter Tight" font-size="8" fill="#8a4a5a">v_B = 20 m/s</text>
+            <rect x="258" y="18" width="75" height="20" rx="4" fill="rgba(45,79,114,.15)" stroke="#2d4f72" stroke-width="1"/>
+            <text x="295" y="31" font-family="Fraunces" font-style="italic" font-size="9" fill="#2d4f72" text-anchor="middle">v_AB = 10 m/s</text>
+            <!-- Case 2: opposite -->
+            <text x="175" y="58" font-family="Inter Tight" font-size="9.5" fill="#54514a" text-anchor="middle" font-weight="700">Caso 2: sentidos opuestos</text>
+            <line x1="15" y1="72" x2="335" y2="72" stroke="#d9d0bb" stroke-width="1"/>
+            <circle cx="100" cy="72" r="8" fill="rgba(58,125,68,.2)" stroke="#3a7d44" stroke-width="1.3"/>
+            <text x="97" y="76" font-family="Inter Tight" font-size="8" fill="#3a7d44">A</text>
+            <line x1="108" y1="72" x2="158" y2="72" stroke="#3a7d44" stroke-width="2" marker-end="url(#c12b-aA)"/>
+            <text x="128" y="65" font-family="Inter Tight" font-size="8" fill="#3a7d44">+30 m/s</text>
+            <circle cx="220" cy="72" r="8" fill="rgba(138,74,90,.2)" stroke="#8a4a5a" stroke-width="1.3"/>
+            <text x="217" y="76" font-family="Inter Tight" font-size="8" fill="#8a4a5a">B</text>
+            <line x1="212" y1="72" x2="162" y2="72" stroke="#8a4a5a" stroke-width="2" marker-end="url(#c12b-aBL)"/>
+            <text x="182" y="65" font-family="Inter Tight" font-size="8" fill="#8a4a5a">−20 m/s</text>
+            <rect x="258" y="62" width="75" height="20" rx="4" fill="rgba(45,79,114,.15)" stroke="#2d4f72" stroke-width="1"/>
+            <text x="295" y="75" font-family="Fraunces" font-style="italic" font-size="9" fill="#2d4f72" text-anchor="middle">v_AB = 50 m/s</text>
+            <!-- divider -->
+            <line x1="8" y1="100" x2="342" y2="100" stroke="#d9d0bb" stroke-width=".8"/>
+            <!-- summary -->
+            <rect x="8" y="106" width="334" height="72" rx="5" fill="rgba(232,238,242,.7)" stroke="#7fa3c9" stroke-width="1"/>
+            <text x="175" y="120" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="700">Reglas de composición</text>
+            <line x1="8" y1="124" x2="342" y2="124" stroke="#d9d0bb" stroke-width=".5"/>
+            <text x="175" y="138" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#54514a" text-anchor="middle">v_abs = V + v_rel &nbsp; (siempre)</text>
+            <text x="175" y="152" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#54514a" text-anchor="middle">v_AB = v_A − v_B &nbsp;&nbsp; v_BA = −v_AB</text>
+            <text x="175" y="166" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#54514a" text-anchor="middle">Si V = cte → a_abs = a_rel</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            Auto A: <b>30 m/s →</b>, auto B: <b>20 m/s →</b>:<br>
+            <span class="eq">v_AB = 30−20 =</span> <span class="answer">+10 m/s</span> (A se aleja de B)<br>
+            <span class="eq">v_BA = 20−30 =</span> <span class="answer">−10 m/s</span> (B ve a A alejarse)<br>
+            <span style="color:var(--ink-3);font-size:.7rem;">Iguales en módulo, opuestos en signo.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-12 -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 13 — Leyes de la Dinámica (Newton)
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-13">
+<div class="flipper" onclick="this.classList.toggle('flipped')">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 4 <span class="dot"></span> Dinámica</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">13</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Leyes de la <em>Dinámica</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <!-- 1ª Ley -->
+          <div class="def-block" style="padding:.7rem 1rem;">
+            <div style="font-size:.58rem;font-weight:700;letter-spacing:.18em;color:#8b6f3f;margin-bottom:.35rem;">1ª LEY — INERCIA</div>
+            <div class="def-text" style="font-size:.82rem;">Todo cuerpo conserva su estado de reposo o MRU a menos que actúe una <b>fuerza neta no nula</b> sobre él.</div>
+            <div style="margin-top:.4rem;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--formula-accent);text-align:center;">ΣF⃗ = 0⃗ &nbsp;→&nbsp; v⃗ = cte &nbsp;→&nbsp; a⃗ = 0⃗</div>
+          </div>
+          <!-- 2ª Ley -->
+          <div class="formula-frame" style="padding:.7rem 1rem;">
+            <div style="font-size:.58rem;font-weight:700;letter-spacing:.18em;color:var(--formula-accent);margin-bottom:.35rem;">2ª LEY — FUERZA / MASA</div>
+            <div class="formula-main" style="font-size:1.45rem;">ΣF⃗ = m · a⃗</div>
+            <div class="formula-sub">componente a componente: &nbsp;<span style="font-family:'JetBrains Mono',monospace;font-size:.75rem;">ΣFx = m·ax &nbsp;|&nbsp; ΣFy = m·ay</span></div>
+          </div>
+          <!-- 3ª Ley -->
+          <div class="def-block" style="padding:.7rem 1rem; background:var(--demo-bg); border-color:var(--demo-stroke);">
+            <div style="font-size:.58rem;font-weight:700;letter-spacing:.18em;color:var(--demo-accent);margin-bottom:.35rem;">3ª LEY — ACCIÓN Y REACCIÓN</div>
+            <div class="def-text" style="font-size:.82rem;">Si A ejerce <b style="color:var(--demo-accent);">F⃗<sub>AB</sub></b> sobre B, entonces B ejerce sobre A una fuerza <b style="color:var(--demo-accent);">F⃗<sub>BA</sub> = −F⃗<sub>AB</sub></b>. Actúan sobre <b>cuerpos distintos</b> — no se anulan.</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 360 255" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c13f-aF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+                <marker id="c13f-aA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#c2622d"/></marker>
+                <marker id="c13f-aB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+                <marker id="c13f-aN" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
+              </defs>
+
+              <!-- ── 1ª LEY: bloque libre, v constante ── -->
+              <text x="14" y="14" font-family="Inter Tight" font-size="8.5" fill="#8b6f3f" font-weight="700" letter-spacing=".1em">1ª LEY</text>
+              <rect x="14" y="20" width="68" height="40" rx="5" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.2"/>
+              <text x="48" y="45" font-family="Inter Tight" font-size="10" fill="#54514a" text-anchor="middle">m</text>
+              <line x1="82" y1="40" x2="130" y2="40" stroke="#3a7d44" stroke-width="2" marker-end="url(#c13f-aF)"/>
+              <text x="100" y="33" font-family="Fraunces" font-style="italic" font-size="11" fill="#3a7d44">v⃗ = cte</text>
+              <text x="14" y="72" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#8b877e">ΣF⃗ = 0 → sin aceleración</text>
+
+              <!-- divider -->
+              <line x1="155" y1="8" x2="155" y2="80" stroke="#d9d0bb" stroke-width=".8"/>
+
+              <!-- ── 2ª LEY: bloque con F y a ── -->
+              <text x="164" y="14" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" font-weight="700" letter-spacing=".1em">2ª LEY</text>
+              <rect x="164" y="20" width="60" height="40" rx="5" fill="#dae3ec" stroke="#2d4f72" stroke-width="1.2"/>
+              <text x="194" y="45" font-family="Inter Tight" font-size="10" fill="#2d4f72" text-anchor="middle">m</text>
+              <!-- incoming force -->
+              <line x1="128" y1="40" x2="162" y2="40" stroke="#3a7d44" stroke-width="2" marker-end="url(#c13f-aF)"/>
+              <text x="134" y="33" font-family="Fraunces" font-style="italic" font-size="11" fill="#3a7d44">F⃗</text>
+              <!-- resulting acceleration -->
+              <line x1="226" y1="40" x2="268" y2="40" stroke="#c2622d" stroke-width="2" marker-end="url(#c13f-aA)"/>
+              <text x="234" y="33" font-family="Fraunces" font-style="italic" font-size="11" fill="#c2622d">a⃗</text>
+              <text x="164" y="72" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#8b877e">a⃗ = ΣF⃗ / m</text>
+
+              <!-- separator -->
+              <line x1="14" y1="84" x2="346" y2="84" stroke="#d9d0bb" stroke-width=".8"/>
+
+              <!-- ── 3ª LEY: par acción-reacción ── -->
+              <text x="14" y="98" font-family="Inter Tight" font-size="8.5" fill="#8a4a5a" font-weight="700" letter-spacing=".1em">3ª LEY</text>
+
+              <!-- Bloque A -->
+              <rect x="14" y="106" width="70" height="44" rx="5" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.2"/>
+              <text x="49" y="133" font-family="Inter Tight" font-size="11" fill="#54514a" text-anchor="middle" font-weight="600">A</text>
+
+              <!-- Bloque B -->
+              <rect x="200" y="106" width="70" height="44" rx="5" fill="#ede5e8" stroke="#8a4a5a" stroke-width="1.2"/>
+              <text x="235" y="133" font-family="Inter Tight" font-size="11" fill="#8a4a5a" text-anchor="middle" font-weight="600">B</text>
+
+              <!-- F_AB (A empuja B → derecha) -->
+              <line x1="84" y1="128" x2="198" y2="128" stroke="#3a7d44" stroke-width="2" marker-end="url(#c13f-aF)"/>
+              <text x="118" y="122" font-family="Fraunces" font-style="italic" font-size="10" fill="#3a7d44">F⃗_AB</text>
+
+              <!-- F_BA (B empuja A ← izquierda) -->
+              <line x1="200" y1="140" x2="86" y2="140" stroke="#8a4a5a" stroke-width="2" marker-end="url(#c13f-aB)"/>
+              <text x="118" y="155" font-family="Fraunces" font-style="italic" font-size="10" fill="#8a4a5a">F⃗_BA = −F⃗_AB</text>
+
+              <!-- annotation: bodies distints -->
+              <rect x="14" y="164" width="256" height="22" rx="4" fill="rgba(232,238,242,.7)" stroke="#7fa3c9" stroke-width="1"/>
+              <text x="142" y="179" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle">|F⃗_AB| = |F⃗_BA| &nbsp;pero actúan sobre cuerpos distintos → no se anulan</text>
+
+              <!-- legend -->
+              <rect x="282" y="100" width="72" height="62" rx="5" fill="rgba(250,246,236,.9)" stroke="#d9d0bb" stroke-width="1"/>
+              <line x1="290" y1="115" x2="306" y2="115" stroke="#3a7d44" stroke-width="2"/>
+              <text x="310" y="119" font-family="Inter Tight" font-size="9" fill="#54514a">F⃗_AB</text>
+              <line x1="290" y1="133" x2="306" y2="133" stroke="#8a4a5a" stroke-width="2"/>
+              <text x="310" y="137" font-family="Inter Tight" font-size="9" fill="#54514a">F⃗_BA</text>
+              <line x1="290" y1="151" x2="306" y2="151" stroke="#c2622d" stroke-width="2"/>
+              <text x="310" y="155" font-family="Inter Tight" font-size="9" fill="#54514a">a⃗</text>
+
+              <!-- ── SI units strip ── -->
+              <rect x="14" y="198" width="332" height="24" rx="5" fill="rgba(232,238,242,.7)" stroke="#7fa3c9" stroke-width="1"/>
+              <text x="180" y="214" font-family="JetBrains Mono" font-size="9.5" fill="#2d4f72" text-anchor="middle">SI: [F] = N = kg·m/s² &nbsp;|&nbsp; [m] = kg &nbsp;|&nbsp; [a] = m/s²</text>
+
+              <!-- ── context strip ── -->
+              <text x="14" y="244" font-family="Fraunces" font-style="italic" font-size="9" fill="#8b877e">La 1ª ley define los sistemas inerciales; la 2ª y 3ª son válidas dentro de ellos.</text>
+            </svg>
+          </div>
+          <div class="r-note" style="font-size:.73rem;">La 1ª ley <span style="color:var(--formula-accent);font-weight:600;">no es consecuencia</span> de la 2ª — es independiente y define los marcos inerciales.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+  </div>
+
+  <!-- DORSO -->
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 4 <span class="dot"></span> Dinámica</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">13</span></span>
+    <div class="back-grid">
+      <!-- COL IZQUIERDA -->
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            De la <b>2ª ley</b>: la aceleración es proporcional a la fuerza neta e inversamente proporcional a la masa.<br><br>
+            <span class="eq">ΣF⃗ = m·a⃗</span> &nbsp;→&nbsp; <span class="eq">a⃗ = ΣF⃗ / m</span><br><br>
+            Si actúan varias fuerzas, <span class="eq">ΣF⃗</span> es la <b>suma vectorial</b>. La ecuación se aplica componente a componente:<br><br>
+            <span class="eq">ΣFx = m·ax</span><br>
+            <span class="eq">ΣFy = m·ay</span><br><br>
+            De la <b>3ª ley</b>: aunque <span class="eq">|F⃗_AB| = |F⃗_BA|</span>, como actúan sobre masas distintas, generan aceleraciones distintas:<br><br>
+            <span class="eq">a_A = F_BA / m_A</span><br>
+            <span class="eq">a_B = F_AB / m_B</span>
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.55rem;">
+          <div class="unit-text">
+            <b>1 N</b> = fuerza que produce una aceleración de 1 m/s² sobre una masa de 1 kg.<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.72rem;">1 N = 1 kg·m/s²</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- COL DERECHA -->
+      <div style="display:flex;flex-direction:column;gap:.55rem;">
+        <div class="back-diag" style="flex:0 0 auto; min-height:0; height:195px;">
+          <svg viewBox="0 0 350 185" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="c13b-aF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+              <marker id="c13b-aA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#c2622d"/></marker>
+              <marker id="c13b-aN" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
+              <marker id="c13b-aG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#54514a"/></marker>
+            </defs>
+
+            <!-- Ground -->
+            <line x1="10" y1="140" x2="340" y2="140" stroke="#54514a" stroke-width="1.5"/>
+            <g stroke="#54514a" stroke-width=".7"><line x1="20" y1="140" x2="14" y2="148"/><line x1="40" y1="140" x2="34" y2="148"/><line x1="60" y1="140" x2="54" y2="148"/><line x1="80" y1="140" x2="74" y2="148"/><line x1="100" y1="140" x2="94" y2="148"/><line x1="120" y1="140" x2="114" y2="148"/><line x1="140" y1="140" x2="134" y2="148"/><line x1="160" y1="140" x2="154" y2="148"/><line x1="180" y1="140" x2="174" y2="148"/><line x1="200" y1="140" x2="194" y2="148"/><line x1="220" y1="140" x2="214" y2="148"/><line x1="240" y1="140" x2="234" y2="148"/><line x1="260" y1="140" x2="254" y2="148"/><line x1="280" y1="140" x2="274" y2="148"/><line x1="300" y1="140" x2="294" y2="148"/><line x1="320" y1="140" x2="314" y2="148"/><line x1="340" y1="140" x2="334" y2="148"/></g>
+
+            <!-- Block 10 kg -->
+            <rect x="110" y="96" width="80" height="44" rx="6" fill="#dae3ec" stroke="#2d4f72" stroke-width="1.3"/>
+            <text x="150" y="123" font-family="Inter Tight" font-size="11" fill="#2d4f72" text-anchor="middle" font-weight="600">10 kg</text>
+
+            <!-- F1 = 30N → -->
+            <line x1="40" y1="118" x2="108" y2="118" stroke="#3a7d44" stroke-width="2.2" marker-end="url(#c13b-aF)"/>
+            <text x="52" y="112" font-family="Fraunces" font-style="italic" font-size="11" fill="#3a7d44">F₁=30 N</text>
+
+            <!-- F2 = 10N ← -->
+            <line x1="240" y1="118" x2="192" y2="118" stroke="#8a4a5a" stroke-width="2.2" marker-end="url(#c13b-aN)"/>
+            <text x="244" y="112" font-family="Fraunces" font-style="italic" font-size="11" fill="#8a4a5a">F₂=10 N</text>
+
+            <!-- Normal N ↑ -->
+            <line x1="150" y1="96" x2="150" y2="52" stroke="#2d4f72" stroke-width="2" marker-end="url(#c13b-aN)"/>
+            <text x="154" y="52" font-family="Fraunces" font-style="italic" font-size="11" fill="#2d4f72">N</text>
+
+            <!-- Weight P ↓ -->
+            <line x1="150" y1="140" x2="150" y2="178" stroke="#54514a" stroke-width="2" marker-end="url(#c13b-aG)"/>
+            <text x="154" y="177" font-family="Fraunces" font-style="italic" font-size="11" fill="#54514a">P</text>
+
+            <!-- Resulting acceleration a → -->
+            <line x1="280" y1="118" x2="332" y2="118" stroke="#c2622d" stroke-width="2.5" marker-end="url(#c13b-aA)"/>
+            <text x="282" y="112" font-family="Fraunces" font-style="italic" font-size="11" fill="#c2622d">a=?</text>
+
+            <!-- axis labels -->
+            <text x="10" y="168" font-family="JetBrains Mono" font-size="8.5" fill="#8b877e">ΣFx = 30−10 = 20 N</text>
+            <text x="10" y="180" font-family="JetBrains Mono" font-size="8.5" fill="#8b877e">ΣFy = N−P = 0 N</text>
+          </svg>
+        </div>
+
+        <div class="ex-block">
+          <div class="ex-text">
+            Bloque <b>10 kg</b>: F₁ = 30 N (→), F₂ = 10 N (←), N = P (equilibrio vertical).<br>
+            <span class="eq">ΣFx = 30 − 10 = 20 N</span><br>
+            <span class="eq">ax = ΣFx / m = 20 / 10 =</span> <span class="answer">2 m/s² →</span><br>
+            <span class="eq">ay = 0 m/s²</span> (N y P se cancelan)<br>
+            <span style="color:var(--ink-3);font-size:.7rem;">La 2ª ley se aplica por eje, no a módulos sueltos.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-13 -->
+
+</div><!-- scene -->
+</div><!-- scene-wrap -->
+
+<!-- ── GALLERY NAV ── -->
+<nav class="gallery-nav">
+  <div class="chapter-tabs" id="chapter-tabs">
+    <button class="chapter-tab active" data-chapter="all" onclick="filterChapter(this,'all')">Todas (13)</button>
+    <button class="chapter-tab" data-chapter="cap2" onclick="filterChapter(this,'cap2')">Cap 2 · Estática (4)</button>
+    <button class="chapter-tab" data-chapter="cap3" onclick="filterChapter(this,'cap3')">Cap 3 · Cinemática (8)</button>
+    <button class="chapter-tab" data-chapter="cap4" onclick="filterChapter(this,'cap4')">Cap 4 · Dinámica (1)</button>
+  </div>
+  <div class="thumb-strip-wrap">
+    <div class="thumb-strip" id="thumb-strip"></div>
+  </div>
+  <div class="nav-counter-bar">
+    <button class="nav-prev-btn" id="btn-prev" onclick="navigate(-1)" disabled>←</button>
+    <div class="nav-progress-bar"><div class="nav-progress-fill" id="progress-fill" style="width:7.69%"></div></div>
+    <span class="nav-counter-text" id="nav-counter">1 / 13</span>
+    <div class="nav-card-title" id="nav-title">Concepto de Fuerza</div>
+    <button class="nav-next-btn" id="btn-next" onclick="navigate(1)">→</button>
+  </div>
+</nav>
 
 <script>
-  var current = 1;
-  var total = 4;
-  var titles = ['Concepto de Fuerza','Momento de una Fuerza','Teorema de Varignon','Centro de Masa'];
+  // ── Card data ──
+  var allCards = [
+    { id:1,  title:'Concepto de Fuerza',              chapter:'cap2' },
+    { id:2,  title:'Momento de una Fuerza',           chapter:'cap2' },
+    { id:3,  title:'Teorema de Varignon',             chapter:'cap2' },
+    { id:4,  title:'Centro de Masa',                  chapter:'cap2' },
+    { id:5,  title:'Velocidad y aceleración. MRU',    chapter:'cap3' },
+    { id:6,  title:'Velocidad y aceleración. MRUV',   chapter:'cap3' },
+    { id:7,  title:'Caída libre',                     chapter:'cap3' },
+    { id:8,  title:'Tiro vertical',                   chapter:'cap3' },
+    { id:9,  title:'Tiro oblicuo',                    chapter:'cap3' },
+    { id:10, title:'MCU — Vel. angular y ac. centrípeta', chapter:'cap3' },
+    { id:11, title:'MCUV',                            chapter:'cap3' },
+    { id:12, title:'Movimiento relativo',             chapter:'cap3' },
+    { id:13, title:'Leyes de la Dinámica',            chapter:'cap4' },
+  ];
 
-  function navigate(dir) {
-    var next = current + dir;
-    if (next < 1 || next > total) return;
-    document.querySelector('#card-' + current + ' .flipper').classList.remove('flipped');
-    document.getElementById('card-' + current).classList.add('hidden');
-    document.getElementById('card-' + next).classList.remove('hidden');
-    current = next;
-    document.getElementById('nav-counter').textContent = current + ' / ' + total;
-    document.getElementById('nav-title').textContent = titles[current-1];
-    document.getElementById('progress-fill').style.width = ((current / total) * 100) + '%';
-    document.getElementById('btn-prev').disabled = current === 1;
-    document.getElementById('btn-next').disabled = current === total;
+  var filteredCards = allCards.slice();
+  var currentIdx = 0; // index in filteredCards
+
+  function currentCard() { return filteredCards[currentIdx]; }
+
+  // ── Thumb strip ──
+  function buildThumbs() {
+    var strip = document.getElementById('thumb-strip');
+    strip.innerHTML = '';
+    filteredCards.forEach(function(card, i) {
+      var btn = document.createElement('button');
+      btn.className = 'thumb-btn' + (i === currentIdx ? ' active' : '');
+      btn.setAttribute('data-idx', i);
+      btn.innerHTML = '<span class="thumb-num">' + String(card.id).padStart(2,'0') + '</span><span class="thumb-label">' + card.title + '</span>';
+      btn.onclick = function() { goToIdx(i); };
+      strip.appendChild(btn);
+    });
   }
 
+  function syncThumbs() {
+    var btns = document.querySelectorAll('.thumb-btn');
+    btns.forEach(function(b, i) { b.classList.toggle('active', i === currentIdx); });
+    // Scroll active thumb into view
+    var active = document.querySelector('.thumb-btn.active');
+    if (active) active.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+  }
+
+  // ── Navigation ──
+  function goToIdx(idx) {
+    if (idx < 0 || idx >= filteredCards.length) return;
+    // Hide current
+    var prev = currentCard();
+    document.querySelector('#card-' + prev.id + ' .flipper').classList.remove('flipped');
+    document.getElementById('card-' + prev.id).classList.add('hidden');
+    currentIdx = idx;
+    // Show new
+    var next = currentCard();
+    document.getElementById('card-' + next.id).classList.remove('hidden');
+    updateNav();
+    syncThumbs();
+  }
+
+  function navigate(dir) { goToIdx(currentIdx + dir); }
+
+  function updateNav() {
+    var card = currentCard();
+    var total = filteredCards.length;
+    document.getElementById('nav-counter').textContent = (currentIdx + 1) + ' / ' + total;
+    document.getElementById('nav-title').textContent = card.title;
+    document.getElementById('progress-fill').style.width = ((currentIdx + 1) / total * 100) + '%';
+    document.getElementById('btn-prev').disabled = currentIdx === 0;
+    document.getElementById('btn-next').disabled = currentIdx === total - 1;
+  }
+
+  // ── Chapter filter ──
+  function filterChapter(el, chapter) {
+    document.querySelectorAll('.chapter-tab').forEach(function(t){ t.classList.remove('active'); });
+    el.classList.add('active');
+    // Hide all cards
+    allCards.forEach(function(c){ document.getElementById('card-'+c.id).classList.add('hidden'); });
+    filteredCards = chapter === 'all' ? allCards.slice() : allCards.filter(function(c){ return c.chapter === chapter; });
+    currentIdx = 0;
+    buildThumbs();
+    document.getElementById('card-' + filteredCards[0].id).classList.remove('hidden');
+    updateNav();
+  }
+
+  // ── Scale ──
   function scaleCard() {
     var scene = document.getElementById('scene');
+    var nav = document.querySelector('.gallery-nav');
     var W = 960, H = 678;
-    var vw = window.innerWidth, vh = window.innerHeight;
-    var scale = Math.min(vw / W, vh / H) * 0.96;
+    var vw = window.innerWidth;
+    var navH = nav ? nav.offsetHeight : 160;
+    var vh = window.innerHeight - navH;
+    var scale = Math.min(vw / W, vh / H) * 0.94;
+    var scaledW = W * scale;
+    var scaledH = H * scale;
+    scene.style.position = 'absolute';
     scene.style.transform = 'scale(' + scale + ')';
-    scene.style.marginLeft = ((vw - W) / 2) + 'px';
-    scene.style.marginTop  = ((vh - H) / 2) + 'px';
-    scene.style.position = 'fixed';
-    scene.style.top = '0';
-    scene.style.left = '0';
+    scene.style.transformOrigin = 'top left';
+    scene.style.left = ((vw - scaledW) / 2) + 'px';
+    scene.style.top  = ((vh - scaledH) / 2) + 'px';
+    // size scene-wrap so it doesn't collapse
+    document.getElementById('scene-wrap').style.height = vh + 'px';
   }
-  scaleCard();
-  window.addEventListener('resize', scaleCard);
 
+  // ── Touch / swipe ──
+  var touchStartX = 0, touchStartY = 0;
+  document.getElementById('scene-wrap').addEventListener('touchstart', function(e){
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive:true });
+  document.getElementById('scene-wrap').addEventListener('touchend', function(e){
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    var dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+      if (dx < 0) navigate(1); else navigate(-1);
+    }
+  }, { passive:true });
+
+  // ── Keyboard ──
   document.addEventListener('keydown', function(e) {
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
     if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   navigate(-1);
-    if (e.key === ' ') { e.preventDefault(); document.querySelector('#card-' + current + ' .flipper').classList.toggle('flipped'); }
+    if (e.key === ' ') { e.preventDefault(); document.querySelector('#card-' + currentCard().id + ' .flipper').classList.toggle('flipped'); }
   });
+
+  // ── Init ──
+  buildThumbs();
+  updateNav();
+  scaleCard();
+  window.addEventListener('resize', scaleCard);
 </script>
 
 </body>
