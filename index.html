@@ -9800,13 +9800,468 @@
 </div>
 </div><!-- card-63 -->
 
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 64 — Ley de Boyle-Mariotte
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-64">
+<div class="flipper" onclick="flipCard(this)">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 9 <span class="dot"></span> Termodinámica</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">64</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Ley de <em>Boyle-Mariotte</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              Primera ley de los gases perfectos. Rige las <b>transformaciones isotérmicas</b> (T = cte). A temperatura constante, el volumen de una masa gaseosa es <b>inversamente proporcional</b> a su presión.
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div class="formula-main">P₁V₁ = P₂V₂ = cte</div>
+            <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">P₁/P₂ = V₂/V₁ &nbsp;·&nbsp; T = cte &nbsp;·&nbsp; misma masa gaseosa</span></div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>P &uarr; &rarr; V &darr;</b><span class="eq">(a igual T, comprimir &rarr; menor volumen)</span></div>
+            <div class="case-pill"><b>T &uarr; &rarr; isoterma más alta</b><span class="eq">en el diagrama P-V</span></div>
+            <div class="case-pill"><b>Gráfico P-V:</b> hipérbola (PV=cte) para cada isoterma</div>
+            <div class="case-pill"><b>Gas ideal:</b> PV = nRT &rarr; T=cte → PV = cte</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 345 232" xmlns="http://www.w3.org/2000/svg">
+              <!-- axes -->
+              <line x1="35" y1="15" x2="35" y2="200" stroke="#54514a" stroke-width="1.3"/>
+              <line x1="30" y1="195" x2="320" y2="195" stroke="#54514a" stroke-width="1.3"/>
+              <text x="323" y="199" font-family="Fraunces" font-style="italic" font-size="11" fill="#54514a">V</text>
+              <text x="25" y="12" font-family="Fraunces" font-style="italic" font-size="11" fill="#54514a">P</text>
+              <!-- isotherms: three hyperbolas at different T -->
+              <!-- T1 (low) -->
+              <path d="M42,185 C45,155 55,115 75,88 C95,65 130,52 175,44 C215,38 255,36 305,35" fill="none" stroke="#7fa3c9" stroke-width="1.5" stroke-dasharray="5 3"/>
+              <text x="308" y="33" font-family="Fraunces" font-style="italic" font-size="9" fill="#7fa3c9">T₁</text>
+              <!-- T2 (medium) -->
+              <path d="M42,195 C44,172 50,140 65,110 C85,78 115,60 155,50 C195,42 240,39 305,37" fill="none" stroke="#2d4f72" stroke-width="2"/>
+              <text x="308" y="37" font-family="Fraunces" font-style="italic" font-size="9" fill="#2d4f72">T₂</text>
+              <!-- T3 (high) -->
+              <path d="M42,196 C43,185 47,165 58,138 C75,103 103,82 140,68 C178,56 225,50 305,47" fill="none" stroke="#8a4a5a" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <text x="308" y="47" font-family="Fraunces" font-style="italic" font-size="9" fill="#8a4a5a">T₃</text>
+              <!-- T1 < T2 < T3 label -->
+              <text x="180" y="215" font-family="Inter Tight" font-size="8.5" fill="#54514a" text-anchor="middle">T₁ &lt; T₂ &lt; T₃ (isotermas más altas = mayor T)</text>
+              <!-- process arrow on T2 -->
+              <circle cx="95" cy="72" r="4" fill="#2d4f72"/>
+              <circle cx="195" cy="43" r="4" fill="#2d4f72"/>
+              <text x="88" y="67" font-family="JetBrains Mono" font-size="8" fill="#2d4f72">1</text>
+              <text x="198" y="40" font-family="JetBrains Mono" font-size="8" fill="#2d4f72">2</text>
+              <!-- P1, P2, V1, V2 dashed lines -->
+              <line x1="35" y1="72" x2="95" y2="72" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="3 2"/>
+              <line x1="95" y1="72" x2="95" y2="195" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="3 2"/>
+              <line x1="35" y1="43" x2="195" y2="43" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="3 2"/>
+              <line x1="195" y1="43" x2="195" y2="195" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="3 2"/>
+              <text x="28" y="75" font-family="JetBrains Mono" font-size="7.5" fill="#54514a" text-anchor="end">P₁</text>
+              <text x="28" y="46" font-family="JetBrains Mono" font-size="7.5" fill="#54514a" text-anchor="end">P₂</text>
+              <text x="95" y="208" font-family="JetBrains Mono" font-size="7.5" fill="#54514a" text-anchor="middle">V₁</text>
+              <text x="195" y="208" font-family="JetBrains Mono" font-size="7.5" fill="#54514a" text-anchor="middle">V₂</text>
+            </svg>
+          </div>
+          <div class="r-note">En el diagrama P-V, la <span style="color:var(--formula-accent);font-weight:600;">isoterma es una hipérbola</span>. El área bajo la curva = trabajo del gas.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 9 <span class="dot"></span> Termodinámica</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">64</span></span>
+    <div class="back-grid">
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            <b>Fundamento — gas ideal</b>:<br>
+            Ecuación de estado: <span class="eq">PV = nRT</span><br>
+            Si T = cte y misma masa (n=cte): <span class="eq">PV = nRT = cte</span><br>
+            Para dos estados 1 y 2:<br>
+            <div class="formula-final-wrap"><span class="formula-final">P₁V₁ = P₂V₂</span></div>
+            <b>Trabajo isotérmico</b> (T=cte, PV=P₁V₁=cte → P=P₁V₁/V):<br>
+            <span class="eq">W = ∫P·dV = P₁V₁∫dV/V = P₁V₁·ln(V₂/V₁)</span><br><br>
+            <b>1er Principio</b> (T=cte → ΔU=0):<br>
+            <span class="eq">Q − W = ΔU = 0 &nbsp;&rarr;&nbsp; Q = W</span><br>
+            Todo el calor absorbido se convierte en trabajo.
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.5rem;">
+          <div class="unit-text">
+            <b>[P]</b>=Pa &nbsp;·&nbsp; <b>[V]</b>=m³ &nbsp;·&nbsp; <b>[W]</b>=J<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">W=P₁V₁·ln(V₂/V₁): + si expansión (V₂&gt;V₁), − si compresión</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.5rem;">
+        <div class="back-diag" style="height:185px;flex:0 0 auto;">
+          <svg viewBox="0 0 330 172" xmlns="http://www.w3.org/2000/svg">
+            <!-- P-V isothermal with shaded work area -->
+            <line x1="28" y1="10" x2="28" y2="148" stroke="#54514a" stroke-width="1.2"/>
+            <line x1="23" y1="148" x2="315" y2="148" stroke="#54514a" stroke-width="1.2"/>
+            <text x="318" y="152" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">V</text>
+            <text x="18" y="8" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">P</text>
+            <!-- shaded work area under isothermal -->
+            <path d="M70,25 C95,35 130,58 175,85 C210,105 255,122 295,132 L295,148 L70,148 Z" fill="rgba(45,79,114,.12)"/>
+            <!-- isothermal curve -->
+            <path d="M70,25 C95,35 130,58 175,85 C210,105 255,122 295,132" fill="none" stroke="#2d4f72" stroke-width="2.2"/>
+            <!-- points 1 and 2 -->
+            <circle cx="70" cy="25" r="4" fill="#8a4a5a"/>
+            <circle cx="295" cy="132" r="4" fill="#3a7d44"/>
+            <text x="62" y="20" font-family="JetBrains Mono" font-size="8" fill="#8a4a5a">1 (P₁,V₁)</text>
+            <text x="285" y="127" font-family="JetBrains Mono" font-size="8" fill="#3a7d44" text-anchor="end">2 (P₂,V₂)</text>
+            <!-- W area label -->
+            <text x="170" y="128" font-family="Fraunces" font-style="italic" font-size="10" fill="#2d4f72" text-anchor="middle">W = área</text>
+            <!-- dashed lines -->
+            <line x1="28" y1="25" x2="70" y2="25" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="3 2"/>
+            <line x1="70" y1="25" x2="70" y2="148" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="3 2"/>
+            <line x1="295" y1="132" x2="295" y2="148" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="3 2"/>
+            <text x="70" y="158" font-family="JetBrains Mono" font-size="7.5" fill="#54514a" text-anchor="middle">V₁</text>
+            <text x="295" y="158" font-family="JetBrains Mono" font-size="7.5" fill="#54514a" text-anchor="middle">V₂</text>
+            <!-- PV=cte label -->
+            <text x="165" y="55" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#2d4f72" text-anchor="middle">PV = P₁V₁ = cte</text>
+            <rect x="20" y="160" width="295" height="10" rx="2" fill="rgba(250,246,236,.85)" stroke="#d9d0bb" stroke-width="1"/>
+            <text x="167" y="167.5" font-family="Inter Tight" font-size="7.5" fill="#54514a" text-anchor="middle">W=P₁V₁·ln(V₂/V₁) &nbsp;·&nbsp; ΔU=0 &nbsp;·&nbsp; Q=W</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            <b>Gas a P₁=4 atm, V₁=3 L → expansión isotérmica a V₂=12 L:</b><br>
+            <span class="eq">P₂ = P₁V₁/V₂ = 4×3/12 =</span> <span class="answer">1 atm</span><br>
+            <span class="eq">W = P₁V₁·ln(V₂/V₁) = 4×101325×0.003×ln(4) =</span><br>
+            <span class="answer">W ≈ 1683 J</span> &nbsp;(Q=W, ΔU=0)
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-64 -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 65 — Ley de Gay-Lussac
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-65">
+<div class="flipper" onclick="flipCard(this)">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 9 <span class="dot"></span> Termodinámica</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">65</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Leyes de <em>Gay-Lussac</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              Dos leyes que completan la descripción de los gases ideales. La <b>1ª ley</b> rige procesos <b>isobáricos</b> (P=cte): el volumen es proporcional a la temperatura absoluta. La <b>2ª ley</b> rige procesos <b>isócoros</b> (V=cte): la presión es proporcional a la temperatura absoluta.
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div class="formula-main" style="font-size:1.1rem;">V₁/T₁ = V₂/T₂ &nbsp;&nbsp; P₁/T₁ = P₂/T₂</div>
+            <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">&alpha; = &beta; = 1/273.16 K⁻¹ &nbsp;·&nbsp; T[K] = t[°C] + 273.16</span></div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>1ª ley (P=cte):</b><span class="eq">V/T = cte &nbsp;(isobárica)</span></div>
+            <div class="case-pill"><b>2ª ley (V=cte):</b><span class="eq">P/T = cte &nbsp;(isócora)</span></div>
+            <div class="case-pill"><b>Cero absoluto:</b> V=0 se extrapola a t=−273.16°C = 0 K</div>
+            <div class="case-pill"><b>&alpha; = &beta; = 1/273.16 = 0.00366 K⁻¹</b> — igual para todos los gases ideales</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 345 232" xmlns="http://www.w3.org/2000/svg">
+              <!-- LEFT: V-T diagram (1ª ley, isobárica) -->
+              <text x="88" y="15" font-family="Inter Tight" font-size="8.5" fill="#3d5e44" text-anchor="middle" font-weight="600">1ª ley — Isobárica (P=cte)</text>
+              <line x1="35" y1="18" x2="35" y2="175" stroke="#54514a" stroke-width="1.2"/>
+              <line x1="28" y1="170" x2="172" y2="170" stroke="#54514a" stroke-width="1.2"/>
+              <text x="175" y="174" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a">T</text>
+              <text x="27" y="15" font-family="Fraunces" font-style="italic" font-size="9" fill="#3d5e44">V</text>
+              <!-- V=0 at -273 extrapolation -->
+              <line x1="35" y1="170" x2="35" y2="170" stroke="#8b877e" stroke-width="1"/>
+              <!-- Linear V(T) line, extrapolated to zero -->
+              <line x1="10" y1="175" x2="168" y2="28" stroke="#3a7d44" stroke-width="2" stroke-dasharray="5 3" opacity=".5"/>
+              <!-- actual measured region -->
+              <line x1="75" y1="140" x2="168" y2="28" stroke="#3a7d44" stroke-width="2"/>
+              <!-- V0 at T=0°C -->
+              <circle cx="75" cy="140" r="3" fill="#3a7d44"/>
+              <text x="78" y="137" font-family="JetBrains Mono" font-size="7" fill="#3a7d44">V₀ (0°C)</text>
+              <!-- -273 mark on T axis -->
+              <text x="8" y="179" font-family="JetBrains Mono" font-size="7" fill="#8b877e">−273</text>
+              <!-- 0°C mark -->
+              <line x1="75" y1="167" x2="75" y2="173" stroke="#54514a" stroke-width="1"/>
+              <text x="75" y="181" font-family="JetBrains Mono" font-size="6.5" fill="#54514a" text-anchor="middle">0°C</text>
+              <text x="88" y="195" font-family="Inter Tight" font-size="8" fill="#3d5e44" text-anchor="middle">V/T = cte (P=cte)</text>
+
+              <!-- separator -->
+              <line x1="185" y1="8" x2="185" y2="205" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="4 3"/>
+
+              <!-- RIGHT: P-T diagram (2ª ley, isócora) -->
+              <text x="265" y="15" font-family="Inter Tight" font-size="8.5" fill="#8b6f3f" text-anchor="middle" font-weight="600">2ª ley — Isócora (V=cte)</text>
+              <line x1="210" y1="18" x2="210" y2="175" stroke="#54514a" stroke-width="1.2"/>
+              <line x1="203" y1="170" x2="340" y2="170" stroke="#54514a" stroke-width="1.2"/>
+              <text x="343" y="174" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a">T</text>
+              <text x="202" y="15" font-family="Fraunces" font-style="italic" font-size="9" fill="#8b6f3f">P</text>
+              <!-- P(T) linear, extrapolated -->
+              <line x1="185" y1="175" x2="340" y2="28" stroke="#8b6f3f" stroke-width="2" stroke-dasharray="5 3" opacity=".5"/>
+              <line x1="248" y1="140" x2="340" y2="28" stroke="#8b6f3f" stroke-width="2"/>
+              <circle cx="248" cy="140" r="3" fill="#8b6f3f"/>
+              <text x="251" y="137" font-family="JetBrains Mono" font-size="7" fill="#8b6f3f">P₀ (0°C)</text>
+              <text x="183" y="179" font-family="JetBrains Mono" font-size="7" fill="#8b877e">−273</text>
+              <line x1="248" y1="167" x2="248" y2="173" stroke="#54514a" stroke-width="1"/>
+              <text x="248" y="181" font-family="JetBrains Mono" font-size="6.5" fill="#54514a" text-anchor="middle">0°C</text>
+              <text x="265" y="195" font-family="Inter Tight" font-size="8" fill="#8b6f3f" text-anchor="middle">P/T = cte (V=cte)</text>
+            </svg>
+          </div>
+          <div class="r-note">Ambas leyes conducen al mismo <span style="color:var(--def-accent);font-weight:600;">cero absoluto a −273.16°C</span>, origen de la escala Kelvin.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 9 <span class="dot"></span> Termodinámica</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">65</span></span>
+    <div class="back-grid">
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            <b>1ª Ley (P=cte) — derivación:</b><br>
+            Experimentalmente: <span class="eq">V₁ − V₀ = &alpha;·V₀·t₁</span> → <span class="eq">V₁ = V₀(1 + &alpha;t₁)</span><br>
+            Para dos estados: <span class="eq">V₁/V₂ = (1+&alpha;t₁)/(1+&alpha;t₂)</span><br>
+            Como T[K] = 273.16 + t[°C] y &alpha; = 1/273.16:<br>
+            <div class="formula-final-wrap"><span class="formula-final">V₁/T₁ = V₂/T₂ &nbsp;(P=cte)</span></div>
+            <b>2ª Ley (V=cte) — derivación análoga:</b><br>
+            <span class="eq">P₁ − P₀ = &beta;·P₀·t₁</span> con &beta; = &alpha; = 1/273.16<br>
+            <div class="formula-final-wrap"><span class="formula-final">P₁/T₁ = P₂/T₂ &nbsp;(V=cte)</span></div>
+            Ambas expresan: a igual masa, la variable libre (V o P) es proporcional a T absoluta.
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.5rem;">
+          <div class="unit-text">
+            <b>T[K]</b> = t[°C] + 273.16 &nbsp;·&nbsp; <b>[&alpha;=&beta;]</b> = K⁻¹<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">&alpha; = 1/273.16 = 3.66×10⁻³ K⁻¹ &nbsp;(igual para todos los gases ideales)</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.5rem;">
+        <div class="back-diag" style="height:188px;flex:0 0 auto;">
+          <svg viewBox="0 0 330 175" xmlns="http://www.w3.org/2000/svg">
+            <!-- comparison table of three gas laws -->
+            <rect x="15" y="8" width="300" height="162" rx="6" fill="rgba(250,246,236,.85)" stroke="#d9d0bb" stroke-width="1"/>
+            <text x="165" y="24" font-family="Inter Tight" font-size="9" fill="#54514a" text-anchor="middle" font-weight="600">Comparativa de las 3 leyes de los gases ideales</text>
+            <!-- header row -->
+            <line x1="15" y1="30" x2="315" y2="30" stroke="#d9d0bb" stroke-width="1"/>
+            <text x="80" y="44" font-family="Inter Tight" font-size="8.5" fill="#54514a" text-anchor="middle" font-weight="600">Ley</text>
+            <text x="175" y="44" font-family="Inter Tight" font-size="8.5" fill="#54514a" text-anchor="middle" font-weight="600">Proceso</text>
+            <text x="270" y="44" font-family="Inter Tight" font-size="8.5" fill="#54514a" text-anchor="middle" font-weight="600">Relación</text>
+            <line x1="15" y1="48" x2="315" y2="48" stroke="#d9d0bb" stroke-width="1"/>
+            <!-- row 1: Boyle -->
+            <text x="80" y="65" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" text-anchor="middle">Boyle-Mariotte</text>
+            <text x="175" y="65" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" text-anchor="middle">T = cte (isotérmica)</text>
+            <text x="270" y="65" font-family="Fraunces" font-style="italic" font-size="8.5" fill="#2d4f72" text-anchor="middle">P₁V₁ = P₂V₂</text>
+            <line x1="15" y1="72" x2="315" y2="72" stroke="#d9d0bb" stroke-width=".7"/>
+            <!-- row 2: Gay-Lussac 1 -->
+            <text x="80" y="89" font-family="Inter Tight" font-size="8.5" fill="#3d5e44" text-anchor="middle">Gay-Lussac 1ª</text>
+            <text x="175" y="89" font-family="Inter Tight" font-size="8.5" fill="#3d5e44" text-anchor="middle">P = cte (isobárica)</text>
+            <text x="270" y="89" font-family="Fraunces" font-style="italic" font-size="8.5" fill="#3d5e44" text-anchor="middle">V₁/T₁ = V₂/T₂</text>
+            <line x1="15" y1="96" x2="315" y2="96" stroke="#d9d0bb" stroke-width=".7"/>
+            <!-- row 3: Gay-Lussac 2 -->
+            <text x="80" y="113" font-family="Inter Tight" font-size="8.5" fill="#8b6f3f" text-anchor="middle">Gay-Lussac 2ª</text>
+            <text x="175" y="113" font-family="Inter Tight" font-size="8.5" fill="#8b6f3f" text-anchor="middle">V = cte (isócora)</text>
+            <text x="270" y="113" font-family="Fraunces" font-style="italic" font-size="8.5" fill="#8b6f3f" text-anchor="middle">P₁/T₁ = P₂/T₂</text>
+            <line x1="15" y1="120" x2="315" y2="120" stroke="#d9d0bb" stroke-width=".7"/>
+            <!-- Gas ideal combined -->
+            <text x="80" y="137" font-family="Inter Tight" font-size="8.5" fill="#8a4a5a" text-anchor="middle">Gas ideal</text>
+            <text x="175" y="137" font-family="Inter Tight" font-size="8.5" fill="#8a4a5a" text-anchor="middle">caso general</text>
+            <text x="270" y="137" font-family="Fraunces" font-style="italic" font-size="8.5" fill="#8a4a5a" text-anchor="middle">PV/T = cte</text>
+            <line x1="15" y1="144" x2="315" y2="144" stroke="#d9d0bb" stroke-width="1"/>
+            <text x="165" y="158" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a" text-anchor="middle">PV = nRT &nbsp;·&nbsp; R = 8.314 J/(mol·K)</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            <b>Isobárica: V₁=2 L a T₁=300 K → T₂=600 K:</b><br>
+            <span class="eq">V₂ = V₁·T₂/T₁ = 2×600/300 =</span> <span class="answer">4 L</span><br>
+            <b>Isócora: P₁=1 atm a T₁=300 K → T₂=450 K:</b><br>
+            <span class="eq">P₂ = P₁·T₂/T₁ = 1×450/300 =</span> <span class="answer">1.5 atm</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-65 -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 66 — Transformaciones y 1er Principio
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-66">
+<div class="flipper" onclick="flipCard(this)">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 9 <span class="dot"></span> Termodinámica</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">66</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Transformaciones y <em>1er Principio</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              <b>1er Principio:</b> en todo proceso, la energía total transferida al sistema (calor menos trabajo) es igual al cambio de energía interna. <span style="font-family:'JetBrains Mono',monospace;font-size:.82rem;">Q − W = ΔU</span>. Q y W dependen del proceso; ΔU solo del estado inicial y final.
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div class="formula-main">Q &minus; W = &Delta;U = U<sub>f</sub> &minus; U<sub>i</sub></div>
+            <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">Q&gt;0: calor entra &nbsp;·&nbsp; W&gt;0: trabajo sale &nbsp;·&nbsp; W=∫P·dV</span></div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>Isócora (V=cte):</b><span class="eq">W=0 &rarr; Q=ΔU &nbsp;(todo calor &rarr; energía interna)</span></div>
+            <div class="case-pill"><b>Isobárica (P=cte):</b><span class="eq">W=PΔV &rarr; ΔU=Q&minus;PΔV</span></div>
+            <div class="case-pill"><b>Isotérmica (T=cte):</b><span class="eq">ΔU=0 &rarr; Q=W &nbsp;(calor→trabajo)</span></div>
+            <div class="case-pill"><b>Adiabática (Q=0):</b><span class="eq">W=&minus;ΔU &nbsp;(trabajo a expensas de U)</span></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 345 232" xmlns="http://www.w3.org/2000/svg">
+              <!-- P-V diagram with all 4 transformations from same point -->
+              <line x1="35" y1="15" x2="35" y2="205" stroke="#54514a" stroke-width="1.3"/>
+              <line x1="30" y1="200" x2="325" y2="200" stroke="#54514a" stroke-width="1.3"/>
+              <text x="328" y="204" font-family="Fraunces" font-style="italic" font-size="11" fill="#54514a">V</text>
+              <text x="25" y="12" font-family="Fraunces" font-style="italic" font-size="11" fill="#54514a">P</text>
+              <!-- starting point -->
+              <circle cx="100" cy="90" r="5" fill="#54514a"/>
+              <text x="88" y="86" font-family="JetBrains Mono" font-size="8" fill="#54514a">i</text>
+              <!-- isochoric: vertical line up (P increases, V=cte) -->
+              <line x1="100" y1="90" x2="100" y2="38" stroke="#8b6f3f" stroke-width="2.2"/>
+              <text x="104" y="32" font-family="Inter Tight" font-size="8.5" fill="#8b6f3f" font-weight="600">isócora</text>
+              <text x="104" y="42" font-family="JetBrains Mono" font-size="7.5" fill="#8b6f3f">V=cte</text>
+              <!-- isobaric: horizontal line right (V increases, P=cte) -->
+              <line x1="100" y1="90" x2="250" y2="90" stroke="#3d5e44" stroke-width="2.2"/>
+              <text x="252" y="87" font-family="Inter Tight" font-size="8.5" fill="#3d5e44" font-weight="600">isobárica</text>
+              <text x="252" y="97" font-family="JetBrains Mono" font-size="7.5" fill="#3d5e44">P=cte</text>
+              <!-- isothermal: hyperbola -->
+              <path d="M100,90 C120,100 160,120 205,140 C240,155 270,165 310,175" fill="none" stroke="#2d4f72" stroke-width="2" stroke-dasharray="6 3"/>
+              <text x="312" y="173" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" font-weight="600">isotérmica</text>
+              <text x="312" y="182" font-family="JetBrains Mono" font-size="7.5" fill="#2d4f72">T=cte</text>
+              <!-- adiabatic: steeper hyperbola -->
+              <path d="M100,90 C115,104 148,130 185,158 C215,180 250,192 295,200" fill="none" stroke="#8a4a5a" stroke-width="2" stroke-dasharray="3 3"/>
+              <text x="295" y="198" font-family="Inter Tight" font-size="8.5" fill="#8a4a5a" font-weight="600">adiabática</text>
+              <text x="295" y="208" font-family="JetBrains Mono" font-size="7.5" fill="#8a4a5a">Q=0</text>
+              <!-- 1er principio box -->
+              <rect x="35" y="208" width="295" height="18" rx="4" fill="rgba(232,238,242,.8)" stroke="#7fa3c9" stroke-width="1"/>
+              <text x="182" y="220" font-family="Fraunces" font-style="italic" font-size="10" fill="#2d4f72" text-anchor="middle">1er Principio: Q &minus; W = &Delta;U &nbsp;·&nbsp; W = área bajo la curva</text>
+            </svg>
+          </div>
+          <div class="r-note">La <span style="color:var(--demo-accent);font-weight:600;">adiabática cae más rápido</span> que la isotérmica porque al expandir sin calor, la T baja → menor P.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 9 <span class="dot"></span> Termodinámica</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">66</span></span>
+    <div class="back-grid">
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            <b>Trabajo externo general:</b> <span class="eq">dW = P·dV &nbsp;&rarr;&nbsp; W = ∫P·dV</span> (área bajo curva P-V)<br><br>
+            <b>① Isócora (V=cte, dV=0):</b><br>
+            <span class="eq">W = 0 &nbsp;&rarr;&nbsp; Q = ΔU</span> &nbsp;·&nbsp; ley Gay-Lussac 2ª<br><br>
+            <b>② Isobárica (P=cte):</b><br>
+            <span class="eq">W = P(V₂&minus;V₁) = PΔV &nbsp;&rarr;&nbsp; ΔU = Q&minus;PΔV</span><br>
+            ley Gay-Lussac 1ª<br><br>
+            <b>③ Isotérmica (T=cte):</b><br>
+            <span class="eq">W = P₁V₁·ln(V₂/V₁) &nbsp;&rarr;&nbsp; ΔU = 0 &nbsp;&rarr;&nbsp; Q = W</span><br>
+            ley Boyle-Mariotte<br><br>
+            <div class="formula-final-wrap"><span class="formula-final">Q &minus; W = &Delta;U &nbsp;(siempre)</span></div>
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.5rem;">
+          <div class="unit-text">
+            <b>[Q]=[W]=[ΔU]</b>=J &nbsp;·&nbsp; Q&gt;0 entra, W&gt;0 sale<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">ΔU solo depende de estados inicial y final (función de estado)</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.5rem;">
+        <div class="back-diag" style="height:190px;flex:0 0 auto;">
+          <svg viewBox="0 0 330 178" xmlns="http://www.w3.org/2000/svg">
+            <!-- Summary table -->
+            <rect x="12" y="5" width="308" height="168" rx="6" fill="rgba(250,246,236,.85)" stroke="#d9d0bb" stroke-width="1"/>
+            <text x="166" y="20" font-family="Inter Tight" font-size="9" fill="#54514a" text-anchor="middle" font-weight="600">Aplicación del 1er Principio a cada transformación</text>
+            <line x1="12" y1="25" x2="320" y2="25" stroke="#d9d0bb" stroke-width="1"/>
+            <!-- headers -->
+            <text x="62" y="38" font-family="Inter Tight" font-size="7.5" fill="#54514a" text-anchor="middle" font-weight="600">Transf.</text>
+            <text x="130" y="38" font-family="Inter Tight" font-size="7.5" fill="#54514a" text-anchor="middle" font-weight="600">W</text>
+            <text x="200" y="38" font-family="Inter Tight" font-size="7.5" fill="#54514a" text-anchor="middle" font-weight="600">ΔU</text>
+            <text x="275" y="38" font-family="Inter Tight" font-size="7.5" fill="#54514a" text-anchor="middle" font-weight="600">Q</text>
+            <line x1="12" y1="42" x2="320" y2="42" stroke="#d9d0bb" stroke-width="1"/>
+            <!-- isochoric row -->
+            <text x="62" y="57" font-family="Inter Tight" font-size="8" fill="#8b6f3f" text-anchor="middle">Isócora (V=cte)</text>
+            <text x="130" y="57" font-family="Fraunces" font-style="italic" font-size="9" fill="#8b6f3f" text-anchor="middle">0</text>
+            <text x="200" y="57" font-family="Fraunces" font-style="italic" font-size="9" fill="#8b6f3f" text-anchor="middle">Q</text>
+            <text x="275" y="57" font-family="Fraunces" font-style="italic" font-size="9" fill="#8b6f3f" text-anchor="middle">ΔU</text>
+            <line x1="12" y1="63" x2="320" y2="63" stroke="#d9d0bb" stroke-width=".7"/>
+            <!-- isobaric row -->
+            <text x="62" y="78" font-family="Inter Tight" font-size="8" fill="#3d5e44" text-anchor="middle">Isobárica (P=cte)</text>
+            <text x="130" y="78" font-family="Fraunces" font-style="italic" font-size="8" fill="#3d5e44" text-anchor="middle">PΔV</text>
+            <text x="200" y="78" font-family="Fraunces" font-style="italic" font-size="8" fill="#3d5e44" text-anchor="middle">Q&minus;PΔV</text>
+            <text x="275" y="78" font-family="Fraunces" font-style="italic" font-size="8" fill="#3d5e44" text-anchor="middle">ΔU+PΔV</text>
+            <line x1="12" y1="84" x2="320" y2="84" stroke="#d9d0bb" stroke-width=".7"/>
+            <!-- isothermal row -->
+            <text x="62" y="99" font-family="Inter Tight" font-size="8" fill="#2d4f72" text-anchor="middle">Isotérmica (T=cte)</text>
+            <text x="130" y="99" font-family="Fraunces" font-style="italic" font-size="7.5" fill="#2d4f72" text-anchor="middle">P₁V₁ln(V₂/V₁)</text>
+            <text x="200" y="99" font-family="Fraunces" font-style="italic" font-size="9" fill="#2d4f72" text-anchor="middle">0</text>
+            <text x="275" y="99" font-family="Fraunces" font-style="italic" font-size="9" fill="#2d4f72" text-anchor="middle">W</text>
+            <line x1="12" y1="105" x2="320" y2="105" stroke="#d9d0bb" stroke-width=".7"/>
+            <!-- adiabatic row -->
+            <text x="62" y="120" font-family="Inter Tight" font-size="8" fill="#8a4a5a" text-anchor="middle">Adiabática (Q=0)</text>
+            <text x="130" y="120" font-family="Fraunces" font-style="italic" font-size="9" fill="#8a4a5a" text-anchor="middle">&minus;ΔU</text>
+            <text x="200" y="120" font-family="Fraunces" font-style="italic" font-size="9" fill="#8a4a5a" text-anchor="middle">&minus;W</text>
+            <text x="275" y="120" font-family="Fraunces" font-style="italic" font-size="9" fill="#8a4a5a" text-anchor="middle">0</text>
+            <line x1="12" y1="126" x2="320" y2="126" stroke="#d9d0bb" stroke-width="1"/>
+            <text x="166" y="143" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a" text-anchor="middle">Q &minus; W = &Delta;U &nbsp;(en todos los casos)</text>
+            <text x="166" y="158" font-family="Inter Tight" font-size="8" fill="#8b877e" text-anchor="middle">W = área bajo la curva en el diagrama P-V</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            <b>Gas isobárico: P=2×10⁵ Pa, V₁=1 L → V₂=3 L, Q=500 J:</b><br>
+            <span class="eq">W = P·ΔV = 2×10⁵×0.002 =</span> <span class="answer">400 J</span><br>
+            <span class="eq">ΔU = Q&minus;W = 500&minus;400 =</span> <span class="answer">100 J</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-66 -->
+
 </div><!-- scene -->
 </div><!-- scene-wrap -->
 
 <!-- ── GALLERY NAV ── -->
 <nav class="gallery-nav">
   <div class="chapter-tabs" id="chapter-tabs">
-    <button class="chapter-tab active" data-chapter="all" onclick="filterChapter(this,'all')">Todas (63)</button>
+    <button class="chapter-tab active" data-chapter="all" onclick="filterChapter(this,'all')">Todas (66)</button>
     <button class="chapter-tab" data-chapter="cap2" onclick="filterChapter(this,'cap2')">Cap 2 · Estática (4)</button>
     <button class="chapter-tab" data-chapter="cap3" onclick="filterChapter(this,'cap3')">Cap 3 · Cinemática (8)</button>
     <button class="chapter-tab" data-chapter="cap4" onclick="filterChapter(this,'cap4')">Cap 4 · Dinámica (28)</button>
@@ -9814,6 +10269,7 @@
     <button class="chapter-tab" data-chapter="cap6" onclick="filterChapter(this,'cap6')">Cap 6 · Gravitación (5)</button>
     <button class="chapter-tab" data-chapter="cap7" onclick="filterChapter(this,'cap7')">Cap 7 · Elasticidad (1)</button>
     <button class="chapter-tab" data-chapter="cap8" onclick="filterChapter(this,'cap8')">Cap 8 · Fluidos (13)</button>
+    <button class="chapter-tab" data-chapter="cap9" onclick="filterChapter(this,'cap9')">Cap 9 · Termodinámica (3)</button>
   </div>
   <div class="thumb-strip-wrap">
     <div class="thumb-strip" id="thumb-strip"></div>
@@ -9893,6 +10349,9 @@
     { id:61, title:'Tubo de Pitot',                            chapter:'cap8' },
     { id:62, title:'Teorema de Torricelli',                    chapter:'cap8' },
     { id:63, title:'Viscosidad y Ley de Stokes',               chapter:'cap8' },
+    { id:64, title:'Ley de Boyle-Mariotte',                    chapter:'cap9' },
+    { id:65, title:'Leyes de Gay-Lussac',                      chapter:'cap9' },
+    { id:66, title:'Transformaciones y 1er Principio',         chapter:'cap9' },
   ];
 
   var filtered = allCards.slice();
