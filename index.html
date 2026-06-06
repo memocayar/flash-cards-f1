@@ -6466,16 +6466,614 @@
   </div>
 </div>
 </div><!-- card-40 -->
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 41 — Ecuaciones y gráficos del M.A.S
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-41">
+<div class="flipper" onclick="flipCard(this)">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 5 <span class="dot"></span> M.A.S</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">41</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Ecuaciones del <em>M.A.S</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              Movimiento oscilatorio bajo una <b>fuerza restauradora</b> proporcional al desplazamiento: <span style="font-family:'JetBrains Mono',monospace;font-size:.82rem;">Fx = &minus;k&middot;x</span>. Característica definitoria: <b>la aceleración es proporcional al desplazamiento y de sentido contrario</b>.
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div class="formula-main">x(t) = A&middot;cos(&omega;t + &delta;)</div>
+            <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">&omega; = &radic;(k/m) &nbsp;&middot;&nbsp; T = 2&pi;&radic;(m/k) &nbsp;&middot;&nbsp; f = 1/T</span></div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>&delta; = 0</b><span class="eq">x(0) = A &nbsp;&nbsp;(parte del máximo)</span></div>
+            <div class="case-pill"><b>v<sub>máx</sub> = &omega;A</b><span class="eq">cuando x = 0</span></div>
+            <div class="case-pill"><b>a<sub>máx</sub> = &omega;&sup2;A</b><span class="eq">cuando x = &plusmn;A</span></div>
+            <div class="case-pill"><b>A: amplitud</b> desplazamiento máximo respecto al equilibrio. No afecta T.</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 350 225" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c41f-ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
+                <marker id="c41f-aF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+              </defs>
+              <!-- wall -->
+              <rect x="10" y="55" width="12" height="100" fill="#8b877e"/>
+              <g stroke="#54514a" stroke-width=".8"><line x1="10" y1="62" x2="2" y2="70"/><line x1="10" y1="77" x2="2" y2="85"/><line x1="10" y1="92" x2="2" y2="100"/><line x1="10" y1="107" x2="2" y2="115"/><line x1="10" y1="122" x2="2" y2="130"/><line x1="10" y1="137" x2="2" y2="145"/></g>
+              <!-- spring zigzag -->
+              <polyline points="22,108 34,108 41,93 55,123 69,93 83,123 97,93 111,123 125,93 132,108 148,108" fill="none" stroke="#8b6f3f" stroke-width="2"/>
+              <!-- equilibrium dashed line -->
+              <line x1="183" y1="48" x2="183" y2="180" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="4 3"/>
+              <text x="183" y="43" font-family="Inter Tight" font-size="9" fill="#8b877e" text-anchor="middle">x = 0</text>
+              <!-- mass block -->
+              <rect x="148" y="83" width="70" height="50" rx="5" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.5"/>
+              <text x="183" y="112" font-family="Fraunces" font-style="italic" font-size="14" fill="#54514a" text-anchor="middle" font-weight="600">m</text>
+              <!-- x displacement arrow -->
+              <line x1="183" y1="155" x2="230" y2="155" stroke="#2d4f72" stroke-width="2" marker-end="url(#c41f-ax)"/>
+              <text x="208" y="170" font-family="Fraunces" font-style="italic" font-size="13" fill="#2d4f72" text-anchor="middle">x</text>
+              <!-- F restoring arrow (pointing left toward equilibrium) -->
+              <line x1="218" y1="108" x2="270" y2="108" stroke="#8a4a5a" stroke-width="2.5" marker-end="url(#c41f-aF)"/>
+              <text x="284" y="104" font-family="Fraunces" font-style="italic" font-size="14" fill="#8a4a5a" font-weight="600">F</text>
+              <text x="257" y="124" font-family="Inter Tight" font-size="9" fill="#8a4a5a">= &minus;kx</text>
+              <!-- ground -->
+              <line x1="30" y1="183" x2="320" y2="183" stroke="#54514a" stroke-width="1.3"/>
+              <g stroke="#54514a" stroke-width=".7"><line x1="45" y1="183" x2="39" y2="191"/><line x1="65" y1="183" x2="59" y2="191"/><line x1="85" y1="183" x2="79" y2="191"/><line x1="105" y1="183" x2="99" y2="191"/><line x1="125" y1="183" x2="119" y2="191"/><line x1="145" y1="183" x2="139" y2="191"/><line x1="165" y1="183" x2="159" y2="191"/><line x1="185" y1="183" x2="179" y2="191"/><line x1="205" y1="183" x2="199" y2="191"/><line x1="225" y1="183" x2="219" y2="191"/><line x1="245" y1="183" x2="239" y2="191"/><line x1="265" y1="183" x2="259" y2="191"/><line x1="285" y1="183" x2="279" y2="191"/><line x1="305" y1="183" x2="299" y2="191"/></g>
+              <!-- legend box -->
+              <rect x="10" y="8" width="270" height="24" rx="4" fill="rgba(250,246,236,.92)" stroke="#d9d0bb" stroke-width="1"/>
+              <text x="18" y="23" font-family="Inter Tight" font-size="9" fill="#8b6f3f" font-weight="600">resorte k</text>
+              <text x="73" y="23" font-family="Inter Tight" font-size="9" fill="#54514a">&middot;</text>
+              <text x="80" y="23" font-family="Inter Tight" font-size="9" fill="#2d4f72" font-weight="600">desplazamiento x</text>
+              <text x="178" y="23" font-family="Inter Tight" font-size="9" fill="#54514a">&middot;</text>
+              <text x="185" y="23" font-family="Inter Tight" font-size="9" fill="#8a4a5a" font-weight="600">F restauradora</text>
+            </svg>
+          </div>
+          <div class="r-note">La fuerza restauradora <span style="color:var(--formula-accent); font-weight:600;">siempre apunta hacia el equilibrio</span> — de ahí el signo (−).</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 5 <span class="dot"></span> M.A.S</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">41</span></span>
+    <div class="back-grid">
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            De <b>F = ma</b> y <b>F = &minus;kx</b>:<br><br>
+            <span class="eq">m&middot;d&sup2;x/dt&sup2; = &minus;kx</span><br><br>
+            <span class="eq">d&sup2;x/dt&sup2; = &minus;(k/m)&middot;x</span><br><br>
+            EC diferencial de 2° orden. Solución (sen y cos tienen 2ª derivada proporcional a la función con signo &minus;):<br><br>
+            <span class="eq">x(t) = A&middot;cos(&omega;t + &delta;)</span><br><br>
+            Sustituyendo en la EC: <span class="eq">&minus;A&omega;&sup2;cos(...)=&minus;(k/m)A&middot;cos(...)</span><br><br>
+            <div class="formula-final-wrap"><span class="formula-final">&omega;&sup2; = k/m &nbsp;&rarr;&nbsp; &omega; = &radic;(k/m)</span></div>
+            Derivando: <b>v(t)=&minus;&omega;A&middot;sen(&omega;t+&delta;)</b> &nbsp;&middot;&nbsp; <b>a(t)=&minus;&omega;&sup2;A&middot;cos(&omega;t+&delta;)</b>
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.5rem;">
+          <div class="unit-text">
+            <b>[x]</b>=m &nbsp;&middot;&nbsp; <b>[&omega;]</b>=rad/s &nbsp;&middot;&nbsp; <b>[T]</b>=s &nbsp;&middot;&nbsp; <b>[A]</b>=m &nbsp;&middot;&nbsp; <b>[k]</b>=N/m<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">T = 2&pi;&radic;(m/k) &nbsp;&nbsp;&nbsp; f = (1/2&pi;)&radic;(k/m)</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.5rem;">
+        <div class="back-diag" style="height:205px;flex:0 0 auto;">
+          <svg viewBox="0 0 340 192" xmlns="http://www.w3.org/2000/svg">
+            <!-- axes -->
+            <line x1="28" y1="8" x2="28" y2="178" stroke="#54514a" stroke-width="1.2"/>
+            <line x1="22" y1="96" x2="332" y2="96" stroke="#54514a" stroke-width="1.2"/>
+            <text x="329" y="92" font-family="Fraunces" font-style="italic" font-size="11" fill="#54514a">t</text>
+            <!-- period markers T, 2T -->
+            <line x1="188" y1="92" x2="188" y2="100" stroke="#8b877e" stroke-width="1"/>
+            <text x="188" y="112" font-family="JetBrains Mono" font-size="8" fill="#8b877e" text-anchor="middle">T</text>
+            <line x1="108" y1="93" x2="108" y2="99" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="2 2"/>
+            <text x="108" y="112" font-family="JetBrains Mono" font-size="8" fill="#d9d0bb" text-anchor="middle">T/2</text>
+            <!-- x(t) = cos: +A, 0, -A, 0, +A  period=160px -->
+            <path d="M28,36 C48,36 88,96 108,96 C128,96 168,156 188,156 C208,156 248,96 268,96 C288,96 320,40 332,36" fill="none" stroke="#2d4f72" stroke-width="2.2"/>
+            <!-- v(t) = -sin: 0, -vmax, 0, +vmax, 0  (shifted 90° from x) -->
+            <path d="M28,96 C48,96 88,156 108,156 C128,156 168,96 188,96 C208,96 248,36 268,36 C288,36 320,90 332,96" fill="none" stroke="#3a7d44" stroke-width="1.8" stroke-dasharray="6 3"/>
+            <!-- a(t) = -cos: -A, 0, +A, 0, -A  (opposite of x) -->
+            <path d="M28,156 C48,156 88,96 108,96 C128,96 168,36 188,36 C208,36 248,96 268,96 C288,96 320,152 332,156" fill="none" stroke="#8a4a5a" stroke-width="1.8" stroke-dasharray="3 3"/>
+            <!-- y labels -->
+            <text x="22" y="39" font-family="JetBrains Mono" font-size="8" fill="#2d4f72" text-anchor="end">+A</text>
+            <text x="22" y="159" font-family="JetBrains Mono" font-size="8" fill="#2d4f72" text-anchor="end">&minus;A</text>
+            <!-- legend -->
+            <line x1="32" y1="183" x2="52" y2="183" stroke="#2d4f72" stroke-width="2.2"/>
+            <text x="55" y="186" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#2d4f72">x(t)</text>
+            <line x1="90" y1="183" x2="110" y2="183" stroke="#3a7d44" stroke-width="1.8" stroke-dasharray="6 3"/>
+            <text x="113" y="186" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#3a7d44">v(t)</text>
+            <line x1="148" y1="183" x2="168" y2="183" stroke="#8a4a5a" stroke-width="1.8" stroke-dasharray="3 3"/>
+            <text x="171" y="186" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#8a4a5a">a(t)</text>
+            <text x="220" y="186" font-family="Inter Tight" font-size="8" fill="#8b877e">x y a en fase &mdash; v desfasada 90°</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            <b>m = 0.5 kg, k = 8 N/m, A = 0.1 m, &delta; = 0</b><br>
+            <span class="eq">&omega; = &radic;(8/0.5) = &radic;16 =</span> <span class="answer">4 rad/s</span><br>
+            <span class="eq">T = 2&pi;/4 =</span> <span class="answer">1.57 s</span><br>
+            <span class="eq">v<sub>máx</sub> = 4&times;0.1 =</span> <span class="answer">0.4 m/s</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-41 -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 42 — Fuerza y Energía en el M.A.S
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-42">
+<div class="flipper" onclick="flipCard(this)">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 5 <span class="dot"></span> M.A.S</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">42</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Energía en el <em>M.A.S</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              La fuerza restauradora <span style="font-family:'JetBrains Mono',monospace;font-size:.82rem;">F=&minus;kx</span> es <b>conservativa</b> &rarr; la energía mecánica total <b>E = K + U se conserva</b> en el tiempo. El oscilador armónico simple es un sistema conservativo.
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div class="formula-main">E = &frac12;kA&sup2; = &frac12;m&omega;&sup2;A&sup2; = cte</div>
+            <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">U = &frac12;kx&sup2; &nbsp;&middot;&nbsp; K = &frac12;mv&sup2; &nbsp;&middot;&nbsp; E = K + U</span></div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>x = &plusmn;A</b><span class="eq">K = 0 &nbsp;&middot;&nbsp; U = U<sub>máx</sub> = &frac12;kA&sup2;</span></div>
+            <div class="case-pill"><b>x = 0</b><span class="eq">U = 0 &nbsp;&middot;&nbsp; K = K<sub>máx</sub> = &frac12;kA&sup2;</span></div>
+            <div class="case-pill"><b>U<sub>máx</sub> = K<sub>máx</sub></b> ya que &omega;&sup2;=k/m &rarr; &frac12;m&omega;&sup2;A&sup2; = &frac12;kA&sup2;</div>
+            <div class="case-pill"><b>v en función de x:</b><span class="eq">v = &omega;&radic;(A&sup2;&minus;x&sup2;)</span></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <!-- U(x) parabola with E line and K region -->
+            <svg viewBox="0 0 340 215" xmlns="http://www.w3.org/2000/svg">
+              <!-- background K region (shaded between E line and parabola) -->
+              <path d="M90,42 C90,198 250,198 250,42 Z" fill="rgba(45,79,114,.10)"/>
+              <!-- E horizontal line -->
+              <line x1="60" y1="42" x2="300" y2="42" stroke="#2d4f72" stroke-width="1.5" stroke-dasharray="5 3"/>
+              <text x="305" y="46" font-family="Fraunces" font-style="italic" font-size="13" fill="#2d4f72" font-weight="600">E</text>
+              <!-- U parabola: from (90,42) through (170,162) to (250,42) -->
+              <path d="M90,42 C90,198 250,198 250,42" fill="none" stroke="#8b6f3f" stroke-width="2.2"/>
+              <!-- axes -->
+              <line x1="170" y1="15" x2="170" y2="190" stroke="#54514a" stroke-width="1.2"/>
+              <line x1="30" y1="175" x2="315" y2="175" stroke="#54514a" stroke-width="1.2"/>
+              <!-- axis labels -->
+              <text x="318" y="178" font-family="Fraunces" font-style="italic" font-size="11" fill="#54514a">x</text>
+              <text x="162" y="12" font-family="Inter Tight" font-size="9" fill="#54514a">Energía</text>
+              <!-- ±A labels -->
+              <line x1="90" y1="171" x2="90" y2="179" stroke="#54514a" stroke-width="1.2"/>
+              <text x="90" y="192" font-family="Fraunces" font-style="italic" font-size="11" fill="#54514a" text-anchor="middle">&minus;A</text>
+              <line x1="250" y1="171" x2="250" y2="179" stroke="#54514a" stroke-width="1.2"/>
+              <text x="250" y="192" font-family="Fraunces" font-style="italic" font-size="11" fill="#54514a" text-anchor="middle">A</text>
+              <!-- labels for U and K -->
+              <text x="58" y="38" font-family="Fraunces" font-style="italic" font-size="11" fill="#8b6f3f" font-weight="600">U</text>
+              <text x="68" y="38" font-family="Inter Tight" font-size="9" fill="#8b6f3f">= &frac12;kx&sup2;</text>
+              <text x="178" y="105" font-family="Fraunces" font-style="italic" font-size="11" fill="#2d4f72" font-weight="600">K</text>
+              <!-- x markers at A/2 positions -->
+              <line x1="170" y1="56" x2="162" y2="56" stroke="#2d4f72" stroke-width=".8"/>
+              <text x="158" y="59" font-family="Inter Tight" font-size="8" fill="#2d4f72" text-anchor="end">E</text>
+            </svg>
+          </div>
+          <div class="r-note">La región <span style="color:var(--formula-accent); font-weight:600;">azul</span> entre E y U es la <span style="color:var(--formula-accent); font-weight:600;">energía cinética K</span> — máxima en el equilibrio, nula en los extremos.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 5 <span class="dot"></span> M.A.S</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">42</span></span>
+    <div class="back-grid">
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            <b>Energía potencial</b> (resorte conservativo):<br>
+            <span class="eq">U = &frac12;kx&sup2; = &frac12;kA&sup2;cos&sup2;(&omega;t+&delta;)</span><br><br>
+            <b>Energía cinética</b>:<br>
+            <span class="eq">K = &frac12;mv&sup2; = &frac12;m&omega;&sup2;A&sup2;sen&sup2;(&omega;t+&delta;)</span><br><br>
+            Como &omega;&sup2; = k/m:<br>
+            <span class="eq">K<sub>máx</sub> = &frac12;m&omega;&sup2;A&sup2; = &frac12;kA&sup2; = U<sub>máx</sub></span><br><br>
+            <b>Energía mecánica total</b> (identidad pitagórica sen&sup2;+cos&sup2;=1):<br>
+            <span class="eq">E = K+U = &frac12;kA&sup2;(sen&sup2;+cos&sup2;) = &frac12;kA&sup2;</span><br><br>
+            <div class="formula-final-wrap"><span class="formula-final">E = &frac12;kA&sup2; = cte</span></div>
+            El MAS es <b>conservativo</b>: E no depende del tiempo.
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.5rem;">
+          <div class="unit-text">
+            <b>[E] = [K] = [U]</b> = J &nbsp;&middot;&nbsp; <b>[k]</b> = N/m &nbsp;&middot;&nbsp; <b>[A]</b> = m<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">v = &omega;&radic;(A&sup2;&minus;x&sup2;) &nbsp;&nbsp; (velocidad en función de posición)</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.5rem;">
+        <div class="back-diag" style="height:185px;flex:0 0 auto;">
+          <!-- Bar chart: K and U at x=-A, x=-A/2, x=0, x=+A/2, x=+A -->
+          <svg viewBox="0 0 340 175" xmlns="http://www.w3.org/2000/svg">
+            <!-- axis -->
+            <line x1="20" y1="140" x2="320" y2="140" stroke="#54514a" stroke-width="1.2"/>
+            <!-- position labels -->
+            <text x="50" y="156" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a" text-anchor="middle">&minus;A</text>
+            <text x="110" y="156" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">&minus;A/2</text>
+            <text x="170" y="156" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a" text-anchor="middle">0</text>
+            <text x="230" y="156" font-family="Fraunces" font-style="italic" font-size="9" fill="#54514a" text-anchor="middle">A/2</text>
+            <text x="290" y="156" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a" text-anchor="middle">A</text>
+            <!-- x=-A: K=0, U=E=100 -->
+            <rect x="38" y="40" width="14" height="100" rx="2" fill="rgba(45,79,114,.25)" stroke="#2d4f72" stroke-width="1"/>
+            <text x="45" y="37" font-family="JetBrains Mono" font-size="7" fill="#2d4f72" text-anchor="middle">E</text>
+            <!-- x=-A/2: K=75, U=25 -->
+            <rect x="98" y="115" width="14" height="25" rx="2" fill="rgba(45,79,114,.25)" stroke="#2d4f72" stroke-width="1"/>
+            <rect x="115" y="65" width="14" height="75" rx="2" fill="rgba(139,111,63,.25)" stroke="#8b6f3f" stroke-width="1"/>
+            <!-- x=0: K=E=100, U=0 -->
+            <rect x="163" y="40" width="14" height="100" rx="2" fill="rgba(61,94,68,.25)" stroke="#3d5e44" stroke-width="1"/>
+            <text x="170" y="37" font-family="JetBrains Mono" font-size="7" fill="#3d5e44" text-anchor="middle">K</text>
+            <!-- x=+A/2: K=75, U=25 -->
+            <rect x="218" y="115" width="14" height="25" rx="2" fill="rgba(45,79,114,.25)" stroke="#2d4f72" stroke-width="1"/>
+            <rect x="235" y="65" width="14" height="75" rx="2" fill="rgba(139,111,63,.25)" stroke="#8b6f3f" stroke-width="1"/>
+            <!-- x=+A: K=0, U=E=100 -->
+            <rect x="278" y="40" width="14" height="100" rx="2" fill="rgba(45,79,114,.25)" stroke="#2d4f72" stroke-width="1"/>
+            <!-- legend -->
+            <rect x="25" y="165" width="10" height="8" rx="1" fill="rgba(61,94,68,.25)" stroke="#3d5e44" stroke-width="1"/>
+            <text x="38" y="172" font-family="Inter Tight" font-size="8.5" fill="#3d5e44">K</text>
+            <rect x="60" y="165" width="10" height="8" rx="1" fill="rgba(139,111,63,.25)" stroke="#8b6f3f" stroke-width="1"/>
+            <text x="73" y="172" font-family="Inter Tight" font-size="8.5" fill="#8b6f3f">U</text>
+            <rect x="95" y="165" width="10" height="8" rx="1" fill="rgba(45,79,114,.25)" stroke="#2d4f72" stroke-width="1"/>
+            <text x="108" y="172" font-family="Inter Tight" font-size="8.5" fill="#2d4f72">E = K+U = cte</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            <b>k = 8 N/m, A = 0.1 m</b><br>
+            <span class="eq">E = &frac12;&times;8&times;0.01 =</span> <span class="answer">0.04 J</span><br>
+            En x=0.05 m: <span class="eq">U = &frac12;&times;8&times;0.0025 = 0.01 J</span><br>
+            <span class="eq">K = E&minus;U =</span> <span class="answer">0.03 J</span> &nbsp; <span class="eq">v = &radic;(2K/m) = 0.35 m/s</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-42 -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 43 — Péndulo simple
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-43">
+<div class="flipper" onclick="flipCard(this)">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 5 <span class="dot"></span> M.A.S</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">43</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Péndulo <em>simple</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              Masa puntual <b>m</b> suspendida de un hilo inextensible de longitud <b>L</b> que oscila bajo la gravedad. Para <b>amplitudes pequeñas</b> (sen&theta; &asymp; &theta;) se comporta como MAS con <span style="font-family:'JetBrains Mono',monospace;font-size:.8rem;">k<sub>ef</sub> = mg/L</span>.
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div class="formula-main">T = 2&pi;&radic;(L/g)</div>
+            <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">&omega; = &radic;(g/L) &nbsp;&middot;&nbsp; f = (1/2&pi;)&radic;(g/L)</span></div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>T no depende de m</b> ni de la amplitud (ángulo pequeño)</div>
+            <div class="case-pill"><b>L &uarr; &rarr; T &uarr;</b><span class="eq">péndulo más largo oscila más lento</span></div>
+            <div class="case-pill"><b>g &uarr; &rarr; T &darr;</b><span class="eq">en la Luna g&darr; &rarr; T&uarr;</span></div>
+            <div class="case-pill"><b>Condición:</b><span class="eq">&theta; &lt; 10° &nbsp;(pequeña amplitud)</span></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 330 230" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c43f-aT" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
+                <marker id="c43f-amg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8b6f3f"/></marker>
+                <marker id="c43f-aF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+              </defs>
+              <!-- ceiling -->
+              <rect x="130" y="10" width="70" height="10" fill="#8b877e"/>
+              <g stroke="#54514a" stroke-width=".8"><line x1="135" y1="10" x2="129" y2="18"/><line x1="148" y1="10" x2="142" y2="18"/><line x1="161" y1="10" x2="155" y2="18"/><line x1="174" y1="10" x2="168" y2="18"/><line x1="187" y1="10" x2="181" y2="18"/><line x1="196" y1="10" x2="190" y2="18"/></g>
+              <!-- pivot point -->
+              <circle cx="165" cy="20" r="4" fill="#54514a"/>
+              <!-- pendulum at angle theta (string to ~165+45=210, 20+130=150 = approx 18°) -->
+              <line x1="165" y1="20" x2="210" y2="150" stroke="#54514a" stroke-width="1.8"/>
+              <!-- angle arc and theta label -->
+              <path d="M165,50 A32,32 0 0,1 184,43" fill="none" stroke="#8b877e" stroke-width="1.2"/>
+              <text x="186" y="42" font-family="Fraunces" font-style="italic" font-size="13" fill="#8b877e">&theta;</text>
+              <!-- vertical dashed -->
+              <line x1="165" y1="20" x2="165" y2="185" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="4 3"/>
+              <!-- L label -->
+              <text x="178" y="90" font-family="Fraunces" font-style="italic" font-size="14" fill="#54514a" font-weight="600">L</text>
+              <!-- mass -->
+              <circle cx="210" cy="150" r="14" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.5"/>
+              <text x="210" y="154" font-family="Fraunces" font-style="italic" font-size="11" fill="#54514a" text-anchor="middle" font-weight="600">m</text>
+              <!-- T (tension) arrow along string direction -->
+              <line x1="210" y1="136" x2="186" y2="58" stroke="#2d4f72" stroke-width="2" marker-end="url(#c43f-aT)"/>
+              <text x="180" y="52" font-family="Fraunces" font-style="italic" font-size="13" fill="#2d4f72" font-weight="600">T</text>
+              <!-- mg vertical -->
+              <line x1="210" y1="164" x2="210" y2="205" stroke="#8b6f3f" stroke-width="2" marker-end="url(#c43f-amg)"/>
+              <text x="218" y="208" font-family="Inter Tight" font-size="10" fill="#8b6f3f" font-weight="500">mg</text>
+              <!-- mg·senθ tangential (restoring) -->
+              <line x1="210" y1="150" x2="175" y2="178" stroke="#8a4a5a" stroke-width="2" marker-end="url(#c43f-aF)"/>
+              <text x="155" y="193" font-family="Inter Tight" font-size="9" fill="#8a4a5a">mg·sen&theta;</text>
+              <!-- x displacement label -->
+              <line x1="165" y1="170" x2="210" y2="170" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="3 2"/>
+              <text x="187" y="182" font-family="Fraunces" font-style="italic" font-size="10" fill="#8b877e" text-anchor="middle">x</text>
+            </svg>
+          </div>
+          <div class="r-note">La fuerza restauradora es <span style="color:var(--demo-accent); font-weight:600;">mg·sen&theta; &asymp; (mg/L)·x</span> — idéntica en forma a F=&minus;kx con k<sub>ef</sub>=mg/L.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 5 <span class="dot"></span> M.A.S</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">43</span></span>
+    <div class="back-grid">
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            Componente tangencial del peso (fuerza restauradora):<br>
+            <span class="eq">F&theta; = &minus;mg&middot;sen&theta;</span><br><br>
+            Aproximación de ángulo pequeño (<b>sen&theta; &asymp; &theta; = x/L</b>):<br>
+            <span class="eq">F&theta; = &minus;mg&middot;&theta; = &minus;mg(x/L) = &minus;(mg/L)&middot;x</span><br><br>
+            Tiene forma de Ley de Hooke con <span class="eq">k<sub>ef</sub> = mg/L</span>.<br><br>
+            Usando <span class="eq">&omega; = &radic;(k<sub>ef</sub>/m)</span>:<br>
+            <span class="eq">&omega; = &radic;(mg/L / m) = &radic;(g/L)</span><br><br>
+            <div class="formula-final-wrap"><span class="formula-final">T = 2&pi;/&omega; = 2&pi;&radic;(L/g)</span></div>
+            <b>T es independiente de m y de A</b> (amplitud pequeña).
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.5rem;">
+          <div class="unit-text">
+            <b>[T]</b> = s &nbsp;&middot;&nbsp; <b>[L]</b> = m &nbsp;&middot;&nbsp; <b>[g]</b> = m/s&sup2;<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">g = 9.8 m/s&sup2; (Tierra) &nbsp; g = 1.62 m/s&sup2; (Luna)</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.5rem;">
+        <div class="back-diag" style="height:175px;flex:0 0 auto;">
+          <svg viewBox="0 0 330 162" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="c43b-ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
+              <marker id="c43b-aF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+              <marker id="c43b-amg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8b6f3f"/></marker>
+            </defs>
+            <!-- pivot -->
+            <circle cx="80" cy="15" r="3" fill="#54514a"/>
+            <!-- string -->
+            <line x1="80" y1="15" x2="130" y2="115" stroke="#54514a" stroke-width="1.5"/>
+            <!-- vertical -->
+            <line x1="80" y1="15" x2="80" y2="130" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="3 2"/>
+            <!-- theta arc -->
+            <path d="M80,38 A24,24 0 0,1 98,30" fill="none" stroke="#8b877e" stroke-width="1"/>
+            <text x="100" y="30" font-family="Fraunces" font-style="italic" font-size="11" fill="#8b877e">&theta;</text>
+            <!-- mass -->
+            <circle cx="130" cy="115" r="11" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.3"/>
+            <!-- mg down -->
+            <line x1="130" y1="126" x2="130" y2="152" stroke="#8b6f3f" stroke-width="1.8" marker-end="url(#c43b-amg)"/>
+            <text x="135" y="153" font-family="Inter Tight" font-size="9" fill="#8b6f3f">mg</text>
+            <!-- mg·senθ tangential -->
+            <line x1="130" y1="115" x2="100" y2="137" stroke="#8a4a5a" stroke-width="1.8" marker-end="url(#c43b-aF)"/>
+            <text x="60" y="148" font-family="Inter Tight" font-size="8" fill="#8a4a5a">mg·sen&theta;</text>
+            <!-- derivation box -->
+            <rect x="165" y="12" width="155" height="138" rx="7" fill="rgba(237,229,232,.5)" stroke="#c89aa8" stroke-width="1"/>
+            <text x="242" y="30" font-family="Fraunces" font-style="italic" font-size="10" fill="#8a4a5a" text-anchor="middle">Demostración clave</text>
+            <line x1="173" y1="35" x2="312" y2="35" stroke="#c89aa8" stroke-width=".7"/>
+            <text x="172" y="52" font-family="Fraunces" font-style="italic" font-size="10" fill="#8a4a5a">F&theta; = &minus;mg&middot;sen&theta;</text>
+            <text x="172" y="70" font-family="Inter Tight" font-size="9" fill="#54514a">aprox. &theta; peq&nbsp;: sen&theta; &asymp; &theta; = x/L</text>
+            <text x="172" y="88" font-family="Fraunces" font-style="italic" font-size="10" fill="#8a4a5a">F&theta; = &minus;(mg/L)&middot;x</text>
+            <text x="172" y="106" font-family="Inter Tight" font-size="9" fill="#54514a">k<sub>ef</sub> = mg/L &nbsp;&rarr;&nbsp; &omega; = &radic;(g/L)</text>
+            <text x="172" y="127" font-family="Fraunces" font-style="italic" font-size="11.5" fill="#3d5e44" font-weight="600">T = 2&pi;&radic;(L/g)</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            <b>L = 1 m, g = 9.8 m/s&sup2;</b><br>
+            <span class="eq">T = 2&pi;&radic;(1/9.8) = 2&pi;&times;0.319 =</span> <span class="answer">2.007 s &asymp; 2 s</span><br>
+            En la Luna (g=1.62): <span class="eq">T = 2&pi;&radic;(1/1.62) =</span> <span class="answer">4.94 s</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-43 -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 44 — Péndulo físico
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-44">
+<div class="flipper" onclick="flipCard(this)">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 5 <span class="dot"></span> M.A.S</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">44</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Péndulo <em>físico</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              Cuerpo rígido de masa <b>m</b> que oscila alrededor de un eje fijo <b>O</b>, a distancia <b>d</b> del centro de masa (cg). Generaliza el péndulo simple a cuerpos extendidos con momento de inercia <b>I</b> respecto a O.
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div class="formula-main">T = 2&pi;&radic;(I / mgd)</div>
+            <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">&omega; = &radic;(mgd/I) &nbsp;&middot;&nbsp; f = (1/2&pi;)&radic;(mgd/I)</span></div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>I = mL&sup2; (masa puntual)</b><span class="eq">T = 2&pi;&radic;(L/g) &nbsp;&larr; pénd. simple</span></div>
+            <div class="case-pill"><b>d &rarr; 0 (eje en cg)</b><span class="eq">T &rarr; &infin; &nbsp;(no oscila)</span></div>
+            <div class="case-pill"><b>I</b> se calcula por Steiner si el eje no pasa por el cg</div>
+            <div class="case-pill"><b>Condición:</b> amplitud pequeña (sen&theta; &asymp; &theta;)</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 330 230" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c44f-amg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8b6f3f"/></marker>
+                <marker id="c44f-aF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+              </defs>
+              <!-- ceiling -->
+              <rect x="120" y="8" width="50" height="10" fill="#8b877e"/>
+              <g stroke="#54514a" stroke-width=".8"><line x1="125" y1="8" x2="119" y2="16"/><line x1="138" y1="8" x2="132" y2="16"/><line x1="151" y1="8" x2="145" y2="16"/><line x1="164" y1="8" x2="158" y2="16"/></g>
+              <!-- pivot O -->
+              <circle cx="145" cy="22" r="5" fill="none" stroke="#54514a" stroke-width="1.8"/>
+              <circle cx="145" cy="22" r="2" fill="#54514a"/>
+              <text x="152" y="20" font-family="Fraunces" font-style="italic" font-size="12" fill="#54514a" font-weight="600">O</text>
+              <!-- vertical reference -->
+              <line x1="145" y1="22" x2="145" y2="200" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="4 3"/>
+              <!-- theta arc -->
+              <path d="M145,50 A30,30 0 0,1 168,44" fill="none" stroke="#8b877e" stroke-width="1.2"/>
+              <text x="170" y="44" font-family="Fraunces" font-style="italic" font-size="13" fill="#8b877e">&theta;</text>
+              <!-- rigid body (irregular shape, rotated ~20°) -->
+              <g transform="rotate(20 145 22)">
+                <path d="M145,30 Q175,45 180,90 Q175,145 155,160 Q130,155 120,120 Q110,80 130,45 Z" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.5" opacity=".9"/>
+                <!-- d line from O to cg -->
+                <line x1="145" y1="30" x2="150" y2="108" stroke="#2d4f72" stroke-width="1.5" stroke-dasharray="4 2"/>
+                <circle cx="150" cy="110" r="5" fill="#3a7d44"/>
+                <text x="158" y="114" font-family="Inter Tight" font-size="9" fill="#3a7d44" font-weight="600">cg</text>
+                <text x="138" y="75" font-family="Fraunces" font-style="italic" font-size="12" fill="#2d4f72" font-weight="600">d</text>
+              </g>
+              <!-- mg at cg (approx position after rotation) -->
+              <line x1="185" y1="138" x2="185" y2="188" stroke="#8b6f3f" stroke-width="2" marker-end="url(#c44f-amg)"/>
+              <text x="192" y="190" font-family="Inter Tight" font-size="10" fill="#8b6f3f" font-weight="500">mg</text>
+              <!-- mg·senθ tangential -->
+              <line x1="185" y1="138" x2="150" y2="163" stroke="#8a4a5a" stroke-width="2" marker-end="url(#c44f-aF)"/>
+              <text x="115" y="170" font-family="Inter Tight" font-size="9" fill="#8a4a5a">mg·sen&theta;</text>
+              <!-- I label -->
+              <text x="30" y="100" font-family="Fraunces" font-style="italic" font-size="11" fill="#54514a">I<sub>O</sub></text>
+              <text x="22" y="116" font-family="Inter Tight" font-size="8" fill="#8b877e">respecto</text>
+              <text x="22" y="127" font-family="Inter Tight" font-size="8" fill="#8b877e">a O</text>
+            </svg>
+          </div>
+          <div class="r-note">Mismo origen que péndulo simple: <span style="color:var(--demo-accent); font-weight:600;">&tau; = &minus;(mgd)&theta;</span>, pero ahora con <span style="color:var(--formula-accent); font-weight:600;">inercia I</span> en vez de mL².</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 5 <span class="dot"></span> M.A.S</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">44</span></span>
+    <div class="back-grid">
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            Torque del peso respecto a O (restaurador):<br>
+            <span class="eq">&tau;<sub>z</sub> = &minus;(mg)(d&middot;sen&theta;)</span><br><br>
+            Aproximación ángulo pequeño (<b>sen&theta; &asymp; &theta;</b>):<br>
+            <span class="eq">&tau;<sub>z</sub> &asymp; &minus;(mgd)&middot;&theta;</span><br><br>
+            2ª ley aplicada a la rotación (<b>&tau; = I&alpha;</b>):<br>
+            <span class="eq">&minus;(mgd)&theta; = I&middot;d&sup2;&theta;/dt&sup2;</span><br><br>
+            <span class="eq">d&sup2;&theta;/dt&sup2; = &minus;(mgd/I)&middot;&theta;</span><br><br>
+            Forma de MAS con <span class="eq">&omega;&sup2; = mgd/I</span>:<br>
+            <div class="formula-final-wrap"><span class="formula-final">T = 2&pi;&radic;(I / mgd)</span></div>
+            Con <b>Steiner</b>: si I<sub>cg</sub> conocido &rarr; <span class="eq">I<sub>O</sub> = I<sub>cg</sub> + md&sup2;</span>
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.5rem;">
+          <div class="unit-text">
+            <b>[I]</b> = kg&middot;m&sup2; &nbsp;&middot;&nbsp; <b>[T]</b> = s &nbsp;&middot;&nbsp; <b>[d]</b> = m &nbsp;&middot;&nbsp; <b>[m]</b> = kg<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">Para varilla en extremo: I = mL&sup2;/3 &nbsp; d = L/2</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.5rem;">
+        <div class="back-diag" style="height:180px;flex:0 0 auto;">
+          <svg viewBox="0 0 330 168" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="c44b-at" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+              <marker id="c44b-amg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8b6f3f"/></marker>
+            </defs>
+            <!-- pivot O -->
+            <circle cx="80" cy="15" r="5" fill="none" stroke="#54514a" stroke-width="1.8"/>
+            <circle cx="80" cy="15" r="2" fill="#54514a"/>
+            <text x="88" y="13" font-family="Fraunces" font-style="italic" font-size="11" fill="#54514a" font-weight="600">O</text>
+            <!-- body -->
+            <path d="M80,20 Q100,30 105,70 Q100,110 85,120 Q65,115 58,80 Q55,45 72,25 Z" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.3"/>
+            <!-- d line to cg -->
+            <line x1="80" y1="20" x2="82" y2="75" stroke="#2d4f72" stroke-width="1.5"/>
+            <circle cx="82" cy="76" r="4" fill="#3a7d44"/>
+            <text x="87" y="72" font-family="Inter Tight" font-size="9" fill="#3a7d44" font-weight="600">cg</text>
+            <text x="87" y="52" font-family="Fraunces" font-style="italic" font-size="11" fill="#2d4f72" font-weight="600">d</text>
+            <!-- mg down -->
+            <line x1="82" y1="80" x2="82" y2="118" stroke="#8b6f3f" stroke-width="1.8" marker-end="url(#c44b-amg)"/>
+            <text x="86" y="125" font-family="Inter Tight" font-size="8.5" fill="#8b6f3f">mg</text>
+            <!-- tau label -->
+            <path d="M80,30 A16,16 0 0,1 94,24" fill="none" stroke="#8a4a5a" stroke-width="1.5" marker-end="url(#c44b-at)"/>
+            <text x="82" y="50" font-family="Fraunces" font-style="italic" font-size="10" fill="#8a4a5a">&tau;</text>
+            <!-- derivation box -->
+            <rect x="122" y="8" width="200" height="152" rx="7" fill="rgba(237,229,232,.5)" stroke="#c89aa8" stroke-width="1"/>
+            <text x="222" y="25" font-family="Fraunces" font-style="italic" font-size="10" fill="#8a4a5a" text-anchor="middle">Derivación</text>
+            <line x1="130" y1="30" x2="314" y2="30" stroke="#c89aa8" stroke-width=".7"/>
+            <text x="128" y="48" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#8a4a5a">&tau; = &minus;(mg)(d&middot;sen&theta;) &asymp; &minus;(mgd)&theta;</text>
+            <text x="128" y="66" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#8a4a5a">&minus;(mgd)&theta; = I&middot;d&sup2;&theta;/dt&sup2;</text>
+            <text x="128" y="84" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#8a4a5a">d&sup2;&theta;/dt&sup2; = &minus;(mgd/I)&middot;&theta;</text>
+            <text x="128" y="102" font-family="Inter Tight" font-size="9" fill="#54514a">forma MAS: &omega;&sup2; = mgd/I</text>
+            <text x="128" y="125" font-family="Fraunces" font-style="italic" font-size="12" fill="#3d5e44" font-weight="600">T = 2&pi;&radic;(I/mgd)</text>
+            <text x="128" y="147" font-family="Inter Tight" font-size="8.5" fill="#54514a">Steiner: I<sub>O</sub> = I<sub>cg</sub> + md&sup2;</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            <b>Varilla homogénea: m=2 kg, L=1.2 m</b>, pivote en extremo.<br>
+            <span class="eq">I<sub>O</sub> = mL&sup2;/3 = 2&times;1.44/3 =</span> <span class="answer">0.96 kg&middot;m&sup2;</span><br>
+            <span class="eq">d = L/2 = 0.6 m</span><br>
+            <span class="eq">T = 2&pi;&radic;(0.96/(2&times;9.8&times;0.6)) =</span> <span class="answer">1.79 s</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">&#x21BB;</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-44 -->
+
 </div><!-- scene -->
 </div><!-- scene-wrap -->
 
 <!-- ── GALLERY NAV ── -->
 <nav class="gallery-nav">
   <div class="chapter-tabs" id="chapter-tabs">
-    <button class="chapter-tab active" data-chapter="all" onclick="filterChapter(this,'all')">Todas (40)</button>
+    <button class="chapter-tab active" data-chapter="all" onclick="filterChapter(this,'all')">Todas (44)</button>
     <button class="chapter-tab" data-chapter="cap2" onclick="filterChapter(this,'cap2')">Cap 2 · Estática (4)</button>
     <button class="chapter-tab" data-chapter="cap3" onclick="filterChapter(this,'cap3')">Cap 3 · Cinemática (8)</button>
     <button class="chapter-tab" data-chapter="cap4" onclick="filterChapter(this,'cap4')">Cap 4 · Dinámica (28)</button>
+    <button class="chapter-tab" data-chapter="cap5" onclick="filterChapter(this,'cap5')">Cap 5 · M.A.S (4)</button>
   </div>
   <div class="thumb-strip-wrap">
     <div class="thumb-strip" id="thumb-strip"></div>
@@ -6532,6 +7130,10 @@
     { id:38, title:'Teorema del Momento Cinético',         chapter:'cap4' },
     { id:39, title:'Impulso Angular',                      chapter:'cap4' },
     { id:40, title:'Efecto Giroscópico',                   chapter:'cap4' },
+    { id:41, title:'Ecuaciones y gráficos del M.A.S',       chapter:'cap5' },
+    { id:42, title:'Fuerza y Energía en el M.A.S',          chapter:'cap5' },
+    { id:43, title:'Péndulo simple',                         chapter:'cap5' },
+    { id:44, title:'Péndulo físico',                         chapter:'cap5' },
   ];
 
   var filtered = allCards.slice();
