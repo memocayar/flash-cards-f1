@@ -7063,17 +7063,886 @@
 </div>
 </div><!-- card-44 -->
 
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 45 — Leyes de Kepler
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-45">
+<div class="flipper" onclick="flipCard(this)">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 6 <span class="dot"></span> Gravitación</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">45</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Leyes de <em>Kepler</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              Descripción <b>cinemática</b> del movimiento planetario. Tres leyes empíricas que describen cómo los planetas orbitan alrededor del Sol.
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div class="formula-main" style="font-size:1.15rem;">T² / r³ = k = cte</div>
+            <div class="formula-sub"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">T: período &nbsp;·&nbsp; r: distancia media al Sol &nbsp;·&nbsp; k: igual para todos los planetas</span></div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>1ª — Órbitas:</b> los planetas describen órbitas <b>elípticas</b>; el Sol está en uno de los <b>focos</b>.</div>
+            <div class="case-pill"><b>2ª — Áreas:</b> el vector posición barre <b>áreas iguales en tiempos iguales</b>. (dA/dt = cte)</div>
+            <div class="case-pill"><b>3ª — Tiempos:</b> T²/r³ = k. Los períodos crecen más que las distancias.</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 355 230" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c45f-av" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+              </defs>
+              <!-- Ellipse orbit -->
+              <ellipse cx="180" cy="118" rx="140" ry="88" fill="none" stroke="#c9a86b" stroke-width="1.6" stroke-dasharray="6 3"/>
+              <!-- Sun at focus (offset from center) -->
+              <circle cx="235" cy="118" r="12" fill="#c2622d" opacity=".9"/>
+              <text x="235" y="147" font-family="Inter Tight" font-size="9" fill="#c2622d" text-anchor="middle" font-weight="600">Sol</text>
+              <!-- empty focus -->
+              <circle cx="125" cy="118" r="3" fill="none" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="2 2"/>
+              <!-- Planet at perihelion (closest) -->
+              <circle cx="320" cy="118" r="8" fill="#2d4f72"/>
+              <text x="320" y="106" font-family="Inter Tight" font-size="8" fill="#2d4f72" text-anchor="middle">Perihelio</text>
+              <!-- Planet at aphelion (farthest) -->
+              <circle cx="40" cy="118" r="8" fill="#2d4f72" opacity=".5"/>
+              <text x="40" y="106" font-family="Inter Tight" font-size="8" fill="#2d4f72" text-anchor="middle" opacity=".7">Afelio</text>
+              <!-- r1 line (perihelion) -->
+              <line x1="235" y1="118" x2="313" y2="118" stroke="#c2622d" stroke-width="1.5"/>
+              <text x="274" y="132" font-family="Fraunces" font-style="italic" font-size="10" fill="#c2622d" text-anchor="middle">r₁</text>
+              <!-- r2 line (aphelion) -->
+              <line x1="235" y1="118" x2="48" y2="118" stroke="#c2622d" stroke-width="1.5" stroke-dasharray="4 2" opacity=".6"/>
+              <text x="142" y="132" font-family="Fraunces" font-style="italic" font-size="10" fill="#c2622d" opacity=".7" text-anchor="middle">r₂</text>
+              <!-- Area sweep A1 (small near perihelion) -->
+              <path d="M235,118 L310,96 L320,118 Z" fill="rgba(45,79,114,.18)" stroke="#2d4f72" stroke-width="1"/>
+              <text x="296" y="108" font-family="Fraunces" font-style="italic" font-size="9" fill="#2d4f72">A₁</text>
+              <!-- Area sweep A2 (large near aphelion) -->
+              <path d="M235,118 L52,80 L40,118 Z" fill="rgba(45,79,114,.12)" stroke="#2d4f72" stroke-width="1" stroke-dasharray="3 2" opacity=".7"/>
+              <text x="82" y="100" font-family="Fraunces" font-style="italic" font-size="9" fill="#2d4f72" opacity=".8">A₂</text>
+              <!-- velocity arrows -->
+              <line x1="320" y1="118" x2="320" y2="77" stroke="#3a7d44" stroke-width="2" marker-end="url(#c45f-av)"/>
+              <text x="330" y="92" font-family="Fraunces" font-style="italic" font-size="10" fill="#3a7d44">v₁</text>
+              <line x1="40" y1="118" x2="40" y2="145" stroke="#3a7d44" stroke-width="1.5" marker-end="url(#c45f-av)" opacity=".7"/>
+              <text x="28" y="145" font-family="Fraunces" font-style="italic" font-size="10" fill="#3a7d44" opacity=".8">v₂</text>
+              <!-- legend A1=A2 -->
+              <rect x="115" y="188" width="130" height="20" rx="4" fill="rgba(250,246,236,.9)" stroke="#d9d0bb" stroke-width="1"/>
+              <text x="180" y="201" font-family="Inter Tight" font-size="9" fill="#54514a" text-anchor="middle">A₁ = A₂ &nbsp;(en el mismo Δt)</text>
+            </svg>
+          </div>
+          <div class="r-note">La 2ª ley implica <span style="color:var(--formula-accent);font-weight:600;">conservación del momento cinético</span> — la fuerza gravitatoria es central (τ = 0).</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 6 <span class="dot"></span> Gravitación</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">45</span></span>
+    <div class="back-grid">
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            <b>2ª ley — demostración:</b> La fuerza gravitatoria es <b>central</b> (apunta hacia el Sol) → torque nulo → <span class="eq">dL/dt = 0 → L = r × mv = cte</span>. El área barrida en dt: <span class="eq">dA = ½|r × v|dt</span> → <b>dA/dt = cte</b>.<br><br>
+            <b>3ª ley — demostración (órbita circular):</b><br>
+            Igualando fuerza gravitatoria y centrípeta:<br>
+            <span class="eq">GmTm/r² = m·(2πr/T)²/r</span><br>
+            <span class="eq">GmT/r² = 4π²r/T²</span><br>
+            <div class="formula-final-wrap"><span class="formula-final">T²/r³ = 4π²/(GmT) = k = cte</span></div>
+            La constante k depende solo de la masa central (el Sol), no del planeta.
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.5rem;">
+          <div class="unit-text">
+            <b>[T]</b> = s &nbsp;·&nbsp; <b>[r]</b> = m &nbsp;·&nbsp; <b>[k]</b> = s²/m³<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">Para el Sol: k = 4π²/GmS ≈ 2.97×10⁻¹⁹ s²/m³</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.5rem;">
+        <div class="back-diag" style="height:185px;flex:0 0 auto;">
+          <svg viewBox="0 0 330 172" xmlns="http://www.w3.org/2000/svg">
+            <!-- T² vs r³ linear graph -->
+            <line x1="30" y1="10" x2="30" y2="148" stroke="#54514a" stroke-width="1.2"/>
+            <line x1="25" y1="148" x2="310" y2="148" stroke="#54514a" stroke-width="1.2"/>
+            <text x="315" y="152" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">r³</text>
+            <text x="22" y="8" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">T²</text>
+            <!-- linear trend -->
+            <line x1="30" y1="148" x2="300" y2="18" stroke="#c9a86b" stroke-width="2" stroke-dasharray="5 3"/>
+            <!-- planets as dots (approximate positions) -->
+            <circle cx="55" cy="133" r="5" fill="#c2622d"/>
+            <text x="55" y="125" font-family="Inter Tight" font-size="8" fill="#c2622d" text-anchor="middle">♀</text>
+            <circle cx="72" cy="121" r="5" fill="#3a7d44"/>
+            <text x="72" y="113" font-family="Inter Tight" font-size="8" fill="#3a7d44" text-anchor="middle">♁</text>
+            <circle cx="105" cy="100" r="5" fill="#8a4a5a"/>
+            <text x="105" y="92" font-family="Inter Tight" font-size="8" fill="#8a4a5a" text-anchor="middle">♂</text>
+            <circle cx="190" cy="52" r="5" fill="#2d4f72"/>
+            <text x="190" y="44" font-family="Inter Tight" font-size="8" fill="#2d4f72" text-anchor="middle">♃</text>
+            <circle cx="265" cy="26" r="5" fill="#8b6f3f"/>
+            <text x="265" y="18" font-family="Inter Tight" font-size="8" fill="#8b6f3f" text-anchor="middle">♄</text>
+            <!-- slope label -->
+            <text x="155" y="112" font-family="JetBrains Mono" font-size="8.5" fill="#c9a86b" text-anchor="middle">pendiente = k</text>
+            <!-- box -->
+            <rect x="20" y="152" width="295" height="16" rx="3" fill="rgba(250,246,236,.8)" stroke="#d9d0bb" stroke-width="1"/>
+            <text x="168" y="163" font-family="Inter Tight" font-size="8.5" fill="#54514a" text-anchor="middle">todos los planetas del Sistema Solar caen sobre la misma recta</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            <b>Tierra:</b> T = 1 año = 3.156×10⁷ s, r = 1.496×10¹¹ m<br>
+            <span class="eq">k = T²/r³ = (3.156×10⁷)²/(1.496×10¹¹)³ =</span><br>
+            <span class="answer">2.97×10⁻¹⁹ s²/m³</span><br>
+            <span style="color:var(--ink-3);font-size:.7rem;">Marte (r=1.52 UA) → T = k^½ · r^(3/2) = 1.88 años ✓</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-45 -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 46 — Ley de Gravitación Universal
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-46">
+<div class="flipper" onclick="flipCard(this)">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 6 <span class="dot"></span> Gravitación</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">46</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Ley de Gravitación <em>Universal</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              Toda partícula del universo atrae a todas las demás con una fuerza <b>central</b>, <b>atractiva</b>, proporcional a las masas e inversamente proporcional al cuadrado de la distancia.
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div class="formula-main">Fg = Gm₁m₂ / r²</div>
+            <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">G = 6.67×10⁻¹¹ N·m²/kg² &nbsp;·&nbsp; g(r) = GmT/r²</span></div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>G: constante universal</b> — igual para cualquier par de cuerpos, medida por Cavendish (1798).</div>
+            <div class="case-pill"><b>r↑ → Fg↓</b> decae como 1/r² (ley del inverso del cuadrado)</div>
+            <div class="case-pill"><b>g en superficie:</b><span class="eq">g = GmT/RT² ≈ 9.8 m/s²</span></div>
+            <div class="case-pill"><b>g a distancia r:</b><span class="eq">g(r) = GmT/r² &nbsp;(no es cte)</span></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 345 230" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c46f-aF1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+                <marker id="c46f-aF2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+              </defs>
+              <!-- mass 1 -->
+              <circle cx="75" cy="105" r="28" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.5"/>
+              <text x="75" y="100" font-family="Fraunces" font-style="italic" font-size="12" fill="#54514a" text-anchor="middle" font-weight="600">m₁</text>
+              <text x="75" y="116" font-family="Inter Tight" font-size="9" fill="#8b877e" text-anchor="middle">(grande)</text>
+              <!-- mass 2 -->
+              <circle cx="270" cy="105" r="18" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.5"/>
+              <text x="270" y="109" font-family="Fraunces" font-style="italic" font-size="12" fill="#54514a" text-anchor="middle" font-weight="600">m₂</text>
+              <!-- r arrow -->
+              <line x1="103" y1="138" x2="252" y2="138" stroke="#2d4f72" stroke-width="1.3"/>
+              <line x1="103" y1="133" x2="103" y2="143" stroke="#2d4f72" stroke-width="1.3"/>
+              <line x1="252" y1="133" x2="252" y2="143" stroke="#2d4f72" stroke-width="1.3"/>
+              <text x="177" y="152" font-family="Fraunces" font-style="italic" font-size="13" fill="#2d4f72" text-anchor="middle" font-weight="600">r</text>
+              <!-- F on m2 pointing left -->
+              <line x1="252" y1="105" x2="198" y2="105" stroke="#8a4a5a" stroke-width="2.5" marker-end="url(#c46f-aF2)"/>
+              <text x="220" y="96" font-family="Fraunces" font-style="italic" font-size="11" fill="#8a4a5a" text-anchor="middle">Fg</text>
+              <!-- F on m1 pointing right -->
+              <line x1="103" y1="105" x2="157" y2="105" stroke="#8a4a5a" stroke-width="2.5" marker-end="url(#c46f-aF1)"/>
+              <text x="135" y="96" font-family="Fraunces" font-style="italic" font-size="11" fill="#8a4a5a" text-anchor="middle">Fg</text>
+              <!-- g(r) graph inset -->
+              <rect x="18" y="162" width="310" height="58" rx="5" fill="rgba(250,246,236,.85)" stroke="#d9d0bb" stroke-width="1"/>
+              <text x="28" y="177" font-family="Inter Tight" font-size="8.5" fill="#54514a" font-weight="600">g(r)</text>
+              <line x1="28" y1="212" x2="318" y2="212" stroke="#54514a" stroke-width="1"/>
+              <line x1="28" y1="180" x2="28" y2="212" stroke="#54514a" stroke-width="1"/>
+              <!-- 1/r² curve -->
+              <path d="M28,180 C40,182 58,188 80,196 C110,204 150,209 200,211 C240,212 280,212 318,212" fill="none" stroke="#8a4a5a" stroke-width="1.8"/>
+              <!-- RT mark -->
+              <line x1="55" y1="209" x2="55" y2="215" stroke="#8b6f3f" stroke-width="1"/>
+              <text x="55" y="220" font-family="JetBrains Mono" font-size="7" fill="#8b6f3f" text-anchor="middle">RT</text>
+              <text x="26" y="193" font-family="JetBrains Mono" font-size="7" fill="#8a4a5a" text-anchor="end">g₀</text>
+              <text x="175" y="208" font-family="Inter Tight" font-size="8" fill="#8b877e">g = GmT/r² → 0 cuando r → ∞</text>
+            </svg>
+          </div>
+          <div class="r-note">La fuerza es <span style="color:var(--demo-accent);font-weight:600;">par acción-reacción</span>: Fg sobre m₁ = Fg sobre m₂ en módulo, sentidos opuestos.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 6 <span class="dot"></span> Gravitación</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">46</span></span>
+    <div class="back-grid">
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            <b>Derivación desde la 3ª ley de Kepler</b> (órbita circular):<br>
+            <span class="eq">Fg = mac = m·v²/r = m·(2πr/T)²/r = 4π²mr/T²</span><br><br>
+            Por 3ª ley de Kepler: <span class="eq">T² = (4π²/GmS)·r³</span><br>
+            Sustituyendo:<br>
+            <span class="eq">Fg = 4π²mr / [(4π²/GmS)·r³] = GmS·m / r²</span><br><br>
+            <div class="formula-final-wrap"><span class="formula-final">Fg = Gm₁m₂ / r²</span></div>
+            <b>g en superficie</b>: sobre la Tierra (<span class="eq">F = mg = GmTm/RT²</span>):<br>
+            <span class="eq">g = GmT/RT² = (6.67×10⁻¹¹×5.97×10²⁴)/(6.37×10⁶)² ≈ 9.8 m/s²</span>
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.5rem;">
+          <div class="unit-text">
+            <b>[Fg]</b> = N &nbsp;·&nbsp; <b>[G]</b> = N·m²/kg² &nbsp;·&nbsp; <b>[g]</b> = m/s²<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">G = 6.67×10⁻¹¹ N·m²/kg² &nbsp;·&nbsp; mT = 5.97×10²⁴ kg &nbsp;·&nbsp; RT = 6.37×10⁶ m</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.5rem;">
+        <div class="back-diag" style="height:195px;flex:0 0 auto;">
+          <svg viewBox="0 0 330 182" xmlns="http://www.w3.org/2000/svg">
+            <!-- Earth cross section -->
+            <circle cx="85" cy="91" r="65" fill="#e3ece4" stroke="#3d5e44" stroke-width="1.5"/>
+            <text x="85" y="95" font-family="Inter Tight" font-size="10" fill="#3d5e44" text-anchor="middle" font-weight="600">Tierra</text>
+            <text x="85" y="108" font-family="JetBrains Mono" font-size="8" fill="#54514a" text-anchor="middle">mT</text>
+            <!-- RT arrow -->
+            <line x1="85" y1="91" x2="85" y2="26" stroke="#2d4f72" stroke-width="1.5"/>
+            <text x="90" y="55" font-family="Fraunces" font-style="italic" font-size="11" fill="#2d4f72">RT</text>
+            <!-- object on surface -->
+            <rect x="72" y="18" width="26" height="16" rx="3" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.3"/>
+            <text x="85" y="30" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a" text-anchor="middle">m</text>
+            <!-- derivation box -->
+            <rect x="165" y="8" width="158" height="168" rx="7" fill="rgba(237,229,232,.5)" stroke="#c89aa8" stroke-width="1"/>
+            <text x="244" y="26" font-family="Fraunces" font-style="italic" font-size="10" fill="#8a4a5a" text-anchor="middle">g desde G</text>
+            <line x1="172" y1="31" x2="316" y2="31" stroke="#c89aa8" stroke-width=".7"/>
+            <text x="170" y="48" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#8a4a5a">mg = GmTm / RT²</text>
+            <text x="170" y="68" font-family="Fraunces" font-style="italic" font-size="10" fill="#8a4a5a">g = GmT / RT²</text>
+            <text x="170" y="94" font-family="Inter Tight" font-size="8.5" fill="#54514a">= (6.67×10⁻¹¹ × 5.97×10²⁴)</text>
+            <text x="170" y="112" font-family="Inter Tight" font-size="8.5" fill="#54514a">/ (6.37×10⁶)²</text>
+            <text x="170" y="140" font-family="Fraunces" font-style="italic" font-size="12" fill="#3d5e44" font-weight="600">g ≈ 9.8 m/s²  ✓</text>
+            <text x="170" y="162" font-family="Inter Tight" font-size="8" fill="#8b877e">a 2RT: g = 9.8/4 = 2.45 m/s²</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            <b>Fuerza entre Tierra y Luna</b>: mT=5.97×10²⁴kg, mL=7.35×10²²kg, r=3.84×10⁸m<br>
+            <span class="eq">Fg = 6.67×10⁻¹¹ × 5.97×10²⁴ × 7.35×10²² / (3.84×10⁸)² =</span><br>
+            <span class="answer">1.99×10²⁰ N</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-46 -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 47 — Velocidad orbital
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-47">
+<div class="flipper" onclick="flipCard(this)">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 6 <span class="dot"></span> Gravitación</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">47</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Velocidad <em>orbital</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              Velocidad tangencial que debe tener un satélite para mantenerse en <b>órbita circular</b> a distancia <b>r</b> del centro de la Tierra. La única fuerza actuante es la gravitatoria, que provee la aceleración centrípeta.
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div class="formula-main">vs = √(GmT / r)</div>
+            <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">T_orb = 2πr/vs = 2π√(r³/GmT)</span></div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>Independiente de ms</b> — la masa del satélite no afecta la velocidad orbital.</div>
+            <div class="case-pill"><b>r↑ → vs↓</b><span class="eq">órbitas más altas → más lentas</span></div>
+            <div class="case-pill"><b>r = RT</b> (superficie):<span class="eq">vs = √(gRT) ≈ 7.9 km/s</span></div>
+            <div class="case-pill"><b>El satélite "cae" constantemente</b> alrededor de la Tierra sin alejarse de ella.</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 345 230" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c47f-av" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+                <marker id="c47f-aFg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+                <marker id="c47f-ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#2d4f72"/></marker>
+              </defs>
+              <!-- Earth -->
+              <circle cx="172" cy="118" r="55" fill="#e3ece4" stroke="#3d5e44" stroke-width="1.5"/>
+              <text x="172" y="122" font-family="Inter Tight" font-size="11" fill="#3d5e44" text-anchor="middle" font-weight="600">Tierra</text>
+              <!-- orbit circle -->
+              <circle cx="172" cy="118" r="95" fill="none" stroke="#c9a86b" stroke-width="1.3" stroke-dasharray="6 4"/>
+              <!-- satellite -->
+              <circle cx="267" cy="118" r="9" fill="#2d4f72"/>
+              <text x="282" y="114" font-family="Inter Tight" font-size="8" fill="#2d4f72" font-weight="600">sat.</text>
+              <!-- r line -->
+              <line x1="172" y1="118" x2="258" y2="118" stroke="#c2622d" stroke-width="1.5"/>
+              <text x="215" y="133" font-family="Fraunces" font-style="italic" font-size="11" fill="#c2622d" text-anchor="middle">r</text>
+              <!-- vs velocity (tangential, upward) -->
+              <line x1="267" y1="109" x2="267" y2="63" stroke="#3a7d44" stroke-width="2.2" marker-end="url(#c47f-av)"/>
+              <text x="278" y="80" font-family="Fraunces" font-style="italic" font-size="12" fill="#3a7d44" font-weight="600">vs</text>
+              <!-- Fg centripetal (inward) -->
+              <line x1="257" y1="118" x2="212" y2="118" stroke="#8a4a5a" stroke-width="2" marker-end="url(#c47f-aFg)"/>
+              <text x="235" y="108" font-family="Fraunces" font-style="italic" font-size="10" fill="#8a4a5a">Fg=Fc</text>
+              <!-- equation box -->
+              <rect x="12" y="168" width="155" height="52" rx="5" fill="rgba(232,238,242,.7)" stroke="#7fa3c9" stroke-width="1"/>
+              <text x="89" y="183" font-family="Inter Tight" font-size="8.5" fill="#2d4f72" text-anchor="middle" font-weight="600">Fg = Fc</text>
+              <text x="89" y="198" font-family="Fraunces" font-style="italic" font-size="9.5" fill="#2d4f72" text-anchor="middle">GmTm/r² = mvs²/r</text>
+              <text x="89" y="213" font-family="Fraunces" font-style="italic" font-size="10.5" fill="#3d5e44" text-anchor="middle" font-weight="600">vs = √(GmT/r)</text>
+            </svg>
+          </div>
+          <div class="r-note">El satélite <span style="color:var(--formula-accent);font-weight:600;">no cae</span> porque su velocidad tangencial curva su trayectoria exactamente siguiendo la curvatura de la Tierra.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 6 <span class="dot"></span> Gravitación</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">47</span></span>
+    <div class="back-grid">
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            La única fuerza sobre el satélite es <b>Fg</b>, que provee la aceleración centrípeta:<br>
+            <span class="eq">Fg = Fc</span><br>
+            <span class="eq">GmT·ms/r² = ms·vs²/r</span><br><br>
+            Simplificando ms (independencia de masa):<br>
+            <span class="eq">GmT/r² = vs²/r</span><br>
+            <span class="eq">vs² = GmT/r</span><br>
+            <div class="formula-final-wrap"><span class="formula-final">vs = √(GmT / r)</span></div>
+            <b>Período orbital</b>: <span class="eq">Torb = 2πr/vs = 2π√(r³/GmT)</span><br><br>
+            (recupera 3ª ley de Kepler: <span class="eq">Torb² = (4π²/GmT)·r³</span>)
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.5rem;">
+          <div class="unit-text">
+            <b>[vs]</b> = m/s &nbsp;·&nbsp; <b>[r]</b> = m &nbsp;·&nbsp; <b>[Torb]</b> = s<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">En sup. Tierra (r=RT): vs = √(gRT) = √(9.8×6.37×10⁶) ≈ 7.9 km/s</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.5rem;">
+        <div class="back-diag" style="height:190px;flex:0 0 auto;">
+          <svg viewBox="0 0 330 178" xmlns="http://www.w3.org/2000/svg">
+            <!-- vs(r) curve: decreasing -->
+            <line x1="28" y1="10" x2="28" y2="155" stroke="#54514a" stroke-width="1.2"/>
+            <line x1="23" y1="155" x2="315" y2="155" stroke="#54514a" stroke-width="1.2"/>
+            <text x="318" y="159" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">r</text>
+            <text x="18" y="8" font-family="Fraunces" font-style="italic" font-size="10" fill="#3a7d44">vs</text>
+            <!-- 1/√r curve -->
+            <path d="M45,22 C60,30 85,55 120,90 C155,115 195,135 245,148 C275,153 300,155 315,155" fill="none" stroke="#3a7d44" stroke-width="2.2"/>
+            <!-- RT mark -->
+            <line x1="45" y1="151" x2="45" y2="159" stroke="#8b6f3f" stroke-width="1.2"/>
+            <text x="45" y="168" font-family="JetBrains Mono" font-size="7.5" fill="#8b6f3f" text-anchor="middle">RT</text>
+            <text x="45" y="15" font-family="JetBrains Mono" font-size="7" fill="#3a7d44" text-anchor="middle">7.9 km/s</text>
+            <!-- ISS mark -->
+            <line x1="58" y1="151" x2="58" y2="159" stroke="#2d4f72" stroke-width="1"/>
+            <text x="58" y="168" font-family="JetBrains Mono" font-size="7" fill="#2d4f72" text-anchor="middle">ISS</text>
+            <!-- annotation -->
+            <text x="170" y="100" font-family="Fraunces" font-style="italic" font-size="10" fill="#3a7d44">vs = √(GmT/r)</text>
+            <rect x="20" y="162" width="295" height="14" rx="3" fill="rgba(250,246,236,.8)" stroke="#d9d0bb" stroke-width="1"/>
+            <text x="167" y="172" font-family="Inter Tight" font-size="8" fill="#54514a" text-anchor="middle">r↑ → vs↓ &nbsp; (órbitas altas son más lentas)</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            <b>ISS</b>: r = RT + 400km = 6.77×10⁶ m<br>
+            <span class="eq">vs = √(6.67×10⁻¹¹ × 5.97×10²⁴ / 6.77×10⁶) =</span> <span class="answer">7.67 km/s</span><br>
+            <span class="eq">Torb = 2π×6.77×10⁶ / 7670 =</span> <span class="answer">5545 s ≈ 92 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-47 -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 48 — Energía potencial gravitatoria
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-48">
+<div class="flipper" onclick="flipCard(this)">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 6 <span class="dot"></span> Gravitación</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">48</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Energía potencial <em>gravitatoria</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              Energía potencial asociada a la interacción gravitatoria entre dos masas separadas una distancia <b>r</b>. La referencia Ep=0 se toma en el <b>infinito</b>. Como la fuerza gravitatoria es <b>conservativa</b>, Ep depende solo de la posición.
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div class="formula-main">Ep = −GmT·m / r</div>
+            <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">Ep &lt; 0 siempre &nbsp;·&nbsp; Ep → 0 cuando r → ∞ &nbsp;·&nbsp; W = −ΔEp</span></div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>Ep &lt; 0 siempre</b> — el cuerpo está ligado gravitacionalmente; hay que dar energía para separarlo.</div>
+            <div class="case-pill"><b>r = RT</b> (superficie):<span class="eq">Ep = −GmTm/RT = −mgRT</span></div>
+            <div class="case-pill"><b>r↑ → Ep↑</b> (menos negativa) — el cuerpo gana energía potencial al alejarse.</div>
+            <div class="case-pill"><b>Diferencia:</b><span class="eq">ΔEp = GmTm(1/r₁ − 1/r₂)</span></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 345 230" xmlns="http://www.w3.org/2000/svg">
+              <!-- axes -->
+              <line x1="40" y1="15" x2="40" y2="195" stroke="#54514a" stroke-width="1.2"/>
+              <line x1="35" y1="55" x2="325" y2="55" stroke="#54514a" stroke-width="1" stroke-dasharray="4 3" opacity=".5"/>
+              <text x="328" y="58" font-family="JetBrains Mono" font-size="8" fill="#54514a">0</text>
+              <line x1="35" y1="190" x2="325" y2="190" stroke="#54514a" stroke-width="1.2"/>
+              <text x="328" y="193" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">r</text>
+              <text x="30" y="12" font-family="Fraunces" font-style="italic" font-size="10" fill="#8b6f3f">Ep</text>
+              <!-- Ep = -k/r curve (starts very negative, approaches 0) -->
+              <path d="M60,195 C65,194 72,190 82,180 C100,160 125,130 155,108 C185,88 220,72 265,62 C290,57 310,55 325,55" fill="none" stroke="#8b6f3f" stroke-width="2.2"/>
+              <!-- RT mark -->
+              <line x1="60" y1="187" x2="60" y2="195" stroke="#3d5e44" stroke-width="1.5"/>
+              <text x="60" y="202" font-family="JetBrains Mono" font-size="7.5" fill="#3d5e44" text-anchor="middle">RT</text>
+              <!-- Ep at RT -->
+              <line x1="36" y1="193" x2="60" y2="193" stroke="#8b6f3f" stroke-width="1" stroke-dasharray="3 2"/>
+              <text x="28" y="196" font-family="JetBrains Mono" font-size="7" fill="#8b6f3f" text-anchor="end">Ep₀</text>
+              <!-- E total for orbiting body -->
+              <line x1="40" y1="125" x2="320" y2="125" stroke="#2d4f72" stroke-width="1.3" stroke-dasharray="5 3"/>
+              <text x="322" y="122" font-family="Fraunces" font-style="italic" font-size="9" fill="#2d4f72">E</text>
+              <!-- annotation -->
+              <text x="180" y="155" font-family="Fraunces" font-style="italic" font-size="10" fill="#8b6f3f">Ep = −GmTm/r</text>
+              <!-- shaded region Ep < 0 -->
+              <rect x="15" y="58" width="12" height="130" rx="2" fill="rgba(139,111,63,.15)"/>
+              <text x="21" y="135" font-family="Inter Tight" font-size="7" fill="#8b6f3f" text-anchor="middle" transform="rotate(-90 21 135)">Ep &lt; 0</text>
+              <!-- zero reference label -->
+              <text x="200" y="48" font-family="Inter Tight" font-size="8.5" fill="#54514a">Ep = 0 en r → ∞</text>
+            </svg>
+          </div>
+          <div class="r-note">Diferencia con cap.4: antes Ep=mgh (g cte), ahora <span style="color:var(--def-accent);font-weight:600;">Ep = −GmTm/r</span> (g variable, referencia en ∞).</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 6 <span class="dot"></span> Gravitación</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">48</span></span>
+    <div class="back-grid">
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            La fuerza gravitatoria es conservativa: <span class="eq">W = −ΔEp</span><br><br>
+            Calculando el trabajo de Fg al desplazar m desde r₁ hasta r₂:<br>
+            <span class="eq">W = ∫[r₁→r₂] F·dr = ∫[r₁→r₂] GmTm/r² dr</span><br>
+            <span class="eq">W = GmTm [−1/r] de r₁ a r₂ = GmTm(1/r₁ − 1/r₂)</span><br><br>
+            Como <span class="eq">W = −ΔEp = −(Ep₂ − Ep₁)</span>:<br>
+            <span class="eq">Ep₂ − Ep₁ = −GmTm(1/r₁ − 1/r₂) = GmTm(1/r₂ − 1/r₁)</span><br><br>
+            Tomando Ep(∞) = 0 como referencia:<br>
+            <div class="formula-final-wrap"><span class="formula-final">Ep(r) = −GmT·m / r</span></div>
+            <b>Energía mecánica total</b> en órbita circular:<br>
+            <span class="eq">E = K + Ep = ½mvs² − GmTm/r = −GmTm/(2r)</span>
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.5rem;">
+          <div class="unit-text">
+            <b>[Ep]</b> = J &nbsp;·&nbsp; <b>[G]</b> = N·m²/kg² &nbsp;·&nbsp; <b>[r]</b> = m<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">E órbita = −GmTm/(2r) &nbsp; (siempre negativa → cuerpo ligado)</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.5rem;">
+        <div class="back-diag" style="height:188px;flex:0 0 auto;">
+          <svg viewBox="0 0 330 175" xmlns="http://www.w3.org/2000/svg">
+            <!-- Energy diagram: K, Ep, E vs r -->
+            <line x1="28" y1="8" x2="28" y2="155" stroke="#54514a" stroke-width="1.2"/>
+            <line x1="23" y1="80" x2="315" y2="80" stroke="#54514a" stroke-width="1" stroke-dasharray="3 2" opacity=".5"/>
+            <line x1="23" y1="155" x2="315" y2="155" stroke="#54514a" stroke-width="1.2"/>
+            <text x="318" y="158" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">r</text>
+            <text x="22" y="6" font-family="Inter Tight" font-size="8" fill="#54514a">Energía</text>
+            <text x="312" y="77" font-family="JetBrains Mono" font-size="7.5" fill="#54514a">0</text>
+            <!-- K = GmTm/(2r): decreasing from large positive -->
+            <path d="M42,20 C55,28 75,50 105,72 C135,88 170,100 210,110 C250,118 285,122 312,124" fill="none" stroke="#3a7d44" stroke-width="1.8"/>
+            <text x="250" y="108" font-family="Fraunces" font-style="italic" font-size="9" fill="#3a7d44">K</text>
+            <!-- Ep = -GmTm/r: negative and increasing toward 0 -->
+            <path d="M42,155 C52,154 65,152 82,146 C105,137 135,123 170,110 C205,99 245,91 285,85 C300,83 310,82 312,81" fill="none" stroke="#8b6f3f" stroke-width="1.8"/>
+            <text x="250" y="95" font-family="Fraunces" font-style="italic" font-size="9" fill="#8b6f3f">Ep</text>
+            <!-- E = -GmTm/(2r): midway negative -->
+            <path d="M42,88 C55,91 78,101 110,113 C145,123 185,132 230,140 C265,146 292,150 312,152" fill="none" stroke="#2d4f72" stroke-width="1.8" stroke-dasharray="6 3"/>
+            <text x="248" y="148" font-family="Fraunces" font-style="italic" font-size="9" fill="#2d4f72">E</text>
+            <!-- RT mark -->
+            <line x1="42" y1="151" x2="42" y2="159" stroke="#3d5e44" stroke-width="1.2"/>
+            <text x="42" y="167" font-family="JetBrains Mono" font-size="7" fill="#3d5e44" text-anchor="middle">RT</text>
+            <rect x="20" y="161" width="295" height="12" rx="3" fill="rgba(250,246,236,.85)" stroke="#d9d0bb" stroke-width="1"/>
+            <text x="167" y="170" font-family="Inter Tight" font-size="7.5" fill="#54514a" text-anchor="middle">E = K + Ep = −GmTm/(2r) &nbsp; K = −E &nbsp; Ep = 2E</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            <b>Satélite m=100 kg en r=7×10⁶ m</b>:<br>
+            <span class="eq">Ep = −6.67×10⁻¹¹×5.97×10²⁴×100 / 7×10⁶ =</span> <span class="answer">−5.69×10⁹ J</span><br>
+            <span class="eq">K = −E = GmTm/(2r) =</span> <span class="answer">2.84×10⁹ J</span><br>
+            <span class="eq">E = −2.84×10⁹ J</span> (ligado)
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-48 -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 49 — Velocidad de escape
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-49">
+<div class="flipper" onclick="flipCard(this)">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 6 <span class="dot"></span> Gravitación</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">49</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Velocidad de <em>escape</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              Mínima velocidad inicial que debe tener un proyectil en la superficie de un planeta para escapar de su atracción gravitatoria y llegar al <b>infinito</b> (con v→0 en r→∞). La única fuerza actuante es la gravitatoria (conservativa).
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div class="formula-main">ve = √(2GmT / R)</div>
+            <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">ve = √(2gR) &nbsp;·&nbsp; independiente de la masa del proyectil</span></div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>Tierra:</b><span class="eq">ve = √(2×9.8×6.37×10⁶) ≈ 11.2 km/s</span></div>
+            <div class="case-pill"><b>Luna:</b><span class="eq">ve ≈ 2.4 km/s (g y R menores)</span></div>
+            <div class="case-pill"><b>ve = vs√2</b><span class="eq">la velocidad de escape es √2 veces la orbital</span></div>
+            <div class="case-pill"><b>Agujero negro:</b> ve ≥ c (luz no escapa)</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 345 230" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c49f-ave" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#3a7d44"/></marker>
+                <marker id="c49f-aFg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+              </defs>
+              <!-- Earth -->
+              <circle cx="155" cy="148" r="62" fill="#e3ece4" stroke="#3d5e44" stroke-width="1.5"/>
+              <text x="155" y="152" font-family="Inter Tight" font-size="11" fill="#3d5e44" text-anchor="middle" font-weight="600">Tierra</text>
+              <!-- Projectile on surface -->
+              <circle cx="155" cy="86" r="7" fill="#8b6f3f"/>
+              <text x="168" y="84" font-family="Inter Tight" font-size="9" fill="#8b6f3f">m</text>
+              <!-- ve arrow upward -->
+              <line x1="155" y1="79" x2="155" y2="30" stroke="#3a7d44" stroke-width="2.5" marker-end="url(#c49f-ave)"/>
+              <text x="165" y="52" font-family="Fraunces" font-style="italic" font-size="13" fill="#3a7d44" font-weight="600">ve</text>
+              <!-- Fg arrow downward -->
+              <line x1="130" y1="79" x2="130" y2="105" stroke="#8a4a5a" stroke-width="1.8" marker-end="url(#c49f-aFg)"/>
+              <text x="105" y="96" font-family="Fraunces" font-style="italic" font-size="10" fill="#8a4a5a">Fg↓</text>
+              <!-- R label -->
+              <line x1="155" y1="148" x2="155" y2="88" stroke="#2d4f72" stroke-width="1.3" stroke-dasharray="4 2"/>
+              <text x="162" y="120" font-family="Fraunces" font-style="italic" font-size="11" fill="#2d4f72">R</text>
+              <!-- trajectory path -->
+              <path d="M155,79 C165,55 185,30 220,12" fill="none" stroke="#3a7d44" stroke-width="1.5" stroke-dasharray="4 3" opacity=".7"/>
+              <text x="225" y="10" font-family="Inter Tight" font-size="8" fill="#3a7d44">r → ∞, v → 0</text>
+              <!-- energy box -->
+              <rect x="12" y="162" width="128" height="54" rx="5" fill="rgba(232,238,242,.8)" stroke="#7fa3c9" stroke-width="1"/>
+              <text x="76" y="176" font-family="Inter Tight" font-size="8" fill="#2d4f72" text-anchor="middle" font-weight="600">E = 0 (condición)</text>
+              <text x="76" y="191" font-family="Fraunces" font-style="italic" font-size="9" fill="#2d4f72" text-anchor="middle">½mve² − GmTm/R = 0</text>
+              <text x="76" y="208" font-family="Fraunces" font-style="italic" font-size="10.5" fill="#3d5e44" text-anchor="middle" font-weight="600">ve = √(2GmT/R)</text>
+            </svg>
+          </div>
+          <div class="r-note">Independiente de la masa del proyectil — <span style="color:var(--example-accent);font-weight:600;">ve = vs·√2</span> porque ve² = 2GmT/R y vs² = GmT/R.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 6 <span class="dot"></span> Gravitación</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">49</span></span>
+    <div class="back-grid">
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            La fuerza gravitatoria es <b>conservativa</b> → energía mecánica E = cte.<br><br>
+            Condición de escape: el proyectil llega a r→∞ con v→0.<br>
+            En el infinito: <span class="eq">K(∞) = 0</span> y <span class="eq">Ep(∞) = 0</span> → <b>E(∞) = 0</b><br><br>
+            Por conservación: <span class="eq">E(superficie) = E(∞) = 0</span><br>
+            <span class="eq">½mve² + Ep(RT) = 0</span><br>
+            <span class="eq">½mve² − GmTm/RT = 0</span><br>
+            <span class="eq">½ve² = GmT/RT</span><br>
+            <div class="formula-final-wrap"><span class="formula-final">ve = √(2GmT/RT) = √(2gRT)</span></div>
+            Si v &lt; ve → el proyectil vuelve (ligado, E &lt; 0).<br>
+            Si v = ve → escapa con E = 0.<br>
+            Si v &gt; ve → escapa con energía cinética residual (E &gt; 0).
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.5rem;">
+          <div class="unit-text">
+            <b>[ve]</b> = m/s &nbsp;·&nbsp; <b>[RT]</b> = m &nbsp;·&nbsp; <b>[g]</b> = m/s²<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">ve = √2 · vs &nbsp;·&nbsp; ve(Tierra) ≈ 11.2 km/s &nbsp;·&nbsp; ve(Luna) ≈ 2.4 km/s</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.5rem;">
+        <div class="back-diag" style="height:185px;flex:0 0 auto;">
+          <svg viewBox="0 0 330 172" xmlns="http://www.w3.org/2000/svg">
+            <!-- E vs v diagram showing bound/escape -->
+            <line x1="28" y1="10" x2="28" y2="148" stroke="#54514a" stroke-width="1.2"/>
+            <line x1="23" y1="90" x2="315" y2="90" stroke="#54514a" stroke-width="1" stroke-dasharray="4 3" opacity=".6"/>
+            <line x1="23" y1="148" x2="315" y2="148" stroke="#54514a" stroke-width="1.2"/>
+            <text x="318" y="151" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">v</text>
+            <text x="20" y="8" font-family="Inter Tight" font-size="8" fill="#54514a">E</text>
+            <text x="312" y="87" font-family="JetBrains Mono" font-size="8" fill="#54514a">0</text>
+            <!-- E(v) = ½mv² - GmTm/R: parabola shifted down -->
+            <path d="M28,148 C50,146 80,138 120,120 C155,105 185,90 210,75 C240,57 270,38 308,12" fill="none" stroke="#2d4f72" stroke-width="2.2"/>
+            <!-- ve mark at E=0 crossing -->
+            <line x1="210" y1="86" x2="210" y2="95" stroke="#3a7d44" stroke-width="1.5"/>
+            <text x="210" y="108" font-family="JetBrains Mono" font-size="8" fill="#3a7d44" text-anchor="middle">ve</text>
+            <!-- shaded regions -->
+            <text x="120" y="138" font-family="Inter Tight" font-size="8.5" fill="#8a4a5a" text-anchor="middle">ligado (E&lt;0)</text>
+            <text x="270" y="78" font-family="Inter Tight" font-size="8.5" fill="#3a7d44" text-anchor="middle">escape (E≥0)</text>
+            <!-- comparacion tabla -->
+            <rect x="20" y="154" width="295" height="16" rx="3" fill="rgba(250,246,236,.85)" stroke="#d9d0bb" stroke-width="1"/>
+            <text x="167" y="164" font-family="Inter Tight" font-size="8" fill="#54514a" text-anchor="middle">Tierra: ve≈11.2 km/s &nbsp;|&nbsp; Luna: ve≈2.4 km/s &nbsp;|&nbsp; Sol: ve≈617 km/s</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            <b>Tierra:</b> mT=5.97×10²⁴kg, RT=6.37×10⁶m<br>
+            <span class="eq">ve = √(2×6.67×10⁻¹¹×5.97×10²⁴/6.37×10⁶) =</span> <span class="answer">11.2 km/s</span><br>
+            <span class="eq">ve = vs·√2 = 7.9×√2 =</span> <span class="answer">11.17 km/s ✓</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-49 -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     CARD 50 — Tensiones y deformaciones. Ley de Hooke
+════════════════════════════════════════════════════════ -->
+<div class="card-slot hidden" id="card-50">
+<div class="flipper" onclick="flipCard(this)">
+  <div class="face front">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 7 <span class="dot"></span> Elasticidad</span></div>
+    <span class="side-pill">FRENTE</span>
+    <span class="corner-stamp">tema<span class="num">50</span></span>
+    <div class="front-grid">
+      <div class="title-row"><h1 class="title">Tensiones, deformaciones y <em>Ley de Hooke</em></h1></div>
+      <div class="cols-row">
+        <div class="col col-left">
+          <div class="def-block">
+            <div class="def-text">
+              La <b>tensión</b> (esfuerzo interno por unidad de área) y la <b>deformación unitaria</b> (alargamiento relativo) están relacionadas linealmente en la zona elástica por la <b>Ley de Hooke</b>: las deformaciones son proporcionales a las tensiones.
+            </div>
+          </div>
+          <div class="formula-frame">
+            <div class="formula-main">&sigma; = E &middot; &xi;</div>
+            <div class="formula-sub" style="margin-top:.4rem;">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">&sigma; = F/A &nbsp;&middot;&nbsp; &xi; = &Delta;l/l&sub0; &nbsp;&middot;&nbsp; E = módulo de Young</span>
+            </div>
+          </div>
+          <div class="cases-grid">
+            <div class="case-pill"><b>Tensión normal &sigma;</b><span class="eq">&sigma; = F/A &nbsp;[Pa = N/m²]</span> Fuerza perpendicular a la sección A.</div>
+            <div class="case-pill"><b>Deformación unitaria &xi;</b><span class="eq">&xi; = &Delta;l/l&sub0; &nbsp;[adimensional]</span> &Delta;l = l &minus; l&sub0;</div>
+            <div class="case-pill"><b>Módulo de Young E</b> — propiedad del material, igual unidades que &sigma;. E&uarr; &rarr; material más rígido.</div>
+            <div class="case-pill"><b>Tensión tangencial &tau;</b><span class="eq">&tau; = F/A &nbsp;(fuerza paralela a A)</span></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="diagram-frame" style="flex:1;">
+            <svg viewBox="0 0 345 232" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="c50f-aF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+                <marker id="c50f-aFl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L9 5L2 9" fill="#8a4a5a"/></marker>
+              </defs>
+              <!-- ── TRACCIÓN ── -->
+              <text x="88" y="18" font-family="Inter Tight" font-size="9" fill="#8b6f3f" text-anchor="middle" font-weight="600">TRACCIÓN</text>
+              <!-- barra original -->
+              <rect x="30" y="25" width="116" height="28" rx="3" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.3"/>
+              <!-- barra deformada (más larga) -->
+              <rect x="30" y="65" width="116" height="28" rx="3" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.3" opacity=".5"/>
+              <rect x="146" y="65" width="22" height="28" rx="2" fill="#c9a86b" stroke="#8b6f3f" stroke-width="1"/>
+              <!-- F arrows tracción -->
+              <line x1="28" y1="79" x2="5" y2="79" stroke="#8a4a5a" stroke-width="2" marker-end="url(#c50f-aF)"/>
+              <line x1="170" y1="79" x2="193" y2="79" stroke="#8a4a5a" stroke-width="2" marker-end="url(#c50f-aF)"/>
+              <text x="1" y="75" font-family="Fraunces" font-style="italic" font-size="11" fill="#8a4a5a" font-weight="600">F</text>
+              <text x="197" y="75" font-family="Fraunces" font-style="italic" font-size="11" fill="#8a4a5a" font-weight="600">F</text>
+              <!-- l0 and Δl labels -->
+              <line x1="30" y1="100" x2="146" y2="100" stroke="#2d4f72" stroke-width="1"/>
+              <line x1="30" y1="97" x2="30" y2="103" stroke="#2d4f72" stroke-width="1"/>
+              <line x1="146" y1="97" x2="146" y2="103" stroke="#2d4f72" stroke-width="1"/>
+              <text x="88" y="112" font-family="Fraunces" font-style="italic" font-size="10" fill="#2d4f72" text-anchor="middle">l&sub0;</text>
+              <line x1="148" y1="100" x2="168" y2="100" stroke="#c2622d" stroke-width="1"/>
+              <line x1="148" y1="97" x2="148" y2="103" stroke="#c2622d" stroke-width="1"/>
+              <line x1="168" y1="97" x2="168" y2="103" stroke="#c2622d" stroke-width="1"/>
+              <text x="158" y="112" font-family="Fraunces" font-style="italic" font-size="10" fill="#c2622d" text-anchor="middle">&Delta;l</text>
+              <!-- A label -->
+              <line x1="148" y1="65" x2="165" y2="52" stroke="#8b6f3f" stroke-width="1"/>
+              <text x="168" y="50" font-family="Fraunces" font-style="italic" font-size="11" fill="#8b6f3f">A</text>
+
+              <!-- separator -->
+              <line x1="210" y1="15" x2="210" y2="120" stroke="#d9d0bb" stroke-width="1" stroke-dasharray="4 3"/>
+
+              <!-- ── COMPRESIÓN ── -->
+              <text x="278" y="18" font-family="Inter Tight" font-size="9" fill="#8b6f3f" text-anchor="middle" font-weight="600">COMPRESIÓN</text>
+              <rect x="222" y="25" width="110" height="28" rx="3" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.3"/>
+              <!-- compressed bar -->
+              <rect x="233" y="65" width="88" height="28" rx="3" fill="#e8d4a3" stroke="#8b6f3f" stroke-width="1.3" opacity=".5"/>
+              <!-- F arrows compresión -->
+              <line x1="222" y1="79" x2="244" y2="79" stroke="#8a4a5a" stroke-width="2" marker-end="url(#c50f-aFl)"/>
+              <line x1="332" y1="79" x2="310" y2="79" stroke="#8a4a5a" stroke-width="2" marker-end="url(#c50f-aFl)"/>
+              <text x="213" y="75" font-family="Fraunces" font-style="italic" font-size="11" fill="#8a4a5a" font-weight="600">F</text>
+              <text x="335" y="75" font-family="Fraunces" font-style="italic" font-size="11" fill="#8a4a5a" font-weight="600">F</text>
+
+              <!-- ── fórmulas box ── -->
+              <rect x="18" y="128" width="310" height="92" rx="6" fill="rgba(232,238,242,.6)" stroke="#7fa3c9" stroke-width="1"/>
+              <text x="173" y="145" font-family="Inter Tight" font-size="9" fill="#2d4f72" text-anchor="middle" font-weight="600">Relaciones fundamentales</text>
+              <line x1="25" y1="150" x2="321" y2="150" stroke="#7fa3c9" stroke-width=".7"/>
+              <!-- sigma -->
+              <text x="30" y="168" font-family="Fraunces" font-style="italic" font-size="12" fill="#8a4a5a" font-weight="600">&sigma; = F/A</text>
+              <text x="120" y="168" font-family="Inter Tight" font-size="8.5" fill="#54514a">[Pa = N/m²]</text>
+              <!-- xi -->
+              <text x="30" y="187" font-family="Fraunces" font-style="italic" font-size="12" fill="#3d5e44" font-weight="600">&xi; = &Delta;l / l&sub0;</text>
+              <text x="120" y="187" font-family="Inter Tight" font-size="8.5" fill="#54514a">[adimensional]</text>
+              <!-- Hooke -->
+              <text x="200" y="172" font-family="Fraunces" font-style="italic" font-size="14" fill="#2d4f72" font-weight="600">&sigma; = E &middot; &xi;</text>
+              <text x="200" y="188" font-family="Inter Tight" font-size="8.5" fill="#54514a">E: módulo de Young [Pa]</text>
+              <!-- pendiente label -->
+              <text x="173" y="212" font-family="Inter Tight" font-size="8.5" fill="#8b6f3f" text-anchor="middle">la pendiente del gráfico &sigma;&ndash;&xi; en zona elástica es <tspan font-weight="600">E</tspan></text>
+            </svg>
+          </div>
+          <div class="r-note">Válida solo en la <span style="color:var(--formula-accent);font-weight:600;">zona elástica</span> — si el esfuerzo supera el límite elástico, la deformación es plástica y permanente.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para ver el dorso</div>
+  </div>
+
+  <div class="face back">
+    <div class="top-meta"><span class="meta-tag">Física I <span class="dot"></span> Cap 7 <span class="dot"></span> Elasticidad</span></div>
+    <span class="side-pill">DORSO</span>
+    <span class="corner-stamp">tema<span class="num">50</span></span>
+    <div class="back-grid">
+      <div>
+        <div class="deriv-block">
+          <div class="deriv-text">
+            <b>Constante recuperadora k</b> — de &sigma;=E&xi; con &sigma;=F/A y &xi;=&Delta;l/l&sub0;:<br>
+            <span class="eq">F/A = E &middot; &Delta;l/l&sub0; &nbsp;&rarr;&nbsp; F = (EA/l&sub0;) &middot; &Delta;l</span><br>
+            Como para un resorte F = k&Delta;l:<br>
+            <div class="formula-final-wrap"><span class="formula-final">k = E &middot; A / l&sub0;</span></div>
+            <b>Zonas del diagrama &sigma;&ndash;&xi;</b>:<br>
+            &nbsp;&bull;&nbsp;<b>Zona elástica (0&ndash;A):</b> Hooke válido, deformación lineal, el material recupera su forma al cesar el esfuerzo.<br>
+            &nbsp;&bull;&nbsp;<b>Zona de fluencia (A&ndash;B):</b> relación no lineal; probablemente recuperable.<br>
+            &nbsp;&bull;&nbsp;<b>Zona plástica (B&rarr;):</b> deformación permanente o rotura.
+          </div>
+        </div>
+        <div class="unit-block" style="margin-top:.5rem;">
+          <div class="unit-text">
+            <b>[&sigma;]</b>=Pa &nbsp;·&nbsp; <b>[&xi;]</b>=adimensional &nbsp;·&nbsp; <b>[E]</b>=Pa &nbsp;·&nbsp; <b>[k]</b>=N/m<br>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">1 Pa = 1 N/m² &nbsp;·&nbsp; 1 MPa = 10⁶ Pa &nbsp;·&nbsp; 1 GPa = 10⁹ Pa</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.5rem;">
+        <div class="back-diag" style="height:198px;flex:0 0 auto;">
+          <svg viewBox="0 0 330 186" xmlns="http://www.w3.org/2000/svg">
+            <!-- σ-ξ diagram -->
+            <line x1="28" y1="10" x2="28" y2="158" stroke="#54514a" stroke-width="1.3"/>
+            <line x1="23" y1="158" x2="318" y2="158" stroke="#54514a" stroke-width="1.3"/>
+            <text x="321" y="162" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">&xi;</text>
+            <text x="18" y="8" font-family="Fraunces" font-style="italic" font-size="10" fill="#54514a">&sigma;</text>
+            <!-- Zona elástica: linear from origin to A -->
+            <line x1="28" y1="158" x2="120" y2="48" stroke="#2d4f72" stroke-width="2.5"/>
+            <!-- Shade elastic zone -->
+            <path d="M28,158 L120,48 L120,158 Z" fill="rgba(45,79,114,.08)"/>
+            <text x="65" y="138" font-family="Inter Tight" font-size="8" fill="#2d4f72" text-anchor="middle">Zona</text>
+            <text x="65" y="149" font-family="Inter Tight" font-size="8" fill="#2d4f72" text-anchor="middle">elástica</text>
+            <!-- Point A (limit of elasticity) -->
+            <circle cx="120" cy="48" r="4" fill="#2d4f72"/>
+            <text x="125" y="44" font-family="Fraunces" font-style="italic" font-size="11" fill="#2d4f72" font-weight="600">A</text>
+            <!-- fluencia A to B -->
+            <path d="M120,48 C135,38 150,36 168,38" fill="none" stroke="#8b6f3f" stroke-width="1.8" stroke-dasharray="4 2"/>
+            <!-- Point B -->
+            <circle cx="168" cy="38" r="4" fill="#8b6f3f"/>
+            <text x="170" y="34" font-family="Fraunces" font-style="italic" font-size="11" fill="#8b6f3f" font-weight="600">B</text>
+            <!-- zona plastica: rises then fracture -->
+            <path d="M168,38 C190,32 220,28 250,32 C270,36 285,42 295,55 C302,65 305,80 300,95" fill="none" stroke="#8a4a5a" stroke-width="1.8"/>
+            <!-- fracture point -->
+            <circle cx="300" cy="95" r="3" fill="#8a4a5a"/>
+            <line x1="300" y1="95" x2="316" y2="112" stroke="#8a4a5a" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <text x="308" y="120" font-family="Inter Tight" font-size="8" fill="#8a4a5a">rotura</text>
+            <!-- zona labels -->
+            <text x="148" y="16" font-family="Inter Tight" font-size="8" fill="#8b6f3f" text-anchor="middle">fluencia</text>
+            <text x="235" y="16" font-family="Inter Tight" font-size="8" fill="#8a4a5a" text-anchor="middle">Zona plástica</text>
+            <!-- E slope indicator -->
+            <line x1="55" y1="131" x2="100" y2="84" stroke="#2d4f72" stroke-width="1" stroke-dasharray="3 2" opacity=".6"/>
+            <text x="42" y="98" font-family="Fraunces" font-style="italic" font-size="9" fill="#2d4f72">E = &sigma;/&xi;</text>
+            <!-- tabla E materiales -->
+            <rect x="20" y="162" width="295" height="22" rx="3" fill="rgba(250,246,236,.85)" stroke="#d9d0bb" stroke-width="1"/>
+            <text x="167" y="170" font-family="Inter Tight" font-size="7.5" fill="#54514a" text-anchor="middle" font-weight="600">E [Pa×10¹⁰]:</text>
+            <text x="167" y="180" font-family="JetBrains Mono" font-size="7" fill="#54514a" text-anchor="middle">Acero: 20 &nbsp;·&nbsp; Hierro: 21 &nbsp;·&nbsp; Cobre: 11 &nbsp;·&nbsp; Aluminio: 7 &nbsp;·&nbsp; Plomo: 1.6</text>
+          </svg>
+        </div>
+        <div class="ex-block">
+          <div class="ex-text">
+            <b>Cable acero: l&sub0;=2 m, A=1 cm²=10⁻⁴ m², F=20 kN</b><br>
+            <span class="eq">&sigma; = 20×10³/10⁻⁴ =</span> <span class="answer">2×10⁸ Pa = 200 MPa</span><br>
+            <span class="eq">&xi; = &sigma;/E = 2×10⁸/(20×10¹⁰) =</span> <span class="answer">10⁻³ (adim.)</span><br>
+            <span class="eq">&Delta;l = &xi;×l&sub0; = 10⁻³×2 =</span> <span class="answer">2 mm</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-hint"><span class="arrow">↻</span> click para volver al frente</div>
+  </div>
+</div>
+</div><!-- card-50 -->
+
 </div><!-- scene -->
 </div><!-- scene-wrap -->
 
 <!-- ── GALLERY NAV ── -->
 <nav class="gallery-nav">
   <div class="chapter-tabs" id="chapter-tabs">
-    <button class="chapter-tab active" data-chapter="all" onclick="filterChapter(this,'all')">Todas (44)</button>
+    <button class="chapter-tab active" data-chapter="all" onclick="filterChapter(this,'all')">Todas (50)</button>
     <button class="chapter-tab" data-chapter="cap2" onclick="filterChapter(this,'cap2')">Cap 2 · Estática (4)</button>
     <button class="chapter-tab" data-chapter="cap3" onclick="filterChapter(this,'cap3')">Cap 3 · Cinemática (8)</button>
     <button class="chapter-tab" data-chapter="cap4" onclick="filterChapter(this,'cap4')">Cap 4 · Dinámica (28)</button>
     <button class="chapter-tab" data-chapter="cap5" onclick="filterChapter(this,'cap5')">Cap 5 · M.A.S (4)</button>
+    <button class="chapter-tab" data-chapter="cap6" onclick="filterChapter(this,'cap6')">Cap 6 · Gravitación (5)</button>
+    <button class="chapter-tab" data-chapter="cap7" onclick="filterChapter(this,'cap7')">Cap 7 · Elasticidad (1)</button>
   </div>
   <div class="thumb-strip-wrap">
     <div class="thumb-strip" id="thumb-strip"></div>
@@ -7134,6 +8003,12 @@
     { id:42, title:'Fuerza y Energía en el M.A.S',          chapter:'cap5' },
     { id:43, title:'Péndulo simple',                         chapter:'cap5' },
     { id:44, title:'Péndulo físico',                         chapter:'cap5' },
+    { id:45, title:'Leyes de Kepler',                         chapter:'cap6' },
+    { id:46, title:'Ley de Gravitación Universal',            chapter:'cap6' },
+    { id:47, title:'Velocidad orbital',                       chapter:'cap6' },
+    { id:48, title:'Energía potencial gravitatoria',          chapter:'cap6' },
+    { id:49, title:'Velocidad de escape',                     chapter:'cap6' },
+    { id:50, title:'Tensiones, deformaciones y Ley de Hooke', chapter:'cap7' },
   ];
 
   var filtered = allCards.slice();
