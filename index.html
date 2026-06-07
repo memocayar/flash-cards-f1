@@ -246,6 +246,40 @@
   .sigma { font-family:'Fraunces',serif; font-style:italic; }
   .eq-big { font-family:'Fraunces',serif; font-style:italic; font-size:1.4rem; color:var(--formula-accent); font-weight:500; }
   .eq-med { font-family:'Fraunces',serif; font-style:italic; font-size:1.1rem; color:var(--formula-accent); }
+
+  /* ── Fracciones verticales ── */
+  .frac {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0 .15em;
+    font-style: italic;
+    line-height: 1;
+    gap: .05em;
+  }
+  /* Ensure lines that contain fracs have enough height */
+  .eq, .deriv-text, .ex-text, .formula-sub, .unit-text {
+    line-height: 2.2;
+  }
+  .deriv-text .eq, .ex-text .eq {
+    line-height: inherit;
+  }
+  .frac .fnum,
+  .frac .fden {
+    display: block;
+    text-align: center;
+    padding: 0 .2em;
+    font-size: .8em;
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+  .frac .fbar {
+    display: block;
+    width: 100%;
+    min-width: 1.2em;
+    border-top: 1.3px solid currentColor;
+  }
 </style>
 </head>
 <body>
@@ -351,11 +385,11 @@
           <div class="deriv-text">
             Cuerpo de masa <b>m = cte</b> con cantidad de movimiento <span class="eq">p(t) = m&middot;v(t)</span>.<br><br>
             Derivamos respecto del tiempo:<br><br>
-            <span class="eq">dp/dt = d(m&middot;v)/dt</span><br><br>
+            <span class="eq"><span class="frac"><span class="fnum">dp</span><span class="fbar"></span><span class="fden">dt</span></span> = d(m&middot;v)/dt</span><br><br>
             Como m es constante:<br><br>
-            <span class="eq">dp/dt = m&middot;dv/dt = m&middot;a</span><br><br>
+            <span class="eq"><span class="frac"><span class="fnum">dp</span><span class="fbar"></span><span class="fden">dt</span></span> = m&middot;<span class="frac"><span class="fnum">dv</span><span class="fbar"></span><span class="fden">dt</span></span> = m&middot;a</span><br><br>
             Por la 2ª ley, <span class="eq">m&middot;a = &Sigma;F</span>, entonces:<br><br>
-            <div class="formula-final-wrap"><span class="formula-final">&Sigma;F = dp/dt</span></div>
+            <div class="formula-final-wrap"><span class="formula-final">&Sigma;F = <span class="frac"><span class="fnum">dp</span><span class="fbar"></span><span class="fden">dt</span></span></span></div>
             La fuerza neta es la <b>razón de cambio</b> de la cantidad de movimiento. Esta forma es <b>más general</b> que F=ma — vale incluso cuando m varía.
           </div>
         </div>
@@ -401,7 +435,7 @@
             Libro <b>2 kg</b> en reposo sobre mesa:<br>
             <span class="eq">P = m&middot;g = 2 &times; 9.8 =</span> <span class="answer">19.6 N &darr;</span><br>
             <span class="eq">N =</span> <span class="answer">19.6 N &uarr;</span> (reacción de la mesa)<br>
-            <span class="eq">&Sigma;F = 0 &rarr; dp/dt = 0 &rarr; v = cte = 0</span>
+            <span class="eq">&Sigma;F = 0 &rarr; <span class="frac"><span class="fnum">dp</span><span class="fbar"></span><span class="fden">dt</span></span> = 0 &rarr; v = cte = 0</span>
           </div>
         </div>
       </div>
@@ -747,11 +781,11 @@
           <div class="formula-frame">
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:.4rem; text-align:left;">
               <div>
-                <div style="font-family:'Fraunces',serif; font-style:italic; font-size:.95rem; color:var(--formula-accent); font-weight:500;">x<sub style="font-size:.65rem;">CM</sub> = Σ(mᵢxᵢ) / M</div>
-                <div style="font-family:'Fraunces',serif; font-style:italic; font-size:.95rem; color:var(--formula-accent); font-weight:500; margin-top:.3rem;">y<sub style="font-size:.65rem;">CM</sub> = Σ(mᵢyᵢ) / M</div>
+                <div style="font-family:'Fraunces',serif; font-style:italic; font-size:.95rem; color:var(--formula-accent); font-weight:500;">x<sub style="font-size:.65rem;">CM</sub> = <span class="frac"><span class="fnum">Σ(mᵢxᵢ)</span><span class="fbar"></span><span class="fden">M</span></span></div>
+                <div style="font-family:'Fraunces',serif; font-style:italic; font-size:.95rem; color:var(--formula-accent); font-weight:500; margin-top:.3rem;">y<sub style="font-size:.65rem;">CM</sub> = <span class="frac"><span class="fnum">Σ(mᵢyᵢ)</span><span class="fbar"></span><span class="fden">M</span></span></div>
               </div>
               <div style="display:flex; flex-direction:column; justify-content:center; border-left:1px solid var(--formula-stroke); padding-left:.6rem;">
-                <div style="font-family:'Fraunces',serif; font-style:italic; font-size:1.1rem; color:var(--formula-accent); font-weight:600;">r<sub style="font-size:.65rem;">CM</sub> = Σ(mᵢrᵢ) / M</div>
+                <div style="font-family:'Fraunces',serif; font-style:italic; font-size:1.1rem; color:var(--formula-accent); font-weight:600;">r<sub style="font-size:.65rem;">CM</sub> = <span class="frac"><span class="fnum">Σ(mᵢrᵢ)</span><span class="fbar"></span><span class="fden">M</span></span></div>
                 <div style="font-size:.68rem; color:var(--ink-2); margin-top:.3rem;">M = Σ mᵢ (masa total)</div>
               </div>
             </div>
@@ -823,10 +857,10 @@
             Por Varignon, ese momento es igual a la suma de los momentos de cada peso:<br>
             <span class="eq">M · x<sub>CM</sub> = m₁x₁ + m₂x₂ + … + mₙxₙ</span><br><br>
             Dividiendo por M:
-            <div class="formula-final-wrap"><span class="formula-final">x<sub>CM</sub> = Σ(mᵢxᵢ) / M</span></div>
+            <div class="formula-final-wrap"><span class="formula-final">x<sub>CM</sub> = <span class="frac"><span class="fnum">Σ(mᵢxᵢ)</span><span class="fbar"></span><span class="fden">M</span></span></span></div>
             Análogamente para y (momento respecto al eje x):
-            <div class="formula-final-wrap"><span class="formula-final">y<sub>CM</sub> = Σ(mᵢyᵢ) / M</span></div>
-            En forma vectorial: <span class="eq">r<sub>CM</sub> = Σ(mᵢrᵢ) / M</span>
+            <div class="formula-final-wrap"><span class="formula-final">y<sub>CM</sub> = <span class="frac"><span class="fnum">Σ(mᵢyᵢ)</span><span class="fbar"></span><span class="fden">M</span></span></span></div>
+            En forma vectorial: <span class="eq">r<sub>CM</sub> = <span class="frac"><span class="fnum">Σ(mᵢrᵢ)</span><span class="fbar"></span><span class="fden">M</span></span></span>
           </div>
         </div>
         <div class="unit-block">
@@ -926,13 +960,13 @@
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:.5rem; text-align:left;">
               <div>
                 <div style="font-size:.58rem; font-weight:700; letter-spacing:.14em; color:var(--formula-accent); margin-bottom:.25rem;">VELOCIDAD</div>
-                <div style="font-family:'Fraunces',serif; font-style:italic; font-size:.95rem; color:var(--formula-accent); font-weight:500;">v<sub style="font-size:.6rem;">m</sub> = Δx / Δt</div>
-                <div style="font-family:'Fraunces',serif; font-style:italic; font-size:.95rem; color:var(--formula-accent); font-weight:500; margin-top:.25rem;">v = dx / dt</div>
+                <div style="font-family:'Fraunces',serif; font-style:italic; font-size:.95rem; color:var(--formula-accent); font-weight:500;">v<sub style="font-size:.6rem;">m</sub> = <span class="frac"><span class="fnum">Δx</span><span class="fbar"></span><span class="fden">Δt</span></span></div>
+                <div style="font-family:'Fraunces',serif; font-style:italic; font-size:.95rem; color:var(--formula-accent); font-weight:500; margin-top:.25rem;">v = <span class="frac"><span class="fnum">dx</span><span class="fbar"></span><span class="fden">dt</span></span></div>
               </div>
               <div style="border-left:1px solid var(--formula-stroke); padding-left:.6rem;">
                 <div style="font-size:.58rem; font-weight:700; letter-spacing:.14em; color:var(--formula-accent); margin-bottom:.25rem;">ACELERACIÓN</div>
-                <div style="font-family:'Fraunces',serif; font-style:italic; font-size:.95rem; color:var(--formula-accent); font-weight:500;">a<sub style="font-size:.6rem;">m</sub> = Δv / Δt</div>
-                <div style="font-family:'Fraunces',serif; font-style:italic; font-size:.95rem; color:var(--formula-accent); font-weight:500; margin-top:.25rem;">a = dv / dt</div>
+                <div style="font-family:'Fraunces',serif; font-style:italic; font-size:.95rem; color:var(--formula-accent); font-weight:500;">a<sub style="font-size:.6rem;">m</sub> = <span class="frac"><span class="fnum">Δv</span><span class="fbar"></span><span class="fden">Δt</span></span></div>
+                <div style="font-family:'Fraunces',serif; font-style:italic; font-size:.95rem; color:var(--formula-accent); font-weight:500; margin-top:.25rem;">a = <span class="frac"><span class="fnum">dv</span><span class="fbar"></span><span class="fden">dt</span></span></div>
               </div>
             </div>
             <div style="border-top:1px dashed var(--formula-stroke); margin-top:.5rem; padding-top:.45rem; text-align:center;">
@@ -1027,7 +1061,7 @@
         <div class="deriv-block">
           <div class="deriv-text">
             En MRU, <b>a = 0</b>, por lo que <b>v = cte</b>.<br>
-            Recordando que <span class="eq">v = dx/dt</span>, entonces <span class="eq">dx = v · dt</span><br><br>
+            Recordando que <span class="eq">v = <span class="frac"><span class="fnum">dx</span><span class="fbar"></span><span class="fden">dt</span></span></span>, entonces <span class="eq">dx = v · dt</span><br><br>
             Integrando entre t = 0 y t:<br>
             <span class="eq">∫dx = v · ∫dt</span><br>
             <span class="eq">x − x₀ = v · t</span>
@@ -1338,7 +1372,7 @@
             Caída libre es MRUV con <b>V₀ = 0</b> y <b>a = g</b>:<br>
             <span class="eq">V = g·t</span> — (1) &nbsp;&nbsp; <span class="eq">h = ½·g·t²</span> — (2)<br><br>
             De (1): t = V/g. Sustituir en (2):<br>
-            <span class="eq">h = ½·g·(V/g)² = V²/(2g)</span><br>
+            <span class="eq">h = ½·g·(<span class="frac"><span class="fnum">V</span><span class="fbar"></span><span class="fden">g</span></span>)² = <span class="frac"><span class="fnum">V²</span><span class="fbar"></span><span class="fden">(2g)</span></span></span><br>
             Despejando V:
             <div class="formula-final-wrap"><span class="formula-final">V<sub>f</sub> = √(2·g·h)</span></div>
             Solo depende de <b>h</b> y <b>g</b> — no de la masa.
@@ -1410,8 +1444,8 @@
             <div style="display:flex;flex-direction:column;gap:.3rem;">
               <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--formula-accent);font-weight:600;">V = V₀ − g·t</div>
               <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--formula-accent);font-weight:600;">Y = V₀·t − ½·g·t²</div>
-              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--formula-accent);font-weight:600;">Y<sub style="font-size:.7rem;">max</sub> = V₀² / 2g</div>
-              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--formula-accent);font-weight:600;">t<sub style="font-size:.7rem;">sub</sub> = V₀/g &nbsp; · &nbsp; t<sub style="font-size:.7rem;">total</sub> = 2V₀/g</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--formula-accent);font-weight:600;">Y<sub style="font-size:.7rem;">max</sub> = <span class="frac"><span class="fnum">V₀²</span><span class="fbar"></span><span class="fden">2g</span></span></div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--formula-accent);font-weight:600;">t<sub style="font-size:.7rem;">sub</sub> = <span class="frac"><span class="fnum">V₀</span><span class="fbar"></span><span class="fden">g</span></span> &nbsp; · &nbsp; t<sub style="font-size:.7rem;">total</sub> = <span class="frac"><span class="fnum">2V₀</span><span class="fbar"></span><span class="fden">g</span></span></div>
             </div>
           </div>
           <div class="cases-grid">
@@ -1469,9 +1503,9 @@
           <div class="deriv-text">
             Ecuaciones con <b>a = −g</b>:<br>
             <span class="eq">V = V₀ − g·t</span> — (1) &nbsp;&nbsp; <span class="eq">Y = V₀t − ½gt²</span> — (2)<br><br>
-            <b>En la cima V = 0:</b> de (1) → <span class="eq">t<sub>sub</sub> = V₀/g</span><div class="formula-final-wrap"><span class="formula-final">t<sub>sub</sub> = V₀/g</span></div>
+            <b>En la cima V = 0:</b> de (1) → <span class="eq">t<sub>sub</sub> = <span class="frac"><span class="fnum">V₀</span><span class="fbar"></span><span class="fden">g</span></span></span><div class="formula-final-wrap"><span class="formula-final">t<sub>sub</sub> = <span class="frac"><span class="fnum">V₀</span><span class="fbar"></span><span class="fden">g</span></span></span></div>
             Sustituir en (2):<br>
-            <span class="eq">Y<sub>max</sub> = V₀·(V₀/g) − ½g·(V₀/g)² = V₀²/g − V₀²/(2g)</span><div class="formula-final-wrap"><span class="formula-final">Y<sub>max</sub> = V₀² / 2g</span></div>
+            <span class="eq">Y<sub>max</sub> = V₀·(<span class="frac"><span class="fnum">V₀</span><span class="fbar"></span><span class="fden">g</span></span>) − ½g·(<span class="frac"><span class="fnum">V₀</span><span class="fbar"></span><span class="fden">g</span></span>)² = <span class="frac"><span class="fnum">V₀²</span><span class="fbar"></span><span class="fden">g</span></span> − <span class="frac"><span class="fnum">V₀²</span><span class="fbar"></span><span class="fden">(2g)</span></span></span><div class="formula-final-wrap"><span class="formula-final">Y<sub>max</sub> = <span class="frac"><span class="fnum">V₀²</span><span class="fbar"></span><span class="fden">2g</span></span></span></div>
             <b>Simetría:</b> desde Y_max cae libre → V_f = √(2g·Y_max) = V₀. t_total = 2·t_sub.
           </div>
         </div>
@@ -1516,7 +1550,7 @@
           <div class="ex-text">
             <b>V₀ = 15 m/s</b>:<br>
             <span class="eq">t<sub>sub</sub> = 15/9,8 ≈</span> <span class="answer">1,53 s</span><br>
-            <span class="eq">Y<sub>max</sub> = 15²/19,6 ≈</span> <span class="answer">11,5 m</span><br>
+            <span class="eq">Y<sub>max</sub> = <span class="frac"><span class="fnum">15²</span><span class="fbar"></span><span class="fden">19,6</span></span> ≈</span> <span class="answer">11,5 m</span><br>
             <span class="eq">t<sub>total</sub> = 2·1,53 ≈</span> <span class="answer">3,06 s</span>
           </div>
         </div>
@@ -1550,12 +1584,12 @@
               <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.88rem;color:var(--formula-accent);">y = v<sub style="font-size:.5rem;">0y</sub>t − ½gt²</div>
               <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.88rem;color:var(--formula-accent);">v<sub style="font-size:.5rem;">y</sub> = v<sub style="font-size:.5rem;">0y</sub> − gt</div>
               <div style="font-size:.58rem;font-weight:700;letter-spacing:.12em;color:var(--formula-accent);grid-column:1/3;margin-top:.25rem;">RESULTADOS</div>
-              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.88rem;color:var(--formula-accent);">D = v₀²sen2α₀/g</div>
-              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.88rem;color:var(--formula-accent);">Y<sub style="font-size:.5rem;">max</sub> = v<sub style="font-size:.5rem;">0y</sub>²/2g</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.88rem;color:var(--formula-accent);">D = <span class="frac"><span class="fnum">v₀²sen2α₀</span><span class="fbar"></span><span class="fden">g</span></span></div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.88rem;color:var(--formula-accent);">Y<sub style="font-size:.5rem;">max</sub> = v<sub style="font-size:.5rem;">0y</sub><span class="frac"><span class="fnum">²</span><span class="fbar"></span><span class="fden">2g</span></span></div>
             </div>
           </div>
           <div class="cases-grid">
-            <div class="case-pill"><b>D máximo</b><span class="eq">α₀ = 45° → D = v₀²/g</span></div>
+            <div class="case-pill"><b>D máximo</b><span class="eq">α₀ = 45° → D = <span class="frac"><span class="fnum">v₀²</span><span class="fbar"></span><span class="fden">g</span></span></span></div>
             <div class="case-pill"><b>En la cima</b><span class="eq">vᵧ = 0, vₓ = v₀cosα₀</span></div>
           </div>
         </div>
@@ -1609,11 +1643,11 @@
           <div class="deriv-text">
             <b>Alcance D:</b> y = 0 → 0 = v₀yт − ½gт² → t = 2v₀senα₀/g<br>
             Sustituir en x = v₀cosα₀·t:
-            <div class="formula-final-wrap"><span class="formula-final">D = v₀²·sen2α₀ / g</span></div>
+            <div class="formula-final-wrap"><span class="formula-final">D = <span class="frac"><span class="fnum">v₀²·sen2α₀</span><span class="fbar"></span><span class="fden">g</span></span></span></div>
             Máximo para <b>sen2α₀ = 1 → α₀ = 45°</b><br><br>
             <b>Altura máxima:</b> vᵧ = 0 → t = v₀senα₀/g<br>
             Sustituir en y:
-            <div class="formula-final-wrap"><span class="formula-final">Y<sub>max</sub> = (v₀·senα₀)² / 2g</span></div>
+            <div class="formula-final-wrap"><span class="formula-final">Y<sub>max</sub> = <span class="frac"><span class="fnum">(v₀·senα₀)²</span><span class="fbar"></span><span class="fden">2g</span></span></span></div>
             Al volver: <b>|v_final| = v₀</b>, ángulo = −α₀.
           </div>
         </div>
@@ -1656,8 +1690,8 @@
         <div class="ex-block">
           <div class="ex-text">
             <b>v₀ = 30 m/s, α₀ = 45°</b>:<br>
-            <span class="eq">D = 30²·1/9,8 ≈</span> <span class="answer">91,8 m</span><br>
-            <span class="eq">Y<sub>max</sub> = (30·0,707)²/19,6 ≈</span> <span class="answer">22,9 m</span><br>
+            <span class="eq">D = <span class="frac"><span class="fnum">30²·1</span><span class="fbar"></span><span class="fden">9,8</span></span> ≈</span> <span class="answer">91,8 m</span><br>
+            <span class="eq">Y<sub>max</sub> = <span class="frac"><span class="fnum">(30·0,707)²</span><span class="fbar"></span><span class="fden">19,6</span></span> ≈</span> <span class="answer">22,9 m</span><br>
             <span class="eq">t<sub>total</sub> = 2·30·0,707/9,8 ≈</span> <span class="answer">4,33 s</span>
           </div>
         </div>
@@ -1686,12 +1720,12 @@
           </div>
           <div class="formula-frame">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:.28rem .6rem;">
-              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;color:var(--formula-accent);font-weight:600;">ω = dφ/dt</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;color:var(--formula-accent);font-weight:600;">ω = <span class="frac"><span class="fnum">dφ</span><span class="fbar"></span><span class="fden">dt</span></span></div>
               <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;color:var(--formula-accent);font-weight:600;">v = R·ω</div>
-              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;color:var(--formula-accent);font-weight:600;">a<sub style="font-size:.6rem;">c</sub> = ω²R = v²/R</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;color:var(--formula-accent);font-weight:600;">a<sub style="font-size:.6rem;">c</sub> = ω²R = <span class="frac"><span class="fnum">v²</span><span class="fbar"></span><span class="fden">R</span></span></div>
               <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;color:var(--formula-accent);font-weight:600;">φ = φ₀ + ω·t</div>
-              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;color:var(--formula-accent);font-weight:600;">T = 2π/ω</div>
-              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;color:var(--formula-accent);font-weight:600;">f = 1/T = ω/2π</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;color:var(--formula-accent);font-weight:600;">T = <span class="frac"><span class="fnum">2π</span><span class="fbar"></span><span class="fden">ω</span></span></div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;color:var(--formula-accent);font-weight:600;">f = <span class="frac"><span class="fnum">1</span><span class="fbar"></span><span class="fden">T</span></span> = <span class="frac"><span class="fnum">ω</span><span class="fbar"></span><span class="fden">2π</span></span></div>
             </div>
           </div>
           <div class="cases-grid">
@@ -1769,14 +1803,14 @@
             La velocidad tangencial como producto vectorial:<br>
             <span class="eq">v = ω × r</span><br><br>
             Derivando (ω = cte):<br>
-            <span class="eq">aₒ = dv/dt = ω × v</span><br><br>
+            <span class="eq">aₒ = <span class="frac"><span class="fnum">dv</span><span class="fbar"></span><span class="fden">dt</span></span> = ω × v</span><br><br>
             Módulo (ω ⊥ v, sen90° = 1):<br>
             <span class="eq">|aₒ| = |ω|·|v| = ω·(ωR)</span>
-            <div class="formula-final-wrap"><span class="formula-final">aₒ = ω²·R = v²/R</span></div>
+            <div class="formula-final-wrap"><span class="formula-final">aₒ = ω²·R = <span class="frac"><span class="fnum">v²</span><span class="fbar"></span><span class="fden">R</span></span></span></div>
             La dirección de <b>ω × v</b> es perpendicular a v y apunta hacia el centro → <b>centrípeta</b>.<br><br>
             <b>Período y frecuencia:</b> en una vuelta φ = 2π:<br>
-            <span class="eq">2π = ω·T → T = 2π/ω</span><br>
-            <span class="eq">f = 1/T = ω/2π</span>
+            <span class="eq">2π = ω·T → T = <span class="frac"><span class="fnum">2π</span><span class="fbar"></span><span class="fden">ω</span></span></span><br>
+            <span class="eq">f = <span class="frac"><span class="fnum">1</span><span class="fbar"></span><span class="fden">T</span></span> = <span class="frac"><span class="fnum">ω</span><span class="fbar"></span><span class="fden">2π</span></span></span>
           </div>
         </div>
         <div class="unit-block">
@@ -1830,7 +1864,7 @@
             Rueda: <b>R = 0,5 m</b>, <b>ω = 10 rad/s</b>:<br>
             <span class="eq">v = 0,5·10 =</span> <span class="answer">5 m/s</span><br>
             <span class="eq">aₒ = 10²·0,5 =</span> <span class="answer">50 m/s²</span><br>
-            <span class="eq">T = 2π/10 ≈</span> <span class="answer">0,63 s</span> &nbsp; <span class="eq">f ≈</span> <span class="answer">1,59 Hz</span>
+            <span class="eq">T = <span class="frac"><span class="fnum">2π</span><span class="fbar"></span><span class="fden">10</span></span> ≈</span> <span class="answer">0,63 s</span> &nbsp; <span class="eq">f ≈</span> <span class="answer">1,59 Hz</span>
           </div>
         </div>
       </div>
@@ -1945,8 +1979,8 @@
             Eliminar t de la 1ª ec. → sustituir en la 2ª:
             <div class="formula-final-wrap"><span class="formula-final">ω² = ω₀² + 2γ·Δφ</span></div>
             <b>Aceleraciones lineales:</b><br>
-            <span class="eq">aₜ = dv/dt = R·dω/dt = γ·R</span> (tangencial)<br>
-            <span class="eq">aₒ = ω²·R = v²/R</span> (centrípeta)<br>
+            <span class="eq">aₜ = <span class="frac"><span class="fnum">dv</span><span class="fbar"></span><span class="fden">dt</span></span> = <span class="frac"><span class="fnum">R·dω</span><span class="fbar"></span><span class="fden">dt</span></span> = γ·R</span> (tangencial)<br>
+            <span class="eq">aₒ = ω²·R = <span class="frac"><span class="fnum">v²</span><span class="fbar"></span><span class="fden">R</span></span></span> (centrípeta)<br>
             Como aₜ ⊥ aₒ: <span class="eq">a = √(aₜ² + aₒ²)</span>
           </div>
         </div>
@@ -2264,7 +2298,7 @@
         <div class="deriv-block">
           <div class="deriv-text">
             De la <b>2ª ley</b>: la aceleración es proporcional a la fuerza neta e inversamente proporcional a la masa.<br><br>
-            <span class="eq">&#x3A3;F = m &middot; a</span> &nbsp;&rarr;&nbsp; <span class="eq">a = &#x3A3;F / m</span><br><br>
+            <span class="eq">&#x3A3;F = m &middot; a</span> &nbsp;&rarr;&nbsp; <span class="eq">a = &#x3A3;<span class="frac"><span class="fnum">F</span><span class="fbar"></span><span class="fden">m</span></span></span><br><br>
             Si actúan varias fuerzas, <span class="eq">&#x3A3;F</span> es la <b>suma vectorial</b>. La ecuación se aplica componente a componente:<br><br>
             <span class="eq">&#x3A3;Fx = m &middot; ax</span><br>
             <span class="eq">&#x3A3;Fy = m &middot; ay</span><br><br>
@@ -2311,7 +2345,7 @@
           <div class="ex-text">
             Bloque <b>10 kg</b>: F<sub>1</sub> = 30 N (&rarr;), F<sub>2</sub> = 10 N (&larr;).<br>
             <span class="eq">&#x3A3;Fx = 30 &minus; 10 = 20 N</span><br>
-            <span class="eq">ax = &#x3A3;Fx / m = 20 / 10 =</span> <span class="answer">2 m/s² &rarr;</span><br>
+            <span class="eq">ax = &#x3A3;<span class="frac"><span class="fnum">Fx</span><span class="fbar"></span><span class="fden">m</span></span> = 20 / 10 =</span> <span class="answer">2 m/s² &rarr;</span><br>
             <span class="eq">ay = 0</span> (N y P se cancelan)
           </div>
         </div>
@@ -2342,7 +2376,7 @@
           </div>
           <div class="formula-frame">
             <div class="formula-main"><b>p</b> = m &middot; <b>v</b></div>
-            <div class="formula-sub">forma equivalente de la 2ª ley: &nbsp;<span style="font-family:'JetBrains Mono',monospace;font-size:.78rem;">&#x3A3;F = dp/dt</span></div>
+            <div class="formula-sub">forma equivalente de la 2ª ley: &nbsp;<span style="font-family:'JetBrains Mono',monospace;font-size:.78rem;">&#x3A3;F = <span class="frac"><span class="fnum">dp</span><span class="fbar"></span><span class="fden">dt</span></span></span></div>
           </div>
           <div class="cases-grid">
             <div class="case-pill">
@@ -2408,12 +2442,12 @@
           <div class="deriv-text">
             Partiendo de la 2ª ley con <b>m = cte</b>:<br><br>
             <span class="eq">&#x3A3;F = m &middot; a</span><br><br>
-            Como <span class="eq">a = dv/dt</span> (def. de aceleración):<br><br>
-            <span class="eq">&#x3A3;F = m &middot; dv/dt</span><br><br>
+            Como <span class="eq">a = <span class="frac"><span class="fnum">dv</span><span class="fbar"></span><span class="fden">dt</span></span></span> (def. de aceleración):<br><br>
+            <span class="eq">&#x3A3;F = m &middot; <span class="frac"><span class="fnum">dv</span><span class="fbar"></span><span class="fden">dt</span></span></span><br><br>
             m constante entra a la derivada:<br><br>
             <span class="eq">&#x3A3;F = d(m&middot;v)/dt</span><br><br>
             Definiendo <span class="eq" style="color:var(--demo-accent);">p &equiv; m&middot;v</span>:<br><br>
-            <div class="formula-final-wrap"><span class="formula-final">&#x3A3;F = dp/dt</span></div>
+            <div class="formula-final-wrap"><span class="formula-final">&#x3A3;F = <span class="frac"><span class="fnum">dp</span><span class="fbar"></span><span class="fden">dt</span></span></span></div>
             La fuerza neta es la <b>razón de cambio</b> de la cantidad de movimiento.
           </div>
         </div>
@@ -2551,7 +2585,7 @@
       <div>
         <div class="deriv-block">
           <div class="deriv-text">
-            De <span class="eq">&Sigma;F = dp/dt</span> despejamos dp:<br><br>
+            De <span class="eq">&Sigma;F = <span class="frac"><span class="fnum">dp</span><span class="fbar"></span><span class="fden">dt</span></span></span> despejamos dp:<br><br>
             <span class="eq">dp = &Sigma;F &middot; dt</span><br><br>
             Integrando en [t<sub>1</sub>, t<sub>2</sub>]:<br><br>
             <span class="eq">&int;<sub>t1</sub><sup>t2</sup> &Sigma;F dt = &int;<sub>p1</sub><sup>p2</sup> dp</span><br><br>
@@ -2717,9 +2751,9 @@
             <span class="eq">F<sub>BA</sub> = dp<sub>A</sub>/dt</span><br>
             <span class="eq">F<sub>AB</sub> = dp<sub>B</sub>/dt</span><br><br>
             Sumando:<br>
-            <span class="eq">F<sub>BA</sub> + F<sub>AB</sub> = d(p<sub>A</sub>+p<sub>B</sub>)/dt = dp/dt</span><br><br>
+            <span class="eq">F<sub>BA</sub> + F<sub>AB</sub> = d(p<sub>A</sub>+p<sub>B</sub>)/dt = <span class="frac"><span class="fnum">dp</span><span class="fbar"></span><span class="fden">dt</span></span></span><br><br>
             Como <span class="eq">F<sub>BA</sub> + F<sub>AB</sub> = 0</span>:<br><br>
-            <div class="formula-final-wrap"><span class="formula-final">dp/dt = 0 &rarr; p = cte</span></div>
+            <div class="formula-final-wrap"><span class="formula-final"><span class="frac"><span class="fnum">dp</span><span class="fbar"></span><span class="fden">dt</span></span> = 0 &rarr; p = cte</span></div>
             Se generaliza a cualquier número de partículas.
           </div>
         </div>
@@ -3096,7 +3130,7 @@
             <span class="eq">cupla resistente = N&middot;k</span><br><br>
             Condición de rodadura uniforme (cuplas iguales):<br><br>
             <span class="eq">Q&middot;R = N&middot;k</span><br><br>
-            <div class="formula-final-wrap"><span class="formula-final">Q<sub>rod</sub> = k&middot;N / R</span></div>
+            <div class="formula-final-wrap"><span class="formula-final">Q<sub>rod</sub> = k&middot;<span class="frac"><span class="fnum">N</span><span class="fbar"></span><span class="fden">R</span></span></span></div>
             Q es el módulo de la <b>fuerza de rozamiento por rodadura</b>.
           </div>
         </div>
@@ -3336,7 +3370,7 @@
           </div>
           <div class="formula-frame">
             <div class="formula-main" style="font-size:1.15rem;">P = dW/dt &nbsp;=&nbsp; F &middot; v</div>
-            <div class="formula-sub">media: &nbsp;<span style="font-family:'JetBrains Mono',monospace;font-size:.74rem;">P&#772; = &Delta;W / &Delta;t</span> &nbsp;|&nbsp; instantánea: &nbsp;<span style="font-family:'JetBrains Mono',monospace;font-size:.74rem;">P = dW/dt</span></div>
+            <div class="formula-sub">media: &nbsp;<span style="font-family:'JetBrains Mono',monospace;font-size:.74rem;">P&#772; = &Delta;W / &Delta;t</span> &nbsp;|&nbsp; instantánea: &nbsp;<span style="font-family:'JetBrains Mono',monospace;font-size:.74rem;">P = <span class="frac"><span class="fnum">dW</span><span class="fbar"></span><span class="fden">dt</span></span></span></div>
           </div>
           <div class="cases-grid">
             <div class="case-pill"><b>P = Fv</b> F constante colineal con v</div>
@@ -3412,9 +3446,9 @@
             Potencia media en intervalo &Delta;t:<br><br>
             <span class="eq">P&#772; = &Delta;W / &Delta;t</span><br><br>
             Potencia instantánea (límite &Delta;t &rarr; 0):<br><br>
-            <span class="eq">P = lím &Delta;W/&Delta;t = dW/dt</span><br><br>
+            <span class="eq">P = lím &Delta;W/&Delta;t = <span class="frac"><span class="fnum">dW</span><span class="fbar"></span><span class="fden">dt</span></span></span><br><br>
             Para F constante colineal con el movimiento:<br><br>
-            <span class="eq">P = dW/dt = d(F&middot;&Delta;r)/dt</span><br><br>
+            <span class="eq">P = <span class="frac"><span class="fnum">dW</span><span class="fbar"></span><span class="fden">dt</span></span> = d(F&middot;&Delta;r)/dt</span><br><br>
             F constante sale de la derivada:<br><br>
             <span class="eq">P = F &middot; d(&Delta;r)/dt = F &middot; v</span><br><br>
             <div class="formula-final-wrap"><span class="formula-final">P = F &middot; v</span></div>
@@ -4765,7 +4799,7 @@
           </div>
           <div class="formula-frame">
             <div class="formula-main" style="font-size:1.05rem;">m<sub>A</sub>V<sub>A</sub> + m<sub>B</sub>V<sub>B</sub> = (m<sub>A</sub>+m<sub>B</sub>)&middot;V</div>
-            <div class="formula-sub"><span style="font-family:'JetBrains Mono',monospace;font-size:.76rem;">V = (m<sub>A</sub>V<sub>A</sub> + m<sub>B</sub>V<sub>B</sub>) / (m<sub>A</sub>+m<sub>B</sub>)</span></div>
+            <div class="formula-sub"><span style="font-family:'JetBrains Mono',monospace;font-size:.76rem;">V = (m<sub>A</sub>V<sub>A</sub> + m<sub>B</sub>V<sub>B</sub>)/(m<sub>A</sub>+m<sub>B</sub>)</span></div>
           </div>
           <div class="cases-grid">
             <div class="case-pill"><b>e = 0</b>: vel. relativa post = 0 (quedan pegados)</div>
@@ -4980,7 +5014,7 @@
             <b>e=0 (plástico)</b>: V<sub>A2</sub> = V<sub>B2</sub> = V &rarr; vel. relativa post = 0 &rarr; e = 0 ✓<br><br>
             <b>Pelota cayendo desde h</b>: antes del rebote v<sub>1</sub> = &radic;(2gh) (suelo = B, v<sub>B1</sub>=0).<br>
             Después v<sub>2</sub> = &radic;(2gh') &rarr;<br><br>
-            <div class="formula-final-wrap"><span class="formula-final">e = &radic;(2gh') / &radic;(2gh) = &radic;(h'/h)</span></div>
+            <div class="formula-final-wrap"><span class="formula-final">e = &radic;(2gh') / &radic;(2gh) = &radic;(<span class="frac"><span class="fnum">h'</span><span class="fbar"></span><span class="fden">h</span></span>)</span></div>
           </div>
         </div>
         <div class="unit-block" style="margin-top:.55rem;">
@@ -5206,7 +5240,7 @@
           </div>
           <div class="formula-frame">
             <div class="formula-main" style="font-size:1.2rem;">P = M &middot; v<sub>CM</sub> = &Sigma;P<sub>i</sub></div>
-            <div class="formula-sub">ley de Newton del sistema: &nbsp;<span style="font-family:'JetBrains Mono',monospace;font-size:.74rem;">dP/dt = &Sigma;F<sub>ext</sub></span></div>
+            <div class="formula-sub">ley de Newton del sistema: &nbsp;<span style="font-family:'JetBrains Mono',monospace;font-size:.74rem;"><span class="frac"><span class="fnum">dP</span><span class="fbar"></span><span class="fden">dt</span></span> = &Sigma;F<sub>ext</sub></span></div>
           </div>
           <div class="cases-grid">
             <div class="case-pill"><b>F internas</b>: F<sub>12</sub>= &minus;F<sub>21</sub> &rarr; se cancelan &rarr; no cambian P</div>
@@ -5283,7 +5317,7 @@
             Sumando:<br>
             <span class="eq">(F<sub>12</sub>+F<sub>21</sub>) + (F<sub>1</sub>+F<sub>2</sub>) = d(P<sub>1</sub>+P<sub>2</sub>)/dt</span><br><br>
             Por 3&ordf; ley: F<sub>12</sub>+F<sub>21</sub>=0:<br>
-            <div class="formula-final-wrap"><span class="formula-final">dP/dt = &Sigma;F<sub>ext</sub></span></div>
+            <div class="formula-final-wrap"><span class="formula-final"><span class="frac"><span class="fnum">dP</span><span class="fbar"></span><span class="fden">dt</span></span> = &Sigma;F<sub>ext</sub></span></div>
             Se generaliza a n partículas.<br><br>
             <b>Sistema C</b>: v<sub>CM</sub>=0 &rarr; P<sub>CM</sub>=0. Si &Sigma;F<sub>ext</sub>=0, el CM no acelera &rarr; v<sub>CM</sub>=cte en todo sistema inercial.
           </div>
@@ -5569,10 +5603,10 @@
             Definiendo I<sub>0</sub> = &int;r²dm:<br><br>
             <div class="formula-final-wrap"><span class="formula-final">Ec = &frac12; &middot; I<sub>0</sub> &middot; &omega;²</span></div>
             <b>I<sub>0</sub> para cuerpos simples</b> (eje por CM):<br>
-            <span class="eq">Barra (eje &perp; centro): &nbsp;ML²/12</span><br>
-            <span class="eq">Disco sólido (eje &perp;): &nbsp;MR²/2</span><br>
+            <span class="eq">Barra (eje &perp; centro): &nbsp;<span class="frac"><span class="fnum">ML²</span><span class="fbar"></span><span class="fden">12</span></span></span><br>
+            <span class="eq">Disco sólido (eje &perp;): &nbsp;<span class="frac"><span class="fnum">MR²</span><span class="fbar"></span><span class="fden">2</span></span></span><br>
             <span class="eq">Aro (eje &perp;): &nbsp;MR²</span><br>
-            <span class="eq">Esfera sólida: &nbsp;2MR²/5</span>
+            <span class="eq">Esfera sólida: &nbsp;<span class="frac"><span class="fnum">2MR²</span><span class="fbar"></span><span class="fden">5</span></span></span>
           </div>
         </div>
         <div class="unit-block" style="margin-top:.55rem;">
@@ -5886,7 +5920,7 @@
         <div class="ex-block">
           <div class="ex-text">
             Disco <b>I<sub>0</sub>=0.5 kg&middot;m²</b>, M=2 N&middot;m.<br>
-            <span class="eq">&gamma; = M/I<sub>0</sub> = 2/0.5 =</span> <span class="answer">4 rad/s²</span><br>
+            <span class="eq">&gamma; = <span class="frac"><span class="fnum">M</span><span class="fbar"></span><span class="fden">I</span></span><sub>0</sub> = 2/0.5 =</span> <span class="answer">4 rad/s²</span><br>
             Desde reposo en t=3s: <span class="eq">&omega; = &gamma;&middot;t =</span> <span class="answer">12 rad/s</span>
           </div>
         </div>
@@ -6062,8 +6096,8 @@
             </div>
           </div>
           <div class="formula-frame">
-            <div class="formula-main">dL/dt = M</div>
-            <div class="formula-sub">M=0 &rarr; dL/dt=0 &rarr; <span style="font-family:'JetBrains Mono',monospace;font-size:.76rem;">L = cte (conservación)</span></div>
+            <div class="formula-main"><span class="frac"><span class="fnum">dL</span><span class="fbar"></span><span class="fden">dt</span></span> = M</div>
+            <div class="formula-sub">M=0 &rarr; <span class="frac"><span class="fnum">dL</span><span class="fbar"></span><span class="fden">dt</span></span>=0 &rarr; <span style="font-family:'JetBrains Mono',monospace;font-size:.76rem;">L = cte (conservación)</span></div>
           </div>
           <div class="cases-grid">
             <div class="case-pill"><b>Análogo a</b> dP/dt = F &rarr; P = cte si F=0</div>
@@ -6125,11 +6159,11 @@
         <div class="deriv-block">
           <div class="deriv-text">
             Derivando L = r&times;p respecto del tiempo:<br><br>
-            <span class="eq">dL/dt = (dr/dt)&times;p + r&times;(dP/dt)</span><br><br>
+            <span class="eq"><span class="frac"><span class="fnum">dL</span><span class="fbar"></span><span class="fden">dt</span></span> = (<span class="frac"><span class="fnum">dr</span><span class="fbar"></span><span class="fden">dt</span></span>)&times;p + r&times;(<span class="frac"><span class="fnum">dP</span><span class="fbar"></span><span class="fden">dt</span></span>)</span><br><br>
             Como dr/dt = v y v&times;p = v&times;(mv) = 0 (vectores paralelos):<br><br>
-            <span class="eq">dL/dt = 0 + r&times;(dP/dt)</span><br><br>
+            <span class="eq"><span class="frac"><span class="fnum">dL</span><span class="fbar"></span><span class="fden">dt</span></span> = 0 + r&times;(<span class="frac"><span class="fnum">dP</span><span class="fbar"></span><span class="fden">dt</span></span>)</span><br><br>
             Como dP/dt = F &nbsp;&rarr;&nbsp; r&times;F = M:<br><br>
-            <div class="formula-final-wrap"><span class="formula-final">dL/dt = M &#x2713;</span></div>
+            <div class="formula-final-wrap"><span class="formula-final"><span class="frac"><span class="fnum">dL</span><span class="fbar"></span><span class="fden">dt</span></span> = M &#x2713;</span></div>
             <b>Conservación de L:</b> Si M=0:<br>
             <span class="eq">I<sub>1</sub>&omega;<sub>1</sub> = I<sub>2</sub>&omega;<sub>2</sub></span> &rarr; <span class="eq">&omega;<sub>2</sub> = (I<sub>1</sub>/I<sub>2</sub>)&middot;&omega;<sub>1</sub></span>
           </div>
@@ -6262,7 +6296,7 @@
         <div class="deriv-block">
           <div class="deriv-text">
             Del teorema del momento cinético:<br><br>
-            <span class="eq">dL/dt = M &nbsp;&rarr;&nbsp; dL = M&middot;dt</span><br><br>
+            <span class="eq"><span class="frac"><span class="fnum">dL</span><span class="fbar"></span><span class="fden">dt</span></span> = M &nbsp;&rarr;&nbsp; dL = M&middot;dt</span><br><br>
             Integrando entre t<sub>i</sub> y t<sub>f</sub> con M constante:<br><br>
             <span class="eq">&int;dL = M&middot;&int;dt = M&middot;&Delta;t</span><br><br>
             <div class="formula-final-wrap"><span class="formula-final">D = M&middot;&Delta;t = &Delta;L &#x2713;</span></div>
@@ -6316,7 +6350,7 @@
           <div class="ex-text">
             Rueda <b>I<sub>0</sub>=0.2 kg&middot;m²</b>, &omega;<sub>i</sub>=0. M=4 N&middot;m, &Delta;t=3 s.<br>
             <span class="eq">D = M&middot;&Delta;t = 4&times;3 =</span> <span class="answer">12 N&middot;m&middot;s</span><br>
-            <span class="eq">&Delta;L = D &rarr; &omega;<sub>f</sub> = D/I<sub>0</sub> = 12/0.2 =</span> <span class="answer">60 rad/s</span>
+            <span class="eq">&Delta;L = D &rarr; &omega;<sub>f</sub> = <span class="frac"><span class="fnum">D</span><span class="fbar"></span><span class="fden">I</span></span><sub>0</sub> = 12/0.2 =</span> <span class="answer">60 rad/s</span>
           </div>
         </div>
       </div>
@@ -6412,13 +6446,13 @@
         <div class="deriv-block">
           <div class="deriv-text">
             L = &omega;&middot;I<sub>x</sub> tiene módulo constante pero su dirección cambia. En dt, el eje y L precesan un ángulo:<br><br>
-            <span class="eq">d&theta; = dL / L</span><br><br>
+            <span class="eq">d&theta; = <span class="frac"><span class="fnum">dL</span><span class="fbar"></span><span class="fden">L</span></span></span><br><br>
             El momento M = mgr genera:<br>
             <span class="eq">dL = M&middot;dt = mgr&middot;dt</span><br><br>
             Entonces:<br>
-            <span class="eq">d&theta; = mgr&middot;dt / (&omega;&middot;I<sub>x</sub>)</span><br><br>
+            <span class="eq">d&theta; = mgr&middot;dt/(&omega;&middot;I<sub>x</sub>)</span><br><br>
             Velocidad de precesión:<br>
-            <div class="formula-final-wrap"><span class="formula-final">&Omega; = d&theta;/dt = mgr / (&omega;&middot;I<sub>x</sub>) &#x2713;</span></div>
+            <div class="formula-final-wrap"><span class="formula-final">&Omega; = d&theta;/dt = mgr/(&omega;&middot;I<sub>x</sub>) &#x2713;</span></div>
             Cuanto mayor &omega;, menor &Omega; &rarr; giróscopo más estable.
           </div>
         </div>
@@ -6549,12 +6583,12 @@
         <div class="deriv-block">
           <div class="deriv-text">
             De <b>F = ma</b> y <b>F = &minus;kx</b>:<br><br>
-            <span class="eq">m&middot;d&sup2;x/dt&sup2; = &minus;kx</span><br><br>
-            <span class="eq">d&sup2;x/dt&sup2; = &minus;(k/m)&middot;x</span><br><br>
+            <span class="eq">m&middot;d&sup2;<span class="frac"><span class="fnum">x</span><span class="fbar"></span><span class="fden">dt</span></span>&sup2; = &minus;kx</span><br><br>
+            <span class="eq">d&sup2;<span class="frac"><span class="fnum">x</span><span class="fbar"></span><span class="fden">dt</span></span>&sup2; = &minus;(<span class="frac"><span class="fnum">k</span><span class="fbar"></span><span class="fden">m</span></span>)&middot;x</span><br><br>
             EC diferencial de 2° orden. Solución (sen y cos tienen 2ª derivada proporcional a la función con signo &minus;):<br><br>
             <span class="eq">x(t) = A&middot;cos(&omega;t + &delta;)</span><br><br>
-            Sustituyendo en la EC: <span class="eq">&minus;A&omega;&sup2;cos(...)=&minus;(k/m)A&middot;cos(...)</span><br><br>
-            <div class="formula-final-wrap"><span class="formula-final">&omega;&sup2; = k/m &nbsp;&rarr;&nbsp; &omega; = &radic;(k/m)</span></div>
+            Sustituyendo en la EC: <span class="eq">&minus;A&omega;&sup2;cos(...)=&minus;(<span class="frac"><span class="fnum">k</span><span class="fbar"></span><span class="fden">m</span></span>)A&middot;cos(...)</span><br><br>
+            <div class="formula-final-wrap"><span class="formula-final">&omega;&sup2; = <span class="frac"><span class="fnum">k</span><span class="fbar"></span><span class="fden">m</span></span> &nbsp;&rarr;&nbsp; &omega; = &radic;(<span class="frac"><span class="fnum">k</span><span class="fbar"></span><span class="fden">m</span></span>)</span></div>
             Derivando: <b>v(t)=&minus;&omega;A&middot;sen(&omega;t+&delta;)</b> &nbsp;&middot;&nbsp; <b>a(t)=&minus;&omega;&sup2;A&middot;cos(&omega;t+&delta;)</b>
           </div>
         </div>
@@ -6746,7 +6780,7 @@
             <b>k = 8 N/m, A = 0.1 m</b><br>
             <span class="eq">E = &frac12;&times;8&times;0.01 =</span> <span class="answer">0.04 J</span><br>
             En x=0.05 m: <span class="eq">U = &frac12;&times;8&times;0.0025 = 0.01 J</span><br>
-            <span class="eq">K = E&minus;U =</span> <span class="answer">0.03 J</span> &nbsp; <span class="eq">v = &radic;(2K/m) = 0.35 m/s</span>
+            <span class="eq">K = E&minus;U =</span> <span class="answer">0.03 J</span> &nbsp; <span class="eq">v = &radic;(<span class="frac"><span class="fnum">2K</span><span class="fbar"></span><span class="fden">m</span></span>) = 0.35 m/s</span>
           </div>
         </div>
       </div>
@@ -6776,7 +6810,7 @@
             </div>
           </div>
           <div class="formula-frame">
-            <div class="formula-main">T = 2&pi;&radic;(L/g)</div>
+            <div class="formula-main">T = 2&pi;&radic;(<span class="frac"><span class="fnum">L</span><span class="fbar"></span><span class="fden">g</span></span>)</div>
             <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">&omega; = &radic;(g/L) &nbsp;&middot;&nbsp; f = (1/2&pi;)&radic;(g/L)</span></div>
           </div>
           <div class="cases-grid">
@@ -6843,11 +6877,11 @@
             Componente tangencial del peso (fuerza restauradora):<br>
             <span class="eq">F&theta; = &minus;mg&middot;sen&theta;</span><br><br>
             Aproximación de ángulo pequeño (<b>sen&theta; &asymp; &theta; = x/L</b>):<br>
-            <span class="eq">F&theta; = &minus;mg&middot;&theta; = &minus;mg(x/L) = &minus;(mg/L)&middot;x</span><br><br>
-            Tiene forma de Ley de Hooke con <span class="eq">k<sub>ef</sub> = mg/L</span>.<br><br>
+            <span class="eq">F&theta; = &minus;mg&middot;&theta; = &minus;mg(<span class="frac"><span class="fnum">x</span><span class="fbar"></span><span class="fden">L</span></span>) = &minus;(<span class="frac"><span class="fnum">mg</span><span class="fbar"></span><span class="fden">L</span></span>)&middot;x</span><br><br>
+            Tiene forma de Ley de Hooke con <span class="eq">k<sub>ef</sub> = <span class="frac"><span class="fnum">mg</span><span class="fbar"></span><span class="fden">L</span></span></span>.<br><br>
             Usando <span class="eq">&omega; = &radic;(k<sub>ef</sub>/m)</span>:<br>
-            <span class="eq">&omega; = &radic;(mg/L / m) = &radic;(g/L)</span><br><br>
-            <div class="formula-final-wrap"><span class="formula-final">T = 2&pi;/&omega; = 2&pi;&radic;(L/g)</span></div>
+            <span class="eq">&omega; = &radic;(<span class="frac"><span class="fnum">mg</span><span class="fbar"></span><span class="fden">L</span></span> / m) = &radic;(<span class="frac"><span class="fnum">g</span><span class="fbar"></span><span class="fden">L</span></span>)</span><br><br>
+            <div class="formula-final-wrap"><span class="formula-final">T = 2&pi;/&omega; = 2&pi;&radic;(<span class="frac"><span class="fnum">L</span><span class="fbar"></span><span class="fden">g</span></span>)</span></div>
             <b>T es independiente de m y de A</b> (amplitud pequeña).
           </div>
         </div>
@@ -6928,11 +6962,11 @@
             </div>
           </div>
           <div class="formula-frame">
-            <div class="formula-main">T = 2&pi;&radic;(I / mgd)</div>
+            <div class="formula-main">T = 2&pi;&radic;(<span class="frac"><span class="fnum">I</span><span class="fbar"></span><span class="fden">mgd</span></span>)</div>
             <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">&omega; = &radic;(mgd/I) &nbsp;&middot;&nbsp; f = (1/2&pi;)&radic;(mgd/I)</span></div>
           </div>
           <div class="cases-grid">
-            <div class="case-pill"><b>I = mL&sup2; (masa puntual)</b><span class="eq">T = 2&pi;&radic;(L/g) &nbsp;&larr; pénd. simple</span></div>
+            <div class="case-pill"><b>I = mL&sup2; (masa puntual)</b><span class="eq">T = 2&pi;&radic;(<span class="frac"><span class="fnum">L</span><span class="fbar"></span><span class="fden">g</span></span>) &nbsp;&larr; pénd. simple</span></div>
             <div class="case-pill"><b>d &rarr; 0 (eje en cg)</b><span class="eq">T &rarr; &infin; &nbsp;(no oscila)</span></div>
             <div class="case-pill"><b>I</b> se calcula por Steiner si el eje no pasa por el cg</div>
             <div class="case-pill"><b>Condición:</b> amplitud pequeña (sen&theta; &asymp; &theta;)</div>
@@ -6999,9 +7033,9 @@
             <span class="eq">&tau;<sub>z</sub> &asymp; &minus;(mgd)&middot;&theta;</span><br><br>
             2ª ley aplicada a la rotación (<b>&tau; = I&alpha;</b>):<br>
             <span class="eq">&minus;(mgd)&theta; = I&middot;d&sup2;&theta;/dt&sup2;</span><br><br>
-            <span class="eq">d&sup2;&theta;/dt&sup2; = &minus;(mgd/I)&middot;&theta;</span><br><br>
-            Forma de MAS con <span class="eq">&omega;&sup2; = mgd/I</span>:<br>
-            <div class="formula-final-wrap"><span class="formula-final">T = 2&pi;&radic;(I / mgd)</span></div>
+            <span class="eq">d&sup2;&theta;/dt&sup2; = &minus;(<span class="frac"><span class="fnum">mgd</span><span class="fbar"></span><span class="fden">I</span></span>)&middot;&theta;</span><br><br>
+            Forma de MAS con <span class="eq">&omega;&sup2; = <span class="frac"><span class="fnum">mgd</span><span class="fbar"></span><span class="fden">I</span></span></span>:<br>
+            <div class="formula-final-wrap"><span class="formula-final">T = 2&pi;&radic;(<span class="frac"><span class="fnum">I</span><span class="fbar"></span><span class="fden">mgd</span></span>)</span></div>
             Con <b>Steiner</b>: si I<sub>cg</sub> conocido &rarr; <span class="eq">I<sub>O</sub> = I<sub>cg</sub> + md&sup2;</span>
           </div>
         </div>
@@ -7052,7 +7086,7 @@
           <div class="ex-text">
             <b>Varilla homogénea: m=2 kg, L=1.2 m</b>, pivote en extremo.<br>
             <span class="eq">I<sub>O</sub> = mL&sup2;/3 = 2&times;1.44/3 =</span> <span class="answer">0.96 kg&middot;m&sup2;</span><br>
-            <span class="eq">d = L/2 = 0.6 m</span><br>
+            <span class="eq">d = <span class="frac"><span class="fnum">L</span><span class="fbar"></span><span class="fden">2</span></span> = 0.6 m</span><br>
             <span class="eq">T = 2&pi;&radic;(0.96/(2&times;9.8&times;0.6)) =</span> <span class="answer">1.79 s</span>
           </div>
         </div>
@@ -7148,12 +7182,12 @@
       <div>
         <div class="deriv-block">
           <div class="deriv-text">
-            <b>2ª ley — demostración:</b> La fuerza gravitatoria es <b>central</b> (apunta hacia el Sol) → torque nulo → <span class="eq">dL/dt = 0 → L = r × mv = cte</span>. El área barrida en dt: <span class="eq">dA = ½|r × v|dt</span> → <b>dA/dt = cte</b>.<br><br>
+            <b>2ª ley — demostración:</b> La fuerza gravitatoria es <b>central</b> (apunta hacia el Sol) → torque nulo → <span class="eq"><span class="frac"><span class="fnum">dL</span><span class="fbar"></span><span class="fden">dt</span></span> = 0 → L = r × mv = cte</span>. El área barrida en dt: <span class="eq">dA = ½|r × v|dt</span> → <b>dA/dt = cte</b>.<br><br>
             <b>3ª ley — demostración (órbita circular):</b><br>
             Igualando fuerza gravitatoria y centrípeta:<br>
-            <span class="eq">GmTm/r² = m·(2πr/T)²/r</span><br>
-            <span class="eq">GmT/r² = 4π²r/T²</span><br>
-            <div class="formula-final-wrap"><span class="formula-final">T²/r³ = 4π²/(GmT) = k = cte</span></div>
+            <span class="eq"><span class="frac"><span class="fnum">GmTm</span><span class="fbar"></span><span class="fden">r²</span></span> = m·(<span class="frac"><span class="fnum">2πr</span><span class="fbar"></span><span class="fden">T</span></span>)²/r</span><br>
+            <span class="eq"><span class="frac"><span class="fnum">GmT</span><span class="fbar"></span><span class="fden">r²</span></span> = <span class="frac"><span class="fnum">4π²r</span><span class="fbar"></span><span class="fden">T²</span></span></span><br>
+            <div class="formula-final-wrap"><span class="formula-final"><span class="frac"><span class="fnum">T²</span><span class="fbar"></span><span class="fden">r³</span></span> = <span class="frac"><span class="fnum">4π²</span><span class="fbar"></span><span class="fden">(GmT)</span></span> = k = cte</span></div>
             La constante k depende solo de la masa central (el Sol), no del planeta.
           </div>
         </div>
@@ -7195,7 +7229,7 @@
         <div class="ex-block">
           <div class="ex-text">
             <b>Tierra:</b> T = 1 año = 3.156×10⁷ s, r = 1.496×10¹¹ m<br>
-            <span class="eq">k = T²/r³ = (3.156×10⁷)²/(1.496×10¹¹)³ =</span><br>
+            <span class="eq">k = <span class="frac"><span class="fnum">T²</span><span class="fbar"></span><span class="fden">r³</span></span> = <span class="frac"><span class="fnum">(3.156×10⁷)²</span><span class="fbar"></span><span class="fden">(1.496×10¹¹)³</span></span> =</span><br>
             <span class="answer">2.97×10⁻¹⁹ s²/m³</span><br>
             <span style="color:var(--ink-3);font-size:.7rem;">Marte (r=1.52 UA) → T = k^½ · r^(3/2) = 1.88 años ✓</span>
           </div>
@@ -7227,14 +7261,14 @@
             </div>
           </div>
           <div class="formula-frame">
-            <div class="formula-main">Fg = Gm₁m₂ / r²</div>
+            <div class="formula-main">Fg = <span class="frac"><span class="fnum">Gm₁m₂</span><span class="fbar"></span><span class="fden">r²</span></span></div>
             <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">G = 6.67×10⁻¹¹ N·m²/kg² &nbsp;·&nbsp; g(r) = GmT/r²</span></div>
           </div>
           <div class="cases-grid">
             <div class="case-pill"><b>G: constante universal</b> — igual para cualquier par de cuerpos, medida por Cavendish (1798).</div>
             <div class="case-pill"><b>r↑ → Fg↓</b> decae como 1/r² (ley del inverso del cuadrado)</div>
-            <div class="case-pill"><b>g en superficie:</b><span class="eq">g = GmT/RT² ≈ 9.8 m/s²</span></div>
-            <div class="case-pill"><b>g a distancia r:</b><span class="eq">g(r) = GmT/r² &nbsp;(no es cte)</span></div>
+            <div class="case-pill"><b>g en superficie:</b><span class="eq">g = <span class="frac"><span class="fnum">GmT</span><span class="fbar"></span><span class="fden">RT²</span></span> ≈ 9.8 m/s²</span></div>
+            <div class="case-pill"><b>g a distancia r:</b><span class="eq">g(r) = <span class="frac"><span class="fnum">GmT</span><span class="fbar"></span><span class="fden">r²</span></span> &nbsp;(no es cte)</span></div>
           </div>
         </div>
         <div class="col">
@@ -7292,13 +7326,13 @@
         <div class="deriv-block">
           <div class="deriv-text">
             <b>Derivación desde la 3ª ley de Kepler</b> (órbita circular):<br>
-            <span class="eq">Fg = mac = m·v²/r = m·(2πr/T)²/r = 4π²mr/T²</span><br><br>
-            Por 3ª ley de Kepler: <span class="eq">T² = (4π²/GmS)·r³</span><br>
+            <span class="eq">Fg = mac = <span class="frac"><span class="fnum">m·v²</span><span class="fbar"></span><span class="fden">r</span></span> = m·(<span class="frac"><span class="fnum">2πr</span><span class="fbar"></span><span class="fden">T</span></span>)²/r = <span class="frac"><span class="fnum">4π²mr</span><span class="fbar"></span><span class="fden">T²</span></span></span><br><br>
+            Por 3ª ley de Kepler: <span class="eq">T² = (<span class="frac"><span class="fnum">4π²</span><span class="fbar"></span><span class="fden">GmS</span></span>)·r³</span><br>
             Sustituyendo:<br>
-            <span class="eq">Fg = 4π²mr / [(4π²/GmS)·r³] = GmS·m / r²</span><br><br>
-            <div class="formula-final-wrap"><span class="formula-final">Fg = Gm₁m₂ / r²</span></div>
-            <b>g en superficie</b>: sobre la Tierra (<span class="eq">F = mg = GmTm/RT²</span>):<br>
-            <span class="eq">g = GmT/RT² = (6.67×10⁻¹¹×5.97×10²⁴)/(6.37×10⁶)² ≈ 9.8 m/s²</span>
+            <span class="eq">Fg = 4π²mr / [(<span class="frac"><span class="fnum">4π²</span><span class="fbar"></span><span class="fden">GmS</span></span>)·r³] = <span class="frac"><span class="fnum">GmS·m</span><span class="fbar"></span><span class="fden">r²</span></span></span><br><br>
+            <div class="formula-final-wrap"><span class="formula-final">Fg = <span class="frac"><span class="fnum">Gm₁m₂</span><span class="fbar"></span><span class="fden">r²</span></span></span></div>
+            <b>g en superficie</b>: sobre la Tierra (<span class="eq">F = mg = <span class="frac"><span class="fnum">GmTm</span><span class="fbar"></span><span class="fden">RT²</span></span></span>):<br>
+            <span class="eq">g = <span class="frac"><span class="fnum">GmT</span><span class="fbar"></span><span class="fden">RT²</span></span> = (6.67×10⁻¹¹×5.97×10²⁴)/(6.37×10⁶)² ≈ 9.8 m/s²</span>
           </div>
         </div>
         <div class="unit-block" style="margin-top:.5rem;">
@@ -7336,7 +7370,7 @@
         <div class="ex-block">
           <div class="ex-text">
             <b>Fuerza entre Tierra y Luna</b>: mT=5.97×10²⁴kg, mL=7.35×10²²kg, r=3.84×10⁸m<br>
-            <span class="eq">Fg = 6.67×10⁻¹¹ × 5.97×10²⁴ × 7.35×10²² / (3.84×10⁸)² =</span><br>
+            <span class="eq">Fg = 6.67×10⁻¹¹ × 5.97×10²⁴ × <span class="frac"><span class="fnum">7.35×10²²</span><span class="fbar"></span><span class="fden">(3.84×10⁸)²</span></span> =</span><br>
             <span class="answer">1.99×10²⁰ N</span>
           </div>
         </div>
@@ -7367,7 +7401,7 @@
             </div>
           </div>
           <div class="formula-frame">
-            <div class="formula-main">vs = √(GmT / r)</div>
+            <div class="formula-main">vs = √(<span class="frac"><span class="fnum">GmT</span><span class="fbar"></span><span class="fden">r</span></span>)</div>
             <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">T_orb = 2πr/vs = 2π√(r³/GmT)</span></div>
           </div>
           <div class="cases-grid">
@@ -7426,13 +7460,13 @@
           <div class="deriv-text">
             La única fuerza sobre el satélite es <b>Fg</b>, que provee la aceleración centrípeta:<br>
             <span class="eq">Fg = Fc</span><br>
-            <span class="eq">GmT·ms/r² = ms·vs²/r</span><br><br>
+            <span class="eq"><span class="frac"><span class="fnum">GmT·ms</span><span class="fbar"></span><span class="fden">r²</span></span> = <span class="frac"><span class="fnum">ms·vs²</span><span class="fbar"></span><span class="fden">r</span></span></span><br><br>
             Simplificando ms (independencia de masa):<br>
-            <span class="eq">GmT/r² = vs²/r</span><br>
-            <span class="eq">vs² = GmT/r</span><br>
-            <div class="formula-final-wrap"><span class="formula-final">vs = √(GmT / r)</span></div>
-            <b>Período orbital</b>: <span class="eq">Torb = 2πr/vs = 2π√(r³/GmT)</span><br><br>
-            (recupera 3ª ley de Kepler: <span class="eq">Torb² = (4π²/GmT)·r³</span>)
+            <span class="eq"><span class="frac"><span class="fnum">GmT</span><span class="fbar"></span><span class="fden">r²</span></span> = <span class="frac"><span class="fnum">vs²</span><span class="fbar"></span><span class="fden">r</span></span></span><br>
+            <span class="eq">vs² = <span class="frac"><span class="fnum">GmT</span><span class="fbar"></span><span class="fden">r</span></span></span><br>
+            <div class="formula-final-wrap"><span class="formula-final">vs = √(<span class="frac"><span class="fnum">GmT</span><span class="fbar"></span><span class="fden">r</span></span>)</span></div>
+            <b>Período orbital</b>: <span class="eq">Torb = <span class="frac"><span class="fnum">2πr</span><span class="fbar"></span><span class="fden">vs</span></span> = 2π√(<span class="frac"><span class="fnum">r³</span><span class="fbar"></span><span class="fden">GmT</span></span>)</span><br><br>
+            (recupera 3ª ley de Kepler: <span class="eq">Torb² = (<span class="frac"><span class="fnum">4π²</span><span class="fbar"></span><span class="fden">GmT</span></span>)·r³</span>)
           </div>
         </div>
         <div class="unit-block" style="margin-top:.5rem;">
@@ -7468,8 +7502,8 @@
         <div class="ex-block">
           <div class="ex-text">
             <b>ISS</b>: r = RT + 400km = 6.77×10⁶ m<br>
-            <span class="eq">vs = √(6.67×10⁻¹¹ × 5.97×10²⁴ / 6.77×10⁶) =</span> <span class="answer">7.67 km/s</span><br>
-            <span class="eq">Torb = 2π×6.77×10⁶ / 7670 =</span> <span class="answer">5545 s ≈ 92 min</span>
+            <span class="eq">vs = √(6.67×10⁻¹¹ × <span class="frac"><span class="fnum">5.97×10²⁴</span><span class="fbar"></span><span class="fden">6.77×10⁶</span></span>) =</span> <span class="answer">7.67 km/s</span><br>
+            <span class="eq">Torb = <span class="frac"><span class="fnum">2π×6.77×10⁶</span><span class="fbar"></span><span class="fden">7670</span></span> =</span> <span class="answer">5545 s ≈ 92 min</span>
           </div>
         </div>
       </div>
@@ -7499,14 +7533,14 @@
             </div>
           </div>
           <div class="formula-frame">
-            <div class="formula-main">Ep = −GmT·m / r</div>
+            <div class="formula-main">Ep = <span class="frac"><span class="fnum">−GmT·m</span><span class="fbar"></span><span class="fden">r</span></span></div>
             <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">Ep &lt; 0 siempre &nbsp;·&nbsp; Ep → 0 cuando r → ∞ &nbsp;·&nbsp; W = −ΔEp</span></div>
           </div>
           <div class="cases-grid">
             <div class="case-pill"><b>Ep &lt; 0 siempre</b> — el cuerpo está ligado gravitacionalmente; hay que dar energía para separarlo.</div>
-            <div class="case-pill"><b>r = RT</b> (superficie):<span class="eq">Ep = −GmTm/RT = −mgRT</span></div>
+            <div class="case-pill"><b>r = RT</b> (superficie):<span class="eq">Ep = <span class="frac"><span class="fnum">−GmTm</span><span class="fbar"></span><span class="fden">RT</span></span> = −mgRT</span></div>
             <div class="case-pill"><b>r↑ → Ep↑</b> (menos negativa) — el cuerpo gana energía potencial al alejarse.</div>
-            <div class="case-pill"><b>Diferencia:</b><span class="eq">ΔEp = GmTm(1/r₁ − 1/r₂)</span></div>
+            <div class="case-pill"><b>Diferencia:</b><span class="eq">ΔEp = GmTm(<span class="frac"><span class="fnum">1</span><span class="fbar"></span><span class="fden">r₁</span></span> − <span class="frac"><span class="fnum">1</span><span class="fbar"></span><span class="fden">r₂</span></span>)</span></div>
           </div>
         </div>
         <div class="col">
@@ -7556,14 +7590,14 @@
           <div class="deriv-text">
             La fuerza gravitatoria es conservativa: <span class="eq">W = −ΔEp</span><br><br>
             Calculando el trabajo de Fg al desplazar m desde r₁ hasta r₂:<br>
-            <span class="eq">W = ∫[r₁→r₂] F·dr = ∫[r₁→r₂] GmTm/r² dr</span><br>
-            <span class="eq">W = GmTm [−1/r] de r₁ a r₂ = GmTm(1/r₁ − 1/r₂)</span><br><br>
+            <span class="eq">W = ∫[r₁→r₂] F·dr = ∫[r₁→r₂] <span class="frac"><span class="fnum">GmTm</span><span class="fbar"></span><span class="fden">r²</span></span> dr</span><br>
+            <span class="eq">W = GmTm [<span class="frac"><span class="fnum">−1</span><span class="fbar"></span><span class="fden">r</span></span>] de r₁ a r₂ = GmTm(<span class="frac"><span class="fnum">1</span><span class="fbar"></span><span class="fden">r₁</span></span> − <span class="frac"><span class="fnum">1</span><span class="fbar"></span><span class="fden">r₂</span></span>)</span><br><br>
             Como <span class="eq">W = −ΔEp = −(Ep₂ − Ep₁)</span>:<br>
-            <span class="eq">Ep₂ − Ep₁ = −GmTm(1/r₁ − 1/r₂) = GmTm(1/r₂ − 1/r₁)</span><br><br>
+            <span class="eq">Ep₂ − Ep₁ = −GmTm(<span class="frac"><span class="fnum">1</span><span class="fbar"></span><span class="fden">r₁</span></span> − <span class="frac"><span class="fnum">1</span><span class="fbar"></span><span class="fden">r₂</span></span>) = GmTm(<span class="frac"><span class="fnum">1</span><span class="fbar"></span><span class="fden">r₂</span></span> − <span class="frac"><span class="fnum">1</span><span class="fbar"></span><span class="fden">r₁</span></span>)</span><br><br>
             Tomando Ep(∞) = 0 como referencia:<br>
-            <div class="formula-final-wrap"><span class="formula-final">Ep(r) = −GmT·m / r</span></div>
+            <div class="formula-final-wrap"><span class="formula-final">Ep(r) = <span class="frac"><span class="fnum">−GmT·m</span><span class="fbar"></span><span class="fden">r</span></span></span></div>
             <b>Energía mecánica total</b> en órbita circular:<br>
-            <span class="eq">E = K + Ep = ½mvs² − GmTm/r = −GmTm/(2r)</span>
+            <span class="eq">E = K + Ep = ½mvs² − <span class="frac"><span class="fnum">GmTm</span><span class="fbar"></span><span class="fden">r</span></span> = <span class="frac"><span class="fnum">−GmTm</span><span class="fbar"></span><span class="fden">(2r)</span></span></span>
           </div>
         </div>
         <div class="unit-block" style="margin-top:.5rem;">
@@ -7602,8 +7636,8 @@
         <div class="ex-block">
           <div class="ex-text">
             <b>Satélite m=100 kg en r=7×10⁶ m</b>:<br>
-            <span class="eq">Ep = −6.67×10⁻¹¹×5.97×10²⁴×100 / 7×10⁶ =</span> <span class="answer">−5.69×10⁹ J</span><br>
-            <span class="eq">K = −E = GmTm/(2r) =</span> <span class="answer">2.84×10⁹ J</span><br>
+            <span class="eq">Ep = −6.67×10⁻<span class="frac"><span class="fnum">¹¹×5.97×10²⁴×100</span><span class="fbar"></span><span class="fden">7×10⁶</span></span> =</span> <span class="answer">−5.69×10⁹ J</span><br>
+            <span class="eq">K = −E = <span class="frac"><span class="fnum">GmTm</span><span class="fbar"></span><span class="fden">(2r)</span></span> =</span> <span class="answer">2.84×10⁹ J</span><br>
             <span class="eq">E = −2.84×10⁹ J</span> (ligado)
           </div>
         </div>
@@ -7634,7 +7668,7 @@
             </div>
           </div>
           <div class="formula-frame">
-            <div class="formula-main">ve = √(2GmT / R)</div>
+            <div class="formula-main">ve = √(<span class="frac"><span class="fnum">2GmT</span><span class="fbar"></span><span class="fden">R</span></span>)</div>
             <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">ve = √(2gR) &nbsp;·&nbsp; independiente de la masa del proyectil</span></div>
           </div>
           <div class="cases-grid">
@@ -7696,9 +7730,9 @@
             En el infinito: <span class="eq">K(∞) = 0</span> y <span class="eq">Ep(∞) = 0</span> → <b>E(∞) = 0</b><br><br>
             Por conservación: <span class="eq">E(superficie) = E(∞) = 0</span><br>
             <span class="eq">½mve² + Ep(RT) = 0</span><br>
-            <span class="eq">½mve² − GmTm/RT = 0</span><br>
-            <span class="eq">½ve² = GmT/RT</span><br>
-            <div class="formula-final-wrap"><span class="formula-final">ve = √(2GmT/RT) = √(2gRT)</span></div>
+            <span class="eq">½mve² − <span class="frac"><span class="fnum">GmTm</span><span class="fbar"></span><span class="fden">RT</span></span> = 0</span><br>
+            <span class="eq">½ve² = <span class="frac"><span class="fnum">GmT</span><span class="fbar"></span><span class="fden">RT</span></span></span><br>
+            <div class="formula-final-wrap"><span class="formula-final">ve = √(<span class="frac"><span class="fnum">2GmT</span><span class="fbar"></span><span class="fden">RT</span></span>) = √(2gRT)</span></div>
             Si v &lt; ve → el proyectil vuelve (ligado, E &lt; 0).<br>
             Si v = ve → escapa con E = 0.<br>
             Si v &gt; ve → escapa con energía cinética residual (E &gt; 0).
@@ -7737,7 +7771,7 @@
         <div class="ex-block">
           <div class="ex-text">
             <b>Tierra:</b> mT=5.97×10²⁴kg, RT=6.37×10⁶m<br>
-            <span class="eq">ve = √(2×6.67×10⁻¹¹×5.97×10²⁴/6.37×10⁶) =</span> <span class="answer">11.2 km/s</span><br>
+            <span class="eq">ve = √(2×6.67×10⁻<span class="frac"><span class="fnum">¹¹×5.97×10²⁴</span><span class="fbar"></span><span class="fden">6.37×10⁶</span></span>) =</span> <span class="answer">11.2 km/s</span><br>
             <span class="eq">ve = vs·√2 = 7.9×√2 =</span> <span class="answer">11.17 km/s ✓</span>
           </div>
         </div>
@@ -7774,10 +7808,10 @@
             </div>
           </div>
           <div class="cases-grid">
-            <div class="case-pill"><b>Tensión normal &sigma;</b><span class="eq">&sigma; = F/A &nbsp;[Pa = N/m²]</span> Fuerza perpendicular a la sección A.</div>
-            <div class="case-pill"><b>Deformación unitaria &xi;</b><span class="eq">&xi; = &Delta;l/l&sub0; &nbsp;[adimensional]</span> &Delta;l = l &minus; l&sub0;</div>
+            <div class="case-pill"><b>Tensión normal &sigma;</b><span class="eq">&sigma; = <span class="frac"><span class="fnum">F</span><span class="fbar"></span><span class="fden">A</span></span> &nbsp;[Pa = N/m²]</span> Fuerza perpendicular a la sección A.</div>
+            <div class="case-pill"><b>Deformación unitaria &xi;</b><span class="eq">&xi; = &Delta;<span class="frac"><span class="fnum">l</span><span class="fbar"></span><span class="fden">l</span></span>&sub0; &nbsp;[adimensional]</span> &Delta;l = l &minus; l&sub0;</div>
             <div class="case-pill"><b>Módulo de Young E</b> — propiedad del material, igual unidades que &sigma;. E&uarr; &rarr; material más rígido.</div>
-            <div class="case-pill"><b>Tensión tangencial &tau;</b><span class="eq">&tau; = F/A &nbsp;(fuerza paralela a A)</span></div>
+            <div class="case-pill"><b>Tensión tangencial &tau;</b><span class="eq">&tau; = <span class="frac"><span class="fnum">F</span><span class="fbar"></span><span class="fden">A</span></span> &nbsp;(fuerza paralela a A)</span></div>
           </div>
         </div>
         <div class="col">
@@ -7859,9 +7893,9 @@
         <div class="deriv-block">
           <div class="deriv-text">
             <b>Constante recuperadora k</b> — de &sigma;=E&xi; con &sigma;=F/A y &xi;=&Delta;l/l&sub0;:<br>
-            <span class="eq">F/A = E &middot; &Delta;l/l&sub0; &nbsp;&rarr;&nbsp; F = (EA/l&sub0;) &middot; &Delta;l</span><br>
+            <span class="eq"><span class="frac"><span class="fnum">F</span><span class="fbar"></span><span class="fden">A</span></span> = E &middot; &Delta;<span class="frac"><span class="fnum">l</span><span class="fbar"></span><span class="fden">l</span></span>&sub0; &nbsp;&rarr;&nbsp; F = (<span class="frac"><span class="fnum">EA</span><span class="fbar"></span><span class="fden">l</span></span>&sub0;) &middot; &Delta;l</span><br>
             Como para un resorte F = k&Delta;l:<br>
-            <div class="formula-final-wrap"><span class="formula-final">k = E &middot; A / l&sub0;</span></div>
+            <div class="formula-final-wrap"><span class="formula-final">k = E &middot; <span class="frac"><span class="fnum">A</span><span class="fbar"></span><span class="fden">l</span></span>&sub0;</span></div>
             <b>Zonas del diagrama &sigma;&ndash;&xi;</b>:<br>
             &nbsp;&bull;&nbsp;<b>Zona elástica (0&ndash;A):</b> Hooke válido, deformación lineal, el material recupera su forma al cesar el esfuerzo.<br>
             &nbsp;&bull;&nbsp;<b>Zona de fluencia (A&ndash;B):</b> relación no lineal; probablemente recuperable.<br>
@@ -7918,8 +7952,8 @@
         <div class="ex-block">
           <div class="ex-text">
             <b>Cable acero: l&sub0;=2 m, A=1 cm²=10⁻⁴ m², F=20 kN</b><br>
-            <span class="eq">&sigma; = 20×10³/10⁻⁴ =</span> <span class="answer">2×10⁸ Pa = 200 MPa</span><br>
-            <span class="eq">&xi; = &sigma;/E = 2×10⁸/(20×10¹⁰) =</span> <span class="answer">10⁻³ (adim.)</span><br>
+            <span class="eq">&sigma; = <span class="frac"><span class="fnum">20×10³</span><span class="fbar"></span><span class="fden">10</span></span>⁻⁴ =</span> <span class="answer">2×10⁸ Pa = 200 MPa</span><br>
+            <span class="eq">&xi; = &sigma;/E = <span class="frac"><span class="fnum">2×10⁸</span><span class="fbar"></span><span class="fden">(20×10¹⁰)</span></span> =</span> <span class="answer">10⁻³ (adim.)</span><br>
             <span class="eq">&Delta;l = &xi;×l&sub0; = 10⁻³×2 =</span> <span class="answer">2 mm</span>
           </div>
         </div>
@@ -8239,7 +8273,7 @@
             </div>
           </div>
           <div class="formula-frame">
-            <div class="formula-main">&Delta;P = F / A = cte en todo el fluido</div>
+            <div class="formula-main">&Delta;P = <span class="frac"><span class="fnum">F</span><span class="fbar"></span><span class="fden">A</span></span> = cte en todo el fluido</div>
             <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">la presión aplicada se suma a &rho;gh en cada punto</span></div>
           </div>
           <div class="cases-grid">
@@ -8303,8 +8337,8 @@
             La variación &Delta;P se suma <b>uniformemente</b> a toda la distribución de presiones. El fluido transmite &Delta;P sin atenuación a todas las paredes y a todos los puntos.<br><br>
             <b>Fundamento de la prensa hidráulica:</b><br>
             Dos pistones conectados por un fluido:<br>
-            <span class="eq">P = f/a = F/A</span><br>
-            <div class="formula-final-wrap"><span class="formula-final">F = f &middot; (A/a) &nbsp;&rarr;&nbsp; si A &gg; a, F &gg; f</span></div>
+            <span class="eq">P = <span class="frac"><span class="fnum">f</span><span class="fbar"></span><span class="fden">a</span></span> = <span class="frac"><span class="fnum">F</span><span class="fbar"></span><span class="fden">A</span></span></span><br>
+            <div class="formula-final-wrap"><span class="formula-final">F = f &middot; (<span class="frac"><span class="fnum">A</span><span class="fbar"></span><span class="fden">a</span></span>) &nbsp;&rarr;&nbsp; si A &gg; a, F &gg; f</span></div>
             Es un multiplicador de fuerza. El trabajo se conserva:<br>
             <span class="eq">W = f&middot;d₁ = F&middot;d₂ &nbsp;&nbsp;(d₁ &gg; d₂)</span>
           </div>
@@ -8350,7 +8384,7 @@
         <div class="ex-block">
           <div class="ex-text">
             <b>Prensa: a=5 cm²=5×10⁻⁴ m², A=500 cm²=0.05 m², f=100 N</b><br>
-            <span class="eq">F = f&middot;A/a = 100&times;0.05/(5×10⁻⁴) =</span> <span class="answer">10 000 N = 10 kN</span><br>
+            <span class="eq">F = f&middot;<span class="frac"><span class="fnum">A</span><span class="fbar"></span><span class="fden">a</span></span> = 100&times;0.05/(5×10⁻⁴) =</span> <span class="answer">10 000 N = 10 kN</span><br>
             <span style="color:var(--ink-3);font-size:.7rem;">multiplicación de fuerza &times;100</span>
           </div>
         </div>
@@ -8381,12 +8415,12 @@
             </div>
           </div>
           <div class="formula-frame">
-            <div class="formula-main">F = f &middot; A / a</div>
+            <div class="formula-main">F = f &middot; <span class="frac"><span class="fnum">A</span><span class="fbar"></span><span class="fden">a</span></span></div>
             <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">f/a = F/A = P &nbsp;·&nbsp; W = f&middot;d₁ = F&middot;d₂ (conservación de energía)</span></div>
           </div>
           <div class="cases-grid">
-            <div class="case-pill"><b>Multiplicación:</b><span class="eq">si A/a = 100 &rarr; F = 100f</span></div>
-            <div class="case-pill"><b>Conservación de energía:</b><span class="eq">d₁ = d₂&middot;(A/a) &nbsp;(el pistón chico baja más)</span></div>
+            <div class="case-pill"><b>Multiplicación:</b><span class="eq">si <span class="frac"><span class="fnum">A</span><span class="fbar"></span><span class="fden">a</span></span> = 100 &rarr; F = 100f</span></div>
+            <div class="case-pill"><b>Conservación de energía:</b><span class="eq">d₁ = d₂&middot;(<span class="frac"><span class="fnum">A</span><span class="fbar"></span><span class="fden">a</span></span>) &nbsp;(el pistón chico baja más)</span></div>
             <div class="case-pill"><b>No crea energía</b> — compensa fuerza con desplazamiento (máquina simple).</div>
             <div class="case-pill"><b>Aplicaciones:</b> gato hidráulico, frenos de auto, prensa industrial, elevador.</div>
           </div>
@@ -8443,13 +8477,13 @@
         <div class="deriv-block">
           <div class="deriv-text">
             Por Principio de Pascal, la presión se transmite íntegramente:<br>
-            <span class="eq">P = f/a = F/A</span><br>
-            <div class="formula-final-wrap"><span class="formula-final">F = f &middot; A/a</span></div>
+            <span class="eq">P = <span class="frac"><span class="fnum">f</span><span class="fbar"></span><span class="fden">a</span></span> = <span class="frac"><span class="fnum">F</span><span class="fbar"></span><span class="fden">A</span></span></span><br>
+            <div class="formula-final-wrap"><span class="formula-final">F = f &middot; <span class="frac"><span class="fnum">A</span><span class="fbar"></span><span class="fden">a</span></span></span></div>
             <b>Conservación de energía</b> — el volumen de fluido desplazado es el mismo en ambos lados:<br>
             <span class="eq">V_desplazado = a&middot;d₁ = A&middot;d₂</span><br>
-            <span class="eq">d₁/d₂ = A/a</span><br><br>
+            <span class="eq"><span class="frac"><span class="fnum">d₁</span><span class="fbar"></span><span class="fden">d₂</span></span> = <span class="frac"><span class="fnum">A</span><span class="fbar"></span><span class="fden">a</span></span></span><br><br>
             Trabajo entrada = trabajo salida:<br>
-            <span class="eq">W_in = f&middot;d₁ = f&middot;(A/a)&middot;d₂ = F&middot;d₂ = W_out</span><br><br>
+            <span class="eq">W_in = f&middot;d₁ = f&middot;(<span class="frac"><span class="fnum">A</span><span class="fbar"></span><span class="fden">a</span></span>)&middot;d₂ = F&middot;d₂ = W_out</span><br><br>
             La ventaja mecánica es <b>A/a</b>, pero el pistón chico recorre <b>A/a</b> veces más que el grande.
           </div>
         </div>
@@ -8963,7 +8997,7 @@
           <div class="cases-grid">
             <div class="case-pill"><b>A &darr; &rarr; v &uarr;</b><span class="eq">tubo más angosto → fluido más rápido</span></div>
             <div class="case-pill"><b>A &uarr; &rarr; v &darr;</b><span class="eq">tubo más ancho → fluido más lento</span></div>
-            <div class="case-pill"><b>Derivada:</b><span class="eq">v₂/v₁ = A₁/A₂ (razón inversa de áreas)</span></div>
+            <div class="case-pill"><b>Derivada:</b><span class="eq"><span class="frac"><span class="fnum">v₂</span><span class="fbar"></span><span class="fden">v₁</span></span> = <span class="frac"><span class="fnum">A₁</span><span class="fbar"></span><span class="fden">A₂</span></span> (razón inversa de áreas)</span></div>
             <div class="case-pill"><b>Hipótesis:</b> fluido ideal, incompresible (&rho;=cte), régimen estacionario.</div>
           </div>
         </div>
@@ -9024,7 +9058,7 @@
             <span class="eq">&rho;A₁v₁&Delta;t = &rho;A₂v₂&Delta;t</span><br>
             <div class="formula-final-wrap"><span class="formula-final">A₁v₁ = A₂v₂ = Q = cte</span></div>
             Razón de velocidades:<br>
-            <span class="eq">v₂/v₁ = A₁/A₂</span>
+            <span class="eq"><span class="frac"><span class="fnum">v₂</span><span class="fbar"></span><span class="fden">v₁</span></span> = <span class="frac"><span class="fnum">A₁</span><span class="fbar"></span><span class="fden">A₂</span></span></span>
           </div>
         </div>
         <div class="unit-block" style="margin-top:.5rem;">
@@ -9066,7 +9100,7 @@
           <div class="ex-text">
             <b>Tubo A₁=10 cm², v₁=3 m/s se estrecha a A₂=2 cm²:</b><br>
             <span class="eq">Q = 10×10⁻⁴×3 = 3×10⁻³ m³/s</span><br>
-            <span class="eq">v₂ = Q/A₂ = 3×10⁻³/(2×10⁻⁴) =</span> <span class="answer">15 m/s</span>
+            <span class="eq">v₂ = <span class="frac"><span class="fnum">Q</span><span class="fbar"></span><span class="fden">A₂</span></span> = 3×10⁻³/(2×10⁻⁴) =</span> <span class="answer">15 m/s</span>
           </div>
         </div>
       </div>
@@ -9167,7 +9201,7 @@
             Dividiendo por &Delta;V:<br>
             <div class="formula-final-wrap"><span class="formula-final">P + &frac12;&rho;v² + &rho;gy = cte</span></div>
             O en alturas (dividiendo por &rho;g):<br>
-            <span class="eq">P/&rho;g + v²/2g + y = cte</span>
+            <span class="eq">P/&rho;g + <span class="frac"><span class="fnum">v²</span><span class="fbar"></span><span class="fden">2g</span></span> + y = cte</span>
           </div>
         </div>
         <div class="unit-block" style="margin-top:.5rem;">
@@ -9213,7 +9247,7 @@
         <div class="ex-block">
           <div class="ex-text">
             <b>Tubo horizontal: A₁=4A₂, P₁=2×10⁵ Pa, v₁=2 m/s, &rho;=1000 kg/m³:</b><br>
-            <span class="eq">v₂ = v₁A₁/A₂ = 8 m/s</span><br>
+            <span class="eq">v₂ = <span class="frac"><span class="fnum">v₁A₁</span><span class="fbar"></span><span class="fden">A₂</span></span> = 8 m/s</span><br>
             <span class="eq">P₂ = P₁ + &frac12;&rho;(v₁²&minus;v₂²) = 2×10⁵ + &frac12;×1000×(4&minus;64) =</span><br>
             <span class="answer">P₂ = 1.7×10⁵ Pa</span>
           </div>
@@ -9312,13 +9346,13 @@
         <div class="deriv-block">
           <div class="deriv-text">
             <b>Paso 1 — Continuidad</b> (tubo horizontal, y=cte):<br>
-            <span class="eq">Av = av₂ &nbsp;&rarr;&nbsp; v₂ = v(A/a)</span><br><br>
+            <span class="eq">Av = av₂ &nbsp;&rarr;&nbsp; v₂ = v(<span class="frac"><span class="fnum">A</span><span class="fbar"></span><span class="fden">a</span></span>)</span><br><br>
             <b>Paso 2 — Bernoulli</b>:<br>
             <span class="eq">P₁ + &frac12;&rho;v² = P₂ + &frac12;&rho;v₂²</span><br>
-            <span class="eq">P₁ &minus; P₂ = &frac12;&rho;(v₂²&minus;v²) = &frac12;&rho;v²((A/a)²&minus;1)</span><br><br>
+            <span class="eq">P₁ &minus; P₂ = &frac12;&rho;(v₂²&minus;v²) = &frac12;&rho;v²((<span class="frac"><span class="fnum">A</span><span class="fbar"></span><span class="fden">a</span></span>)²&minus;1)</span><br><br>
             <b>Paso 3 — Manómetro</b>: &Delta;P = P₁ &minus; P₂ = &rho;g&Delta;h<br>
-            <span class="eq">&rho;g&Delta;h = &frac12;&rho;v²((A/a)²&minus;1)</span><br>
-            <div class="formula-final-wrap"><span class="formula-final">v = &radic;[ 2g&Delta;h / ((A/a)²&minus;1) ]</span></div>
+            <span class="eq">&rho;g&Delta;h = &frac12;&rho;v²((<span class="frac"><span class="fnum">A</span><span class="fbar"></span><span class="fden">a</span></span>)²&minus;1)</span><br>
+            <div class="formula-final-wrap"><span class="formula-final">v = &radic;[ 2g&Delta;h/((A/a)²&minus;1) ]</span></div>
           </div>
         </div>
         <div class="unit-block" style="margin-top:.5rem;">
@@ -9347,7 +9381,7 @@
         <div class="ex-block">
           <div class="ex-text">
             <b>A=10 cm², a=2 cm², &Delta;h=0.05 m, &rho;=1000 kg/m³:</b><br>
-            <span class="eq">A/a = 5 &nbsp;·&nbsp; (A/a)²&minus;1 = 24</span><br>
+            <span class="eq"><span class="frac"><span class="fnum">A</span><span class="fbar"></span><span class="fden">a</span></span> = 5 &nbsp;·&nbsp; (<span class="frac"><span class="fnum">A</span><span class="fbar"></span><span class="fden">a</span></span>)²&minus;1 = 24</span><br>
             <span class="eq">v = &radic;(2×9.8×0.05/24) =</span> <span class="answer">0.202 m/s</span><br>
             <span class="eq">Q = Av = 10×10⁻⁴×0.202 =</span> <span class="answer">2.02×10⁻⁴ m³/s</span>
           </div>
@@ -9739,7 +9773,7 @@
         <div class="deriv-block">
           <div class="deriv-text">
             <b>Viscosidad dinámica &eta;</b> — definición por corte entre capas:<br>
-            <span class="eq">F/A = &eta; &middot; v/L &nbsp;&rarr;&nbsp; &eta; = (F/A)/(v/L)</span><br><br>
+            <span class="eq"><span class="frac"><span class="fnum">F</span><span class="fbar"></span><span class="fden">A</span></span> = &eta; &middot; <span class="frac"><span class="fnum">v</span><span class="fbar"></span><span class="fden">L</span></span> &nbsp;&rarr;&nbsp; &eta; = (<span class="frac"><span class="fnum">F</span><span class="fbar"></span><span class="fden">A</span></span>)/(v/L)</span><br><br>
             <b>Ley de Stokes</b> — fuerza viscosa sobre esfera de radio r:<br>
             <span class="eq">F_v = 6&pi;&eta;rv</span><br><br>
             <b>Caída de esfera en fluido:</b> 3 fuerzas actuantes:<br>
@@ -9748,7 +9782,7 @@
             &nbsp;&bull; Viscosa: <span class="eq">F_v = 6&pi;&eta;rv</span> (↑)<br><br>
             A velocidad límite (a=0):<br>
             <span class="eq">mg &minus; E &minus; F_v = 0</span><br>
-            <div class="formula-final-wrap"><span class="formula-final">v_L = 2r²(&rho;_c &minus; &rho;_0)g / (9&eta;)</span></div>
+            <div class="formula-final-wrap"><span class="formula-final">v_L = 2r²(&rho;_c &minus; &rho;_0)g/(9&eta;)</span></div>
           </div>
         </div>
         <div class="unit-block" style="margin-top:.5rem;">
@@ -9887,7 +9921,7 @@
             Para dos estados 1 y 2:<br>
             <div class="formula-final-wrap"><span class="formula-final">P₁V₁ = P₂V₂</span></div>
             <b>Trabajo isotérmico</b> (T=cte, PV=P₁V₁=cte → P=P₁V₁/V):<br>
-            <span class="eq">W = ∫P·dV = P₁V₁∫dV/V = P₁V₁·ln(V₂/V₁)</span><br><br>
+            <span class="eq">W = ∫P·dV = <span class="frac"><span class="fnum">P₁V₁∫dV</span><span class="fbar"></span><span class="fden">V</span></span> = P₁V₁·ln(<span class="frac"><span class="fnum">V₂</span><span class="fbar"></span><span class="fden">V₁</span></span>)</span><br><br>
             <b>1er Principio</b> (T=cte → ΔU=0):<br>
             <span class="eq">Q − W = ΔU = 0 &nbsp;&rarr;&nbsp; Q = W</span><br>
             Todo el calor absorbido se convierte en trabajo.
@@ -9934,8 +9968,8 @@
         <div class="ex-block">
           <div class="ex-text">
             <b>Gas a P₁=4 atm, V₁=3 L → expansión isotérmica a V₂=12 L:</b><br>
-            <span class="eq">P₂ = P₁V₁/V₂ = 4×3/12 =</span> <span class="answer">1 atm</span><br>
-            <span class="eq">W = P₁V₁·ln(V₂/V₁) = 4×101325×0.003×ln(4) =</span><br>
+            <span class="eq">P₂ = <span class="frac"><span class="fnum">P₁V₁</span><span class="fbar"></span><span class="fden">V₂</span></span> = 4×3/12 =</span> <span class="answer">1 atm</span><br>
+            <span class="eq">W = P₁V₁·ln(<span class="frac"><span class="fnum">V₂</span><span class="fbar"></span><span class="fden">V₁</span></span>) = 4×101325×0.003×ln(4) =</span><br>
             <span class="answer">W ≈ 1683 J</span> &nbsp;(Q=W, ΔU=0)
           </div>
         </div>
@@ -9970,8 +10004,8 @@
             <div class="formula-sub" style="margin-top:.4rem;"><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;">&alpha; = &beta; = 1/273.16 K⁻¹ &nbsp;·&nbsp; T[K] = t[°C] + 273.16</span></div>
           </div>
           <div class="cases-grid">
-            <div class="case-pill"><b>1ª ley (P=cte):</b><span class="eq">V/T = cte &nbsp;(isobárica)</span></div>
-            <div class="case-pill"><b>2ª ley (V=cte):</b><span class="eq">P/T = cte &nbsp;(isócora)</span></div>
+            <div class="case-pill"><b>1ª ley (P=cte):</b><span class="eq"><span class="frac"><span class="fnum">V</span><span class="fbar"></span><span class="fden">T</span></span> = cte &nbsp;(isobárica)</span></div>
+            <div class="case-pill"><b>2ª ley (V=cte):</b><span class="eq"><span class="frac"><span class="fnum">P</span><span class="fbar"></span><span class="fden">T</span></span> = cte &nbsp;(isócora)</span></div>
             <div class="case-pill"><b>Cero absoluto:</b> V=0 se extrapola a t=−273.16°C = 0 K</div>
             <div class="case-pill"><b>&alpha; = &beta; = 1/273.16 = 0.00366 K⁻¹</b> — igual para todos los gases ideales</div>
           </div>
@@ -10038,12 +10072,12 @@
           <div class="deriv-text">
             <b>1ª Ley (P=cte) — derivación:</b><br>
             Experimentalmente: <span class="eq">V₁ − V₀ = &alpha;·V₀·t₁</span> → <span class="eq">V₁ = V₀(1 + &alpha;t₁)</span><br>
-            Para dos estados: <span class="eq">V₁/V₂ = (1+&alpha;t₁)/(1+&alpha;t₂)</span><br>
+            Para dos estados: <span class="eq"><span class="frac"><span class="fnum">V₁</span><span class="fbar"></span><span class="fden">V₂</span></span> = <span class="frac"><span class="fnum">(1+&alpha;t₁)</span><span class="fbar"></span><span class="fden">(1+&alpha;t₂)</span></span></span><br>
             Como T[K] = 273.16 + t[°C] y &alpha; = 1/273.16:<br>
-            <div class="formula-final-wrap"><span class="formula-final">V₁/T₁ = V₂/T₂ &nbsp;(P=cte)</span></div>
+            <div class="formula-final-wrap"><span class="formula-final"><span class="frac"><span class="fnum">V₁</span><span class="fbar"></span><span class="fden">T₁</span></span> = <span class="frac"><span class="fnum">V₂</span><span class="fbar"></span><span class="fden">T₂</span></span> &nbsp;(P=cte)</span></div>
             <b>2ª Ley (V=cte) — derivación análoga:</b><br>
             <span class="eq">P₁ − P₀ = &beta;·P₀·t₁</span> con &beta; = &alpha; = 1/273.16<br>
-            <div class="formula-final-wrap"><span class="formula-final">P₁/T₁ = P₂/T₂ &nbsp;(V=cte)</span></div>
+            <div class="formula-final-wrap"><span class="formula-final"><span class="frac"><span class="fnum">P₁</span><span class="fbar"></span><span class="fden">T₁</span></span> = <span class="frac"><span class="fnum">P₂</span><span class="fbar"></span><span class="fden">T₂</span></span> &nbsp;(V=cte)</span></div>
             Ambas expresan: a igual masa, la variable libre (V o P) es proporcional a T absoluta.
           </div>
         </div>
@@ -10092,9 +10126,9 @@
         <div class="ex-block">
           <div class="ex-text">
             <b>Isobárica: V₁=2 L a T₁=300 K → T₂=600 K:</b><br>
-            <span class="eq">V₂ = V₁·T₂/T₁ = 2×600/300 =</span> <span class="answer">4 L</span><br>
+            <span class="eq">V₂ = <span class="frac"><span class="fnum">V₁·T₂</span><span class="fbar"></span><span class="fden">T₁</span></span> = 2×600/300 =</span> <span class="answer">4 L</span><br>
             <b>Isócora: P₁=1 atm a T₁=300 K → T₂=450 K:</b><br>
-            <span class="eq">P₂ = P₁·T₂/T₁ = 1×450/300 =</span> <span class="answer">1.5 atm</span>
+            <span class="eq">P₂ = <span class="frac"><span class="fnum">P₁·T₂</span><span class="fbar"></span><span class="fden">T₁</span></span> = 1×450/300 =</span> <span class="answer">1.5 atm</span>
           </div>
         </div>
       </div>
@@ -10188,7 +10222,7 @@
             <span class="eq">W = P(V₂&minus;V₁) = PΔV &nbsp;&rarr;&nbsp; ΔU = Q&minus;PΔV</span><br>
             ley Gay-Lussac 1ª<br><br>
             <b>③ Isotérmica (T=cte):</b><br>
-            <span class="eq">W = P₁V₁·ln(V₂/V₁) &nbsp;&rarr;&nbsp; ΔU = 0 &nbsp;&rarr;&nbsp; Q = W</span><br>
+            <span class="eq">W = P₁V₁·ln(<span class="frac"><span class="fnum">V₂</span><span class="fbar"></span><span class="fden">V₁</span></span>) &nbsp;&rarr;&nbsp; ΔU = 0 &nbsp;&rarr;&nbsp; Q = W</span><br>
             ley Boyle-Mariotte<br><br>
             <div class="formula-final-wrap"><span class="formula-final">Q &minus; W = &Delta;U &nbsp;(siempre)</span></div>
           </div>
@@ -10343,8 +10377,8 @@
         <div class="deriv-block">
           <div class="deriv-text">
             Definición de velocidad de propagación:<br>
-            <span class="eq">v = distancia / tiempo = &lambda; / T</span><br><br>
-            Como <span class="eq">f = 1/T</span>:<br>
+            <span class="eq">v = <span class="frac"><span class="fnum">distancia</span><span class="fbar"></span><span class="fden">tiempo</span></span> = &lambda; / T</span><br><br>
+            Como <span class="eq">f = <span class="frac"><span class="fnum">1</span><span class="fbar"></span><span class="fden">T</span></span></span>:<br>
             <div class="formula-final-wrap"><span class="formula-final">v = &lambda; &middot; f</span></div>
             Frecuencia angular y número de onda:<br>
             <span class="eq">&omega; = 2&pi;/T = 2&pi;f</span><br>
@@ -10392,7 +10426,7 @@
         <div class="ex-block">
           <div class="ex-text">
             <b>f = 440 Hz, v = 340 m/s (aire), A = 0.02 m:</b><br>
-            <span class="eq">&lambda; = v/f = 340/440 =</span> <span class="answer">0.773 m</span><br>
+            <span class="eq">&lambda; = <span class="frac"><span class="fnum">v</span><span class="fbar"></span><span class="fden">f</span></span> = 340/440 =</span> <span class="answer">0.773 m</span><br>
             <span class="eq">&omega; = 2&pi;&times;440 =</span> <span class="answer">2764 rad/s</span><br>
             <span class="eq">k = 2&pi;/0.773 =</span> <span class="answer">8.13 rad/m</span>
           </div>
@@ -10492,8 +10526,8 @@
             La partícula en x=0 se mueve como MAS:<br>
             <span class="eq">y(0,t) = A&middot;sen(&omega;t)</span><br><br>
             La partícula en x=x₀ recibe la perturbación con retraso Δt = x₀/v:<br>
-            <span class="eq">y(x₀,t) = A&middot;sen(&omega;(t &minus; x₀/v))</span><br>
-            <span class="eq">= A&middot;sen(&omega;t &minus; &omega;x₀/v)</span><br><br>
+            <span class="eq">y(x₀,t) = A&middot;sen(&omega;(t &minus; <span class="frac"><span class="fnum">x₀</span><span class="fbar"></span><span class="fden">v</span></span>))</span><br>
+            <span class="eq">= A&middot;sen(&omega;t &minus; &omega;<span class="frac"><span class="fnum">x₀</span><span class="fbar"></span><span class="fden">v</span></span>)</span><br><br>
             Definiendo <b>k = &omega;/v</b>:<br>
             <div class="formula-final-wrap"><span class="formula-final">y(x,t) = A&middot;sen(&omega;t &minus; kx)</span></div>
             Como v = &lambda;f y &omega; = 2&pi;f:<br>
@@ -10568,8 +10602,8 @@
           </div>
           <div class="formula-frame">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;">
-              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.1rem;color:var(--formula-accent);font-weight:600;">I = P / 4&pi;r²</div>
-              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.1rem;color:var(--formula-accent);font-weight:600;">&beta; = 10&middot;log(I/I₀)</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.1rem;color:var(--formula-accent);font-weight:600;">I = <span class="frac"><span class="fnum">P</span><span class="fbar"></span><span class="fden">4</span></span>&pi;r²</div>
+              <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1.1rem;color:var(--formula-accent);font-weight:600;">&beta; = 10&middot;log(<span class="frac"><span class="fnum">I</span><span class="fbar"></span><span class="fden">I₀</span></span>)</div>
             </div>
             <div class="formula-sub">I₀ = 10⁻¹² W/m² (umbral de audición a 1000 Hz)</div>
           </div>
@@ -10640,12 +10674,12 @@
         <div class="deriv-block">
           <div class="deriv-text">
             La potencia P atraviesa una esfera de área A = 4&pi;r²:<br>
-            <span class="eq">I = P/A = P/(4&pi;r²)</span><br><br>
+            <span class="eq">I = <span class="frac"><span class="fnum">P</span><span class="fbar"></span><span class="fden">A</span></span> = P/(4&pi;r²)</span><br><br>
             Para dos distancias r₁ y r₂:<br>
             <span class="eq">I₁&middot;4&pi;r₁² = P = I₂&middot;4&pi;r₂²</span><br>
-            <div class="formula-final-wrap"><span class="formula-final">I₁r₁² = I₂r₂² &nbsp;&rarr;&nbsp; I &prop; 1/r²</span></div>
+            <div class="formula-final-wrap"><span class="formula-final">I₁r₁² = I₂r₂² &nbsp;&rarr;&nbsp; I &prop; <span class="frac"><span class="fnum">1</span><span class="fbar"></span><span class="fden">r²</span></span></span></div>
             <b>Propiedad de &beta;:</b><br>
-            <span class="eq">&beta;₂ &minus; &beta;₁ = 10&middot;log(I₂/I₁)</span><br><br>
+            <span class="eq">&beta;₂ &minus; &beta;₁ = 10&middot;log(<span class="frac"><span class="fnum">I₂</span><span class="fbar"></span><span class="fden">I₁</span></span>)</span><br><br>
             Si I₂ = 2I₁: &Delta;&beta; = 10&middot;log2 &asymp; <b>3 dB</b><br>
             Si I₂ = 10I₁: &Delta;&beta; = 10&middot;log10 = <b>10 dB</b><br>
             Si r₂ = 2r₁: I₂ = I₁/4 &rarr; &Delta;&beta; = 10&middot;log(1/4) &asymp; <b>&minus;6 dB</b>
@@ -10696,7 +10730,7 @@
           <div class="ex-text">
             <b>Parlante P=0.1 W, r=2 m:</b><br>
             <span class="eq">I = 0.1/(4&pi;&times;4) =</span> <span class="answer">1.99×10⁻³ W/m²</span><br>
-            <span class="eq">&beta; = 10&middot;log(1.99×10⁻³/10⁻¹²) = 10&middot;log(1.99×10⁹) =</span> <span class="answer">93 dB</span>
+            <span class="eq">&beta; = 10&middot;log(1.99×10⁻<span class="frac"><span class="fnum">³</span><span class="fbar"></span><span class="fden">10</span></span>⁻¹²) = 10&middot;log(1.99×10⁹) =</span> <span class="answer">93 dB</span>
           </div>
         </div>
       </div>
@@ -10791,11 +10825,11 @@
           <div class="deriv-text">
             En tiempo t: masa puesta en movimiento <span class="eq">m = &mu;vt</span>.<br><br>
             Por geometría (pequeño ángulo):<br>
-            <span class="eq">F_y/F = v_y/v &nbsp;&rarr;&nbsp; F_y = F&middot;v_y/v</span><br><br>
+            <span class="eq"><span class="frac"><span class="fnum">F_y</span><span class="fbar"></span><span class="fden">F</span></span> = <span class="frac"><span class="fnum">v_y</span><span class="fbar"></span><span class="fden">v</span></span> &nbsp;&rarr;&nbsp; F_y = F&middot;<span class="frac"><span class="fnum">v_y</span><span class="fbar"></span><span class="fden">v</span></span></span><br><br>
             Impulso = variación de cantidad de movimiento:<br>
             <span class="eq">F_y&middot;t = m&middot;v_y = &mu;vt&middot;v_y</span><br>
-            <span class="eq">F&middot;(v_y/v)&middot;t = &mu;vt&middot;v_y</span><br>
-            <span class="eq">F/v = &mu;v</span><br>
+            <span class="eq">F&middot;(<span class="frac"><span class="fnum">v_y</span><span class="fbar"></span><span class="fden">v</span></span>)&middot;t = &mu;vt&middot;v_y</span><br>
+            <span class="eq"><span class="frac"><span class="fnum">F</span><span class="fbar"></span><span class="fden">v</span></span> = &mu;v</span><br>
             <div class="formula-final-wrap"><span class="formula-final">v² = F/&mu; &nbsp;&rarr;&nbsp; v = &radic;(F/&mu;)</span></div>
             Para fluido: mismo enfoque con módulo de volumen &beta;: v = &radic;(&beta;/&delta;).<br>
             Para varilla sólida: módulo de Young E: v = &radic;(E/&rho;).
@@ -10839,7 +10873,7 @@
           <div class="ex-text">
             <b>Cuerda &mu;=0.005 kg/m, F=80 N:</b><br>
             <span class="eq">v = &radic;(80/0.005) = &radic;16000 =</span> <span class="answer">126.5 m/s</span><br>
-            <span class="eq">f₁ = v/(2L) &nbsp;·&nbsp; para L=0.5m: f₁ =</span> <span class="answer">126.5 Hz</span>
+            <span class="eq">f₁ = <span class="frac"><span class="fnum">v</span><span class="fbar"></span><span class="fden">(2L)</span></span> &nbsp;·&nbsp; para L=0.5m: f₁ =</span> <span class="answer">126.5 Hz</span>
           </div>
         </div>
       </div>
@@ -10874,7 +10908,7 @@
           <div class="cases-grid">
             <div class="case-pill"><b>Nodos en:</b><span class="eq">x = 0, &lambda;/2, &lambda;, 3&lambda;/2, ...</span></div>
             <div class="case-pill"><b>Antinodos en:</b><span class="eq">x = &lambda;/4, 3&lambda;/4, 5&lambda;/4, ...</span></div>
-            <div class="case-pill"><b>Condición (fija en ambos extremos):</b><span class="eq">L = n&lambda;/2 &rarr; f_n = n&middot;v/(2L)</span></div>
+            <div class="case-pill"><b>Condición (fija en ambos extremos):</b><span class="eq">L = n&lambda;/2 &rarr; f_n = n&middot;<span class="frac"><span class="fnum">v</span><span class="fbar"></span><span class="fden">(2L)</span></span></span></div>
             <div class="case-pill"><b>Armónicos:</b><span class="eq">f_n = n&middot;f₁ &nbsp;(n = 1, 2, 3, ...)</span></div>
           </div>
         </div>
@@ -10941,8 +10975,8 @@
             <div class="formula-final-wrap"><span class="formula-final">y = A_OE&middot;sen(kx)&middot;cos(&omega;t) &nbsp; A_OE = 2A</span></div>
             <b>Modos normales (cuerda fija en ambos extremos):</b><br>
             Condición: extremos son nodos &rarr; L = n&lambda;/2<br>
-            <span class="eq">&lambda;_n = 2L/n &nbsp;&rarr;&nbsp; f_n = v/&lambda;_n = n&middot;v/(2L)</span><br>
-            <div class="formula-final-wrap"><span class="formula-final">f_n = n&middot;f₁ &nbsp;&nbsp; f₁ = v/(2L)</span></div>
+            <span class="eq">&lambda;_n = <span class="frac"><span class="fnum">2L</span><span class="fbar"></span><span class="fden">n</span></span> &nbsp;&rarr;&nbsp; f_n = v/&lambda;_n = n&middot;<span class="frac"><span class="fnum">v</span><span class="fbar"></span><span class="fden">(2L)</span></span></span><br>
+            <div class="formula-final-wrap"><span class="formula-final">f_n = n&middot;f₁ &nbsp;&nbsp; f₁ = <span class="frac"><span class="fnum">v</span><span class="fbar"></span><span class="fden">(2L)</span></span></span></div>
           </div>
         </div>
         <div class="unit-block">
@@ -11024,12 +11058,12 @@
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;">
               <div>
                 <div style="font-size:.65rem;font-weight:700;color:var(--demo-accent);letter-spacing:.08em;">A/A (ambos abiertos)</div>
-                <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1rem;color:var(--formula-accent);font-weight:600;">f_n = n·v/(2L)</div>
+                <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1rem;color:var(--formula-accent);font-weight:600;">f_n = <span class="frac"><span class="fnum">n·v</span><span class="fbar"></span><span class="fden">(2L)</span></span></div>
                 <div style="font-size:.65rem;color:#8b877e;">n = 1, 2, 3, ...</div>
               </div>
               <div>
                 <div style="font-size:.65rem;font-weight:700;color:var(--def-accent);letter-spacing:.08em;">A/C (abierto/cerrado)</div>
-                <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1rem;color:var(--formula-accent);font-weight:600;">f_n = n·v/(4L)</div>
+                <div style="font-family:'Fraunces',serif;font-style:italic;font-size:1rem;color:var(--formula-accent);font-weight:600;">f_n = <span class="frac"><span class="fnum">n·v</span><span class="fbar"></span><span class="fden">(4L)</span></span></div>
                 <div style="font-size:.65rem;color:#8b877e;">n = 1, 3, 5, ... (impares)</div>
               </div>
             </div>
@@ -11037,8 +11071,8 @@
           <div class="cases-grid">
             <div class="case-pill"><b>A/A:</b>todos los armónicos · f₁=v/(2L) · λ₁=2L</div>
             <div class="case-pill"><b>A/C:</b>solo armónicos impares · f₁=v/(4L) · λ₁=4L</div>
-            <div class="case-pill"><b>N→N o A→A:</b><span class="eq">distancia = λ/2</span></div>
-            <div class="case-pill"><b>N→A:</b><span class="eq">distancia = λ/4</span></div>
+            <div class="case-pill"><b>N→N o A→A:</b><span class="eq">distancia = <span class="frac"><span class="fnum">λ</span><span class="fbar"></span><span class="fden">2</span></span></span></div>
+            <div class="case-pill"><b>N→A:</b><span class="eq">distancia = <span class="frac"><span class="fnum">λ</span><span class="fbar"></span><span class="fden">4</span></span></span></div>
           </div>
         </div>
         <div class="col">
@@ -11101,14 +11135,14 @@
             <b>Tubo A/A (abierto/abierto):</b><br>
             Ambos extremos son antinodos → la distancia A→A es λ/2.<br>
             Para n semilongitudes de onda en L:<br>
-            <span class="eq">L = n·(λ/2) &rarr; λ_n = 2L/n</span><br>
-            <div class="formula-final-wrap"><span class="formula-final">f_n = v/λ_n = n·v/(2L) = n·f₁ &nbsp; (n=1,2,3,...)</span></div>
+            <span class="eq">L = n·(<span class="frac"><span class="fnum">λ</span><span class="fbar"></span><span class="fden">2</span></span>) &rarr; λ_n = <span class="frac"><span class="fnum">2L</span><span class="fbar"></span><span class="fden">n</span></span></span><br>
+            <div class="formula-final-wrap"><span class="formula-final">f_n = <span class="frac"><span class="fnum">v</span><span class="fbar"></span><span class="fden">λ_n</span></span> = <span class="frac"><span class="fnum">n·v</span><span class="fbar"></span><span class="fden">(2L)</span></span> = n·f₁ &nbsp; (n=1,2,3,...)</span></div>
             <b>Tubo A/C (abierto/cerrado):</b><br>
             Un extremo es A y el otro N → distancia A→N es λ/4.<br>
             Para que se cumpla la condición en ambos extremos:<br>
-            <span class="eq">L = n·(λ/4) &rarr; λ_n = 4L/n</span><br>
+            <span class="eq">L = n·(<span class="frac"><span class="fnum">λ</span><span class="fbar"></span><span class="fden">4</span></span>) &rarr; λ_n = <span class="frac"><span class="fnum">4L</span><span class="fbar"></span><span class="fden">n</span></span></span><br>
             Solo valores impares de n satisfacen A en un extremo y N en el otro:<br>
-            <div class="formula-final-wrap"><span class="formula-final">f_n = n·v/(4L) = n·f₁ &nbsp; (n=1,3,5,...)</span></div>
+            <div class="formula-final-wrap"><span class="formula-final">f_n = <span class="frac"><span class="fnum">n·v</span><span class="fbar"></span><span class="fden">(4L)</span></span> = n·f₁ &nbsp; (n=1,3,5,...)</span></div>
           </div>
         </div>
         <div class="unit-block">
@@ -11246,12 +11280,12 @@
           <div class="deriv-text">
             <b>Longitud de onda delante de la fuente</b> (fuente se aleja del observador):<br>
             Las f_s·t ondas se distribuyen en distancia (u−v_s)·t:<br>
-            <span class="eq">&lambda; = (u − v_s)·t / (f_s·t) = (u − v_s)/f_s</span><br><br>
+            <span class="eq">&lambda; = (u − v_s)·t/(f_s·t) = (u − v_s)/f_s</span><br><br>
             <b>Detrás de la fuente</b>:<br>
             <span class="eq">&lambda; = (u + v_s)/f_s</span><br><br>
             El observador recibe las ondas con rapidez relativa u + v_L:<br>
-            <span class="eq">f_L = (u + v_L) / &lambda; = (u + v_L)·f_s / (u + v_s)</span><br>
-            <div class="formula-final-wrap"><span class="formula-final">f_L = f_s · (u + v_L) / (u + v_s)</span></div>
+            <span class="eq">f_L = (u + v_L) / &lambda; = (u + v_L)·f_s/(u + v_s)</span><br>
+            <div class="formula-final-wrap"><span class="formula-final">f_L = f_s · (u + v_L)/(u + v_s)</span></div>
           </div>
         </div>
         <div class="unit-block">
@@ -11530,6 +11564,8 @@
   showCard(0);
   scaleCard();
   window.addEventListener('resize', scaleCard);
+
+
 </script>
 
 </body>
